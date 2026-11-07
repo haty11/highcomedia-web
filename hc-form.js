@@ -214,7 +214,7 @@
     function go(){try{var q=qrcode(0,'M');q.addData(box.getAttribute('data-pay'));q.make();var u=q.createDataURL(6,3);
       box.querySelector('.hcf-qr').innerHTML='<img src="'+u+'" alt="Mã QR chuyển khoản" width="168" height="168">';var a=box.querySelector('.hcf-save');a.href=u;a.hidden=false;}catch(e){}}
     if(window.qrcode)return go();
-    var s=document.createElement('script');s.src='qr.js?v=ec9f8b65';s.onload=go;document.head.appendChild(s);
+    var s=document.createElement('script');s.src='/qr.js?v=ec9f8b65';s.onload=go;document.head.appendChild(s);
   }
   document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-copy]');if(!b)return;
     var v=b.getAttribute('data-copy'),ok=function(){var t=b.textContent;b.textContent='Đã chép ✓';setTimeout(function(){b.textContent=t;},1500);};

@@ -1,0 +1,31 @@
+# Đăng bài Kiến thức theo lịch: mỗi sáng 7:07 (giờ VN) bung bản _hen-gio/<ngày>.zip mới nhất đã đến hạn.
+# Chạy cả sau mỗi lần Push để bản đẩy lên từ máy không ghi đè mất bài đã đăng.
+name: Dang bai hen gio
+on:
+  schedule:
+    - cron: '7 0 * * *'
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+concurrency: dang-bai
+jobs:
+  dang-bai:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Dua bai den han len web
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          today=$(TZ=Asia/Ho_Chi_Minh date +%F)
+          d=$(ls _hen-gio/*.zip 2>/dev/null | sed 's#.*/##; s#\.zip$##' | awk -v t="$today" '$0<=t' | sort | tail -1)
+          if [ -z "$d" ]; then echo "Chưa có bài đến hạn"; exit 0; fi
+          unzip -oq "_hen-gio/$d.zip" -d .
+          git add -A kien-thuc sitemap.xml
+          if git diff --cached --quiet; then echo "Web đã đúng lịch $d"; exit 0; fi
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "Đăng bài hẹn giờ ($d)"
+          git push
+          gh api -X POST "repos/$GITHUB_REPOSITORY/pages/builds" >/dev/null || true

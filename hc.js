@@ -87,3 +87,23 @@
     if(Math.abs(d)>8)last=y;}
   window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(tick);}},{passive:true});
 })();
+/* Accordion mục lục (trang Về High Club): mở mục này thì đóng mục khác, cuộn tới mục vừa mở, nút về mục lục / mục tiếp */
+(function(){
+  var chs=document.querySelectorAll('details.ab-ch'); if(!chs.length) return;
+  function vis(el){return !!(el.offsetParent||el.getClientRects().length);}
+  function find(id){var c=[document.getElementById(id),document.getElementById('m-'+id)];for(var i=0;i<c.length;i++)if(c[i]&&vis(c[i]))return c[i];return null;}
+  function go(el){var y=el.getBoundingClientRect().top+window.pageYOffset-76;window.scrollTo({top:y,behavior:'smooth'});}
+  for(var i=0;i<chs.length;i++)chs[i].addEventListener('toggle',function(){var me=this;if(!me.open)return;
+    var g=me.getAttribute('name');for(var j=0;j<chs.length;j++)if(chs[j]!==me&&chs[j].getAttribute('name')===g)chs[j].open=false;
+    setTimeout(function(){go(me);},30);});
+  document.addEventListener('click',function(e){
+    var t=e.target.closest&&e.target.closest('[data-ab-top],[data-ab-open],a[href^="#"]'); if(!t) return;
+    if(t.hasAttribute('data-ab-top')){var d=t.closest('details');if(d)d.open=false;var idx=find('muc-luc');if(idx)go(idx);return;}
+    if(t.hasAttribute('data-ab-open')){var n=find(t.getAttribute('data-ab-open'));if(n){n.open=true;}return;}
+    var id=t.getAttribute('href').slice(1).replace(/^m-/,''),el=find(id);
+    if(el&&el.tagName==='DETAILS'){e.preventDefault();el.open=true;}
+    else if(el&&id==='muc-luc'){e.preventDefault();go(el);}
+  });
+  function fromHash(){var h=location.hash.slice(1).replace(/^m-/,''); if(h){var el=find(h); if(el&&el.tagName==='DETAILS') el.open=true;}}
+  fromHash(); window.addEventListener('hashchange',fromHash);
+})();

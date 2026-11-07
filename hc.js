@@ -77,3 +77,13 @@
     apply(j.data);
   }).catch(function(){});
 })();
+/* Thanh nổi mobile: cuộn xuống đọc thì ẩn, cuộn lên thì hiện lại */
+(function(){
+  var bars=document.querySelectorAll('[data-hc-bar]'); if(!bars.length) return;
+  var last=window.pageYOffset||0, ticking=false;
+  function set(off){for(var i=0;i<bars.length;i++)bars[i].classList.toggle('off',off);}
+  function tick(){ticking=false;var y=window.pageYOffset||0,d=y-last;
+    if(y<120){set(false);}else if(d>8){set(true);}else if(d<-8){set(false);}
+    if(Math.abs(d)>8)last=y;}
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(tick);}},{passive:true});
+})();

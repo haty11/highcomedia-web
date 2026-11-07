@@ -52,7 +52,7 @@ summary{list-style:none}summary::-webkit-details-marker{display:none}
 html,body{background:#F5EFE3}
 .v-mob{display:none}
 @media (max-width:640px){.v-desk{display:none}.v-mob{display:block}}
-</style>
+.hc-bar{position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:40;transition:transform .3s ease,opacity .3s ease}.hc-bar.off{transform:translateY(calc(100% + 28px));opacity:0;pointer-events:none}.hc-bar-in{display:flex;align-items:center;gap:6px;background:rgba(26,26,26,0.97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#F5EFE3;border-radius:100px;padding:6px 6px 6px 18px;box-shadow:0 10px 28px rgba(26,26,26,0.22)}.hc-bar-info{flex:1;min-width:0;line-height:1.3;font-size:11px;color:rgba(245,239,227,0.68);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hc-bar-info b{display:block;font-size:13px;color:#F5EFE3;overflow:hidden;text-overflow:ellipsis}.hc-bar-info .s{color:#FFA406;font-weight:700}.hc-bar a{flex:0 0 auto;height:38px;border-radius:100px;display:flex;align-items:center;font-size:13px;text-decoration:none;white-space:nowrap}.hc-bar-z{padding:0 12px;border:1px solid rgba(245,239,227,0.3);color:#F5EFE3;font-weight:700}.hc-bar-cta{padding:0 16px;background:#FFA406;color:#1A1A1A;font-weight:800}</style>
 <link rel="preload" as="image" href="img/hero-scene.webp" media="(min-width: 641px)" fetchpriority="high">
 <link rel="preload" as="image" href="img/hero-scene.webp" media="(max-width: 640px)" fetchpriority="high">
 </head>
@@ -332,21 +332,39 @@ html,body{background:#F5EFE3}
 </section>
 
 <!-- SIGNUP -->
-<section id="dang-ky" style="background:#1A1A1A;color:#F5EFE3;padding:72px 0">
-  <div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:center">
+<section id="dang-ky" style="background:#1A1A1A;color:#F5EFE3;padding:64px 0">
+  <style>
+    .hc-lead{background:rgba(245,239,227,0.05);border:1px solid rgba(245,239,227,0.13);border-radius:18px;padding:22px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 12px}
+    .hc-lead label{display:flex;flex-direction:column;gap:6px;font-size:11px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:rgba(245,239,227,0.6)}
+    .hc-lead input,.hc-lead select{height:44px;padding:0 14px;background:rgba(245,239,227,0.06);border:1px solid rgba(245,239,227,0.2);border-radius:10px;color:#F5EFE3;font:500 15px 'Be Vietnam Pro',sans-serif;letter-spacing:0;text-transform:none;outline:none;transition:border-color .15s,background .15s;width:100%;box-sizing:border-box}
+    .hc-lead input::placeholder{color:rgba(245,239,227,0.35)}
+    .hc-lead input:focus,.hc-lead select:focus{border-color:#FFA406;background:rgba(245,239,227,0.1)}
+    .hc-lead select{appearance:none;-webkit-appearance:none;padding-right:36px;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23F5EFE3' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+    .hc-lead option{color:#1A1A1A;background:#fff}
+    .hc-lead button{grid-column:1 / -1;height:46px;margin-top:4px;border:0;border-radius:100px;background:#FFA406;color:#1A1A1A;font:800 15px 'Be Vietnam Pro',sans-serif;cursor:pointer;transition:transform .15s}
+    .hc-lead button:hover{transform:translateY(-1px)}
+    .hc-lead .fine{grid-column:1 / -1;margin:0;font-size:12px;color:rgba(245,239,227,0.5);text-align:center}
+    .hc-lead .fine a{color:inherit}
+    .hc-chip{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid rgba(245,239,227,0.2);border-radius:100px;color:rgba(245,239,227,0.85);text-decoration:none;font-size:13px}
+  </style>
+  <div class="wrap" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:56px;align-items:center">
     <div>
-      <h2 class="hd" style="font-size:44px;line-height:1.04;font-weight:800;margin:0 0 16px">Sẵn sàng nói<br><span style="color:#FFA406">“Có, và…”</span>?</h2>
-      <p style="font-size:16px;line-height:1.65;color:rgba(245,239,227,0.78);margin:0 0 20px;max-width:420px">Để lại thông tin, High Comedia gọi lại trong 24 giờ để tư vấn lớp phù hợp.</p>
-      <div style="font-size:14px;line-height:1.9;color:rgba(245,239,227,0.8)">Zalo / Hotline: 0909 851 086<br>Email: daongocha23@gmail.com<br>Địa chỉ: <span data-hc="site.address">Giảng Võ, Hà Nội</span></div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:#FFA406;margin-bottom:12px">TƯ VẤN MIỄN PHÍ</div>
+      <h2 class="hd" style="font-size:40px;line-height:1.06;font-weight:800;margin:0 0 14px">Sẵn sàng nói <span style="color:#FFA406">“Có, và…”</span>?</h2>
+      <p style="font-size:15px;line-height:1.65;color:rgba(245,239,227,0.72);margin:0 0 22px;max-width:400px">Để lại thông tin, High Comedia gọi lại trong 24 giờ để tư vấn lớp phù hợp với bạn.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <a class="hc-chip" href="https://zalo.me/0909851086" target="_blank" rel="noopener">Zalo · 0909 851 086</a>
+        <a class="hc-chip" href="mailto:daongocha23@gmail.com">daongocha23@gmail.com</a>
+        <span class="hc-chip" data-hc="site.address">Giảng Võ, Hà Nội</span>
+      </div>
     </div>
-    <form data-hc-form="lead" style="background:#F5EFE3;color:#1A1A1A;border-radius:22px;padding:26px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
-      <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600">Họ và tên<input type="text" name="name" autocomplete="name" required style="height:46px;padding:0 14px;border:2px solid #1A1A1A;border-radius:12px;background:#FFFFFF;font-size:15px"></label>
-      <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600">Số điện thoại (Zalo)<input type="tel" name="phone" required style="height:46px;padding:0 14px;border:2px solid #1A1A1A;border-radius:12px;background:#FFFFFF;font-size:15px"></label>
-      <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600">Email<input type="email" name="email" autocomplete="email" required style="height:46px;padding:0 14px;border:2px solid #1A1A1A;border-radius:12px;background:#FFFFFF;font-size:15px"></label>
-      <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600">Bạn quan tâm
-        <select name="cls" style="height:46px;padding:0 12px;border:2px solid #1A1A1A;border-radius:12px;background:#FFFFFF;font-size:15px"><option value="dropin">Buổi học thử Drop-in (150K)</option><option value="improv1">Improv 1 · Ứng tác Cơ bản 1</option><option value="improv2">Improv 2 · Ứng tác Cơ bản 2</option><option value="kids">Kids Improv · Thiếu nhi 8–14</option><option value="performer1">Diễn viên Ứng tác (Performer)</option><option value="applied">Ứng tác cho doanh nghiệp</option><option value="other">Chưa biết, cần tư vấn</option></select>
-      </label>
-      <button type="button" style="grid-column:1 / -1;background:#FFA406;color:#1A1A1A;border:0;height:52px;border-radius:100px;font-weight:800;font-size:16px;cursor:pointer">Gửi đăng ký</button>
+    <form data-hc-form="lead" class="hc-lead">
+      <label>Họ và tên<input type="text" name="name" autocomplete="name" required placeholder="Nguyễn Văn A"></label>
+      <label>Số điện thoại (Zalo)<input type="tel" name="phone" autocomplete="tel" required placeholder="09xx xxx xxx"></label>
+      <label>Email<input type="email" name="email" autocomplete="email" required placeholder="ban@email.com"></label>
+      <label>Bạn quan tâm<select name="cls"><option value="dropin">Buổi học thử Drop-in (150K)</option><option value="improv1">Improv 1 · Ứng tác Cơ bản 1</option><option value="improv2">Improv 2 · Ứng tác Cơ bản 2</option><option value="kids">Kids Improv · Thiếu nhi 8–14</option><option value="performer1">Diễn viên Ứng tác (Performer)</option><option value="applied">Ứng tác cho doanh nghiệp</option><option value="other">Chưa biết, cần tư vấn</option></select></label>
+      <button type="button">Gửi thông tin</button>
+      <p class="fine">Thông tin chỉ dùng để tư vấn lớp học · <a href="chinh-sach#bao-mat">Bảo mật</a></p>
     </form>
   </div>
 </section>
@@ -552,16 +570,13 @@ html,body{background:#F5EFE3}
 </section>
 
 <!-- STICKY CTA BAR -->
-<div style="position:sticky;bottom:0;z-index:30;display:flex;gap:8px;padding:10px 20px 28px;background:rgba(245,239,227,0.96);backdrop-filter:blur(10px);border-top:1px solid rgba(26,26,26,0.1)">
-  <a href="https://zalo.me/0909851086" style="flex:0 0 auto;height:48px;padding:0 16px;border:1.5px solid #1A1A1A;box-sizing:border-box;border-radius:14px;display:flex;align-items:center;font-weight:700;font-size:14px;text-decoration:none">Zalo</a>
-  <a href="#m-dk" style="flex:1;height:48px;border-radius:14px;background:#FFA406;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;text-decoration:none" data-hc-act="reg:dropin">Đăng ký học thử</a>
-</div>
+
 
 </div>
-</div>
+<div class="hc-bar" data-hc-bar><div class="hc-bar-in"><div class="hc-bar-info"><b>Học thử Drop-in</b><span data-hc="dropin.start">…</span> · <span class="s" data-hc="dropin.seats">…</span></div><a class="hc-bar-z" href="https://zalo.me/0909851086" target="_blank" rel="noopener">Zalo</a><a class="hc-bar-cta" href="#" data-hc-act="reg:dropin"><span>Giữ chỗ · <span data-hc="dropin.sale">150K</span></span></a></div></div></div>
 <script src="hc-config.js?v=5c52f0c1"></script>
 <script src="hc-data.js?v=05510804"></script>
-<script src="hc.js?v=85d92c80"></script>
+<script src="hc.js?v=4e673b13"></script>
 <script src="hc-form.js?v=d425e811"></script>
 <script src="hc-track.js?v=7fc7b9a0"></script>
 </body>

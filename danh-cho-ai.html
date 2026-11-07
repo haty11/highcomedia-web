@@ -69,7 +69,7 @@ html,body{background:#F5EFE3}
       <a href="ung-dung-ung-tac" style="text-decoration:none">Ứng dụng ứng tác</a>
       <a href="#" style="text-decoration:none">Kiến thức</a>
       <a href="/#cong-dong" style="text-decoration:none">Cộng đồng</a>
-      <a href="#" style="text-decoration:none">Về High Club</a>
+      <a href="ve-high-club" style="text-decoration:none">Về High Club</a>
     </nav>
     <a href="#dk" style="background:#1A1A1A;color:#F5EFE3;text-decoration:none;padding:0 20px;border-radius:100px;font-weight:700;font-size:14px;height:44px;display:inline-flex;align-items:center" data-hc-act="reg:">Đăng ký học</a>
   </div>
@@ -126,7 +126,7 @@ html,body{background:#F5EFE3}
       <!-- 1. Kids -->
       <article id="thieu-nhi" style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;gap:18px;align-items:center">
-          <img loading="lazy" decoding="async" src="img/kids-class.webp" alt="Đào Ngọc Hà cùng các học trò nhỏ" style="width:120px;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block;flex-shrink:0">
+          <img loading="lazy" decoding="async" src="img/ab-kids-point.webp" alt="Giờ học ứng tác của các bạn nhỏ" style="width:120px;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block;flex-shrink:0">
           <div><div style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:#8A4B00">NHÓM 1 · 8–14 TUỔI</div><h2 class="hd" style="font-size:26px;line-height:1.15;font-weight:800;margin:4px 0 0">Thiếu nhi: học nói to, chờ lượt và chơi cùng bạn</h2></div>
         </div>
         <p style="font-size:16px;line-height:1.75;margin:0;color:rgba(26,26,26,0.85)">Ở tuổi này, trẻ học nhanh nhất qua trò chơi. Ứng tác vốn là chuỗi trò chơi có luật, nên các con học mà không thấy mình đang học: đứng trước bạn bè, nói rõ ràng, nghe bạn nói hết rồi mới đáp, và vui vẻ khi mình hoặc bạn "nói sai".</p>
@@ -140,7 +140,7 @@ html,body{background:#F5EFE3}
       <!-- 2. Students -->
       <article id="hoc-sinh" style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;gap:18px;align-items:center">
-          <img loading="lazy" decoding="async" src="img/warmup.webp" alt="Học viên trẻ khởi động trong phòng tập" style="width:120px;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block;flex-shrink:0">
+          <img loading="lazy" decoding="async" src="img/ab-stretch.webp" alt="Học viên khởi động trong phòng tập" style="width:120px;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block;flex-shrink:0">
           <div><div style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:#8A4B00">NHÓM 2 · TỪ 15 TUỔI</div><h2 class="hd" style="font-size:26px;line-height:1.15;font-weight:800;margin:4px 0 0">Học sinh, sinh viên: thuyết trình, phỏng vấn, kết bạn</h2></div>
         </div>
         <p style="font-size:16px;line-height:1.75;margin:0;color:rgba(26,26,26,0.85)">Đây là giai đoạn phải nói trước đám đông nhiều nhất: thuyết trình nhóm, phỏng vấn học bổng, buổi đầu đi làm thêm, những mối quan hệ mới. Ứng tác cho bạn một nơi an toàn để tập những khoảnh khắc đó, và tập cả cách xử lý khi bị hỏi điều mình chưa chuẩn bị.</p>
@@ -312,7 +312,7 @@ html,body{background:#F5EFE3}
     <a class="r" href="/#m-cong-dong" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">Cộng đồng<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
     <a class="r" href="/#m-faq" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">Hỏi đáp<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
     <span class="r" style="color:rgba(26,26,26,0.5)">Kiến thức<span class="soon">SẮP CÓ</span></span>
-    <span class="r" style="color:rgba(26,26,26,0.5)">Về High Club<span class="soon">SẮP CÓ</span></span>
+    <a class="r" href="ve-high-club" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">Về High Club<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
   </nav>
 </header>
 
@@ -354,7 +354,7 @@ html,body{background:#F5EFE3}
 
   <!-- 1 -->
   <article id="m-thieu-nhi" style="display:flex;flex-direction:column;gap:10px">
-    <div style="display:flex;gap:12px;align-items:center"><img loading="lazy" decoding="async" src="img/kids-class.webp" alt="" style="width:64px;height:64px;object-fit:cover;border-radius:12px;display:block;flex-shrink:0"><div><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00">NHÓM 1 · 8–14 TUỔI</div><h2 style="font-size:18px;line-height:1.25;font-weight:800;margin:2px 0 0">Thiếu nhi: học nói to, chờ lượt và chơi cùng bạn</h2></div></div>
+    <div style="display:flex;gap:12px;align-items:center"><img loading="lazy" decoding="async" src="img/ab-kids-point.webp" alt="Giờ học ứng tác của các bạn nhỏ" style="width:64px;height:64px;object-fit:cover;border-radius:12px;display:block;flex-shrink:0"><div><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00">NHÓM 1 · 8–14 TUỔI</div><h2 style="font-size:18px;line-height:1.25;font-weight:800;margin:2px 0 0">Thiếu nhi: học nói to, chờ lượt và chơi cùng bạn</h2></div></div>
     <p style="font-size:14px;line-height:1.65;margin:0;color:rgba(26,26,26,0.85)">Ở tuổi này, trẻ học nhanh nhất qua trò chơi. Ứng tác vốn là chuỗi trò chơi có luật, nên các con học mà không thấy mình đang học: đứng trước bạn bè, nói rõ ràng, nghe bạn nói hết rồi mới đáp, và vui vẻ khi mình hoặc bạn "nói sai".</p>
     <div style="background:#FFFFFF;border-radius:14px;padding:12px 14px"><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00;margin-bottom:4px">CON SẼ ĐƯỢC GÌ</div><ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.65;color:rgba(26,26,26,0.82)"><li>Mạnh dạn nói trước lớp, trước người lạ</li><li>Biết lắng nghe và chờ đến lượt mình</li><li>Tưởng tượng, kể chuyện, sáng tạo</li><li>Không sợ sai, biết chơi cùng bạn</li></ul></div>
     <a href="https://masonarc.gmu.edu/improvisational-theatre-may-help-improve-self-concept/" target="_blank" rel="noopener noreferrer" style="background:#1A1A1A;color:#F5EFE3;border-radius:14px;padding:12px 14px;text-decoration:none;display:block"><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#FFA406;margin-bottom:4px">NGHIÊN CỨU NÓI GÌ</div><div style="font-size:13px;line-height:1.55">Một nghiên cứu của Đại học George Mason (Mỹ) với 52 trẻ 8–11 tuổi: sau một học kỳ ứng tác, những bé có tự nhận thức về bản thân thấp đã bắt kịp các bạn và giữ được mức tiến bộ đó.</div><div style="font-size:11px;color:rgba(245,239,227,0.6);margin-top:6px">George Mason University Arts Research Center ↗</div></a>
@@ -363,7 +363,7 @@ html,body{background:#F5EFE3}
 
   <!-- 2 -->
   <article id="m-hoc-sinh" style="display:flex;flex-direction:column;gap:10px">
-    <div style="display:flex;gap:12px;align-items:center"><img loading="lazy" decoding="async" src="img/warmup.webp" alt="" style="width:64px;height:64px;object-fit:cover;border-radius:12px;display:block;flex-shrink:0"><div><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00">NHÓM 2 · TỪ 15 TUỔI</div><h2 style="font-size:18px;line-height:1.25;font-weight:800;margin:2px 0 0">Học sinh, sinh viên: thuyết trình, phỏng vấn, kết bạn</h2></div></div>
+    <div style="display:flex;gap:12px;align-items:center"><img loading="lazy" decoding="async" src="img/ab-stretch.webp" alt="Học viên khởi động trong phòng tập" style="width:64px;height:64px;object-fit:cover;border-radius:12px;display:block;flex-shrink:0"><div><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00">NHÓM 2 · TỪ 15 TUỔI</div><h2 style="font-size:18px;line-height:1.25;font-weight:800;margin:2px 0 0">Học sinh, sinh viên: thuyết trình, phỏng vấn, kết bạn</h2></div></div>
     <p style="font-size:14px;line-height:1.65;margin:0;color:rgba(26,26,26,0.85)">Đây là giai đoạn phải nói trước đám đông nhiều nhất: thuyết trình nhóm, phỏng vấn học bổng, buổi đầu đi làm thêm, những mối quan hệ mới. Ứng tác cho bạn một nơi an toàn để tập những khoảnh khắc đó, và tập cả cách xử lý khi bị hỏi điều mình chưa chuẩn bị.</p>
     <div style="background:#FFFFFF;border-radius:14px;padding:12px 14px"><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00;margin-bottom:4px">BẠN SẼ ĐƯỢC GÌ</div><ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.65;color:rgba(26,26,26,0.82)"><li>Tự tin khi thuyết trình, phỏng vấn</li><li>Trả lời bình tĩnh câu hỏi bất ngờ</li><li>Làm việc nhóm, kết bạn dễ hơn</li><li>Biết mình mạnh ở đâu, cần tập gì</li></ul></div>
     <a href="https://news.umich.edu/?p=41249" target="_blank" rel="noopener noreferrer" style="background:#1A1A1A;color:#F5EFE3;border-radius:14px;padding:12px 14px;text-decoration:none;display:block"><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#FFA406;margin-bottom:4px">NGHIÊN CỨU NÓI GÌ</div><div style="font-size:13px;line-height:1.55">Khoảng 270 học sinh trung học ở Detroit (Mỹ) học ứng tác 10 tuần. Mức lo âu xã hội giảm đi gắn với sự tự tin hơn vào kỹ năng giao tiếp, sáng tạo hơn và dám mắc lỗi hơn.</div><div style="font-size:11px;color:rgba(245,239,227,0.6);margin-top:6px">University of Michigan News ↗</div></a>
@@ -458,7 +458,7 @@ html,body{background:#F5EFE3}
 <script src="hc-config.js?v=5c52f0c1"></script>
 <script src="hc-data.js?v=05510804"></script>
 <script src="hc.js?v=4e673b13"></script>
-<script src="hc-form.js?v=d425e811"></script>
+<script src="hc-form.js?v=989a2644"></script>
 <script src="hc-track.js?v=7fc7b9a0"></script>
 </body>
 </html>

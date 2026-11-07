@@ -182,8 +182,8 @@
       +inp('sibling','Anh chị em cùng học (tên, năm sinh)',{full:1,grp:'kid'})
       +inp('pickup','Người đưa đón (tên, SĐT)',{full:1,grp:'kid'})
       +area('health','Lưu ý sức khoẻ, dị ứng (nếu có)',{grp:'kid'})
-      +chk('photo','Đồng ý cho High Club chụp ảnh con trong lớp để gửi riêng cho phụ huynh và dùng trên kênh của High Club',{grp:'kid'})
-      +sel('source','Bạn biết High Club qua',SRC,{full:1})
+      +chk('photo','Đồng ý cho High Comedia chụp ảnh con trong lớp để gửi riêng cho phụ huynh và dùng trên kênh của High Comedia',{grp:'kid'})
+      +sel('source','Bạn biết High Comedia qua',SRC,{full:1})
       +area('note','Ghi chú',{ph:'Kinh nghiệm, mong muốn, câu hỏi…'})
       +chk('agree','Tôi đã đọc quy định lớp học, chính sách học bù và hoàn phí.',{req:1});
   }

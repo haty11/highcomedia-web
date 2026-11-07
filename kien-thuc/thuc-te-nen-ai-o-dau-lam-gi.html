@@ -89,7 +89,7 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 .tlc{scroll-snap-align:start;background:rgba(245,239,227,0.06);border:1px solid rgba(245,239,227,0.14);border-radius:18px;padding:18px;text-decoration:none;display:flex;flex-direction:column;gap:8px;min-height:230px}
 .tlc:hover{background:rgba(245,239,227,0.1)}.tlc .y{font-size:12px;font-weight:800;letter-spacing:1px;color:#FFA406;text-transform:uppercase}
 .tlc b{font-family:'Bricolage Grotesque',sans-serif;font-size:20px;line-height:1.15}.tlc p{margin:0;font-size:13px;line-height:1.55;color:rgba(245,239,227,0.7)}
-.av{width:56px;height:56px;border-radius:50%;object-fit:cover;display:block;filter:grayscale(1)}
+.av{width:56px;height:56px;border-radius:50%;object-fit:cover;display:block}.av.g{filter:grayscale(1)}
 .avx{width:56px;height:56px;border-radius:50%;background:rgba(255,164,6,0.16);color:#FFA406;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px}
 .soon{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.5px;padding:3px 9px;border-radius:100px;background:rgba(245,239,227,0.12);color:rgba(245,239,227,0.75);margin-top:auto;align-self:flex-start}
 .rd{display:inline-block;font-size:12px;font-weight:800;margin-top:auto;color:#FFA406}
@@ -117,6 +117,29 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 .feat{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);border-radius:22px;margin-bottom:20px}.feat img{height:100%;aspect-ratio:auto;min-height:300px}
 .feat .b{padding:30px 32px;justify-content:center}.feat h3{font-size:32px}.feat p{font-size:16px}
 @media (max-width:760px){.feat{grid-template-columns:minmax(0,1fr)}.feat img{min-height:0;aspect-ratio:16/10}.feat .b{padding:18px 18px 20px}.feat h3{font-size:24px}.feat p{font-size:14px}}
+
+.htl{position:relative;margin:4px 0 8px}
+.htl ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(10,minmax(0,1fr));position:relative;height:430px}
+.htl ol:before{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:linear-gradient(90deg,rgba(26,26,26,0.06),#FFA406 12%,#FFA406 88%,rgba(26,26,26,0.06))}
+.htl li{position:relative;display:flex;justify-content:center}
+.htl .hd2{position:absolute;top:50%;left:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#FFA406;border:3px solid #F5EFE3;box-shadow:0 0 0 2px #FFA406;z-index:2}
+.htl li:before{content:"";position:absolute;left:50%;width:1px;background:rgba(26,26,26,0.22);z-index:1}
+.htl li.up:before{top:180px;height:calc(50% - 180px)}.htl li.dn:before{bottom:180px;height:calc(50% - 180px)}
+.htl .hc{position:absolute;width:160%;background:#fff;border-radius:16px;padding:13px 14px;text-decoration:none;display:flex;flex-direction:column;gap:6px;box-shadow:0 1px 0 rgba(26,26,26,0.06);transition:transform .15s,box-shadow .15s;color:#1A1A1A}
+.htl a.hc:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(26,26,26,0.14);color:#1A1A1A}
+.htl li.up .hc{top:0;height:172px}.htl li.dn .hc{bottom:0;height:172px}
+.htl .hy{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#8A4B00}
+.htl .hh{display:flex;align-items:center;gap:9px}.htl .hh b{font-family:'Bricolage Grotesque',sans-serif;font-size:16px;line-height:1.15}
+.htl .av,.htl .avx{width:36px;height:36px;flex:0 0 36px;font-size:15px}.htl .avx{background:#FFF1D6;color:#8A4B00}
+.htl .hs{font-size:12.5px;line-height:1.45;color:rgba(26,26,26,0.68)}
+.htl .soon{background:rgba(26,26,26,0.07);color:rgba(26,26,26,0.6);margin-top:auto}.htl .rd{color:#8A4B00;margin-top:auto}
+.htl a.hc{box-shadow:0 0 0 2px #FFA406}
+.htl li:first-child .hc{left:0}.htl li:last-child .hc{right:0}
+.tlx{margin-top:6px}.tlx summary{cursor:pointer;font-weight:700;font-size:14px;color:#8A4B00;list-style:none;display:inline-flex;align-items:center;gap:6px}.tlx summary::-webkit-details-marker{display:none}
+.tlx summary:after{content:"▾"}.tlx[open] summary:after{content:"▴"}
+@media (max-width:1199px){.htl ol{display:flex;height:auto;overflow-x:auto;gap:12px;padding:26px 2px 10px;scroll-snap-type:x mandatory}.htl ol:before{top:33px;left:0;right:0}
+ .htl li{flex:0 0 200px;scroll-snap-align:start;padding-top:24px}.htl li:before{display:none}.htl .hd2{top:7px;left:22px;margin:0}
+ .htl .hc,.htl li.up .hc,.htl li.dn .hc{position:static;width:100%;height:172px}.htl li:first-child .hc,.htl li:last-child .hc{left:auto;right:auto}}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Ai – Làm gì – Ở đâu: vì sao cảnh diễn càng thật càng buồn cười", "description": "Thực tế nền (base reality) là nền móng của mọi cảnh ứng tác. Vì sao người diễn cần xác lập Ai – Làm gì – Ở đâu thật nhanh, thật đời thường trước khi tìm cái hài.", "image": ["https://highcomedia.com/img/kt-sofa.jpg"], "datePublished": "2025-12-18", "dateModified": "2025-12-18", "author": {"@type": "Person", "name": "Đào Ngọc Hà", "jobTitle": "Đạo diễn sân khấu, sáng lập HIGH", "url": "https://highcomedia.com/ve-high-club#sang-lap"}, "publisher": {"@type": "Organization", "name": "High Comedia", "url": "https://highcomedia.com", "logo": {"@type": "ImageObject", "url": "https://highcomedia.com/apple-touch-icon.png"}}, "mainEntityOfPage": "https://highcomedia.com/kien-thuc/thuc-te-nen-ai-o-dau-lam-gi", "inLanguage": "vi", "articleSection": "Kiến thức ứng tác", "keywords": "thực tế nền, ai ở đâu làm gì, base reality, cách dựng cảnh ứng tác, kỹ năng diễn xuất"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://highcomedia.com/"}, {"@type": "ListItem", "position": 2, "name": "Kiến thức", "item": "https://highcomedia.com/kien-thuc/"}, {"@type": "ListItem", "position": 3, "name": "Kiến thức ứng tác", "item": "https://highcomedia.com/kien-thuc/bai-viet/"}, {"@type": "ListItem", "position": 4, "name": "Ai – Làm gì – Ở đâu: vì sao cảnh diễn càng thật càng buồn cười", "item": "https://highcomedia.com/kien-thuc/thuc-te-nen-ai-o-dau-lam-gi"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Thực tế nền có cần chi tiết không?", "acceptedAnswer": {"@type": "Answer", "text": "Cần cụ thể hơn là cần nhiều. “Hai mẹ con trong bếp, mẹ đang nhặt rau” tốt hơn nhiều so với “hai người ở đâu đó nói chuyện”. Một vài chi tiết cụ thể là đủ để khán giả tin."}}, {"@type": "Question", "name": "Có nên chọn tình huống thật kỳ lạ để dễ gây cười không?", "acceptedAnswer": {"@type": "Answer", "text": "Thường là không. Tình huống càng quen thuộc, khán giả càng dễ nhận ra điều bất thường. Bắt đầu từ cái đời thường, để cái lạ xuất hiện sau."}}]}</script>
 </head>

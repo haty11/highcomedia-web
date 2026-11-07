@@ -122,3 +122,17 @@
   function fromHash(){var h=location.hash.slice(1).replace(/^m-/,''); if(h){var el=find(h); if(el&&el.tagName==='DETAILS') el.open=true;}}
   fromHash(); window.addEventListener('hashchange',fromHash);
 })();
+
+/* Menu mobile: vuốt từ mép phải màn hình (1/3 phía trên) sang trái để mở; vuốt sang phải trên menu để đóng */
+(function(){
+  var sx=0,sy=0,mode=null;
+  function cb(){return document.getElementById('m-nav');}
+  function setOpen(o){var c=cb();if(!c)return;c.checked=o;document.documentElement.style.overflow=o?'hidden':'';}
+  document.addEventListener('touchstart',function(e){var t=e.touches[0],c=cb();if(!c||!(c.offsetParent||c.closest('.v-mob')&&getComputedStyle(c.closest('.v-mob')).display!=='none'))return;mode=null;sx=t.clientX;sy=t.clientY;
+    if(c.checked){if(e.target.closest&&e.target.closest('.mnav'))mode='close';}
+    else if(sx>window.innerWidth-28&&sy<window.innerHeight/3)mode='open';},{passive:true});
+  document.addEventListener('touchmove',function(e){if(!mode)return;var t=e.touches[0],dx=t.clientX-sx,dy=t.clientY-sy;
+    if(Math.abs(dy)>70){mode=null;return;}
+    if(mode==='open'&&dx<-40){setOpen(true);mode=null;}
+    else if(mode==='close'&&dx>60&&Math.abs(dx)>Math.abs(dy)*1.5){setOpen(false);mode=null;}},{passive:true});
+})();

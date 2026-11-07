@@ -48,25 +48,25 @@ a{color:#1A1A1A;-webkit-tap-highlight-color:transparent}
 .toc{display:flex;gap:18px;overflow-x:auto;scrollbar-width:none}.toc::-webkit-scrollbar{display:none}
 .mnav-t{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
 .mnav-b{width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;margin-right:-10px;-webkit-tap-highlight-color:transparent}
-.mnav-o{position:fixed;left:0;top:0;width:100vw;height:100vh;background:rgba(26,26,26,0.5);opacity:0;pointer-events:none;transition:opacity .25s;z-index:60}
-.mnav{position:fixed;top:0;right:0;height:100vh;height:100dvh;width:min(76vw,330px);box-sizing:border-box;background:#1A1A1A;color:#F5EFE3;z-index:61;transform:translateX(105%);visibility:hidden;transition:transform .28s ease,visibility .28s;display:flex;flex-direction:column;padding:calc(10px + env(safe-area-inset-top,0px)) 22px calc(20px + env(safe-area-inset-bottom,0px));overflow-y:auto;box-shadow:-18px 0 40px rgba(0,0,0,0.25)}
+.mnav-o{position:fixed;left:0;top:0;width:100vw;height:100vh;background:rgba(26,26,26,0.22);opacity:0;pointer-events:none;transition:opacity .25s;z-index:60}
+.mnav{position:fixed;top:0;right:0;height:100vh;height:100dvh;width:min(76vw,330px);box-sizing:border-box;background:rgba(26,26,26,0.78);-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);color:#F5EFE3;z-index:61;transform:translateX(105%);visibility:hidden;transition:transform .28s ease,visibility .28s;display:flex;flex-direction:column;padding:calc(10px + env(safe-area-inset-top,0px)) 22px calc(20px + env(safe-area-inset-bottom,0px));overflow-y:auto;box-shadow:-12px 0 32px rgba(0,0,0,0.18);border-left:1px solid rgba(245,239,227,0.08)}
 .mnav-t:checked ~ .mnav{transform:none;visibility:visible}
 .mnav-t:checked ~ .mnav-o{opacity:1;pointer-events:auto}
-.mnav a{text-decoration:none;color:#F5EFE3}
+.mnav a{text-decoration:none;color:rgba(245,239,227,0.92)}
 .mnav .mh{display:flex;justify-content:space-between;align-items:center;height:48px;margin-bottom:10px}
-.mnav .mh span{font-size:11px;font-weight:700;letter-spacing:1.5px;color:#FFA406}
+.mnav .mh span{font-size:10px;font-weight:600;letter-spacing:2px;color:rgba(255,164,6,0.85)}
 .mnav .mx{width:40px;height:40px;margin-right:-8px;display:flex;align-items:center;justify-content:center;cursor:pointer}
-.mnav .r{display:flex;justify-content:space-between;align-items:center;min-height:52px;font-size:17px;font-weight:700;border-bottom:1px solid rgba(245,239,227,0.12)}
-.mnav .r i{font-style:normal;color:#FFA406;font-size:18px}
-.mnav .r.on{color:#FFA406}
+.mnav .r{display:flex;justify-content:space-between;align-items:center;min-height:50px;font-size:16px;font-weight:400;letter-spacing:.01em;border-bottom:1px solid rgba(245,239,227,0.09)}
+.mnav .r i{font-style:normal;color:rgba(255,164,6,0.7);font-size:16px;font-weight:300}
+.mnav .r.on{color:#FFA406;font-weight:500}
 .mnav .r small{font-size:11px;font-weight:600;color:rgba(245,239,227,0.5)}
-.mnav .sb{display:flex;flex-wrap:wrap;gap:6px;padding:10px 0 14px;border-bottom:1px solid rgba(245,239,227,0.12)}
-.mnav .sb a,.mnav .sb span{font-size:12px;font-weight:600;padding:6px 10px;border-radius:100px;background:rgba(245,239,227,0.08)}
-.mnav .sb span{background:#FFA406;color:#1A1A1A}
+.mnav .sb{display:flex;flex-wrap:wrap;gap:6px;padding:8px 0 14px;border-bottom:1px solid rgba(245,239,227,0.09)}
+.mnav .sb a,.mnav .sb span{font-size:12px;font-weight:400;padding:5px 11px;border-radius:100px;border:1px solid rgba(245,239,227,0.18)}
+.mnav .sb span{border-color:#FFA406;color:#FFA406}
 .mnav .mc{margin-top:auto;padding-top:22px;display:flex;flex-direction:column;gap:8px}
-.mnav .mc a{height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px}
-.mnav .mc .cta{background:#FFA406;color:#1A1A1A}
-.mnav .mc .z{border:1.5px solid rgba(245,239,227,0.35);color:#F5EFE3;font-weight:700}
+.mnav .mc a{height:44px;border-radius:100px;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:500;font-size:14px;letter-spacing:.01em}
+.mnav .mc .cta{background:#FFA406;color:#1A1A1A;font-weight:600}
+.mnav .mc .z{border:1px solid rgba(245,239,227,0.28);color:rgba(245,239,227,0.9)}
 .mnav .soon{font-size:10px;font-weight:600;color:rgba(245,239,227,0.45)}
 ::selection{background:#FFE58F;color:#1A1A1A}::-moz-selection{background:#FFE58F;color:#1A1A1A}
 .kf{position:absolute;opacity:0;pointer-events:none}
@@ -269,7 +269,7 @@ html,body{background:#F5EFE3}
     <a class="r" href="/#m-cong-dong" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Cộng đồng<i aria-hidden="true">›</i></a>
     <a class="r" href="kien-thuc/" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Kiến thức<i aria-hidden="true">›</i></a>
     <a class="r" href="ve-high-club" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Về High Club<i aria-hidden="true">›</i></a>
-    <div class="mc"><a class="cta" href="#" data-hc-act="reg:dropin" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Học thử Drop-in · 150K</a><a class="z" href="https://zalo.me/0909851086" target="_blank" rel="noopener">Nhắn Zalo tư vấn</a></div>
+    <div class="mc"><a class="cta" href="#" data-hc-act="reg:dropin" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''"><span>Học thử Drop-in · 150K</span></a><a class="z" href="https://zalo.me/0909851086" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round"><path d="M4 5h16v11H9l-4 3v-3H4z"></path></svg><span>Nhắn Zalo tư vấn</span></a></div>
   </nav>
 </header>
 
@@ -388,8 +388,8 @@ html,body{background:#F5EFE3}
 <div class="hc-bar" data-hc-bar><div class="hc-bar-in"><div class="hc-bar-info"><b>Doanh nghiệp · 6–10 người</b>Mở lớp sau 6/2027</div><a class="hc-bar-z" href="https://zalo.me/0909851086" target="_blank" rel="noopener">Zalo</a><a class="hc-bar-cta" href="#" data-hc-act="quote:applied"><span>Nhận báo giá</span></a><button type="button" class="hc-bar-x" data-bar-x aria-label="Ẩn thanh này">×</button></div></div></div>
 <script src="hc-config.js?v=5c52f0c1"></script>
 <script src="hc-data.js?v=05510804"></script>
-<script src="hc.js?v=e61b52df"></script>
-<script src="hc-form.js?v=6f228ec7"></script>
+<script src="hc.js?v=3a525806"></script>
+<script src="hc-form.js?v=6315759b"></script>
 <script src="hc-track.js?v=7fc7b9a0"></script>
 </body>
 </html>

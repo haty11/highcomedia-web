@@ -336,13 +336,6 @@
   function init(){var fs=document.querySelectorAll('form[data-hc-form="lead"]');for(var i=0;i<fs.length;i++)lead(fs[i]);}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 
-  /* ---------- Sĩ số trực tiếp từ Google Sheet: counts {"improv1:K01":3,...} ---------- */
-  if(LIVE&&window.fetch){
-    fetch(CFG.formUrl+'?action=counts').then(function(r){return r.json();}).then(function(j){
-      if(!j||!j.counts)return;
-      for(var key in j.counts){var p=key.split(':'),c=D[p[0]];if(!c||!c.cohorts)continue;for(var i=0;i<c.cohorts.length;i++)if(c.cohorts[i].code===p[1])c.cohorts[i].enrolled=j.counts[key];}
-      if(window.HC_refresh)window.HC_refresh();
-    }).catch(function(){});
-  }
+  /* Sĩ số, lịch lớp: hc.js tải dữ liệu sống từ Google Sheet vào HC_DATA; form đọc trực tiếp HC_DATA nên luôn mới. */
   window.HC_openForm=open;
 })();

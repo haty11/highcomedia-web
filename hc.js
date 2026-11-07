@@ -60,3 +60,14 @@
   document.addEventListener('change',function(e){ if(e.target.classList&&e.target.classList.contains('kf')) paint(); });
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',paint);else paint();
 })();
+/* Dữ liệu sống: lịch lớp, học phí, số chỗ lấy từ tab "📅 Lịch lớp" của Google Sheet (qua Apps Script). Lỗi mạng -> giữ số liệu có sẵn trong trang. */
+(function(){
+  var C=window.HC_CONFIG||{}, D=window.HC_DATA;
+  if(!C.formUrl||!D||!window.fetch||/claude|localhost|^$/.test(location.hostname)) return;
+  fetch(C.formUrl+'?action=data').then(function(r){return r.json();}).then(function(j){
+    if(!j||!j.data) return;
+    for(var k in j.data){ var v=j.data[k]; if(D[k]&&typeof D[k]==='object'&&v&&typeof v==='object'){ for(var f in v) D[k][f]=v[f]; } else D[k]=v; }
+    if(window.HC_refresh) window.HC_refresh();
+    try{window.dispatchEvent(new CustomEvent('hc:data'));}catch(e){}
+  }).catch(function(){});
+})();

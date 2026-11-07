@@ -36,25 +36,35 @@ input,select,button{font:inherit}
 summary{list-style:none}summary::-webkit-details-marker{display:none}
 .mnav-t{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
 .mnav-b{width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;margin-right:-10px;-webkit-tap-highlight-color:transparent}
-.mnav-b .ix{display:none}
-.mnav{display:none;position:absolute;left:0;right:0;top:52px;max-height:calc(100vh - 52px);overflow-y:auto;background:#F5EFE3;border-bottom:1px solid rgba(26,26,26,0.12);box-shadow:0 18px 30px rgba(26,26,26,0.18);padding:4px 20px 12px;box-sizing:border-box}
-.mnav-t:checked ~ .mnav{display:block}
-.mnav-t:checked ~ .mnav-b .io{display:none}
-.mnav-t:checked ~ .mnav-b .ix{display:block}
-.mnav a{text-decoration:none}
-.mnav .r{display:flex;justify-content:space-between;align-items:center;min-height:40px;font-size:14px;font-weight:600;border-bottom:1px solid rgba(26,26,26,0.08)}
-.mnav .s{display:flex;justify-content:space-between;align-items:center;min-height:34px;font-size:13px;padding-left:12px;color:rgba(26,26,26,0.8)}
-.mnav .on{color:#8A4B00;font-weight:700}
-.mnav .soon{font-size:10px;font-weight:600;color:rgba(26,26,26,0.45)}
+.mnav-o{position:fixed;left:0;top:0;width:100vw;height:100vh;background:rgba(26,26,26,0.5);opacity:0;pointer-events:none;transition:opacity .25s;z-index:60}
+.mnav{position:fixed;top:0;right:0;height:100vh;height:100dvh;width:min(76vw,330px);box-sizing:border-box;background:#1A1A1A;color:#F5EFE3;z-index:61;transform:translateX(105%);visibility:hidden;transition:transform .28s ease,visibility .28s;display:flex;flex-direction:column;padding:calc(10px + env(safe-area-inset-top,0px)) 22px calc(20px + env(safe-area-inset-bottom,0px));overflow-y:auto;box-shadow:-18px 0 40px rgba(0,0,0,0.25)}
+.mnav-t:checked ~ .mnav{transform:none;visibility:visible}
+.mnav-t:checked ~ .mnav-o{opacity:1;pointer-events:auto}
+.mnav a{text-decoration:none;color:#F5EFE3}
+.mnav .mh{display:flex;justify-content:space-between;align-items:center;height:48px;margin-bottom:10px}
+.mnav .mh span{font-size:11px;font-weight:700;letter-spacing:1.5px;color:#FFA406}
+.mnav .mx{width:40px;height:40px;margin-right:-8px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.mnav .r{display:flex;justify-content:space-between;align-items:center;min-height:52px;font-size:17px;font-weight:700;border-bottom:1px solid rgba(245,239,227,0.12)}
+.mnav .r i{font-style:normal;color:#FFA406;font-size:18px}
+.mnav .r.on{color:#FFA406}
+.mnav .r small{font-size:11px;font-weight:600;color:rgba(245,239,227,0.5)}
+.mnav .sb{display:flex;flex-wrap:wrap;gap:6px;padding:10px 0 14px;border-bottom:1px solid rgba(245,239,227,0.12)}
+.mnav .sb a,.mnav .sb span{font-size:12px;font-weight:600;padding:6px 10px;border-radius:100px;background:rgba(245,239,227,0.08)}
+.mnav .sb span{background:#FFA406;color:#1A1A1A}
+.mnav .mc{margin-top:auto;padding-top:22px;display:flex;flex-direction:column;gap:8px}
+.mnav .mc a{height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px}
+.mnav .mc .cta{background:#FFA406;color:#1A1A1A}
+.mnav .mc .z{border:1.5px solid rgba(245,239,227,0.35);color:#F5EFE3;font-weight:700}
+.mnav .soon{font-size:10px;font-weight:600;color:rgba(245,239,227,0.45)}
 ::selection{background:#FFE58F;color:#1A1A1A}::-moz-selection{background:#FFE58F;color:#1A1A1A}
 
 :root{color-scheme:light}
 html,body{background:#F5EFE3}
 .v-mob{display:none}
 @media (max-width:640px){.v-desk{display:none}.v-mob{display:block}}
-.hc-bar{position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:40;transition:transform .3s ease,opacity .3s ease}.hc-bar.off{transform:translateY(calc(100% + 28px));opacity:0;pointer-events:none}.hc-bar-in{display:flex;align-items:center;gap:6px;background:rgba(26,26,26,0.97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#F5EFE3;border-radius:100px;padding:6px 6px 6px 18px;box-shadow:0 10px 28px rgba(26,26,26,0.22)}.hc-bar-info{flex:1;min-width:0;line-height:1.3;font-size:11px;color:rgba(245,239,227,0.68);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hc-bar-info b{display:block;font-size:13px;color:#F5EFE3;overflow:hidden;text-overflow:ellipsis}.hc-bar-info .s{color:#FFA406;font-weight:700}.hc-bar a{flex:0 0 auto;height:38px;border-radius:100px;display:flex;align-items:center;font-size:13px;text-decoration:none;white-space:nowrap}.hc-bar-z{padding:0 12px;border:1px solid rgba(245,239,227,0.3);color:#F5EFE3;font-weight:700}.hc-bar-cta{padding:0 16px;background:#FFA406;color:#1A1A1A;font-weight:800}</style>
+.hc-bar{position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:40;transition:transform .3s ease,opacity .3s ease}.hc-bar.off{transform:translateY(calc(100% + 28px));opacity:0;pointer-events:none}.hc-bar-in{display:flex;align-items:center;gap:6px;background:rgba(26,26,26,0.97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#F5EFE3;border-radius:100px;padding:6px 6px 6px 18px;box-shadow:0 10px 28px rgba(26,26,26,0.22)}.hc-bar-info{flex:1;min-width:0;line-height:1.3;font-size:11px;color:rgba(245,239,227,0.68);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hc-bar-info b{display:block;font-size:13px;color:#F5EFE3;overflow:hidden;text-overflow:ellipsis}.hc-bar-info .s{color:#FFA406;font-weight:700}.hc-bar a{flex:0 0 auto;height:38px;border-radius:100px;display:flex;align-items:center;font-size:13px;text-decoration:none;white-space:nowrap}.hc-bar-z{padding:0 12px;border:1px solid rgba(245,239,227,0.3);color:#F5EFE3;font-weight:700}.hc-bar-cta{padding:0 16px;background:#FFA406;color:#1A1A1A;font-weight:800}.hc-bar-x{flex:0 0 auto;width:28px;height:28px;margin-left:-2px;border:0;border-radius:50%;background:rgba(245,239,227,0.12);color:#F5EFE3;font-size:16px;line-height:1;padding:0;cursor:pointer}.hc-bar.off{visibility:hidden}</style>
 <link rel="preload" as="image" href="img/hero-scene.webp" media="(min-width: 641px)" fetchpriority="high">
-<link rel="preload" as="image" href="img/hero-scene.webp" media="(max-width: 640px)" fetchpriority="high">
+<link rel="preload" as="image" href="img/hero-red-trio.webp" media="(max-width: 640px)" fetchpriority="high">
 </head>
 <body>
 <div class="v-desk">
@@ -384,199 +394,153 @@ html,body{background:#F5EFE3}
 <div style="width:100%;max-width:520px;margin:0 auto;background:#F5EFE3;color:#1A1A1A;font-family:'Be Vietnam Pro',-apple-system,system-ui,sans-serif;font-size:15px;line-height:1.5;position:relative">
 
 <!-- HEADER 52 -->
-<header style="position:sticky;top:env(safe-area-inset-top,0px);z-index:40;height:52px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;background:rgba(245,239,227,0.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(26,26,26,0.08)">
+<header style="position:sticky;top:env(safe-area-inset-top,0px);z-index:50;height:52px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;background:#F5EFE3;border-bottom:1px solid rgba(26,26,26,0.08)">
   <a href="#m-top" style="display:flex;align-items:flex-end;gap:5px;font-weight:800;font-size:15px;text-decoration:none;letter-spacing:-0.01em">
     <img src="img/logo-dark-ink.webp" alt="High" style="height:24px;width:auto;display:block"><span style="line-height:1">Comedia</span>
   </a>
-  <div style="display:flex;align-items:center;gap:6px"><a href="#m-lich" style="font-size:13px;font-weight:600;text-decoration:none;padding:10px 0">Lịch khai giảng</a>
-  <input type="checkbox" id="m-nav" class="mnav-t" aria-label="Mở menu điều hướng">
-  <label for="m-nav" class="mnav-b" aria-label="Mở / đóng menu"><svg class="io" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:#1A1A1A;stroke-width:2;stroke-linecap:round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg><svg class="ix" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:#1A1A1A;stroke-width:2;stroke-linecap:round"><path d="M6 6l12 12M18 6L6 18"></path></svg></label>
+  <div style="display:flex;align-items:center;gap:6px">
+  <input type="checkbox" id="m-nav" class="mnav-t" aria-label="Mở menu điều hướng" onchange="document.documentElement.style.overflow=this.checked?'hidden':''">
+  <label for="m-nav" class="mnav-b" aria-label="Mở menu"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:#1A1A1A;stroke-width:2;stroke-linecap:round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></label>
+  <label for="m-nav" class="mnav-o" aria-hidden="true"></label>
   <nav class="mnav" aria-label="Menu chính">
-    <span class="r on">Trang chủ<span style="font-size:10px">đang xem</span></span>
-    <div class="r" style="border-bottom:0;padding-top:4px">Ứng tác là gì</div>
-    <a class="s" href="ung-tac" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">1 · Ứng tác là gì &amp; lợi ích<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
-    <a class="s" href="danh-cho-ai" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">2 · Ứng tác dành cho ai?<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
-    <a class="s" href="buoi-tap" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">3 · Một buổi tập diễn ra thế nào<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
-    <a class="s" href="bao-chi" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">4 · Báo chí nói về High Club<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
-    <div style="border-bottom:1px solid rgba(26,26,26,0.08);margin-top:4px"></div>
-    <a class="r" href="khoa-hoc" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">Khoá học<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
-    <a class="r" href="#m-lich" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">Lịch khai giảng<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
-    <a class="r" href="ung-dung-ung-tac" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">Ứng dụng ứng tác · Doanh nghiệp<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
-    <a class="r" href="#m-cong-dong" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">Cộng đồng<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
-    <a class="r" href="#m-faq" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">Hỏi đáp<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
-    <a class="r" href="kien-thuc/" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">Kiến thức<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
-    <a class="r" href="ve-high-club" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">Về High Club<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
+    <div class="mh"><span>MENU</span><label for="m-nav" class="mx" aria-label="Đóng menu"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:#F5EFE3;stroke-width:2;stroke-linecap:round"><path d="M6 6l12 12M18 6L6 18"></path></svg></label></div>
+    <a class="r" href="ung-tac" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Ứng tác là gì<i aria-hidden="true">›</i></a>
+    <div class="sb"><a href="danh-cho-ai" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Dành cho ai</a><a href="buoi-tap" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Một buổi tập</a><a href="bao-chi" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Báo chí</a></div>
+    <a class="r" href="khoa-hoc" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Khoá học &amp; lịch học<i aria-hidden="true">›</i></a>
+    <a class="r" href="ung-dung-ung-tac" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Ứng tác doanh nghiệp<i aria-hidden="true">›</i></a>
+    <a class="r" href="#m-cong-dong" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Cộng đồng<i aria-hidden="true">›</i></a>
+    <a class="r" href="kien-thuc/" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Kiến thức<i aria-hidden="true">›</i></a>
+    <a class="r" href="ve-high-club" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Về High Club<i aria-hidden="true">›</i></a>
+    <div class="mc"><a class="cta" href="#" data-hc-act="reg:dropin" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Học thử Drop-in · 150K</a><a class="z" href="https://zalo.me/0909851086" target="_blank" rel="noopener">Nhắn Zalo tư vấn</a></div>
   </nav></div>
 </header>
 
-<!-- HERO -->
-<section id="m-top" style="padding:16px 20px 24px">
-  <div style="position:relative">
-    <img loading="lazy" decoding="async" src="img/hero-scene.webp" alt="Học viên đang diễn một cảnh ứng tác" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block">
-    <span style="position:absolute;left:10px;top:10px;background:#1A1A1A;color:#F5EFE3;font-size:11px;font-weight:600;padding:5px 10px;border-radius:100px;display:inline-flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:#FFA406;display:inline-block"></span>Khai giảng <span data-hc="improv1.startw">CN 06/12/2026</span> · còn <span data-hc="improv1.leftn">10</span> chỗ</span>
+<!-- 1 · HERO: chào, nói đúng điều khách vừa xem trên kênh -->
+<section id="m-top" style="padding:14px 16px 26px">
+  <div style="position:relative;border-radius:20px;overflow:hidden">
+    <img loading="lazy" decoding="async" src="img/hero-red-trio.webp" alt="Ba diễn viên ứng tác trong một cảnh diễn mùa Giáng sinh" style="width:100%;aspect-ratio:1/1;object-fit:cover;object-position:50% 30%;display:block">
+    <div style="position:absolute;inset:auto 0 0 0;padding:70px 18px 18px;background:linear-gradient(180deg,rgba(26,26,26,0) 0%,rgba(26,26,26,0.82) 55%,rgba(26,26,26,0.94) 100%);color:#F5EFE3">
+      <div style="font-size:12px;font-weight:700;letter-spacing:1px;color:#FFA406;margin-bottom:6px">HỌC ỨNG TÁC TẠI HÀ NỘI</div>
+      <h1 style="font-size:30px;line-height:1.1;font-weight:800;letter-spacing:-0.02em;margin:0">Không kịch bản.<br>Vẫn <span style="background:#FFA406;color:#1A1A1A;padding:0 6px;border-radius:6px">tự tin</span>.</h1>
+    </div>
   </div>
-  <h1 style="font-size:24px;line-height:1.2;font-weight:800;letter-spacing:-0.02em;margin:18px 0 8px"><span style="display:block;font-size:14px;line-height:1.3;font-weight:700;letter-spacing:0;color:#8A4B00;margin-bottom:6px">Học ứng tác tại Hà Nội</span>Không kịch bản.<br>Vẫn <span style="background:#FFA406;padding:0 6px;border-radius:6px">tự tin</span>.</h1>
-  <p style="font-size:15px;line-height:1.5;margin:0 0 16px;color:rgba(26,26,26,0.75)">Khoá ứng tác 10 buổi giúp bạn nói tự tin, làm nhóm ăn ý và nghĩ nhanh hơn. Từ 15 tuổi, không cần kinh nghiệm. Có lớp thiếu nhi riêng 8–14.</p>
-  <a href="#m-dk" style="background:#1A1A1A;color:#F5EFE3;text-decoration:none;font-weight:700;font-size:16px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center" data-hc-act="reg:dropin">Đăng ký học thử</a>
-  <div style="display:flex;align-items:center;gap:8px;margin-top:14px;font-size:12px;color:rgba(26,26,26,0.65)">
-    <span>Đã lên sóng</span>
-    <span style="display:flex;gap:4px">
-      <span style="font-size:10px;font-weight:800;background:#FFFFFF;border:1px solid rgba(26,26,26,0.15);border-radius:6px;padding:2px 6px;color:#1A1A1A">VTV</span>
-      <span style="font-size:10px;font-weight:800;background:#FFFFFF;border:1px solid rgba(26,26,26,0.15);border-radius:6px;padding:2px 6px;color:#1A1A1A">VOV</span>
-      <span style="font-size:10px;font-weight:800;background:#FFFFFF;border:1px solid rgba(26,26,26,0.15);border-radius:6px;padding:2px 6px;color:#1A1A1A">Nhân Dân</span>
-      <span style="font-size:10px;font-weight:800;background:#FFFFFF;border:1px solid rgba(26,26,26,0.15);border-radius:6px;padding:2px 6px;color:#1A1A1A">+3</span>
-    </span>
+  <p style="font-size:16px;line-height:1.55;margin:16px 2px 16px;color:rgba(26,26,26,0.78)">Ứng tác (improv) là diễn không kịch bản. Và cũng là cách luyện <b style="color:#1A1A1A">tự tin, lắng nghe, phản xạ</b> mà bạn dùng mỗi ngày khi giao tiếp.</p>
+  <a href="#m-loi-ich" style="height:50px;border-radius:14px;border:1.5px solid #1A1A1A;box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font-weight:700;font-size:15px">Ứng tác giúp gì cho bạn? <span aria-hidden="true">↓</span></a>
+</section>
+
+<!-- 2 · LỢI ÍCH + đọc thử -->
+<section id="m-loi-ich" style="padding:0 16px 30px;scroll-margin-top:60px">
+  <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#8A4B00;margin-bottom:4px">ỨNG TÁC GIÚP GÌ</div>
+  <h2 style="font-size:22px;line-height:1.2;font-weight:800;letter-spacing:-0.01em;margin:0 0 14px">Ba điều bạn mang về sau mỗi buổi tập</h2>
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <div style="display:flex;gap:14px;align-items:flex-start;background:#FFFFFF;border-radius:16px;padding:14px 16px"><span style="width:34px;height:34px;flex:0 0 34px;border-radius:10px;background:#FFA406;display:flex;align-items:center;justify-content:center;font-weight:800">1</span><span><b style="display:block;font-size:16px">Tự tin hơn</b><span style="font-size:14px;line-height:1.45;color:rgba(26,26,26,0.7)">Dám nói khi chưa chắc. Sai thì cười, rồi đi tiếp.</span></span></div>
+    <div style="display:flex;gap:14px;align-items:flex-start;background:#FFFFFF;border-radius:16px;padding:14px 16px"><span style="width:34px;height:34px;flex:0 0 34px;border-radius:10px;background:#FFA406;display:flex;align-items:center;justify-content:center;font-weight:800">2</span><span><b style="display:block;font-size:16px">Lắng nghe tốt hơn</b><span style="font-size:14px;line-height:1.45;color:rgba(26,26,26,0.7)">Nghe đến chữ cuối cùng, hiểu điều người kia thật sự muốn nói.</span></span></div>
+    <div style="display:flex;gap:14px;align-items:flex-start;background:#FFFFFF;border-radius:16px;padding:14px 16px"><span style="width:34px;height:34px;flex:0 0 34px;border-radius:10px;background:#FFA406;display:flex;align-items:center;justify-content:center;font-weight:800">3</span><span><b style="display:block;font-size:16px">Phản xạ nhanh hơn</b><span style="font-size:14px;line-height:1.45;color:rgba(26,26,26,0.7)">Bình tĩnh trước câu hỏi bất ngờ, trong cuộc họp hay buổi phỏng vấn.</span></span></div>
+  </div>
+  <a href="ung-tac" style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding:0 4px;text-decoration:none;font-size:14px;font-weight:700;color:#8A4B00">Ứng tác là gì? Đọc giới thiệu đầy đủ <span aria-hidden="true">→</span></a>
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin:24px 0 10px"><b style="font-size:16px">Đọc thử vài phút</b><a href="kien-thuc/" style="font-size:13px;font-weight:700;color:#8A4B00;text-decoration:none">Tất cả bài viết →</a></div>
+  <div style="display:grid;grid-auto-flow:column;grid-auto-columns:72%;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:0 16px 4px;scrollbar-width:none">
+    <a href="kien-thuc/co-va-la-gi" style="scroll-snap-align:start;background:#FFFFFF;border-radius:16px;overflow:hidden;text-decoration:none;display:block"><img src="img/v-scene-standing.webp" alt="" loading="lazy" style="width:100%;aspect-ratio:16/10;object-fit:cover;display:block"><span style="display:block;padding:10px 12px 12px"><span style="display:block;font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00">NỀN TẢNG</span><b style="display:block;font-size:15px;line-height:1.3">“Có, và…” là gì?</b></span></a>
+    <a href="kien-thuc/bot-run-khi-noi-truoc-dam-dong" style="scroll-snap-align:start;background:#FFFFFF;border-radius:16px;overflow:hidden;text-decoration:none;display:block"><img src="img/v-ab-mc.webp" alt="" loading="lazy" style="width:100%;aspect-ratio:16/10;object-fit:cover;object-position:50% 30%;display:block"><span style="display:block;padding:10px 12px 12px"><span style="display:block;font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00">GIAO TIẾP</span><b style="display:block;font-size:15px;line-height:1.3">Bớt run khi nói trước đám đông</b></span></a>
+    <a href="kien-thuc/ky-nang-lang-nghe" style="scroll-snap-align:start;background:#FFFFFF;border-radius:16px;overflow:hidden;text-decoration:none;display:block"><img src="img/kt-aud-couple.webp" alt="" loading="lazy" style="width:100%;aspect-ratio:16/10;object-fit:cover;display:block"><span style="display:block;padding:10px 12px 12px"><span style="display:block;font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00">GIAO TIẾP</span><b style="display:block;font-size:15px;line-height:1.3">Kỹ năng lắng nghe từ diễn viên ứng tác</b></span></a>
   </div>
 </section>
 
-<!-- BENEFITS -->
-<section style="padding:0 20px 28px">
-  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
-    <div style="background:#FFFFFF;border-radius:12px;padding:12px 14px"><div style="font-weight:700;font-size:14px">Tự tin</div><div style="font-size:12px;line-height:1.4;color:rgba(26,26,26,0.68)">Sai thì cười, đi tiếp</div></div>
-    <div style="background:#FFFFFF;border-radius:12px;padding:12px 14px"><div style="font-weight:700;font-size:14px">Giao tiếp</div><div style="font-size:12px;line-height:1.4;color:rgba(26,26,26,0.68)">Nghe để hiểu</div></div>
-    <div style="background:#FFFFFF;border-radius:12px;padding:12px 14px"><div style="font-weight:700;font-size:14px">Hợp tác nhóm</div><div style="font-size:12px;line-height:1.4;color:rgba(26,26,26,0.68)">Cùng nhau toả sáng</div></div>
-    <div style="background:#FFFFFF;border-radius:12px;padding:12px 14px"><div style="font-weight:700;font-size:14px">Tư duy linh hoạt</div><div style="font-size:12px;line-height:1.4;color:rgba(26,26,26,0.68)">Bất ngờ thành cơ hội</div></div>
+<!-- 3 · VÌ SAO TIN: người dẫn dắt + báo chí gọn (thanh nổi bắt đầu hiện từ đây) -->
+<section id="m-tin" data-bar-start style="background:#1A1A1A;color:#F5EFE3;padding:28px 16px 30px">
+  <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#FFA406;margin-bottom:4px">NGƯỜI DẪN DẮT</div>
+  <div style="display:flex;gap:14px;align-items:center;margin-bottom:16px">
+    <img loading="lazy" decoding="async" src="img/dao-ngoc-ha.webp" alt="Đạo diễn Đào Ngọc Hà" style="width:84px;height:84px;object-fit:cover;object-position:50% 20%;border-radius:50%;display:block;flex-shrink:0;border:2px solid #FFA406">
+    <div><div style="font-size:20px;font-weight:800;line-height:1.2">Đạo diễn Đào Ngọc Hà</div><div style="font-size:13px;line-height:1.45;color:rgba(245,239,227,0.75);margin-top:4px">Sáng lập HIGH. 16 năm sân khấu, 10 năm nghiên cứu và giảng dạy ứng tác, từ trẻ 8 tuổi đến đội ngũ doanh nghiệp.</div></div>
   </div>
-  <a href="ung-tac" style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding:12px 14px;border-radius:12px;border:1.5px solid #1A1A1A;text-decoration:none;font-size:14px"><span><b>Ứng tác là gì?</b> Học không phải để diễn</span><span aria-hidden="true">›</span></a>
+  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;text-align:center;margin-bottom:18px">
+    <div style="background:rgba(245,239,227,0.08);border-radius:12px;padding:10px 4px"><b style="display:block;font-size:20px;color:#FFA406">2020</b><span style="font-size:11px;color:rgba(245,239,227,0.7)">HIGH ra đời</span></div>
+    <div style="background:rgba(245,239,227,0.08);border-radius:12px;padding:10px 4px"><b style="display:block;font-size:20px;color:#FFA406">6–10</b><span style="font-size:11px;color:rgba(245,239,227,0.7)">người mỗi lớp</span></div>
+    <div style="background:rgba(245,239,227,0.08);border-radius:12px;padding:10px 4px"><b style="display:block;font-size:20px;color:#FFA406">6</b><span style="font-size:11px;color:rgba(245,239,227,0.7)">cơ quan báo chí</span></div>
+  </div>
+  <div style="font-size:12px;font-weight:700;letter-spacing:1px;color:rgba(245,239,227,0.6);margin-bottom:8px">ĐÃ LÊN SÓNG, LÊN BÁO</div>
+  <div style="display:flex;flex-wrap:wrap;gap:6px">
+    <a href="https://vtv.vn/van-hoa-giai-tri/hai-kich-ung-tac-dua-kich-den-gan-cong-chung-20210321142910693.htm" target="_blank" rel="noopener noreferrer" style="font-size:12px;font-weight:800;color:#F5EFE3;text-decoration:none;border:1px solid rgba(245,239,227,0.28);border-radius:100px;padding:6px 12px">VTV ↗</a>
+    <a href="https://vov.vn/van-hoa/hai-kich-ung-tac-vi-nghe-thuat-la-cuoc-song-831403.vov" target="_blank" rel="noopener noreferrer" style="font-size:12px;font-weight:800;color:#F5EFE3;text-decoration:none;border:1px solid rgba(245,239,227,0.28);border-radius:100px;padding:6px 12px">VOV ↗</a>
+    <a href="https://vov2.vov.vn/van-hoa-giai-tri/hai-kich-ung-tac-the-nghiem-moi-cua-cac-nghe-sy-tre-viet-nam-25266.vov2" target="_blank" rel="noopener noreferrer" style="font-size:12px;font-weight:800;color:#F5EFE3;text-decoration:none;border:1px solid rgba(245,239,227,0.28);border-radius:100px;padding:6px 12px">VOV2 ↗</a>
+    <a href="https://nhandan.vn/kich-ung-tac-loai-hinh-san-khau-moi-me-va-hap-dan-post636918.html" target="_blank" rel="noopener noreferrer" style="font-size:12px;font-weight:800;color:#F5EFE3;text-decoration:none;border:1px solid rgba(245,239,227,0.28);border-radius:100px;padding:6px 12px">Nhân Dân ↗</a>
+    <a href="https://tuoitre.vn/nld/van-nghe/kich-ung-tac-huong-di-moi-duoc-gioi-tre-yeu-thich-20210304222420606.htm" target="_blank" rel="noopener noreferrer" style="font-size:12px;font-weight:800;color:#F5EFE3;text-decoration:none;border:1px solid rgba(245,239,227,0.28);border-radius:100px;padding:6px 12px">Người Lao Động ↗</a>
+    <a href="https://baovanhoa.vn/xuat-hien-kich-ung-tacloi-re-moi-cua-nghe-thuat-san-khau-68251.html" target="_blank" rel="noopener noreferrer" style="font-size:12px;font-weight:800;color:#F5EFE3;text-decoration:none;border:1px solid rgba(245,239,227,0.28);border-radius:100px;padding:6px 12px">Báo Văn Hoá ↗</a>
+  </div>
+  <p style="font-size:14px;line-height:1.5;color:rgba(245,239,227,0.8);margin:14px 0 0;font-style:italic">“Rèn phản xạ, sự ăn ý và khả năng lắng nghe.” <span style="font-style:normal;color:rgba(245,239,227,0.55)">VTV</span></p>
+  <div style="display:flex;gap:18px;margin-top:16px;font-size:13px;font-weight:700"><a href="bao-chi" style="color:#FFA406;text-decoration:none">Báo chí nói gì →</a><a href="ve-high-club" style="color:#FFA406;text-decoration:none">Về High Club →</a></div>
 </section>
 
-<!-- COURSES -->
-<section id="m-khoa" style="padding:0 20px 28px">
-  <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#8A4B00;margin-bottom:4px">KHOÁ HỌC</div>
-  <h2 style="font-size:20px;line-height:1.25;font-weight:800;letter-spacing:-0.01em;margin:0 0 12px">Bắt đầu từ Cơ bản, rồi chọn hướng</h2>
-
-  <div style="background:#1A1A1A;color:#F5EFE3;border-radius:16px;padding:16px">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><span style="background:#FFA406;color:#1A1A1A;font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px">BẮT ĐẦU TỪ ĐÂY</span><span style="font-size:12px;color:rgba(245,239,227,0.7)">10 buổi · 15+</span></div>
-    <div style="font-size:17px;font-weight:700"><a href="khoa-hoc-improv-1" data-hc-page="khoa-hoc/improv1" style="text-decoration:none;color:inherit">Ứng tác Cơ bản 1 <span aria-hidden="true" style="color:#8A4B00">→</span></a></div>
-    <div style="font-size:13px;line-height:1.45;color:rgba(245,239,227,0.75);margin:4px 0 12px">“Có, và…”, lắng nghe, phản xạ, hết sợ đứng trước đám đông.</div>
-    <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:16px;font-weight:800"><s style="font-size:12px;font-weight:600;color:rgba(26,26,26,0.45);margin-right:4px"><span data-hc="improv1.base">4.900K</span></s><span data-hc="improv1.sale">3.500K</span></span><a href="#m-dk" data-hc-act="reg:improv1" style="background:#FFA406;color:#1A1A1A;text-decoration:none;font-size:14px;font-weight:700;height:40px;padding:0 16px;border-radius:10px;display:inline-flex;align-items:center">Đăng ký</a></div>
+<!-- 4 · BẮT ĐẦU TỪ ĐÂU: lộ trình 3 bước + lịch gần nhất (thanh nổi ẩn khi khối này hiện) -->
+<section id="m-lich" data-bar-hide style="padding:30px 16px 30px;scroll-margin-top:60px">
+  <span id="m-khoa"></span>
+  <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#8A4B00;margin-bottom:4px">BẮT ĐẦU TỪ ĐÂU</div>
+  <h2 style="font-size:22px;line-height:1.2;font-weight:800;letter-spacing:-0.01em;margin:0 0 14px">Ba bước, đi từ tò mò đến tự tin</h2>
+  <div style="background:#FFA406;border-radius:18px;padding:16px">
+    <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:800;letter-spacing:1px"><span>BƯỚC 1 · THỬ</span><span><span data-hc="dropin.seats">Còn 10/10 chỗ</span></span></div>
+    <div style="font-size:19px;font-weight:800;margin:6px 0 2px">Học thử Drop-in · <span data-hc="dropin.sale">150K</span></div>
+    <div style="font-size:13px;line-height:1.45">1 buổi 2 giờ, không cần kinh nghiệm · <span data-hc="dropin.startw">T7 05/12/2026</span>, <span data-hc="dropin.time">9:00–11:00</span></div>
+    <div style="display:flex;gap:8px;margin-top:12px"><a href="#" data-hc-act="reg:dropin" style="flex:1;height:44px;border-radius:12px;background:#1A1A1A;color:#F5EFE3;text-decoration:none;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center">Giữ chỗ học thử</a><a href="khoa-hoc-drop-in" data-hc-page="khoa-hoc/dropin" style="height:44px;padding:0 14px;border-radius:12px;border:1.5px solid #1A1A1A;box-sizing:border-box;text-decoration:none;font-weight:700;font-size:13px;display:flex;align-items:center">Chi tiết</a></div>
   </div>
-
-  <div style="background:#FFFFFF;border-radius:16px;margin-top:8px">
-    <a href="khoa-hoc-improv-2" data-hc-page="khoa-hoc/improv2" style="display:flex;align-items:center;gap:12px;padding:14px 16px;text-decoration:none">
-      <span style="width:36px;height:36px;border-radius:10px;background:#F5EFE3;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0">2</span>
-      <span style="flex:1;min-width:0"><span style="display:block;font-size:15px;font-weight:700">Ứng tác Cơ bản 2</span><span style="display:block;font-size:12px;color:rgba(26,26,26,0.65)">10 buổi · Nhân vật, câu chuyện, diễn tổng kết</span></span>
-      <span aria-hidden="true" style="font-size:18px;color:rgba(26,26,26,0.4)">›</span>
-    </a>
-    <a href="khoa-hoc-performer-1" data-hc-page="khoa-hoc/performer1" style="display:flex;align-items:center;gap:12px;padding:14px 16px;text-decoration:none;border-top:1px solid rgba(26,26,26,0.08)">
-      <span style="width:36px;height:36px;border-radius:10px;background:#FFA406;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0">DV</span>
-      <span style="flex:1;min-width:0"><span style="display:block;font-size:15px;font-weight:700">Đào tạo Diễn viên Ứng tác</span><span style="display:block;font-size:12px;color:rgba(26,26,26,0.65)">32 buổi · 2 cấp độ · cho người muốn biểu diễn</span></span>
-      <span aria-hidden="true" style="font-size:18px;color:rgba(26,26,26,0.4)">›</span>
-    </a>
-    <a href="ung-dung-ung-tac" data-hc-page="khoa-hoc/applied" style="display:flex;align-items:center;gap:12px;padding:14px 16px;text-decoration:none;border-top:1px solid rgba(26,26,26,0.08)">
-      <span style="width:36px;height:36px;border-radius:10px;border:1.5px dashed rgba(26,26,26,0.4);box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0">UD</span>
-      <span style="flex:1;min-width:0"><span style="display:block;font-size:15px;font-weight:700">Ứng tác Ứng dụng <span style="font-size:11px;font-weight:600;color:#8A4B00">· sau 6/2027</span></span><span style="display:block;font-size:12px;color:rgba(26,26,26,0.65)">10 buổi · nghề nghiệp, đội nhóm, tư duy</span></span>
-      <span aria-hidden="true" style="font-size:18px;color:rgba(26,26,26,0.4)">›</span>
-    </a>
-    <a href="khoa-hoc-kids" data-hc-page="khoa-hoc/kids" style="display:flex;align-items:center;gap:12px;padding:14px 16px;text-decoration:none;border-top:1px solid rgba(26,26,26,0.08)">
-      <img loading="lazy" decoding="async" src="img/kids-class.webp" alt="" style="width:36px;height:36px;border-radius:10px;object-fit:cover;display:block;flex-shrink:0">
-      <span style="flex:1;min-width:0"><span style="display:block;font-size:15px;font-weight:700">Ứng tác Thiếu nhi <span style="font-size:11px;font-weight:600;color:#8A4B00">· 8–14 tuổi</span></span><span style="display:block;font-size:12px;color:rgba(26,26,26,0.65)">Lớp riêng · tự tin, biết chơi cùng bạn</span></span>
-      <span aria-hidden="true" style="font-size:18px;color:rgba(26,26,26,0.4)">›</span>
-    </a>
-  </div>
-</section>
-
-<!-- SCHEDULE -->
-<section id="m-lich" style="padding:0 20px 28px">
-  <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#8A4B00;margin-bottom:4px">LỊCH KHAI GIẢNG</div>
-  <h2 style="font-size:20px;font-weight:800;letter-spacing:-0.01em;margin:0 0 12px">Lớp sắp mở</h2>
-  <div style="background:#FFFFFF;border-radius:16px">
-    <a href="khoa-hoc-improv-1" data-hc-page="khoa-hoc/improv1" style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;text-decoration:none"><span><span style="display:block;font-size:15px;font-weight:700">Cơ bản 1 · <span data-hc="improv1.code">K01</span></span><span style="display:block;font-size:12px;color:rgba(26,26,26,0.65)"><span data-hc="improv1.startw">CN 06/12/2026</span> · <span data-hc="improv1.time">9:00–11:00</span> · <span data-hc="improv1.loc">Giảng Võ, Hà Nội</span></span></span><span style="font-size:11px;font-weight:700;background:#FFA406;padding:4px 8px;border-radius:6px;white-space:nowrap"><span data-hc="improv1.seats">Còn 10/10 chỗ</span></span></a>
-    <a href="khoa-hoc-improv-2" data-hc-page="khoa-hoc/improv2" style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;text-decoration:none;border-top:1px solid rgba(26,26,26,0.08)"><span><span style="display:block;font-size:15px;font-weight:700">Cơ bản 2 · <span data-hc="improv2.code">K01</span></span><span style="display:block;font-size:12px;color:rgba(26,26,26,0.65)"><span data-hc="improv2.startw">CN 14/02/2027</span> · <span data-hc="improv2.time">10:00–12:00</span> · <span data-hc="improv2.loc">Giảng Võ, Hà Nội</span></span></span><span style="font-size:11px;font-weight:700;background:#F5EFE3;padding:4px 8px;border-radius:6px;white-space:nowrap"><span data-hc="improv2.seats">Còn 10/10 chỗ</span></span></a>
-    <a href="khoa-hoc-drop-in" data-hc-page="khoa-hoc/dropin" style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;text-decoration:none;border-top:1px solid rgba(26,26,26,0.08)"><span><span style="display:block;font-size:15px;font-weight:700">Improv Drop-in · <span data-hc="dropin.sale">150K</span></span><span style="display:block;font-size:12px;color:rgba(26,26,26,0.65)"><span data-hc="dropin.startw">T7 05/12/2026</span> · <span data-hc="dropin.time">9:00–11:00</span> · <span data-hc="dropin.loc">Giảng Võ, Hà Nội</span> · <span data-hc="dropin.seats">Còn 10/10 chỗ</span></span></span><span style="font-size:11px;font-weight:700;background:#1A1A1A;color:#F5EFE3;padding:4px 8px;border-radius:6px;white-space:nowrap">Đăng ký</span></a>
-  </div>
-</section>
-
-<!-- SESSION -->
-<section style="padding:0 20px 28px">
-  <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#8A4B00;margin-bottom:4px">MỘT BUỔI TẬP</div>
-  <h2 style="font-size:20px;font-weight:800;letter-spacing:-0.01em;margin:0 0 12px">120 phút, không ai bị bỏ lại</h2>
-  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px">
-    <img loading="lazy" decoding="async" src="img/warmup.webp" alt="Khởi động" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;display:block">
-    <img loading="lazy" decoding="async" src="img/studio-scene.webp" alt="Bài tập kỹ năng" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;display:block">
-    <img loading="lazy" decoding="async" src="img/scene-standing.webp" alt="Dựng cảnh" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;display:block">
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:10px;font-size:12px;text-align:center">
-    <div><b style="display:block;font-size:13px">Khởi động</b><span style="color:rgba(26,26,26,0.6)">20′</span></div>
-    <div><b style="display:block;font-size:13px">Kỹ năng</b><span style="color:rgba(26,26,26,0.6)">40′</span></div>
-    <div><b style="display:block;font-size:13px">Dựng cảnh</b><span style="color:rgba(26,26,26,0.6)">40′</span></div>
-    <div><b style="display:block;font-size:13px">Nhìn lại</b><span style="color:rgba(26,26,26,0.6)">20′</span></div>
-  </div>
-</section>
-
-<!-- PRESS: compact vertical list -->
-<section id="m-bao-chi" style="padding:0 20px 28px">
-  <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#8A4B00;margin-bottom:4px">BÁO CHÍ</div>
-  <h2 style="font-size:20px;font-weight:800;letter-spacing:-0.01em;margin:0 0 12px">Báo chí nói gì về High Club</h2>
-  <div style="background:#FFFFFF;border-radius:16px">
-    <a href="https://vtv.vn/van-hoa-giai-tri/hai-kich-ung-tac-dua-kich-den-gan-cong-chung-20210321142910693.htm" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:12px;padding:12px 16px;text-decoration:none"><span style="width:32px;height:32px;border-radius:8px;background:#1A1A1A;color:#F5EFE3;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0">VTV</span><span style="flex:1;min-width:0;font-size:13px;line-height:1.4"><b>VTV</b> · Rèn phản xạ, sự ăn ý và khả năng lắng nghe.</span><span aria-hidden="true" style="font-size:13px;color:rgba(26,26,26,0.45)">↗</span></a>
-    <a href="https://vov.vn/van-hoa/hai-kich-ung-tac-vi-nghe-thuat-la-cuoc-song-831403.vov" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:12px;padding:12px 16px;text-decoration:none;border-top:1px solid rgba(26,26,26,0.08)"><span style="width:32px;height:32px;border-radius:8px;background:#1A1A1A;color:#F5EFE3;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0">VOV</span><span style="flex:1;min-width:0;font-size:13px;line-height:1.4"><b>VOV</b> · Đạo diễn Đào Ngọc Hà khởi xướng High Club.</span><span aria-hidden="true" style="font-size:13px;color:rgba(26,26,26,0.45)">↗</span></a>
-    <a href="https://vov2.vov.vn/van-hoa-giai-tri/hai-kich-ung-tac-the-nghiem-moi-cua-cac-nghe-sy-tre-viet-nam-25266.vov2" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:12px;padding:12px 16px;text-decoration:none;border-top:1px solid rgba(26,26,26,0.08)"><span style="width:32px;height:32px;border-radius:8px;background:#1A1A1A;color:#F5EFE3;font-size:9px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0">VOV2</span><span style="flex:1;min-width:0;font-size:13px;line-height:1.4"><b>VOV2</b> · CLB hài kịch ứng tác đầu tiên của Hà Nội.</span><span aria-hidden="true" style="font-size:13px;color:rgba(26,26,26,0.45)">↗</span></a>
-    <a href="https://nhandan.vn/kich-ung-tac-loai-hinh-san-khau-moi-me-va-hap-dan-post636918.html" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:12px;padding:12px 16px;text-decoration:none;border-top:1px solid rgba(26,26,26,0.08)"><span style="width:32px;height:32px;border-radius:8px;background:#1A1A1A;color:#F5EFE3;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0">ND</span><span style="flex:1;min-width:0;font-size:13px;line-height:1.4"><b>Nhân Dân</b> · Tự tin, giao tiếp, làm nhóm tốt hơn.</span><span aria-hidden="true" style="font-size:13px;color:rgba(26,26,26,0.45)">↗</span></a>
-    <a href="https://tuoitre.vn/nld/van-nghe/kich-ung-tac-huong-di-moi-duoc-gioi-tre-yeu-thich-20210304222420606.htm" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:12px;padding:12px 16px;text-decoration:none;border-top:1px solid rgba(26,26,26,0.08)"><span style="width:32px;height:32px;border-radius:8px;background:#1A1A1A;color:#F5EFE3;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0">NLĐ</span><span style="flex:1;min-width:0;font-size:13px;line-height:1.4"><b>Người Lao Động</b> · Hướng đi mới được giới trẻ yêu thích.</span><span aria-hidden="true" style="font-size:13px;color:rgba(26,26,26,0.45)">↗</span></a>
-    <a href="https://baovanhoa.vn/xuat-hien-kich-ung-tacloi-re-moi-cua-nghe-thuat-san-khau-68251.html" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:12px;padding:12px 16px;text-decoration:none;border-top:1px solid rgba(26,26,26,0.08)"><span style="width:32px;height:32px;border-radius:8px;background:#1A1A1A;color:#F5EFE3;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0">VH</span><span style="flex:1;min-width:0;font-size:13px;line-height:1.4"><b>Báo Văn Hoá</b> · Giúp phản ứng nhanh, chính xác hơn.</span><span aria-hidden="true" style="font-size:13px;color:rgba(26,26,26,0.45)">↗</span></a>
-  </div>
-  <a href="bao-chi" style="display:flex;align-items:center;justify-content:center;height:44px;margin-top:10px;border:1.5px solid #1A1A1A;box-sizing:border-box;border-radius:12px;text-decoration:none;font-weight:700;font-size:14px">Xem đầy đủ bài báo chí →</a>
-</section>
-
-<!-- INSTRUCTOR + APPLIED -->
-<section id="m-cong-dong" style="padding:0 20px 28px;display:flex;flex-direction:column;gap:8px">
-  <div style="display:flex;gap:12px;align-items:center;background:#1A1A1A;color:#F5EFE3;border-radius:16px;padding:12px">
-    <img loading="lazy" decoding="async" src="img/dao-ngoc-ha.webp" alt="Đào Ngọc Hà" style="width:64px;height:64px;object-fit:cover;border-radius:12px;display:block;flex-shrink:0">
-    <div><span style="font-size:11px;font-weight:700;letter-spacing:1px;color:#FFA406">NGƯỜI DẪN DẮT</span><div style="font-size:15px;font-weight:700">Đào Ngọc Hà</div><div style="font-size:12px;line-height:1.4;color:rgba(245,239,227,0.75)">Đạo diễn, sáng lập HIGH · dạy từ trẻ 8 tuổi tới doanh nghiệp</div></div>
-  </div>
-  <a href="ung-dung-ung-tac" style="display:flex;gap:12px;align-items:center;background:#FFFFFF;border-radius:16px;padding:12px;text-decoration:none">
-    <img loading="lazy" decoding="async" src="img/coaching.webp" alt="" style="width:64px;height:64px;object-fit:cover;border-radius:12px;display:block;flex-shrink:0">
-    <span style="flex:1;min-width:0"><span style="display:block;font-size:11px;font-weight:700;letter-spacing:1px;color:#8A4B00">ỨNG TÁC ỨNG DỤNG</span><span style="display:block;font-size:15px;font-weight:700">Gói 10 buổi cho doanh nghiệp</span><span style="display:block;font-size:12px;color:rgba(26,26,26,0.65)">HR / L&amp;D · Đặt lịch tư vấn</span></span>
-    <span aria-hidden="true" style="font-size:18px;color:rgba(26,26,26,0.4)">›</span>
+  <a href="khoa-hoc-improv-1" data-hc-page="khoa-hoc/improv1" style="display:block;background:#FFFFFF;border-radius:18px;padding:14px 16px;margin-top:8px;text-decoration:none">
+    <span style="display:flex;justify-content:space-between;font-size:11px;font-weight:800;letter-spacing:1px;color:#8A4B00"><span>BƯỚC 2 · HỌC NỀN TẢNG</span><span><span data-hc="improv1.seats">Còn 10/10 chỗ</span></span></span>
+    <span style="display:flex;justify-content:space-between;align-items:center;margin-top:6px"><b style="font-size:17px">Ứng tác Cơ bản 1</b><span style="font-weight:800"><span data-hc="improv1.sale">3.500K</span></span></span>
+    <span style="display:block;font-size:13px;color:rgba(26,26,26,0.65);margin-top:2px">10 buổi · lớp 6–10 người · khai giảng <span data-hc="improv1.startw">CN 06/12/2026</span> <span aria-hidden="true">→</span></span>
   </a>
-  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">
-    <a href="#m-dk" style="background:#FFFFFF;border-radius:12px;padding:12px 8px;text-decoration:none;text-align:center;font-size:13px;font-weight:700">Xem diễn</a>
-    <a href="#m-dk" style="background:#FFFFFF;border-radius:12px;padding:12px 8px;text-decoration:none;text-align:center;font-size:13px;font-weight:700">Jam cộng đồng</a>
-    <a href="#m-dk" style="background:#FFFFFF;border-radius:12px;padding:12px 8px;text-decoration:none;text-align:center;font-size:13px;font-weight:700">Tìm đồng đội</a>
+  <a href="khoa-hoc" style="display:block;background:#FFFFFF;border-radius:18px;padding:14px 16px;margin-top:8px;text-decoration:none">
+    <span style="display:block;font-size:11px;font-weight:800;letter-spacing:1px;color:#8A4B00">BƯỚC 3 · CHỌN HƯỚNG</span>
+    <span style="display:block;font-size:14px;line-height:1.45;color:rgba(26,26,26,0.75);margin-top:6px">Cơ bản 2, rồi <b style="color:#1A1A1A">Diễn viên ứng tác</b> nếu muốn biểu diễn, hoặc <b style="color:#1A1A1A">Ứng tác ứng dụng</b> cho nghề nghiệp <span aria-hidden="true">→</span></span>
+  </a>
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px">
+    <a href="khoa-hoc-kids" data-hc-page="khoa-hoc/kids" style="background:#FFFFFF;border-radius:14px;padding:12px 14px;text-decoration:none;font-size:13px;line-height:1.35"><b style="display:block;font-size:14px">Cho con 8–14 tuổi</b><span style="color:rgba(26,26,26,0.6)">Lớp Thiếu nhi →</span></a>
+    <a href="ung-dung-ung-tac" style="background:#FFFFFF;border-radius:14px;padding:12px 14px;text-decoration:none;font-size:13px;line-height:1.35"><b style="display:block;font-size:14px">Cho doanh nghiệp</b><span style="color:rgba(26,26,26,0.6)">Chương trình riêng →</span></a>
   </div>
+  <a href="khoa-hoc" style="display:flex;align-items:center;justify-content:center;height:44px;margin-top:12px;font-weight:700;font-size:14px;text-decoration:none;color:#8A4B00">Xem tất cả khoá học &amp; lịch khai giảng →</a>
 </section>
 
-<!-- FAQ -->
-<section id="m-faq" style="padding:0 20px 28px">
-  <h2 style="font-size:20px;font-weight:800;letter-spacing:-0.01em;margin:0 0 4px">Hỏi nhanh</h2>
-  <div style="font-size:12px;color:rgba(26,26,26,0.6);margin:2px 0 8px">10 câu · vuốt trong khung để xem hết</div>
-  <div style="max-height:400px;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;background:#FFFFFF;border-radius:14px;padding:0 14px;border:1px solid rgba(26,26,26,0.1)">
-    <details style="border-bottom:1px solid rgba(26,26,26,0.1);padding:12px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;gap:12px">Ứng tác khác stand-up comedy thế nào?<span aria-hidden="true" style="color:rgba(26,26,26,0.45)">+</span></summary><p style="font-size:13px;line-height:1.55;margin:6px 0 0;color:rgba(26,26,26,0.72)">Stand-up thường là một người đứng nói với khán giả, chất liệu được viết và tập trước. Ứng tác là diễn theo nhóm, không kịch bản: các diễn viên dựng nhân vật và câu chuyện ngay tại chỗ, thường từ một gợi ý của khán giả. Stand-up rèn cách kể chuyện một mình. Ứng tác rèn lắng nghe, phản xạ và phối hợp với người khác.</p></details>
-    <details style="border-bottom:1px solid rgba(26,26,26,0.1);padding:12px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;gap:12px">Tôi nhút nhát, hướng nội, có học được không?<span aria-hidden="true" style="color:rgba(26,26,26,0.45)">+</span></summary><p style="font-size:13px;line-height:1.55;margin:6px 0 0;color:rgba(26,26,26,0.72)">Được, và người hướng nội thường tiến bộ rất rõ vì vốn đã giỏi quan sát và lắng nghe. Lớp đi từ trò chơi nhóm nhỏ, an toàn, rồi mới đến cảnh diễn. Không ai bị ép lên sân khấu khi chưa sẵn sàng.</p></details>
-    <details style="border-bottom:1px solid rgba(26,26,26,0.1);padding:12px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;gap:12px">Có cần biết diễn xuất, hay phải là người hài hước?<span aria-hidden="true" style="color:rgba(26,26,26,0.45)">+</span></summary><p style="font-size:13px;line-height:1.55;margin:6px 0 0;color:rgba(26,26,26,0.72)">Không. Lớp Cơ bản dành cho người chưa từng diễn. Ứng tác cũng không yêu cầu bạn cố gây cười: tiếng cười đến tự nhiên khi bạn nghe thật và phản ứng thật. Cố tỏ ra hài hước thường lại làm cảnh kém vui.</p></details>
-    <details style="border-bottom:1px solid rgba(26,26,26,0.1);padding:12px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;gap:12px">Học ứng tác giúp gì cho công việc?<span aria-hidden="true" style="color:rgba(26,26,26,0.45)">+</span></summary><p style="font-size:13px;line-height:1.55;margin:6px 0 0;color:rgba(26,26,26,0.72)">Những kỹ năng luyện trong lớp dùng được ngay hôm sau: nghe hiểu ý người khác, nói rõ và tự tin trước nhóm, phản ứng bình tĩnh khi bị hỏi bất ngờ, đón ý đồng nghiệp bằng “Có, và…”, và làm việc nhóm ăn ý hơn. Vì vậy ứng tác được nhiều công ty dùng trong đào tạo kỹ năng mềm.</p></details>
-    <details style="border-bottom:1px solid rgba(26,26,26,0.1);padding:12px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;gap:12px">Một buổi học diễn ra thế nào, cần mặc gì?<span aria-hidden="true" style="color:rgba(26,26,26,0.45)">+</span></summary><p style="font-size:13px;line-height:1.55;margin:6px 0 0;color:rgba(26,26,26,0.72)">Mỗi buổi khoảng 120 phút: khởi động bằng trò chơi, bài tập kỹ năng, dựng cảnh theo cặp hoặc nhóm, rồi cùng nhìn lại bài học. Bạn nên mặc đồ thoải mái, dễ vận động. Mỗi lớp 6–10 học viên để ai cũng được thực hành.</p></details>
-    <details style="border-bottom:1px solid rgba(26,26,26,0.1);padding:12px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;gap:12px">Con tôi 8–14 tuổi thì học lớp nào?<span aria-hidden="true" style="color:rgba(26,26,26,0.45)">+</span></summary><p style="font-size:13px;line-height:1.55;margin:6px 0 0;color:rgba(26,26,26,0.72)">Bé học lớp Ứng tác Thiếu nhi riêng, nội dung và trò chơi phù hợp lứa tuổi: tập nói to, biết chờ lượt, biết chơi cùng bạn. Từ 15 tuổi học lớp Cơ bản cùng người lớn.</p></details>
-    <details style="border-bottom:1px solid rgba(26,26,26,0.1);padding:12px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;gap:12px">Tôi đi học một mình được không, hay phải rủ bạn?<span aria-hidden="true" style="color:rgba(26,26,26,0.45)">+</span></summary><p style="font-size:13px;line-height:1.55;margin:6px 0 0;color:rgba(26,26,26,0.72)">Đi một mình hoàn toàn được: các bạn cùng lớp sẽ là bạn diễn của bạn. Nhưng vì ứng tác là môn tập thể, rủ thêm bạn bè hay đồng nghiệp đi cùng sẽ giúp hai bạn có người tập tiếp sau giờ học, và vui hơn nhiều.</p></details>
-    <details style="border-bottom:1px solid rgba(26,26,26,0.1);padding:12px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;gap:12px">Học xong lớp Cơ bản thì đi tiếp thế nào?<span aria-hidden="true" style="color:rgba(26,26,26,0.45)">+</span></summary><p style="font-size:13px;line-height:1.55;margin:6px 0 0;color:rgba(26,26,26,0.72)">Sau Cơ bản 1 (10 buổi) là Cơ bản 2 (10 buổi). Tiếp theo bạn chọn một trong hai hướng: Đào tạo Diễn viên Ứng tác (32 buổi, 2 cấp độ) nếu muốn biểu diễn, hoặc Ứng tác Ứng dụng (10 buổi, mở sau tháng 6/2027) nếu muốn mang ứng tác vào nghề nghiệp.</p></details>
-    <details style="border-bottom:1px solid rgba(26,26,26,0.1);padding:12px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;gap:12px">Công ty tôi muốn tổ chức workshop thì làm thế nào?<span aria-hidden="true" style="color:rgba(26,26,26,0.45)">+</span></summary><p style="font-size:13px;line-height:1.55;margin:6px 0 0;color:rgba(26,26,26,0.72)">High Comedia thiết kế workshop riêng cho doanh nghiệp, đội nhóm và cộng đồng: từ một buổi 3 giờ đến chuỗi nhiều buổi, tại văn phòng của bạn hoặc tại High Comedia. Hãy để lại thông tin ở form đăng ký và chọn “Workshop doanh nghiệp”, chúng tôi sẽ liên hệ tư vấn.</p></details>
-    <details style="border-bottom:1px solid rgba(26,26,26,0.1);padding:12px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;gap:12px">Có học thử không? Nếu nghỉ một buổi thì sao?<span aria-hidden="true" style="color:rgba(26,26,26,0.45)">+</span></summary><p style="font-size:13px;line-height:1.55;margin:6px 0 0;color:rgba(26,26,26,0.72)">Bạn có thể đăng ký buổi học thử theo lịch ở mục Lịch khai giảng. Buổi Drop-in hằng tháng là buổi học thử, chỉ 150K. Nếu vắng một buổi có báo trước 24 giờ, bạn được học bù ở lớp sau hoặc nhận video và tài liệu tổng kết.</p></details>
+<!-- 5 · HỎI ĐÁP gọn + lời mời cuối -->
+<section id="m-faq" style="padding:0 16px 26px;scroll-margin-top:60px">
+  <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#8A4B00;margin-bottom:4px">HỎI NHANH</div>
+  <h2 style="font-size:22px;line-height:1.2;font-weight:800;letter-spacing:-0.01em;margin:0 0 12px">Những điều hay được hỏi</h2>
+  <div style="background:#FFFFFF;border-radius:16px;padding:0 16px">
+    <details style="border-bottom:1px solid rgba(26,26,26,0.1);padding:14px 0"><summary style="font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;gap:12px">Tôi nhút nhát, hướng nội, có học được không?<span aria-hidden="true" style="color:#8A4B00">+</span></summary><p style="font-size:14px;line-height:1.55;margin:8px 0 0;color:rgba(26,26,26,0.72)">Được, và người hướng nội thường tiến bộ rất rõ vì vốn đã giỏi quan sát và lắng nghe. Lớp đi từ trò chơi nhóm nhỏ, an toàn, rồi mới đến cảnh diễn. Không ai bị ép lên sân khấu khi chưa sẵn sàng.</p></details>
+    <details style="border-bottom:1px solid rgba(26,26,26,0.1);padding:14px 0"><summary style="font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;gap:12px">Có cần biết diễn, hay phải là người hài hước?<span aria-hidden="true" style="color:#8A4B00">+</span></summary><p style="font-size:14px;line-height:1.55;margin:8px 0 0;color:rgba(26,26,26,0.72)">Không. Lớp Cơ bản dành cho người chưa từng diễn. Ứng tác cũng không yêu cầu bạn cố gây cười: tiếng cười đến tự nhiên khi bạn nghe thật và phản ứng thật.</p></details>
+    <details style="border-bottom:1px solid rgba(26,26,26,0.1);padding:14px 0"><summary style="font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;gap:12px">Học ứng tác giúp gì cho công việc?<span aria-hidden="true" style="color:#8A4B00">+</span></summary><p style="font-size:14px;line-height:1.55;margin:8px 0 0;color:rgba(26,26,26,0.72)">Nghe hiểu ý người khác, nói rõ và tự tin trước nhóm, bình tĩnh khi bị hỏi bất ngờ, đón ý đồng nghiệp bằng “Có, và…”, làm việc nhóm ăn ý hơn. Vì vậy nhiều công ty dùng ứng tác trong đào tạo kỹ năng mềm.</p></details>
+    <details style="padding:14px 0"><summary style="font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;gap:12px">Một buổi học diễn ra thế nào?<span aria-hidden="true" style="color:#8A4B00">+</span></summary><p style="font-size:14px;line-height:1.55;margin:8px 0 0;color:rgba(26,26,26,0.72)">Khoảng 120 phút: khởi động bằng trò chơi, tập kỹ năng, dựng cảnh theo cặp hoặc nhóm, rồi cùng nhìn lại. Mặc đồ thoải mái, dễ vận động. <a href="buoi-tap" style="color:#8A4B00;font-weight:700">Xem chi tiết →</a></p></details>
   </div>
+  <details style="margin-top:8px"><summary style="height:44px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#8A4B00;cursor:pointer">Xem thêm 5 câu hỏi khác ▾</summary>
+  <div style="background:#FFFFFF;border-radius:16px;padding:0 16px;margin-top:4px">
+    <details style="border-bottom:1px solid rgba(26,26,26,0.1);padding:14px 0"><summary style="font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;gap:12px">Ứng tác khác stand-up comedy thế nào?<span aria-hidden="true" style="color:#8A4B00">+</span></summary><p style="font-size:14px;line-height:1.55;margin:8px 0 0;color:rgba(26,26,26,0.72)">Stand-up thường là một người đứng nói, chất liệu được viết và tập trước. Ứng tác là diễn theo nhóm, không kịch bản: nhân vật và câu chuyện được dựng ngay tại chỗ, thường từ một gợi ý của khán giả.</p></details>
+    <details style="border-bottom:1px solid rgba(26,26,26,0.1);padding:14px 0"><summary style="font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;gap:12px">Con tôi 8–14 tuổi thì học lớp nào?<span aria-hidden="true" style="color:#8A4B00">+</span></summary><p style="font-size:14px;line-height:1.55;margin:8px 0 0;color:rgba(26,26,26,0.72)">Bé học lớp Ứng tác Thiếu nhi riêng: tập nói to, biết chờ lượt, biết chơi cùng bạn. Từ 15 tuổi học lớp Cơ bản cùng người lớn.</p></details>
+    <details style="border-bottom:1px solid rgba(26,26,26,0.1);padding:14px 0"><summary style="font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;gap:12px">Tôi đi học một mình được không?<span aria-hidden="true" style="color:#8A4B00">+</span></summary><p style="font-size:14px;line-height:1.55;margin:8px 0 0;color:rgba(26,26,26,0.72)">Hoàn toàn được: các bạn cùng lớp sẽ là bạn diễn của bạn. Rủ thêm bạn bè hay đồng nghiệp thì càng vui, và có người tập tiếp sau giờ học.</p></details>
+    <details style="border-bottom:1px solid rgba(26,26,26,0.1);padding:14px 0"><summary style="font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;gap:12px">Học xong Cơ bản thì đi tiếp thế nào?<span aria-hidden="true" style="color:#8A4B00">+</span></summary><p style="font-size:14px;line-height:1.55;margin:8px 0 0;color:rgba(26,26,26,0.72)">Sau Cơ bản 1 là Cơ bản 2. Tiếp theo chọn Đào tạo Diễn viên Ứng tác (32 buổi, 2 cấp độ) nếu muốn biểu diễn, hoặc Ứng tác Ứng dụng (mở sau tháng 6/2027) nếu muốn mang ứng tác vào nghề nghiệp.</p></details>
+    <details style="padding:14px 0"><summary style="font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;gap:12px">Nếu nghỉ một buổi thì sao?<span aria-hidden="true" style="color:#8A4B00">+</span></summary><p style="font-size:14px;line-height:1.55;margin:8px 0 0;color:rgba(26,26,26,0.72)">Báo trước 24 giờ, bạn được học bù ở lớp sau hoặc nhận tài liệu tổng kết của buổi đó.</p></details>
+  </div></details>
 </section>
 
-<!-- SIGNUP -->
-<section id="m-dk" style="background:#1A1A1A;color:#F5EFE3;padding:24px 20px 100px">
-  <h2 style="font-size:22px;line-height:1.2;font-weight:800;letter-spacing:-0.01em;margin:0 0 4px">Giữ chỗ lớp Cơ bản</h2>
-  <p style="font-size:13px;margin:0 0 16px;color:rgba(245,239,227,0.72)">Để lại số Zalo, High Comedia gọi lại trong 24 giờ.</p>
-  <form data-hc-form="lead" style="display:flex;flex-direction:column;gap:10px">
-    <label style="font-size:12px;font-weight:600;display:flex;flex-direction:column;gap:4px">Họ và tên<input type="text" name="name" autocomplete="name" required autocomplete="name" style="height:46px;padding:0 14px;border:0;border-radius:12px;font-size:16px"></label>
-    <label style="font-size:12px;font-weight:600;display:flex;flex-direction:column;gap:4px">Số điện thoại (Zalo)<input type="tel" name="phone" required inputmode="tel" autocomplete="tel" style="height:46px;padding:0 14px;border:0;border-radius:12px;font-size:16px"></label>
-    <label style="font-size:12px;font-weight:600;display:flex;flex-direction:column;gap:4px">Email<input type="email" name="email" autocomplete="email" inputmode="email" required style="height:46px;padding:0 14px;border:0;border-radius:12px;font-size:16px"></label>
-    <label style="font-size:12px;font-weight:600;display:flex;flex-direction:column;gap:4px">Lớp quan tâm<select name="cls" style="height:46px;padding:0 12px;border:0;border-radius:12px;font-size:16px;background:#FFFFFF"><option value="dropin">Buổi học thử Drop-in (150K)</option><option value="improv1">Improv 1 · Ứng tác Cơ bản 1</option><option value="improv2">Improv 2 · Ứng tác Cơ bản 2</option><option value="kids">Kids Improv · Thiếu nhi 8–14</option><option value="performer1">Diễn viên Ứng tác (Performer)</option><option value="applied">Ứng tác cho doanh nghiệp</option><option value="other">Chưa biết, cần tư vấn</option></select></label>
-    <button type="button" style="height:50px;border:0;border-radius:14px;background:#FFA406;color:#1A1A1A;font-weight:800;font-size:16px;margin-top:4px">Gửi đăng ký</button>
-  </form>
-  <div style="display:flex;align-items:center;gap:8px;margin-top:20px;font-size:11px;color:rgba(245,239,227,0.55)"><img src="img/logo-light-ink.webp" alt="High" style="height:16px;width:auto;display:block">© 2026 High Comedia · Hà Nội</div>
+<section id="m-cong-dong" style="padding:0 16px 26px">
+  <a href="https://www.facebook.com/share/1FRAFYfvux/" target="_blank" rel="noopener" style="display:flex;gap:14px;align-items:center;background:#FFFFFF;border-radius:16px;padding:12px;text-decoration:none">
+    <img src="img/kt-aud-two-laugh.webp" alt="" loading="lazy" style="width:64px;height:64px;object-fit:cover;border-radius:12px;display:block;flex-shrink:0">
+    <span style="flex:1;min-width:0"><span style="display:block;font-size:11px;font-weight:700;letter-spacing:1px;color:#8A4B00">CỘNG ĐỒNG HIGH</span><b style="display:block;font-size:15px;line-height:1.3">Xem diễn, jam, gặp bạn mới</b><span style="display:block;font-size:12px;color:rgba(26,26,26,0.6)">Theo dõi fanpage để không lỡ lịch ↗</span></span>
+  </a>
+</section>
+
+<section id="m-dk" data-bar-hide style="background:#1A1A1A;color:#F5EFE3;padding:28px 16px 40px">
+  <h2 style="font-size:24px;line-height:1.2;font-weight:800;letter-spacing:-0.01em;margin:0 0 6px">Còn băn khoăn? Cứ hỏi.</h2>
+  <p style="font-size:14px;line-height:1.5;margin:0 0 16px;color:rgba(245,239,227,0.72)">Nhắn Zalo để được tư vấn lớp phù hợp, hoặc giữ chỗ buổi học thử 2 giờ.</p>
+  <a href="#" data-hc-act="reg:dropin" style="height:52px;border-radius:14px;background:#FFA406;color:#1A1A1A;text-decoration:none;font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center"><span>Giữ chỗ học thử · <span data-hc="dropin.sale">150K</span></span></a>
+  <a href="https://zalo.me/0909851086" target="_blank" rel="noopener" style="height:50px;margin-top:8px;border-radius:14px;border:1.5px solid rgba(245,239,227,0.4);box-sizing:border-box;color:#F5EFE3;text-decoration:none;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center">Hỏi nhanh qua Zalo</a>
+  <div style="display:flex;align-items:center;gap:8px;margin-top:24px;font-size:11px;color:rgba(245,239,227,0.55)"><img src="img/logo-light-ink.webp" alt="High" style="height:16px;width:auto;display:block">© 2026 High Comedia · nhánh đào tạo của HIGH · Hà Nội</div>
 </section>
 
 <!-- STICKY CTA BAR -->
 
 
 </div>
-<div class="hc-bar" data-hc-bar><div class="hc-bar-in"><div class="hc-bar-info"><b>Học thử Drop-in</b><span data-hc="dropin.start">…</span> · <span class="s" data-hc="dropin.seats">…</span></div><a class="hc-bar-z" href="https://zalo.me/0909851086" target="_blank" rel="noopener">Zalo</a><a class="hc-bar-cta" href="#" data-hc-act="reg:dropin"><span>Giữ chỗ · <span data-hc="dropin.sale">150K</span></span></a></div></div></div>
+<div class="hc-bar" data-hc-bar><div class="hc-bar-in"><div class="hc-bar-info"><b>Học thử Drop-in</b><span data-hc="dropin.start">…</span> · <span class="s" data-hc="dropin.seats">…</span></div><a class="hc-bar-z" href="https://zalo.me/0909851086" target="_blank" rel="noopener">Zalo</a><a class="hc-bar-cta" href="#" data-hc-act="reg:dropin"><span>Giữ chỗ · <span data-hc="dropin.sale">150K</span></span></a><button type="button" class="hc-bar-x" data-bar-x aria-label="Ẩn thanh này">×</button></div></div></div>
 <script src="hc-config.js?v=5c52f0c1"></script>
 <script src="hc-data.js?v=05510804"></script>
-<script src="hc.js?v=712bb0dc"></script>
+<script src="hc.js?v=e61b52df"></script>
 <script src="hc-form.js?v=6f228ec7"></script>
 <script src="hc-track.js?v=7fc7b9a0"></script>
 </body>

@@ -34,23 +34,33 @@ a{color:#1A1A1A;-webkit-tap-highlight-color:transparent}
 .toc{display:flex;gap:18px;overflow-x:auto;scrollbar-width:none}.toc::-webkit-scrollbar{display:none}
 .mnav-t{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
 .mnav-b{width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;margin-right:-10px;-webkit-tap-highlight-color:transparent}
-.mnav-b .ix{display:none}
-.mnav{display:none;position:absolute;left:0;right:0;top:52px;max-height:calc(100vh - 52px);overflow-y:auto;background:#F5EFE3;border-bottom:1px solid rgba(26,26,26,0.12);box-shadow:0 18px 30px rgba(26,26,26,0.18);padding:4px 20px 12px;box-sizing:border-box}
-.mnav-t:checked ~ .mnav{display:block}
-.mnav-t:checked ~ .mnav-b .io{display:none}
-.mnav-t:checked ~ .mnav-b .ix{display:block}
-.mnav a{text-decoration:none}
-.mnav .r{display:flex;justify-content:space-between;align-items:center;min-height:40px;font-size:14px;font-weight:600;border-bottom:1px solid rgba(26,26,26,0.08)}
-.mnav .s{display:flex;justify-content:space-between;align-items:center;min-height:34px;font-size:13px;padding-left:12px;color:rgba(26,26,26,0.8)}
-.mnav .on{color:#8A4B00;font-weight:700}
-.mnav .soon{font-size:10px;font-weight:600;color:rgba(26,26,26,0.45)}
+.mnav-o{position:fixed;left:0;top:0;width:100vw;height:100vh;background:rgba(26,26,26,0.5);opacity:0;pointer-events:none;transition:opacity .25s;z-index:60}
+.mnav{position:fixed;top:0;right:0;height:100vh;height:100dvh;width:min(76vw,330px);box-sizing:border-box;background:#1A1A1A;color:#F5EFE3;z-index:61;transform:translateX(105%);visibility:hidden;transition:transform .28s ease,visibility .28s;display:flex;flex-direction:column;padding:calc(10px + env(safe-area-inset-top,0px)) 22px calc(20px + env(safe-area-inset-bottom,0px));overflow-y:auto;box-shadow:-18px 0 40px rgba(0,0,0,0.25)}
+.mnav-t:checked ~ .mnav{transform:none;visibility:visible}
+.mnav-t:checked ~ .mnav-o{opacity:1;pointer-events:auto}
+.mnav a{text-decoration:none;color:#F5EFE3}
+.mnav .mh{display:flex;justify-content:space-between;align-items:center;height:48px;margin-bottom:10px}
+.mnav .mh span{font-size:11px;font-weight:700;letter-spacing:1.5px;color:#FFA406}
+.mnav .mx{width:40px;height:40px;margin-right:-8px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.mnav .r{display:flex;justify-content:space-between;align-items:center;min-height:52px;font-size:17px;font-weight:700;border-bottom:1px solid rgba(245,239,227,0.12)}
+.mnav .r i{font-style:normal;color:#FFA406;font-size:18px}
+.mnav .r.on{color:#FFA406}
+.mnav .r small{font-size:11px;font-weight:600;color:rgba(245,239,227,0.5)}
+.mnav .sb{display:flex;flex-wrap:wrap;gap:6px;padding:10px 0 14px;border-bottom:1px solid rgba(245,239,227,0.12)}
+.mnav .sb a,.mnav .sb span{font-size:12px;font-weight:600;padding:6px 10px;border-radius:100px;background:rgba(245,239,227,0.08)}
+.mnav .sb span{background:#FFA406;color:#1A1A1A}
+.mnav .mc{margin-top:auto;padding-top:22px;display:flex;flex-direction:column;gap:8px}
+.mnav .mc a{height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px}
+.mnav .mc .cta{background:#FFA406;color:#1A1A1A}
+.mnav .mc .z{border:1.5px solid rgba(245,239,227,0.35);color:#F5EFE3;font-weight:700}
+.mnav .soon{font-size:10px;font-weight:600;color:rgba(245,239,227,0.45)}
 ::selection{background:#FFE58F;color:#1A1A1A}::-moz-selection{background:#FFE58F;color:#1A1A1A}
 
 :root{color-scheme:light}
 html,body{background:#F5EFE3}
 .v-mob{display:none}
 @media (max-width:640px){.v-desk{display:none}.v-mob{display:block}}
-.hc-bar{position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:40;transition:transform .3s ease,opacity .3s ease}.hc-bar.off{transform:translateY(calc(100% + 28px));opacity:0;pointer-events:none}.hc-bar-in{display:flex;align-items:center;gap:6px;background:rgba(26,26,26,0.97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#F5EFE3;border-radius:100px;padding:6px 6px 6px 18px;box-shadow:0 10px 28px rgba(26,26,26,0.22)}.hc-bar-info{flex:1;min-width:0;line-height:1.3;font-size:11px;color:rgba(245,239,227,0.68);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hc-bar-info b{display:block;font-size:13px;color:#F5EFE3;overflow:hidden;text-overflow:ellipsis}.hc-bar-info .s{color:#FFA406;font-weight:700}.hc-bar a{flex:0 0 auto;height:38px;border-radius:100px;display:flex;align-items:center;font-size:13px;text-decoration:none;white-space:nowrap}.hc-bar-z{padding:0 12px;border:1px solid rgba(245,239,227,0.3);color:#F5EFE3;font-weight:700}.hc-bar-cta{padding:0 16px;background:#FFA406;color:#1A1A1A;font-weight:800}</style>
+.hc-bar{position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:40;transition:transform .3s ease,opacity .3s ease}.hc-bar.off{transform:translateY(calc(100% + 28px));opacity:0;pointer-events:none}.hc-bar-in{display:flex;align-items:center;gap:6px;background:rgba(26,26,26,0.97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#F5EFE3;border-radius:100px;padding:6px 6px 6px 18px;box-shadow:0 10px 28px rgba(26,26,26,0.22)}.hc-bar-info{flex:1;min-width:0;line-height:1.3;font-size:11px;color:rgba(245,239,227,0.68);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hc-bar-info b{display:block;font-size:13px;color:#F5EFE3;overflow:hidden;text-overflow:ellipsis}.hc-bar-info .s{color:#FFA406;font-weight:700}.hc-bar a{flex:0 0 auto;height:38px;border-radius:100px;display:flex;align-items:center;font-size:13px;text-decoration:none;white-space:nowrap}.hc-bar-z{padding:0 12px;border:1px solid rgba(245,239,227,0.3);color:#F5EFE3;font-weight:700}.hc-bar-cta{padding:0 16px;background:#FFA406;color:#1A1A1A;font-weight:800}.hc-bar-x{flex:0 0 auto;width:28px;height:28px;margin-left:-2px;border:0;border-radius:50%;background:rgba(245,239,227,0.12);color:#F5EFE3;font-size:16px;line-height:1;padding:0;cursor:pointer}.hc-bar.off{visibility:hidden}</style>
 <link rel="preload" as="image" href="img/press-cast.webp" media="(min-width: 641px)" fetchpriority="high">
 <link rel="preload" as="image" href="img/press-cast.webp" media="(max-width: 640px)" fetchpriority="high">
 </head>
@@ -306,25 +316,21 @@ html,body{background:#F5EFE3}
 
 <div style="width:100%;max-width:520px;margin:0 auto;background:#F5EFE3;color:#1A1A1A;font-family:'Be Vietnam Pro',-apple-system,system-ui,sans-serif;font-size:15px;line-height:1.5;position:relative">
 
-<header style="position:sticky;top:env(safe-area-inset-top,0px);z-index:40;height:52px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;background:rgba(245,239,227,0.95);border-bottom:1px solid rgba(26,26,26,0.08)">
+<header style="position:sticky;top:env(safe-area-inset-top,0px);z-index:50;height:52px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;background:#F5EFE3;border-bottom:1px solid rgba(26,26,26,0.08)">
   <a href="/" style="display:flex;align-items:flex-end;gap:5px;font-weight:800;font-size:15px;text-decoration:none"><img src="img/logo-dark-ink.webp" alt="High" style="height:24px;width:auto;display:block"><span style="line-height:1">Comedia</span></a>
-  <input type="checkbox" id="m-nav" class="mnav-t" aria-label="Mở menu điều hướng">
-  <label for="m-nav" class="mnav-b" aria-label="Mở / đóng menu"><svg class="io" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:#1A1A1A;stroke-width:2;stroke-linecap:round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg><svg class="ix" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:#1A1A1A;stroke-width:2;stroke-linecap:round"><path d="M6 6l12 12M18 6L6 18"></path></svg></label>
+  <input type="checkbox" id="m-nav" class="mnav-t" aria-label="Mở menu điều hướng" onchange="document.documentElement.style.overflow=this.checked?'hidden':''">
+  <label for="m-nav" class="mnav-b" aria-label="Mở menu"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:#1A1A1A;stroke-width:2;stroke-linecap:round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></label>
+  <label for="m-nav" class="mnav-o" aria-hidden="true"></label>
   <nav class="mnav" aria-label="Menu chính">
-    <a class="r" href="/" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">Trang chủ<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
-    <div class="r" style="border-bottom:0;padding-top:4px">Ứng tác là gì</div>
-    <a class="s" href="ung-tac" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">1 · Ứng tác là gì &amp; lợi ích<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
-    <a class="s" href="danh-cho-ai" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">2 · Ứng tác dành cho ai?<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
-    <a class="s" href="buoi-tap" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">3 · Một buổi tập diễn ra thế nào<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
-    <span class="s on">4 · Báo chí nói về High Club<span style="font-size:10px">đang xem</span></span>
-    <div style="border-bottom:1px solid rgba(26,26,26,0.08);margin-top:4px"></div>
-    <a class="r" href="khoa-hoc" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">Khoá học<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
-    <a class="r" href="/#m-lich" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">Lịch khai giảng<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
-    <a class="r" href="ung-dung-ung-tac" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">Ứng dụng ứng tác · Doanh nghiệp<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
-    <a class="r" href="/#m-cong-dong" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">Cộng đồng<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
-    <a class="r" href="/#m-faq" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">Hỏi đáp<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
-    <a class="r" href="kien-thuc/" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">Kiến thức<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
-    <a class="r" href="ve-high-club" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false">Về High Club<span aria-hidden="true" style="color:rgba(26,26,26,0.35)">›</span></a>
+    <div class="mh"><span>MENU</span><label for="m-nav" class="mx" aria-label="Đóng menu"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:#F5EFE3;stroke-width:2;stroke-linecap:round"><path d="M6 6l12 12M18 6L6 18"></path></svg></label></div>
+    <a class="r" href="ung-tac" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Ứng tác là gì<i aria-hidden="true">›</i></a>
+    <div class="sb"><a href="danh-cho-ai" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Dành cho ai</a><a href="buoi-tap" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Một buổi tập</a><span>Báo chí</span></div>
+    <a class="r" href="khoa-hoc" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Khoá học &amp; lịch học<i aria-hidden="true">›</i></a>
+    <a class="r" href="ung-dung-ung-tac" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Ứng tác doanh nghiệp<i aria-hidden="true">›</i></a>
+    <a class="r" href="/#m-cong-dong" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Cộng đồng<i aria-hidden="true">›</i></a>
+    <a class="r" href="kien-thuc/" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Kiến thức<i aria-hidden="true">›</i></a>
+    <a class="r" href="ve-high-club" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Về High Club<i aria-hidden="true">›</i></a>
+    <div class="mc"><a class="cta" href="#" data-hc-act="reg:dropin" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Học thử Drop-in · 150K</a><a class="z" href="https://zalo.me/0909851086" target="_blank" rel="noopener">Nhắn Zalo tư vấn</a></div>
   </nav>
 </header>
 
@@ -496,10 +502,10 @@ html,body{background:#F5EFE3}
 
 
 </div>
-<div class="hc-bar" data-hc-bar><div class="hc-bar-in"><div class="hc-bar-info"><b>Học thử Drop-in</b><span data-hc="dropin.start">…</span> · <span class="s" data-hc="dropin.seats">…</span></div><a class="hc-bar-z" href="https://zalo.me/0909851086" target="_blank" rel="noopener">Zalo</a><a class="hc-bar-cta" href="#" data-hc-act="reg:dropin"><span>Giữ chỗ · <span data-hc="dropin.sale">150K</span></span></a></div></div></div>
+<div class="hc-bar" data-hc-bar><div class="hc-bar-in"><div class="hc-bar-info"><b>Học thử Drop-in</b><span data-hc="dropin.start">…</span> · <span class="s" data-hc="dropin.seats">…</span></div><a class="hc-bar-z" href="https://zalo.me/0909851086" target="_blank" rel="noopener">Zalo</a><a class="hc-bar-cta" href="#" data-hc-act="reg:dropin"><span>Giữ chỗ · <span data-hc="dropin.sale">150K</span></span></a><button type="button" class="hc-bar-x" data-bar-x aria-label="Ẩn thanh này">×</button></div></div></div>
 <script src="hc-config.js?v=5c52f0c1"></script>
 <script src="hc-data.js?v=05510804"></script>
-<script src="hc.js?v=712bb0dc"></script>
+<script src="hc.js?v=e61b52df"></script>
 <script src="hc-form.js?v=6f228ec7"></script>
 <script src="hc-track.js?v=7fc7b9a0"></script>
 </body>

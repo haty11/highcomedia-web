@@ -77,15 +77,27 @@
     apply(j.data);
   }).catch(function(){});
 })();
-/* Thanh nổi mobile: cuộn xuống đọc thì ẩn, cuộn lên thì hiện lại */
+/* Thanh nổi mobile:
+   - Trang có [data-bar-start] (trang chủ): chỉ hiện khi đã cuộn tới khối đó, ẩn khi khối [data-bar-hide] (đã có nút đăng ký) đang hiện.
+   - Trang khác: cuộn xuống đọc thì ẩn, cuộn lên thì hiện lại.
+   - Nút × tắt thanh trong phiên truy cập. */
 (function(){
   var bars=document.querySelectorAll('[data-hc-bar]'); if(!bars.length) return;
+  var KEY='hc-bar-off'; function dismissed(){try{return sessionStorage.getItem(KEY)==='1';}catch(e){return false;}}
+  function set(off){for(var i=0;i<bars.length;i++)bars[i].classList.toggle('off',off||dismissed());}
+  document.addEventListener('click',function(e){var x=e.target.closest&&e.target.closest('[data-bar-x]');if(!x)return;e.preventDefault();try{sessionStorage.setItem(KEY,'1');}catch(err){}set(true);});
+  function vis(el){return !!(el.offsetParent||el.getClientRects().length);}
+  var start=[].filter.call(document.querySelectorAll('[data-bar-start]'),vis)[0];
+  var hides=[].filter.call(document.querySelectorAll('[data-bar-hide]'),vis);
   var last=window.pageYOffset||0, ticking=false;
-  function set(off){for(var i=0;i<bars.length;i++)bars[i].classList.toggle('off',off);}
-  function tick(){ticking=false;var y=window.pageYOffset||0,d=y-last;
-    if(y<120){set(false);}else if(d>8){set(true);}else if(d<-8){set(false);}
+  function inView(el){var r=el.getBoundingClientRect(),V=window.innerHeight;return r.top<V*0.9&&r.bottom>V*0.5;}
+  function tick(){ticking=false;var y=window.pageYOffset||0;
+    if(start){var past=start.getBoundingClientRect().top<window.innerHeight*0.6;var hid=hides.some(inView);set(!past||hid);return;}
+    var d=y-last; if(y<120){set(false);}else if(d>8){set(true);}else if(d<-8){set(false);}
     if(Math.abs(d)>8)last=y;}
   window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(tick);}},{passive:true});
+  window.addEventListener('resize',function(){start=[].filter.call(document.querySelectorAll('[data-bar-start]'),vis)[0];hides=[].filter.call(document.querySelectorAll('[data-bar-hide]'),vis);tick();});
+  tick();
 })();
 /* Accordion mục lục (trang Về High Club): mở mục này thì đóng mục khác, cuộn tới mục vừa mở, nút về mục lục / mục tiếp */
 (function(){

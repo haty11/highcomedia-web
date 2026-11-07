@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://highcomedia.com/sitemap.xml

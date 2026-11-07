@@ -51,6 +51,8 @@ html,body{background:#F5EFE3}
 .v-mob{display:none}
 @media (max-width:640px){.v-desk{display:none}.v-mob{display:block}}
 </style>
+<link rel="preload" as="image" href="img/show-cast.webp" media="(min-width: 641px)" fetchpriority="high">
+<link rel="preload" as="image" href="img/show-cast.webp" media="(max-width: 640px)" fetchpriority="high">
 </head>
 <body>
 <div class="v-desk">
@@ -60,7 +62,7 @@ html,body{background:#F5EFE3}
 <!-- ① HEADER -->
 <header style="position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:rgba(245,239,227,0.94);backdrop-filter:blur(8px);border-bottom:1px solid rgba(26,26,26,0.1)">
   <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px">
-    <a href="index.html" class="hd" style="font-size:18px;font-weight:800;text-decoration:none;display:flex;align-items:flex-end;gap:7px"><img src="img/logo-dark-ink.png" alt="High" style="height:32px;width:auto;display:block"><span style="line-height:1;padding-bottom:2px">Comedia</span></a>
+    <a href="index.html" class="hd" style="font-size:18px;font-weight:800;text-decoration:none;display:flex;align-items:flex-end;gap:7px"><img src="img/logo-dark-ink.webp" alt="High" style="height:32px;width:auto;display:block"><span style="line-height:1;padding-bottom:2px">Comedia</span></a>
     <nav class="navlinks" style="display:flex;gap:26px;font-size:14px;font-weight:500">
       <a href="ung-tac.html" style="text-decoration:none;font-weight:700;border-bottom:2px solid #FFA406;padding-bottom:2px">Ứng tác là gì</a>
       <a href="khoa-hoc.html" style="text-decoration:none">Khoá học</a>
@@ -84,7 +86,7 @@ html,body{background:#F5EFE3}
         <p style="font-size:17px;line-height:1.65;color:rgba(26,26,26,0.78);margin:0 0 14px;max-width:520px">Câu trả lời ngắn: cho bất kỳ ai cần nói chuyện với người khác. Câu trả lời dài, cho từng nhóm người, ở ngay bên dưới, kèm nghiên cứu từ các trường đại học và báo chí uy tín.</p>
         <div style="font-size:13px;color:rgba(26,26,26,0.6)">Đọc khoảng 8 phút · 6 nhóm người · 7 nguồn tham khảo</div>
       </div>
-      <img src="img/show-cast.jpg" alt="Diễn viên và khán giả nhiều lứa tuổi chụp ảnh chung sau một đêm diễn" style="width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:20px;display:block">
+      <img loading="lazy" decoding="async" src="img/show-cast.webp" alt="Diễn viên và khán giả nhiều lứa tuổi chụp ảnh chung sau một đêm diễn" style="width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:20px;display:block">
     </div>
   </div>
 </section>
@@ -124,7 +126,7 @@ html,body{background:#F5EFE3}
       <!-- 1. Kids -->
       <article id="thieu-nhi" style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;gap:18px;align-items:center">
-          <img src="img/kids-class.jpg" alt="Đào Ngọc Hà cùng các học trò nhỏ" style="width:120px;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block;flex-shrink:0">
+          <img loading="lazy" decoding="async" src="img/kids-class.webp" alt="Đào Ngọc Hà cùng các học trò nhỏ" style="width:120px;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block;flex-shrink:0">
           <div><div style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:#8A4B00">NHÓM 1 · 8–14 TUỔI</div><h2 class="hd" style="font-size:26px;line-height:1.15;font-weight:800;margin:4px 0 0">Thiếu nhi: học nói to, chờ lượt và chơi cùng bạn</h2></div>
         </div>
         <p style="font-size:16px;line-height:1.75;margin:0;color:rgba(26,26,26,0.85)">Ở tuổi này, trẻ học nhanh nhất qua trò chơi. Ứng tác vốn là chuỗi trò chơi có luật, nên các con học mà không thấy mình đang học: đứng trước bạn bè, nói rõ ràng, nghe bạn nói hết rồi mới đáp, và vui vẻ khi mình hoặc bạn "nói sai".</p>
@@ -138,7 +140,7 @@ html,body{background:#F5EFE3}
       <!-- 2. Students -->
       <article id="hoc-sinh" style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;gap:18px;align-items:center">
-          <img src="img/warmup.jpg" alt="Học viên trẻ khởi động trong phòng tập" style="width:120px;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block;flex-shrink:0">
+          <img loading="lazy" decoding="async" src="img/warmup.webp" alt="Học viên trẻ khởi động trong phòng tập" style="width:120px;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block;flex-shrink:0">
           <div><div style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:#8A4B00">NHÓM 2 · TỪ 15 TUỔI</div><h2 class="hd" style="font-size:26px;line-height:1.15;font-weight:800;margin:4px 0 0">Học sinh, sinh viên: thuyết trình, phỏng vấn, kết bạn</h2></div>
         </div>
         <p style="font-size:16px;line-height:1.75;margin:0;color:rgba(26,26,26,0.85)">Đây là giai đoạn phải nói trước đám đông nhiều nhất: thuyết trình nhóm, phỏng vấn học bổng, buổi đầu đi làm thêm, những mối quan hệ mới. Ứng tác cho bạn một nơi an toàn để tập những khoảnh khắc đó, và tập cả cách xử lý khi bị hỏi điều mình chưa chuẩn bị.</p>
@@ -152,7 +154,7 @@ html,body{background:#F5EFE3}
       <!-- 3. Introverts -->
       <article id="huong-noi" style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;gap:18px;align-items:center">
-          <img src="img/studio-scene.jpg" alt="Học viên ngồi xem bạn diễn trong buổi tập" style="width:120px;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block;flex-shrink:0">
+          <img loading="lazy" decoding="async" src="img/studio-scene.webp" alt="Học viên ngồi xem bạn diễn trong buổi tập" style="width:120px;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block;flex-shrink:0">
           <div><div style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:#8A4B00">NHÓM 3 · MỌI LỨA TUỔI</div><h2 class="hd" style="font-size:26px;line-height:1.15;font-weight:800;margin:4px 0 0">Người hướng nội, hay ngại khi giao tiếp</h2></div>
         </div>
         <p style="font-size:16px;line-height:1.75;margin:0 0 0;color:rgba(26,26,26,0.85)">Nhiều người nghĩ ứng tác chỉ dành cho người "lầy", hoạt ngôn. Thực tế ngược lại: người hướng nội thường quan sát và lắng nghe rất giỏi, đó chính là kỹ năng số 1 của ứng tác. Lớp đi từ trò chơi nhóm nhỏ, an toàn, không ai bị ép lên sân khấu khi chưa sẵn sàng. Bạn được tập mắc lỗi trước những người cũng đang tập mắc lỗi.</p>
@@ -167,7 +169,7 @@ html,body{background:#F5EFE3}
       <!-- 4. Working people -->
       <article id="di-lam" style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;gap:18px;align-items:center">
-          <img src="img/coaching.jpg" alt="Hai người trò chuyện, lắng nghe nhau" style="width:120px;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block;flex-shrink:0">
+          <img loading="lazy" decoding="async" src="img/coaching.webp" alt="Hai người trò chuyện, lắng nghe nhau" style="width:120px;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block;flex-shrink:0">
           <div><div style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:#8A4B00">NHÓM 4 · NGƯỜI ĐI LÀM</div><h2 class="hd" style="font-size:26px;line-height:1.15;font-weight:800;margin:4px 0 0">Người đi làm: họp, trình bày, làm việc với khách hàng</h2></div>
         </div>
         <p style="font-size:16px;line-height:1.75;margin:0;color:rgba(26,26,26,0.85)">Công việc hằng ngày là một chuỗi cảnh ứng tác không kịch bản: cuộc họp đổi hướng giữa chừng, khách hàng hỏi câu khó, sếp giao việc gấp. Các trường kinh doanh hàng đầu đã đưa ứng tác vào chương trình, và cả các nhà khoa học cũng học ứng tác để nói chuyện với công chúng dễ hiểu hơn.</p>
@@ -184,7 +186,7 @@ html,body{background:#F5EFE3}
       <!-- 5. Managers & HR -->
       <article id="quan-ly" style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;gap:18px;align-items:center">
-          <img src="img/ws-282design.jpg" alt="Workshop ứng tác trong không gian 282Design" style="width:120px;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block;flex-shrink:0">
+          <img loading="lazy" decoding="async" src="img/ws-282design.webp" alt="Workshop ứng tác trong không gian 282Design" style="width:120px;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block;flex-shrink:0">
           <div><div style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:#8A4B00">NHÓM 5 · DOANH NGHIỆP</div><h2 class="hd" style="font-size:26px;line-height:1.15;font-weight:800;margin:4px 0 0">Quản lý, HR, L&amp;D: gắn kết và phối hợp đội nhóm</h2></div>
         </div>
         <p style="font-size:16px;line-height:1.75;margin:0;color:rgba(26,26,26,0.85)">Một đội nhóm giỏi giống một nhóm diễn ứng tác giỏi: ai cũng nghe nhau, đón ý nhau và sẵn sàng đỡ nhau khi có sai sót. Workshop ứng tác cho phép cả đội cùng trải nghiệm điều đó trong vài giờ, vui vẻ, không bài giảng, và mang về những thói quen cụ thể cho cuộc họp hôm sau.</p>
@@ -198,7 +200,7 @@ html,body{background:#F5EFE3}
       <!-- 6. Performers -->
       <article id="bieu-dien" style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;gap:18px;align-items:center">
-          <img src="img/actors-cinematic.jpg" alt="Hai diễn viên trong một cảnh diễn" style="width:120px;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block;flex-shrink:0">
+          <img loading="lazy" decoding="async" src="img/actors-cinematic.webp" alt="Hai diễn viên trong một cảnh diễn" style="width:120px;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block;flex-shrink:0">
           <div><div style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:#8A4B00">NHÓM 6 · NGƯỜI LÀM NGHỀ SÁNG TẠO</div><h2 class="hd" style="font-size:26px;line-height:1.15;font-weight:800;margin:4px 0 0">Người muốn biểu diễn: diễn viên, đạo diễn, biên kịch, MC</h2></div>
         </div>
         <p style="font-size:16px;line-height:1.75;margin:0;color:rgba(26,26,26,0.85)">Với người làm nghề, ứng tác là phòng tập của sự sống động: diễn viên phản ứng thật hơn, MC xử lý sự cố mượt hơn, biên kịch và đạo diễn hiểu cách một cảnh được xây từ "game" và nhịp gia tăng. Những trung tâm hài kịch nổi tiếng như The Second City (Chicago) đều có chương trình đào tạo diễn viên ứng tác bài bản, và nhiều nghệ sĩ hài, diễn viên đã trưởng thành từ đó.</p>
@@ -277,12 +279,12 @@ html,body{background:#F5EFE3}
 <footer style="background:#1A1A1A;color:rgba(245,239,227,0.7);padding:48px 0 24px;font-size:14px">
   <div class="wrap">
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:28px;margin-bottom:32px">
-      <div><img src="img/logo-light-ink.png" alt="High" style="height:30px;width:auto;display:block;margin-bottom:12px"><div style="line-height:1.7">Hài kịch ứng tác Hà Nội.<br>Không kịch bản. Vẫn tự tin.</div></div>
-      <div style="display:flex;flex-direction:column;gap:8px"><b style="color:#F5EFE3">Khoá học</b><a href="#" style="color:inherit;text-decoration:none">Thiếu nhi 8–14</a><a href="#" style="color:inherit;text-decoration:none">Cơ bản 1 · 2</a><a href="#" style="color:inherit;text-decoration:none">Diễn viên ứng tác</a><a href="#" style="color:inherit;text-decoration:none">Lịch khai giảng</a></div>
-      <div style="display:flex;flex-direction:column;gap:8px"><b style="color:#F5EFE3">Khám phá</b><a href="ung-tac.html" style="color:inherit;text-decoration:none">Ứng tác là gì</a><a href="#" style="color:inherit;text-decoration:none">Kiến thức</a><a href="#" style="color:inherit;text-decoration:none">Cộng đồng</a></div>
+      <div><img src="img/logo-light-ink.webp" alt="High" style="height:30px;width:auto;display:block;margin-bottom:12px"><div style="line-height:1.7">Hài kịch ứng tác Hà Nội.<br>Không kịch bản. Vẫn tự tin.</div></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><b style="color:#F5EFE3">Khoá học</b><a href="khoa-hoc-kids.html" style="color:inherit;text-decoration:none">Thiếu nhi 8–14</a><a href="khoa-hoc-improv-1.html" style="color:inherit;text-decoration:none">Cơ bản 1 · 2</a><a href="khoa-hoc-performer-1.html" style="color:inherit;text-decoration:none">Diễn viên ứng tác</a><a href="khoa-hoc.html#lop-hoc" style="color:inherit;text-decoration:none">Lịch khai giảng</a></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><b style="color:#F5EFE3">Khám phá</b><a href="ung-tac.html" style="color:inherit;text-decoration:none">Ứng tác là gì</a><a href="ung-tac.html" style="color:inherit;text-decoration:none">Kiến thức</a><a href="index.html#cong-dong" style="color:inherit;text-decoration:none">Cộng đồng</a></div>
       <div style="display:flex;flex-direction:column;gap:8px"><b style="color:#F5EFE3">Liên hệ</b><a href="tel:0909851086" style="color:inherit;text-decoration:none">0909 851 086 · Zalo</a><a href="mailto:daongocha23@gmail.com" style="color:inherit;text-decoration:none">daongocha23@gmail.com</a><a href="https://www.facebook.com/share/1FRAFYfvux/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Facebook</a></div>
     </div>
-    <div style="border-top:1px solid rgba(245,239,227,0.14);padding-top:16px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px"><span>© 2026 High Comedia</span><span>Hỏi đáp · Học phí &amp; hoàn phí · Bảo mật · Điều khoản</span></div>
+    <div style="border-top:1px solid rgba(245,239,227,0.14);padding-top:16px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px"><span>© 2026 High Comedia</span><span><a href="khoa-hoc.html#hoi-dap" style="color:inherit">Hỏi đáp</a> · <a href="chinh-sach.html#hoc-phi" style="color:inherit">Học phí &amp; hoàn phí</a> · <a href="chinh-sach.html#bao-mat" style="color:inherit">Bảo mật</a> · <a href="chinh-sach.html#dieu-khoan" style="color:inherit">Điều khoản</a></span></div>
   </div>
 </footer>
 
@@ -293,7 +295,7 @@ html,body{background:#F5EFE3}
 <div style="width:100%;max-width:520px;margin:0 auto;background:#F5EFE3;color:#1A1A1A;font-family:'Be Vietnam Pro',-apple-system,system-ui,sans-serif;font-size:15px;line-height:1.5;position:relative">
 
 <header style="position:sticky;top:env(safe-area-inset-top,0px);z-index:40;height:52px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;background:rgba(245,239,227,0.95);border-bottom:1px solid rgba(26,26,26,0.08)">
-  <a href="index.html" style="display:flex;align-items:flex-end;gap:5px;font-weight:800;font-size:15px;text-decoration:none"><img src="img/logo-dark-ink.png" alt="High" style="height:24px;width:auto;display:block"><span style="line-height:1">Comedia</span></a>
+  <a href="index.html" style="display:flex;align-items:flex-end;gap:5px;font-weight:800;font-size:15px;text-decoration:none"><img src="img/logo-dark-ink.webp" alt="High" style="height:24px;width:auto;display:block"><span style="line-height:1">Comedia</span></a>
   <input type="checkbox" id="m-nav" class="mnav-t" aria-label="Mở menu điều hướng">
   <label for="m-nav" class="mnav-b" aria-label="Mở / đóng menu"><svg class="io" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:#1A1A1A;stroke-width:2;stroke-linecap:round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg><svg class="ix" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:#1A1A1A;stroke-width:2;stroke-linecap:round"><path d="M6 6l12 12M18 6L6 18"></path></svg></label>
   <nav class="mnav" aria-label="Menu chính">
@@ -320,7 +322,7 @@ html,body{background:#F5EFE3}
   <h1 style="font-size:22px;line-height:1.25;font-weight:800;letter-spacing:-0.02em;margin:0 0 8px">Ứng tác dành cho ai?</h1>
   <p style="font-size:15px;line-height:1.6;margin:0 0 8px;color:rgba(26,26,26,0.78)">Câu trả lời ngắn: cho bất kỳ ai cần nói chuyện với người khác. Câu trả lời dài, cho từng nhóm người, ở ngay bên dưới, kèm nghiên cứu từ các trường đại học và báo chí uy tín.</p>
   <div style="font-size:12px;color:rgba(26,26,26,0.6);margin-bottom:14px">Đọc khoảng 8 phút · 6 nhóm · 7 nguồn</div>
-  <img src="img/show-cast.jpg" alt="Diễn viên và khán giả nhiều lứa tuổi sau một đêm diễn" style="width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;display:block">
+  <img loading="lazy" decoding="async" src="img/show-cast.webp" alt="Diễn viên và khán giả nhiều lứa tuổi sau một đêm diễn" style="width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;display:block">
 </section>
 
 <div style="position:sticky;top:52px;z-index:20;background:#1A1A1A;padding:0 20px">
@@ -352,7 +354,7 @@ html,body{background:#F5EFE3}
 
   <!-- 1 -->
   <article id="m-thieu-nhi" style="display:flex;flex-direction:column;gap:10px">
-    <div style="display:flex;gap:12px;align-items:center"><img src="img/kids-class.jpg" alt="" style="width:64px;height:64px;object-fit:cover;border-radius:12px;display:block;flex-shrink:0"><div><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00">NHÓM 1 · 8–14 TUỔI</div><h2 style="font-size:18px;line-height:1.25;font-weight:800;margin:2px 0 0">Thiếu nhi: học nói to, chờ lượt và chơi cùng bạn</h2></div></div>
+    <div style="display:flex;gap:12px;align-items:center"><img loading="lazy" decoding="async" src="img/kids-class.webp" alt="" style="width:64px;height:64px;object-fit:cover;border-radius:12px;display:block;flex-shrink:0"><div><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00">NHÓM 1 · 8–14 TUỔI</div><h2 style="font-size:18px;line-height:1.25;font-weight:800;margin:2px 0 0">Thiếu nhi: học nói to, chờ lượt và chơi cùng bạn</h2></div></div>
     <p style="font-size:14px;line-height:1.65;margin:0;color:rgba(26,26,26,0.85)">Ở tuổi này, trẻ học nhanh nhất qua trò chơi. Ứng tác vốn là chuỗi trò chơi có luật, nên các con học mà không thấy mình đang học: đứng trước bạn bè, nói rõ ràng, nghe bạn nói hết rồi mới đáp, và vui vẻ khi mình hoặc bạn "nói sai".</p>
     <div style="background:#FFFFFF;border-radius:14px;padding:12px 14px"><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00;margin-bottom:4px">CON SẼ ĐƯỢC GÌ</div><ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.65;color:rgba(26,26,26,0.82)"><li>Mạnh dạn nói trước lớp, trước người lạ</li><li>Biết lắng nghe và chờ đến lượt mình</li><li>Tưởng tượng, kể chuyện, sáng tạo</li><li>Không sợ sai, biết chơi cùng bạn</li></ul></div>
     <a href="https://masonarc.gmu.edu/improvisational-theatre-may-help-improve-self-concept/" target="_blank" rel="noopener noreferrer" style="background:#1A1A1A;color:#F5EFE3;border-radius:14px;padding:12px 14px;text-decoration:none;display:block"><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#FFA406;margin-bottom:4px">NGHIÊN CỨU NÓI GÌ</div><div style="font-size:13px;line-height:1.55">Một nghiên cứu của Đại học George Mason (Mỹ) với 52 trẻ 8–11 tuổi: sau một học kỳ ứng tác, những bé có tự nhận thức về bản thân thấp đã bắt kịp các bạn và giữ được mức tiến bộ đó.</div><div style="font-size:11px;color:rgba(245,239,227,0.6);margin-top:6px">George Mason University Arts Research Center ↗</div></a>
@@ -361,7 +363,7 @@ html,body{background:#F5EFE3}
 
   <!-- 2 -->
   <article id="m-hoc-sinh" style="display:flex;flex-direction:column;gap:10px">
-    <div style="display:flex;gap:12px;align-items:center"><img src="img/warmup.jpg" alt="" style="width:64px;height:64px;object-fit:cover;border-radius:12px;display:block;flex-shrink:0"><div><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00">NHÓM 2 · TỪ 15 TUỔI</div><h2 style="font-size:18px;line-height:1.25;font-weight:800;margin:2px 0 0">Học sinh, sinh viên: thuyết trình, phỏng vấn, kết bạn</h2></div></div>
+    <div style="display:flex;gap:12px;align-items:center"><img loading="lazy" decoding="async" src="img/warmup.webp" alt="" style="width:64px;height:64px;object-fit:cover;border-radius:12px;display:block;flex-shrink:0"><div><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00">NHÓM 2 · TỪ 15 TUỔI</div><h2 style="font-size:18px;line-height:1.25;font-weight:800;margin:2px 0 0">Học sinh, sinh viên: thuyết trình, phỏng vấn, kết bạn</h2></div></div>
     <p style="font-size:14px;line-height:1.65;margin:0;color:rgba(26,26,26,0.85)">Đây là giai đoạn phải nói trước đám đông nhiều nhất: thuyết trình nhóm, phỏng vấn học bổng, buổi đầu đi làm thêm, những mối quan hệ mới. Ứng tác cho bạn một nơi an toàn để tập những khoảnh khắc đó, và tập cả cách xử lý khi bị hỏi điều mình chưa chuẩn bị.</p>
     <div style="background:#FFFFFF;border-radius:14px;padding:12px 14px"><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00;margin-bottom:4px">BẠN SẼ ĐƯỢC GÌ</div><ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.65;color:rgba(26,26,26,0.82)"><li>Tự tin khi thuyết trình, phỏng vấn</li><li>Trả lời bình tĩnh câu hỏi bất ngờ</li><li>Làm việc nhóm, kết bạn dễ hơn</li><li>Biết mình mạnh ở đâu, cần tập gì</li></ul></div>
     <a href="https://news.umich.edu/?p=41249" target="_blank" rel="noopener noreferrer" style="background:#1A1A1A;color:#F5EFE3;border-radius:14px;padding:12px 14px;text-decoration:none;display:block"><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#FFA406;margin-bottom:4px">NGHIÊN CỨU NÓI GÌ</div><div style="font-size:13px;line-height:1.55">Khoảng 270 học sinh trung học ở Detroit (Mỹ) học ứng tác 10 tuần. Mức lo âu xã hội giảm đi gắn với sự tự tin hơn vào kỹ năng giao tiếp, sáng tạo hơn và dám mắc lỗi hơn.</div><div style="font-size:11px;color:rgba(245,239,227,0.6);margin-top:6px">University of Michigan News ↗</div></a>
@@ -370,7 +372,7 @@ html,body{background:#F5EFE3}
 
   <!-- 3 -->
   <article id="m-huong-noi" style="display:flex;flex-direction:column;gap:10px">
-    <div style="display:flex;gap:12px;align-items:center"><img src="img/studio-scene.jpg" alt="" style="width:64px;height:64px;object-fit:cover;border-radius:12px;display:block;flex-shrink:0"><div><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00">NHÓM 3 · MỌI LỨA TUỔI</div><h2 style="font-size:18px;line-height:1.25;font-weight:800;margin:2px 0 0">Người hướng nội, hay ngại khi giao tiếp</h2></div></div>
+    <div style="display:flex;gap:12px;align-items:center"><img loading="lazy" decoding="async" src="img/studio-scene.webp" alt="" style="width:64px;height:64px;object-fit:cover;border-radius:12px;display:block;flex-shrink:0"><div><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00">NHÓM 3 · MỌI LỨA TUỔI</div><h2 style="font-size:18px;line-height:1.25;font-weight:800;margin:2px 0 0">Người hướng nội, hay ngại khi giao tiếp</h2></div></div>
     <p style="font-size:14px;line-height:1.65;margin:0;color:rgba(26,26,26,0.85)">Nhiều người nghĩ ứng tác chỉ dành cho người "lầy", hoạt ngôn. Thực tế ngược lại: người hướng nội thường quan sát và lắng nghe rất giỏi, đó chính là kỹ năng số 1 của ứng tác. Lớp đi từ trò chơi nhóm nhỏ, an toàn, không ai bị ép lên sân khấu khi chưa sẵn sàng. Bạn được tập mắc lỗi trước những người cũng đang tập mắc lỗi.</p>
     <div style="background:#FFFFFF;border-radius:14px;padding:12px 14px"><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00;margin-bottom:4px">BẠN SẼ ĐƯỢC GÌ</div><ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.65;color:rgba(26,26,26,0.82)"><li>Bớt sợ bị đánh giá</li><li>Quen với cảm giác "không biết trước"</li><li>Dùng thế mạnh lắng nghe để giao tiếp</li><li>Một nhóm bạn mới, cùng tần số</li></ul></div>
     <a href="https://www.psychologytoday.com/us/blog/play-your-way-sane/202301/no-joke-improv-comedy-reduces-social-anxiety" target="_blank" rel="noopener noreferrer" style="background:#1A1A1A;color:#F5EFE3;border-radius:14px;padding:12px 14px;text-decoration:none;display:block"><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#FFA406;margin-bottom:4px">NGHIÊN CỨU NÓI GÌ</div><div style="font-size:13px;line-height:1.55">Psychology Today tổng hợp: 10 tuần ứng tác giúp giảm rõ lo âu xã hội và nỗi sợ điều không chắc chắn. Nhóm học sinh được chẩn đoán lo âu xã hội giảm nhiều hơn, và ai tham gia tích cực hơn thì giảm nhiều hơn.</div><div style="font-size:11px;color:rgba(245,239,227,0.6);margin-top:6px">Psychology Today, 2023 ↗</div></a>
@@ -380,7 +382,7 @@ html,body{background:#F5EFE3}
 
   <!-- 4 -->
   <article id="m-di-lam" style="display:flex;flex-direction:column;gap:10px">
-    <div style="display:flex;gap:12px;align-items:center"><img src="img/coaching.jpg" alt="" style="width:64px;height:64px;object-fit:cover;border-radius:12px;display:block;flex-shrink:0"><div><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00">NHÓM 4 · NGƯỜI ĐI LÀM</div><h2 style="font-size:18px;line-height:1.25;font-weight:800;margin:2px 0 0">Người đi làm: họp, trình bày, làm việc với khách hàng</h2></div></div>
+    <div style="display:flex;gap:12px;align-items:center"><img loading="lazy" decoding="async" src="img/coaching.webp" alt="" style="width:64px;height:64px;object-fit:cover;border-radius:12px;display:block;flex-shrink:0"><div><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00">NHÓM 4 · NGƯỜI ĐI LÀM</div><h2 style="font-size:18px;line-height:1.25;font-weight:800;margin:2px 0 0">Người đi làm: họp, trình bày, làm việc với khách hàng</h2></div></div>
     <p style="font-size:14px;line-height:1.65;margin:0;color:rgba(26,26,26,0.85)">Công việc hằng ngày là một chuỗi cảnh ứng tác không kịch bản: cuộc họp đổi hướng giữa chừng, khách hàng hỏi câu khó, sếp giao việc gấp. Các trường kinh doanh hàng đầu đã đưa ứng tác vào chương trình, và cả các nhà khoa học cũng học ứng tác để nói chuyện với công chúng dễ hiểu hơn.</p>
     <div style="background:#FFFFFF;border-radius:14px;padding:12px 14px"><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00;margin-bottom:4px">BẠN SẼ ĐƯỢC GÌ</div><ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.65;color:rgba(26,26,26,0.82)"><li>Trình bày tự nhiên, không đọc slide</li><li>Phản ứng bình tĩnh khi bị hỏi vặn</li><li>Nghe ra nhu cầu thật của khách hàng</li><li>Đón ý đồng nghiệp bằng "Có, và…"</li></ul></div>
     <a href="https://www.chicagobooth.edu/why-booth/stories/booth-public-speaking-improv" target="_blank" rel="noopener noreferrer" style="background:#1A1A1A;color:#F5EFE3;border-radius:14px;padding:12px 14px;text-decoration:none;display:block"><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#FFA406;margin-bottom:4px">TRƯỜNG KINH DOANH</div><div style="font-size:13px;line-height:1.55">Chicago Booth mở lớp ứng tác cho học viên MBA, do giảng viên của The Second City đứng lớp, để rèn kỹ năng lãnh đạo và giao tiếp.</div><div style="font-size:11px;color:rgba(245,239,227,0.6);margin-top:6px">University of Chicago Booth, 2019 ↗</div></a>
@@ -390,7 +392,7 @@ html,body{background:#F5EFE3}
 
   <!-- 5 -->
   <article id="m-quan-ly" style="display:flex;flex-direction:column;gap:10px">
-    <div style="display:flex;gap:12px;align-items:center"><img src="img/ws-282design.jpg" alt="" style="width:64px;height:64px;object-fit:cover;border-radius:12px;display:block;flex-shrink:0"><div><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00">NHÓM 5 · DOANH NGHIỆP</div><h2 style="font-size:18px;line-height:1.25;font-weight:800;margin:2px 0 0">Quản lý, HR, L&amp;D: gắn kết và phối hợp đội nhóm</h2></div></div>
+    <div style="display:flex;gap:12px;align-items:center"><img loading="lazy" decoding="async" src="img/ws-282design.webp" alt="" style="width:64px;height:64px;object-fit:cover;border-radius:12px;display:block;flex-shrink:0"><div><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00">NHÓM 5 · DOANH NGHIỆP</div><h2 style="font-size:18px;line-height:1.25;font-weight:800;margin:2px 0 0">Quản lý, HR, L&amp;D: gắn kết và phối hợp đội nhóm</h2></div></div>
     <p style="font-size:14px;line-height:1.65;margin:0;color:rgba(26,26,26,0.85)">Một đội nhóm giỏi giống một nhóm diễn ứng tác giỏi: ai cũng nghe nhau, đón ý nhau và sẵn sàng đỡ nhau khi có sai sót. Workshop ứng tác cho phép cả đội cùng trải nghiệm điều đó trong vài giờ, vui vẻ, không bài giảng, và mang về những thói quen cụ thể cho cuộc họp hôm sau.</p>
     <div style="background:#FFFFFF;border-radius:14px;padding:12px 14px"><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00;margin-bottom:4px">ĐỘI NHÓM SẼ ĐƯỢC GÌ</div><ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.65;color:rgba(26,26,26,0.82)"><li>Phá băng giữa các phòng ban</li><li>Văn hoá "Có, và…" trong họp ý tưởng</li><li>Thích ứng nhanh khi kế hoạch đổi</li><li>Quản lý biết lắng nghe nhân viên hơn</li></ul></div>
     <a href="https://www.cnn.com/2018/09/30/success/business-improv-class" target="_blank" rel="noopener noreferrer" style="background:#1A1A1A;color:#F5EFE3;border-radius:14px;padding:12px 14px;text-decoration:none;display:block"><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#FFA406;margin-bottom:4px">DOANH NGHIỆP ĐANG LÀM GÌ</div><div style="font-size:13px;line-height:1.55">CNN kể: một giảng viên của nhà hát UCB thường dạy 2–3 lớp ứng tác cho doanh nghiệp mỗi tuần. Hãng iRobot thuê lớp ứng tác nửa ngày cho đội quản lý sản phẩm toàn cầu để phá rào cản văn hoá và tăng phối hợp.</div><div style="font-size:11px;color:rgba(245,239,227,0.6);margin-top:6px">CNN Business, 2018 ↗</div></a>
@@ -399,7 +401,7 @@ html,body{background:#F5EFE3}
 
   <!-- 6 -->
   <article id="m-bieu-dien" style="display:flex;flex-direction:column;gap:10px">
-    <div style="display:flex;gap:12px;align-items:center"><img src="img/actors-cinematic.jpg" alt="" style="width:64px;height:64px;object-fit:cover;border-radius:12px;display:block;flex-shrink:0"><div><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00">NHÓM 6 · NGƯỜI LÀM NGHỀ SÁNG TẠO</div><h2 style="font-size:18px;line-height:1.25;font-weight:800;margin:2px 0 0">Người muốn biểu diễn: diễn viên, đạo diễn, biên kịch, MC</h2></div></div>
+    <div style="display:flex;gap:12px;align-items:center"><img loading="lazy" decoding="async" src="img/actors-cinematic.webp" alt="" style="width:64px;height:64px;object-fit:cover;border-radius:12px;display:block;flex-shrink:0"><div><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00">NHÓM 6 · NGƯỜI LÀM NGHỀ SÁNG TẠO</div><h2 style="font-size:18px;line-height:1.25;font-weight:800;margin:2px 0 0">Người muốn biểu diễn: diễn viên, đạo diễn, biên kịch, MC</h2></div></div>
     <p style="font-size:14px;line-height:1.65;margin:0;color:rgba(26,26,26,0.85)">Với người làm nghề, ứng tác là phòng tập của sự sống động: diễn viên phản ứng thật hơn, MC xử lý sự cố mượt hơn, biên kịch và đạo diễn hiểu cách một cảnh được xây từ "game" và nhịp gia tăng. Những trung tâm hài kịch nổi tiếng như The Second City (Chicago) đều có chương trình đào tạo diễn viên ứng tác bài bản, và nhiều nghệ sĩ hài, diễn viên đã trưởng thành từ đó.</p>
     <div style="background:#FFFFFF;border-radius:14px;padding:12px 14px"><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#8A4B00;margin-bottom:4px">BẠN SẼ ĐƯỢC GÌ</div><ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.65;color:rgba(26,26,26,0.82)"><li>Phản xạ và sự hiện diện trên sân khấu</li><li>Xây nhân vật, mối quan hệ trong vài giây</li><li>Hiểu cấu trúc cảnh: game, gia tăng, khám phá</li><li>Cơ hội diễn cùng High Club</li></ul></div>
     <a href="https://www.secondcity.com/classes" target="_blank" rel="noopener noreferrer" style="background:#1A1A1A;color:#F5EFE3;border-radius:14px;padding:12px 14px;text-decoration:none;display:block"><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#FFA406;margin-bottom:4px">TRÊN THẾ GIỚI</div><div style="font-size:13px;line-height:1.55">The Second City Training Center mở lớp ứng tác, viết hài, diễn xuất cho người lớn và thiếu niên tại Chicago, Toronto, New York, kèm chương trình conservatory cho người theo nghề.</div><div style="font-size:11px;color:rgba(245,239,227,0.6);margin-top:6px">The Second City ↗</div></a>
@@ -445,8 +447,8 @@ html,body{background:#F5EFE3}
 </main>
 
 <footer style="background:#1A1A1A;color:rgba(245,239,227,0.6);padding:20px 20px 120px;font-size:12px;margin-top:24px">
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><img src="img/logo-light-ink.png" alt="High" style="height:18px;width:auto;display:block"><span>© 2026 High Comedia · Hà Nội</span></div>
-  <div>Hỏi đáp · Học phí &amp; hoàn phí · Bảo mật · Điều khoản</div>
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><img src="img/logo-light-ink.webp" alt="High" style="height:18px;width:auto;display:block"><span>© 2026 High Comedia · Hà Nội</span></div>
+  <div><a href="khoa-hoc.html#hoi-dap" style="color:inherit">Hỏi đáp</a> · <a href="chinh-sach.html#hoc-phi" style="color:inherit">Học phí &amp; hoàn phí</a> · <a href="chinh-sach.html#bao-mat" style="color:inherit">Bảo mật</a> · <a href="chinh-sach.html#dieu-khoan" style="color:inherit">Điều khoản</a></div>
 </footer>
 
 <div style="position:sticky;bottom:0;z-index:30;padding:10px 20px 28px;background:rgba(245,239,227,0.96);border-top:1px solid rgba(26,26,26,0.1)">

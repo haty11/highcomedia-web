@@ -60,14 +60,20 @@
   document.addEventListener('change',function(e){ if(e.target.classList&&e.target.classList.contains('kf')) paint(); });
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',paint);else paint();
 })();
-/* Dữ liệu sống: lịch lớp, học phí, số chỗ lấy từ tab "📅 Lịch lớp" của Google Sheet (qua Apps Script). Lỗi mạng -> giữ số liệu có sẵn trong trang. */
+/* Dữ liệu sống: lịch lớp, học phí, số chỗ lấy từ tab "📅 Lịch lớp" của Google Sheet (qua Apps Script).
+   Lần sau khách quay lại: dùng ngay bản đã nhớ (≤24h) rồi cập nhật ngầm. Lỗi mạng -> giữ số liệu có sẵn trong trang. */
 (function(){
-  var C=window.HC_CONFIG||{}, D=window.HC_DATA;
+  var C=window.HC_CONFIG||{}, D=window.HC_DATA, KEY='hc-live-v1';
   if(!C.formUrl||!D||!window.fetch||/claude|localhost|^$/.test(location.hostname)) return;
-  fetch(C.formUrl+'?action=data').then(function(r){return r.json();}).then(function(j){
-    if(!j||!j.data) return;
-    for(var k in j.data){ var v=j.data[k]; if(D[k]&&typeof D[k]==='object'&&v&&typeof v==='object'){ for(var f in v) D[k][f]=v[f]; } else D[k]=v; }
+  function apply(data){
+    for(var k in data){ var v=data[k]; if(D[k]&&typeof D[k]==='object'&&v&&typeof v==='object'){ for(var f in v) D[k][f]=v[f]; } else D[k]=v; }
     if(window.HC_refresh) window.HC_refresh();
     try{window.dispatchEvent(new CustomEvent('hc:data'));}catch(e){}
+  }
+  try{ var c=JSON.parse(localStorage.getItem(KEY)||'null'); if(c&&c.data&&Date.now()-c.t<864e5) apply(c.data); }catch(e){}
+  fetch(C.formUrl+'?action=data').then(function(r){return r.json();}).then(function(j){
+    if(!j||!j.data) return;
+    try{ localStorage.setItem(KEY,JSON.stringify({t:Date.now(),data:j.data})); }catch(e){}
+    apply(j.data);
   }).catch(function(){});
 })();

@@ -17,7 +17,7 @@
   if(C.clarity){ (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
     t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
   })(window,document,"clarity","script",C.clarity); }
-  var PG=(location.pathname.match(/khoa-hoc-([\w-]+)\.html/)||[])[1]||'';
+  var PG=(location.pathname.match(/khoa-hoc-([\w-]+?)(?:\.html)?$/)||[])[1]||'';
   PG={'drop-in':'dropin','improv-1':'improv1','improv-2':'improv2','performer-1':'performer1','performer-2':'performer2','kids':'kids'}[PG]||'';
   function ev(n,p){ try{ p=p||{}; p.page_path=location.pathname; gtag('event',n,p);
     if(window.clarity) clarity('event',n); }catch(e){} }

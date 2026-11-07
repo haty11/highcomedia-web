@@ -93,7 +93,10 @@
   function vis(el){return !!(el.offsetParent||el.getClientRects().length);}
   function find(id){var c=[document.getElementById(id),document.getElementById('m-'+id)];for(var i=0;i<c.length;i++)if(c[i]&&vis(c[i]))return c[i];return null;}
   function go(el){var y=el.getBoundingClientRect().top+window.pageYOffset-76;window.scrollTo({top:y,behavior:'smooth'});}
-  for(var i=0;i<chs.length;i++)chs[i].addEventListener('toggle',function(){var me=this;if(!me.open)return;
+  var viaSum=null;
+  document.addEventListener('click',function(e){var s=e.target.closest&&e.target.closest('details.ab-ch>summary');viaSum=s?s.parentNode:null;},true);
+  for(var i=0;i<chs.length;i++)chs[i].addEventListener('toggle',function(){var me=this;
+    if(!me.open){if(viaSum===me){viaSum=null;var idx=find('muc-luc');if(idx)setTimeout(function(){go(idx);},30);}return;}
     var g=me.getAttribute('name');for(var j=0;j<chs.length;j++)if(chs[j]!==me&&chs[j].getAttribute('name')===g)chs[j].open=false;
     setTimeout(function(){go(me);},30);});
   document.addEventListener('click',function(e){

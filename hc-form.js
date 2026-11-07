@@ -91,6 +91,7 @@
   +'.hcf .ok{width:56px;height:56px;flex:0 0 56px;border-radius:50%;background:'+A+';display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800}'
   +'.hcf .qr{display:flex;gap:12px;align-items:center}.hcf .qr img{width:96px;height:96px;border-radius:10px;background:#fff;padding:4px}'
   +'[data-hc-act]{cursor:pointer}'
+  +'.hcf-pay{display:flex;gap:16px;align-items:flex-start;background:#fff;border-radius:14px;padding:14px;border:2px solid #1A1A1A;box-shadow:4px 4px 0 #FFA406}.hcf-qrbox{display:flex;flex-direction:column;align-items:center;gap:6px;flex:0 0 auto}.hcf-qr{width:168px;height:168px;background:#F5EFE3;border-radius:8px}.hcf-qr img{display:block;width:168px;height:168px}.hcf-save{font-size:13px;font-weight:700;color:#8A4B00}.hcf-bank{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px;font-size:14px}.hcf-bank dl{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;margin:6px 0;align-items:center}.hcf-bank dt{color:rgba(26,26,26,.6);font-size:13px}.hcf-bank dd{margin:0;word-break:break-word}.hcf-bank .hl{background:#FFE58F;padding:1px 6px;border-radius:4px}.hcf-bank button{font:inherit;font-size:12px;font-weight:700;border:1.5px solid #1A1A1A;background:#fff;border-radius:100px;padding:2px 10px;cursor:pointer;margin-left:4px}@media (max-width:640px){.hcf-pay{flex-direction:column;align-items:stretch}.hcf-qrbox{align-self:center}}'
   +'@media (max-width:640px){.hcf-bd{align-items:flex-end;padding:0}.hcf{max-width:none;max-height:92vh;border-radius:20px 20px 0 0;border-width:2px 0 0;box-shadow:none;transform:translateY(100%)}.hcf form,.hcf .hcf-done{grid-template-columns:1fr;padding-bottom:calc(22px + env(safe-area-inset-bottom,0px))}.hcf .qr img{display:none}.hcf .seg button{font-size:13px}}'
   +'@media (prefers-reduced-motion:reduce){.hcf-bd,.hcf{transition:none}}';
   var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
@@ -200,15 +201,40 @@
       +area('note','Bối cảnh đội ngũ, mong muốn khác');
   }
 
+  /* ---------- Mã QR chuyển khoản (VietQR · Napas 247), tạo ngay trên máy khách ---------- */
+  function vietQR(amountK,info){
+    var b=CFG.bank||{}, f=function(id,v){v=String(v);return id+('0'+v.length).slice(-2)+v;};
+    var s=f('00','01')+f('01','12')+f('38',f('00','A000000727')+f('01',f('00',b.bin)+f('01',b.acct))+f('02','QRIBFTTA'))
+      +f('53','704')+f('54',Math.round(amountK*1000))+f('58','VN')+(info?f('62',f('08',info)):'')+'6304', c=0xFFFF;
+    for(var i=0;i<s.length;i++){c^=s.charCodeAt(i)<<8;for(var j=0;j<8;j++)c=(c&0x8000)?((c<<1)^0x1021)&0xFFFF:(c<<1)&0xFFFF;}
+    return s+('000'+c.toString(16).toUpperCase()).slice(-4);
+  }
+  function drawQR(root){
+    var box=root&&root.querySelector('[data-pay]'); if(!box)return;
+    function go(){try{var q=qrcode(0,'M');q.addData(box.getAttribute('data-pay'));q.make();var u=q.createDataURL(6,3);
+      box.querySelector('.hcf-qr').innerHTML='<img src="'+u+'" alt="Mã QR chuyển khoản" width="168" height="168">';var a=box.querySelector('.hcf-save');a.href=u;a.hidden=false;}catch(e){}}
+    if(window.qrcode)return go();
+    var s=document.createElement('script');s.src='qr.js';s.onload=go;document.head.appendChild(s);
+  }
+  document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-copy]');if(!b)return;
+    var v=b.getAttribute('data-copy'),ok=function(){var t=b.textContent;b.textContent='Đã chép ✓';setTimeout(function(){b.textContent=t;},1500);};
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(v).then(ok,function(){});else{var i=document.createElement('textarea');i.value=v;document.body.appendChild(i);i.select();try{document.execCommand('copy');ok();}catch(x){}i.remove();}});
+
   /* ---------- Màn hình sau khi gửi ---------- */
   function doneHTML(kind,data,res){
     var z=CFG.zalo||'#', pay='', cid=data.cls, x=cid&&data.cohort?cohortById(cid,data.cohort):null;
-    var bank=CFG.bank||{}, hasBank=bank.acct&&bank.bank;
-    if(kind==='reg'||kind==='kids'){
-      var amt=cid==='dropin'?k((D.dropin||{}).sale||150):k(CFG.deposit||1000);
-      pay='<div class="sum full"><b>Bước tiếp theo · giữ chỗ</b><br>'+(cid==='dropin'?'Thanh toán '+amt+' để giữ chỗ buổi Drop-in.':'Đặt cọc '+amt+' để giữ chỗ, phần còn lại thanh toán trước buổi 1.')+'<br>'
-        +(hasBank?'Ngân hàng: <b>'+esc(bank.bank)+'</b><br>Số tài khoản: <b>'+esc(bank.acct)+'</b><br>Chủ tài khoản: <b>'+esc(bank.holder||'')+'</b><br>Nội dung: <b>'+esc((res&&res.code)||'HC')+' '+esc(normPhone(data.phone).slice(-4))+'</b>'
-          :'High Comedia sẽ nhắn Zalo thông tin chuyển khoản cho bạn trong 24 giờ.')+'</div>';
+    var bank=CFG.bank||{}, hasBank=bank.acct&&bank.bank&&bank.bin;
+    if((kind==='reg'&&cid)||(kind==='kids'&&x)){
+      var drop=cid==='dropin', amtK=drop?((D.dropin||{}).sale||150):(CFG.deposit||1000), amt=k(amtK), info=normPhone(data.phone);
+      pay='<div class="sum full"><b>Bước tiếp theo · giữ chỗ</b><br>'+(drop?'Thanh toán '+amt+' để giữ chỗ buổi Drop-in.':'Đặt cọc '+amt+' để giữ chỗ, phần còn lại thanh toán trước buổi 1.')
+        +(hasBank?' Bạn có thể <b>chuyển khoản ngay</b> bằng mã QR dưới đây, hoặc chờ High Comedia nhắn Zalo hướng dẫn.'
+          :'<br>High Comedia sẽ nhắn Zalo thông tin chuyển khoản cho bạn trong 24 giờ.')+'</div>'
+        +(hasBank?'<div class="full hcf-pay" data-pay="'+esc(vietQR(amtK,info))+'"><div class="hcf-qrbox"><div class="hcf-qr" aria-label="Mã QR chuyển khoản"></div><a class="hcf-save" download="ma-qr-high-comedia.gif" hidden>Lưu mã QR</a></div>'
+          +'<div class="hcf-bank"><b>Quét mã bằng app ngân hàng</b><span class="note">Số tiền và nội dung đã điền sẵn.</span>'
+          +'<dl><dt>Ngân hàng</dt><dd>'+esc(bank.bank)+'</dd><dt>Số tài khoản</dt><dd><b>'+esc(bank.acct)+'</b> <button type="button" data-copy="'+esc(bank.acct)+'">Sao chép</button></dd>'
+          +'<dt>Chủ tài khoản</dt><dd>'+esc(bank.holder||'')+'</dd><dt>Số tiền</dt><dd><b>'+String(amtK*1000).replace(/\B(?=(\d{3})+(?!\d))/g,'.')+' đ</b></dd>'
+          +'<dt>Nội dung</dt><dd><b class="hl">'+esc(info)+'</b> <button type="button" data-copy="'+esc(info)+'">Sao chép</button></dd></dl>'
+          +'<span class="note">Đã chuyển khoản? Bạn không cần làm gì thêm, High Comedia sẽ kiểm tra và gửi email <b>xác nhận giữ chỗ</b>.</span></div></div>':'');
     }
     var head={reg:'Đã nhận đăng ký!',kids:'Đã nhận đăng ký cho con!',waitlist:'Bạn đã có tên trong danh sách chờ!',quote:'Đã nhận yêu cầu tư vấn!'}[kind];
     var sub={reg:'High Comedia sẽ gọi hoặc nhắn Zalo cho bạn trong 24 giờ để xác nhận chỗ.',kids:'High Comedia sẽ liên hệ phụ huynh trong 24 giờ để xác nhận lịch học của con.',waitlist:'Bạn sẽ là người đầu tiên được báo khi lớp mở, kèm ưu đãi cho danh sách chờ.',quote:'Đạo diễn Đào Ngọc Hà sẽ liên hệ trong 1–2 ngày làm việc để đặt lịch buổi tư vấn.'}[kind];
@@ -300,7 +326,7 @@
       });
     });
   }
-  function showDone(box,kind,data,res){var f=box.querySelector('form')||box.querySelector('.hcf-done');var w=document.createElement('div');w.innerHTML=doneHTML(kind,data,res);f.parentNode.replaceChild(w.firstChild,f);box.scrollTop=0;}
+  function showDone(box,kind,data,res){var f=box.querySelector('form')||box.querySelector('.hcf-done');var w=document.createElement('div');w.innerHTML=doneHTML(kind,data,res);var nd=w.firstChild;f.parentNode.replaceChild(nd,f);box.scrollTop=0;drawQR(nd);}
 
   /* ---------- Sự kiện chung ---------- */
   document.addEventListener('click',function(e){

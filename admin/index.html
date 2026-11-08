@@ -278,7 +278,25 @@ textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:1
 .role{font-size:10.5px;font-weight:700;border-radius:100px;padding:1px 8px;background:rgba(255,164,6,.18);color:var(--amber)}
 .lockt{background:#EDE3FA;color:#5B3A9A}
 .asg{font-size:10.5px;font-weight:700;border-radius:100px;padding:2px 8px;background:#EDE3FA;color:#5B3A9A}
-.busy{opacity:.55;pointer-events:none}
+.svdot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--amber);margin-right:6px;animation:ping2 1s infinite}
+@keyframes ping2{0%{box-shadow:0 0 0 0 rgba(255,164,6,.6)}70%{box-shadow:0 0 0 7px rgba(255,164,6,0)}100%{box-shadow:0 0 0 0 rgba(255,164,6,0)}}
+.live.saving>i{display:none}.live.saving{color:var(--brown);font-weight:600}.live.saved{color:var(--green);font-weight:600}
+.qi.svg,.rw.svg td{position:relative}.qi.svg:after{content:"";position:absolute;left:8px;right:8px;bottom:0;height:2px;background:linear-gradient(90deg,transparent,var(--amber),transparent);background-size:200% 100%;animation:shim 1s linear infinite}
+@keyframes shim{0%{background-position:100% 0}100%{background-position:-100% 0}}
+.st.pop{animation:pop .35s cubic-bezier(.3,1.6,.5,1)}@keyframes pop{0%{transform:scale(.7)}100%{transform:scale(1)}}
+.steps button{transition:all .18s}.steps button:active{transform:scale(.94)}
+.busy{cursor:progress}.busy .dr,.busy main{pointer-events:none}
+.gate{transition:opacity .35s}.gate.out{opacity:0}
+.ldav{position:relative;width:84px;height:84px;margin:6px auto 16px;animation:bob 1.4s ease-in-out infinite}
+.ldav img,.ldav span{width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;object-fit:cover;background:var(--amber);color:var(--ink);font-size:28px;font-weight:800;border:3px solid var(--amber)}
+.ldav i{position:absolute;left:12px;right:12px;bottom:-16px;height:8px;border-radius:50%;background:rgba(0,0,0,.45);filter:blur(3px);animation:shadow 1.4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-12px) rotate(6deg)}}
+@keyframes shadow{0%,100%{transform:scaleX(1);opacity:.6}50%{transform:scaleX(.7);opacity:.3}}
+.ldhi{font-size:17px!important;color:#F5EFE3!important;font-weight:700;margin:22px 0 4px!important}
+.ldmsg{transition:opacity .18s;margin:0 0 16px!important;min-height:22px}
+.ldbar{width:180px;height:4px;border-radius:4px;background:rgba(245,239,227,.12);margin:0 auto;overflow:hidden}
+.ldbar b{display:block;width:40%;height:100%;border-radius:4px;background:var(--amber);animation:slide 1.1s ease-in-out infinite}
+@keyframes slide{0%{transform:translateX(-100%)}100%{transform:translateX(260%)}}
 </style>
 </head>
 <body>
@@ -372,6 +390,7 @@ const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 function gate(html){$('#gbox').innerHTML='<h1>High Comedia<i></i></h1>'+html;$('#gate').style.display='flex'}
+function jwtInfo(t){try{return JSON.parse(decodeURIComponent(escape(atob(t.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')))))}catch(e){return {}}}
 function jwtExp(t){try{return JSON.parse(atob(t.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'))).exp*1000}catch(e){return 0}}
 async function boot(){
   if(!API){gate('<div class="err">Chưa có formUrl trong hc-config.js.</div>');return}
@@ -405,14 +424,24 @@ async function api(action,data){
   }
   return r;
 }
-let timer=null;
-async function start(){
-  try{await load()}catch(e){return}
-  $('#gate').style.display='none';
-  clearInterval(timer);timer=setInterval(()=>{if(!document.hidden)load().catch(()=>{})},60000);
+let timer=null, ldTimer=null;
+function showLoading(){
+  const u=jwtInfo(token), name=(u.given_name||u.name||'').split(' ').pop()||'bạn', pic=u.picture;
+  gate(`<div class="ldav">${pic?`<img src="${esc(pic)}" alt="" referrerpolicy="no-referrer">`:`<span>${esc(initials(u.name||'?'))}</span>`}<i></i></div>
+    <p class="ldhi">Chào ${esc(name)} 👋</p><p class="ldmsg" id="ldmsg">Đang kiểm tra quyền truy cập…</p><div class="ldbar"><b></b></div>`);
+  const M=['Đang kiểm tra quyền truy cập…','Đang mở Sheet đăng ký…','Đang tính việc cần làm hôm nay…','Sắp xong rồi…'];let i=0;
+  clearInterval(ldTimer);ldTimer=setInterval(()=>{i=Math.min(i+1,M.length-1);const m=$('#ldmsg');if(m){m.style.opacity=0;setTimeout(()=>{m.textContent=M[i];m.style.opacity=1},180)}},900);
 }
-document.addEventListener('visibilitychange',()=>{if(!document.hidden&&me)load().catch(()=>{})});
-function logout(){try{google.accounts.id.disableAutoSelect();sessionStorage.removeItem(TKEY)}catch(e){};token='';me=null;clearInterval(timer);showLogin()}
+function hideGate(){clearInterval(ldTimer);const g=$('#gate');g.classList.add('out');setTimeout(()=>{g.style.display='none';g.classList.remove('out')},350)}
+async function start(){
+  const cached=readCache();
+  if(cached){applyData(cached,true);hideGate()} else showLoading();
+  try{await load()}catch(e){clearInterval(ldTimer);return}
+  hideGate();
+  clearInterval(timer);timer=setInterval(()=>{if(!document.hidden&&!pending)load().catch(()=>{})},60000);
+}
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&me&&!pending)load().catch(()=>{})});
+function logout(){try{google.accounts.id.disableAutoSelect();sessionStorage.removeItem(TKEY);sessionStorage.removeItem(CKEY)}catch(e){};token='';me=null;clearInterval(timer);showLogin()}
 
 /* ===================== CHUẨN HOÁ DỮ LIỆU ===================== */
 function num(v){const n=Number(String(v??'').replace(/[^\d.-]/g,''));return isNaN(n)?0:n}
@@ -428,13 +457,20 @@ function norm(o){
   const fk=o.k==='quote'?'Giá trị (đ)':'Học phí (đ)'; r.fee=fk in f?num(f[fk]):null; r.paid='Đã thu (đ)' in f?num(f['Đã thu (đ)']):null;
   return r;
 }
+const CKEY='hc-adm-cache';
+function readCache(){try{const c=JSON.parse(sessionStorage.getItem(CKEY)||'null');return c&&Date.now()-c._at<30*60e3?c:null}catch(e){return null}}
 async function load(){
-  const d=await api('list'); if(!d.ok)throw d;
+  const d=await api('list'); if(!d.ok)throw d; if(pending)return;
+  try{d._at=Date.now();sessionStorage.setItem(CKEY,JSON.stringify(d))}catch(e){}
+  applyData(d,false);
+}
+function applyData(d,fromCache){
   me=d.me; CLASSES=d.classes||{}; NOW=new Date(d.now||Date.now()); sheetUrl=d.sheetUrl||'';
   LOG=(d.log||[]).map(x=>Object.assign(x,{t:new Date(x.t)}));
   const rows=d.rows.map(norm), fresh=[];
   rows.forEach(r=>{if(!firstLoad&&!known.has(r.id)){fresh.push(r);r._new=1}known.add(r.id)});
-  R=rows; firstLoad=false; refresh(); renderMe();
+  R=rows; if(!fromCache)firstLoad=false; refresh(); renderMe();
+  if(fromCache)$('#upd').textContent='Đang đồng bộ với Sheet…';
   fresh.forEach(r=>{toast(`<span>🔔 Đăng ký mới: <b>${esc(r.n)}</b> · ${esc(clsName(r))}</span>`,'Mở',()=>openDr(r.id));ding()});
 }
 function ding(){try{const a=new (window.AudioContext||window.webkitAudioContext)(),o=a.createOscillator(),g=a.createGain();o.frequency.value=880;g.gain.value=.06;o.connect(g);g.connect(a.destination);o.start();o.stop(a.currentTime+.15)}catch(e){}}
@@ -568,7 +604,7 @@ function renderQueue(){
   if(!list.length){$('#queue').innerHTML='<div class="empty"><b>🎉</b>Không còn việc nào trong mục này.</div>';return}
   const shown=qAll?list:list.slice(0,7);
   $('#queue').innerHTML=shown.map(r=>{const is=issues(r),urgent=is.some(i=>i.lv===3),avc={reg:'',kids:'k',quote:'d',waitlist:'w',lead:'w'}[r.k];
-    return `<div class="qi" data-id="${r.id}"><div class="av ${avc}">${initials(r.n)}${urgent?'<span class="pi"></span>':''}</div>
+    return `<div class="qi ${r._saving?'svg':''}" data-id="${r.id}"><div class="av ${avc}">${initials(r.n)}${urgent?'<span class="pi"></span>':''}</div>
       <div style="min-width:0"><div class="nm">${esc(r.n)} <span class="st ${SCLS[r.s]||''}" style="margin-left:4px">${esc(r.s)}</span>${r.assignee?` <span class="asg" title="Người phụ trách">👤 ${esc(r.assignee===me.email?'Tôi':r.assignee.split('@')[0])}</span>`:''}</div>
       <div class="mt">${KINDS[r.k].n} · ${esc(clsName(r))} · ${r.id}</div>
       <div class="tags">${is.map(i=>`<span class="tg ${i.tg}">${esc(i.t)}</span>`).join('')}</div></div>
@@ -632,7 +668,7 @@ function renderList(){
   let rows=R.filter(r=>r.k===lk&&(!fs||r.s===fs)&&(!fc||String(r.c).startsWith(fc))&&(!q||[r.n,r.ph,r.id,r.em,r.child,r.ct].join(' ').toLowerCase().includes(q)));
   const val=(r,k)=>k==='fee'?feeOf(r):k==='as'?r.assignee:r[k];
   rows.sort((a,b)=>{const va=val(a,sortK),vb=val(b,sortK);return (va>vb?1:va<vb?-1:0)*sortD});
-  $('#tbody').innerHTML=rows.length?rows.map(r=>`<tr class="rw ${r._new?'flash':''}" data-id="${r.id}">${cols.map(([k])=>{
+  $('#tbody').innerHTML=rows.length?rows.map(r=>`<tr class="rw ${r._new?'flash':''} ${r._saving?'svg':''}" data-id="${r.id}">${cols.map(([k])=>{
     const hm=['src','em','goal','health','paid','fee','as'].includes(k)?' class="hm"':'';
     if(k==='t')return `<td class="hm">${dmy(r.t)} <span class="mu">${r.t.toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'})}</span></td>`;
     if(k==='s'){const urg=issues(r).some(i=>i.lv===3);return `<td><span class="st ${SCLS[r.s]||''}">${esc(r.s)}</span>${urg?' <span class="tg r">gấp</span>':''}</td>`}
@@ -649,8 +685,9 @@ function renderList(){
 /* ===================== NGĂN CHI TIẾT ===================== */
 let cur=null;
 const SKIP=['Mã','Thời gian','Trạng thái','Ghi chú nội bộ','Học phí (đ)','Giá trị (đ)','Đã thu (đ)','Còn lại (đ)','Ngày thu','Mã lớp','Trang'];
-function openDr(id){
-  const r=R.find(x=>x.id===id); if(!r)return; cur=r; api('lock',{code:r.id}).catch(()=>{});
+function openDr(id,keep){
+  const r=R.find(x=>x.id===id); if(!r)return; cur=r; if(!keep)api('lock',{code:r.id}).catch(()=>{});
+  const dbEl=$('#dr .db'), sc=keep&&dbEl?dbEl.scrollTop:0, nv=keep&&$('#note')?$('#note').value:null;
   const is=issues(r),co=cohortOf(r),fee=feeOf(r),paid=r.paid||0,big=is.filter(i=>i.lv>=2);
   const kv=Object.entries(r.f).filter(([k,v])=>!SKIP.includes(k)&&v!==''&&v!=null).map(([k,v])=>[k,k==='Lớp'&&co?v+' · KG '+dmy(new Date(co.start))+(co.time?' · '+co.time:''):v]);
   kv.push(['Đăng ký lúc',r.t.toLocaleString('vi-VN',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit',year:'numeric'})+' · '+since(r.t)]);
@@ -659,7 +696,7 @@ function openDr(id){
   const logs=LOG.filter(l=>l.code===r.id).sort((a,b)=>b.t-a.t);
   const asg=me.perm.assign;
   $('#dr').innerHTML=`<div class="dh"><div class="cl1"><div class="av ${{kids:'k',quote:'d',waitlist:'w',lead:'w'}[r.k]||''}">${initials(r.n)}</div><div style="min-width:0;flex:1"><h2>${esc(r.n)}</h2><div class="cd2">${r.id} · ${KINDS[r.k].n}</div></div><button class="ib" id="dclose" title="Đóng (Esc)">✕</button></div>
-    <div class="tags" style="margin-top:10px"><span class="st ${SCLS[r.s]||''}">${esc(r.s)}</span>${is.map(i=>`<span class="tg ${i.tg}">${esc(i.t)}</span>`).join('')}${r.assignee?`<span class="asg">👤 ${esc(r.assignee)}</span>`:''}</div></div>
+    <div class="tags" style="margin-top:10px"><span class="st ${SCLS[r.s]||''} pop">${esc(r.s)}</span>${r._saving?'<span class="tg" style="background:#FFF1D6;color:#8A4B00">đang lưu…</span>':''}${is.map(i=>`<span class="tg ${i.tg}">${esc(i.t)}</span>`).join('')}${r.assignee?`<span class="asg">👤 ${esc(r.assignee)}</span>`:''}</div></div>
   <div class="db">
     ${r.lock?`<div class="warnbox a">👀 ${esc(r.lock)} đang mở hồ sơ này. Hỏi nhau trước khi gọi để tránh gọi trùng.</div>`:''}
     ${big.length?`<div class="warnbox ${big.some(i=>i.lv===3)?'':'a'}">⚡ ${big.map(i=>esc(i.t)).join(' · ')}${r.s==='Mới'?'. Gọi ngay để giữ khách.':''}</div>`:''}
@@ -678,29 +715,49 @@ function openDr(id){
     <div class="card"><div class="h4">Lịch sử</div><ul class="tl">${logs.map(l=>`<li>${esc(l.act)}${l.d?' · '+esc(l.d):''}<small>${l.t.toLocaleString('vi-VN',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'})} · ${esc(String(l.who).split(' <')[0])}</small></li>`).join('')}<li>Đăng ký qua website<small>${r.t.toLocaleString('vi-VN',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'})}</small></li></ul></div>
   </div>`;
   $('#dr').classList.add('on');$('#ov').classList.add('on');
+  if(keep){const d2=$('#dr .db');if(d2)d2.scrollTop=sc;if(nv!=null&&$('#note')&&document.activeElement!==$('#note'))$('#note').value=nv}
 }
 function closeDr(){$('#dr').classList.remove('on');$('#ov').classList.remove('on');cur=null}
 
 /* ===================== HÀNH ĐỘNG (ghi thẳng vào Sheet) ===================== */
 const ERR={perm:'Bạn không có quyền làm việc này.',notfound:'Không tìm thấy dòng này trong Sheet (có thể vừa bị xoá).',busy:'Máy chủ đang bận, thử lại sau vài giây.',notpaid:'Khách chưa cọc nên chưa gửi email xác nhận.',noemail:'Khách chưa có email.',server:'Có lỗi phía máy chủ.'};
-async function call(action,data,okMsg){
-  document.body.classList.add('busy');
-  try{const r=await api(action,data);if(!r.ok){toast('<span>⚠ '+esc(ERR[r.error]||('Lỗi: '+r.error))+'</span>');return false}
-    if(okMsg)toast(okMsg);await load();if(cur)openDr(cur.id);return r}
-  catch(e){return false}finally{document.body.classList.remove('busy')}
+/* Cập nhật lạc quan: giao diện đổi NGAY, lệnh ghi Sheet chạy ngầm theo hàng đợi; lỗi thì tự trả lại như cũ. */
+let pending=0, chain=Promise.resolve(), syncT=null, failN=0;
+function saveInd(){const el=$('#upd');if(!el)return;if(pending){el.innerHTML='<span class="svdot"></span>Đang lưu '+pending+' thay đổi…';el.parentElement.classList.add('saving')}else{el.parentElement.classList.remove('saving');el.innerHTML=failN?'⚠ '+failN+' thay đổi chưa lưu, đã trả lại':'✓ Đã lưu vào Sheet';failN=0;el.parentElement.classList.add('saved');setTimeout(()=>el.parentElement.classList.remove('saved'),1500)}}
+function snap(r){return {s:r.s,paid:r.paid,assignee:r.assignee,inote:r.inote}}
+function rerender(r){renderDash();renderList();if(cur&&cur.id===r.id)openDr(r.id,true)}
+function optimistic(r,mutate,action,data,logTxt){
+  const before=snap(r); mutate(r); r._saving=(r._saving||0)+1;
+  const lg={t:new Date(),who:(me.name||'')+' <'+me.email+'>',act:logTxt[0],code:r.id,d:logTxt[1]||'',_local:1}; LOG.push(lg);
+  pending++; saveInd(); rerender(r);
+  const job=()=>api(action,data).then(res=>{
+    if(!res.ok){failN++;Object.assign(r,before);LOG.splice(LOG.indexOf(lg),1);toast('<span>⚠ Chưa lưu được: '+esc(ERR[res.error]||res.error)+'. Đã trả lại như cũ.</span>')}
+  }).catch(()=>{failN++;Object.assign(r,before);LOG.splice(LOG.indexOf(lg),1);toast('<span>⚠ Mất kết nối, thay đổi chưa lưu. Đã trả lại như cũ.</span>')})
+    .finally(()=>{r._saving--;pending--;saveInd();rerender(r);clearTimeout(syncT);syncT=setTimeout(()=>{if(!pending)load().catch(()=>{})},4000)});
+  chain=chain.then(job,job);
 }
-async function setStatus(r,s){
+window.addEventListener('beforeunload',e=>{if(pending){e.preventDefault();e.returnValue=''}});
+function setStatus(r,s,isUndo){
   if(r.s===s)return; const old=r.s;
-  const ok=await call('set',{kind:r.k,code:r.id,field:'status',value:s});
-  if(!ok)return;
-  toast(`<span><b>${esc(r.n)}</b> → ${s}</span>`,'Hoàn tác',()=>call('set',{kind:r.k,code:r.id,field:'status',value:old},'<span>Đã hoàn tác</span>'));
-  const nr=R.find(x=>x.id===r.id);
-  if(s==='Đã cọc'&&paying(r)&&me.perm.mail.includes('confirm'))setTimeout(()=>toast('<span>Gửi email xác nhận giữ chỗ cho <b>'+esc(r.n.split(' ').pop())+'</b>?</span>','Gửi',()=>sendMail(nr||r,'confirm')),400);
+  optimistic(r,x=>{x.s=s;if(s==='Đã thanh toán'&&paying(x)&&can('pay')&&x.paid!=null&&!x.paid){}},'set',{kind:r.k,code:r.id,field:'status',value:s},['Đổi trạng thái',old+' → '+s]);
+  if(isUndo){toast('<span>Đã hoàn tác</span>');return}
+  toast(`<span><b>${esc(r.n)}</b> → ${s}</span>`,'Hoàn tác',()=>setStatus(r,old,true));
+  if(s==='Đã cọc'&&paying(r)&&me.perm.mail.includes('confirm'))setTimeout(()=>toast('<span>Gửi email xác nhận giữ chỗ cho <b>'+esc(r.n.split(' ').pop())+'</b>?</span>','Gửi',()=>sendMail(r,'confirm')),400);
 }
-function sendMail(r,type){if(!confirm('Gửi email tới '+r.em+'?'))return;call('mail',{kind:r.k,code:r.id,type},'<span>✉ Đã gửi email tới <b>'+esc(r.em)+'</b></span>')}
+function sendMail(r,type){if(!confirm('Gửi email tới '+r.em+'?'))return;
+  const t=toast('<span>✉ Đang gửi email tới <b>'+esc(r.em)+'</b>…</span>');
+  pending++;saveInd();
+  const job=()=>api('mail',{kind:r.k,code:r.id,type}).then(res=>{if(res.ok){toast('<span>✉ Đã gửi tới <b>'+esc(r.em)+'</b></span>');LOG.push({t:new Date(),who:me.name+' <'+me.email+'>',act:type==='confirm'?'Gửi email xác nhận':'Gửi lại email nhận ĐK',code:r.id,d:r.em});if(cur&&cur.id===r.id)openDr(r.id,true)}else toast('<span>⚠ '+esc(ERR[res.error]||res.error)+'</span>')}).catch(()=>toast('<span>⚠ Mất kết nối, email chưa gửi.</span>')).finally(()=>{pending--;saveInd()});
+  chain=chain.then(job,job);
+}
 function addPaid(r,v){v=Math.round(Number(String(v).replace(/\D/g,'')));if(!v)return;
   if(!confirm('Ghi đã thu '+money(v)+' cho '+r.n+'?'))return;
-  call('set',{kind:r.k,code:r.id,field:'pay',value:v},'<span>💰 Đã ghi <b>'+money(v)+'</b> cho '+esc(r.n)+'</span>')}
+  const fee=feeOf(r), old=r.s;
+  optimistic(r,x=>{x.paid=(x.paid||0)+v;if(fee&&x.paid>=fee)x.s='Đã thanh toán';else if(x.s==='Mới'||x.s==='Đã liên hệ')x.s='Đã cọc'},'set',{kind:r.k,code:r.id,field:'pay',value:v},['Ghi đã thu',money(v)]);
+  toast('<span>💰 Đã ghi <b>'+money(v)+'</b> cho '+esc(r.n)+(r.s!==old?' · '+r.s:'')+'</span>');
+}
+function setAssign(r,v){optimistic(r,x=>{x.assignee=v},'set',{kind:r.k,code:r.id,field:'assign',value:v},[v?'Giao việc':'Bỏ giao việc',v]);toast('<span>'+(v?'Đã giao cho '+esc(v===me.email?'bạn':v):'Đã bỏ giao việc')+'</span>')}
+function setNote(r,v){optimistic(r,x=>{x.inote=v},'set',{kind:r.k,code:r.id,field:'note',value:v},['Sửa ghi chú',v.slice(0,80)])}
 function toast(html,btn,fn){const t=document.createElement('div');t.className='toast';t.innerHTML=html+(btn?`<button>${btn}</button>`:'');$('#toasts').appendChild(t);
   if(btn)t.querySelector('button').onclick=()=>{fn();kill()};const tm=setTimeout(kill,btn?6000:3500);function kill(){clearTimeout(tm);t.classList.add('out');setTimeout(()=>t.remove(),300)}}
 let lastSync=Date.now();
@@ -736,10 +793,10 @@ document.addEventListener('click',e=>{
   const am=e.target.closest('[data-amt]');if(am&&cur){addPaid(cur,am.dataset.amt);return}
   if(e.target.closest('#pbtn')&&cur){addPaid(cur,$('#pin').value);return}
   const ml=e.target.closest('[data-mail]');if(ml&&cur&&!ml.disabled){sendMail(cur,ml.dataset.mail);return}
-  const as=e.target.closest('[data-asg]');if(as&&cur){call('set',{kind:cur.k,code:cur.id,field:'assign',value:as.dataset.asg},'<span>Đã cập nhật người phụ trách</span>');return}
-  if(e.target.closest('#asgbtn')&&cur){const v=$('#asgin').value.trim();if(v)call('set',{kind:cur.k,code:cur.id,field:'assign',value:v},'<span>Đã giao cho '+esc(v)+'</span>');return}
+  const as=e.target.closest('[data-asg]');if(as&&cur){setAssign(cur,as.dataset.asg);return}
+  if(e.target.closest('#asgbtn')&&cur){const v=$('#asgin').value.trim();if(v)setAssign(cur,v.toLowerCase());return}
 });
-document.addEventListener('focusout',e=>{if(e.target.id==='note'&&cur&&e.target.value!==(cur.inote||'')){const v=e.target.value;api('set',{kind:cur.k,code:cur.id,field:'note',value:v}).then(r=>{if(r.ok){cur.inote=v;const n=$('#nsv');if(n)n.textContent='✓ Đã lưu vào Sheet'}else toast('<span>⚠ '+esc(ERR[r.error]||r.error)+'</span>')}).catch(()=>{})}});
+document.addEventListener('focusout',e=>{if(e.target.id==='note'&&cur&&e.target.value!==(cur.inote||'')){const v=e.target.value,r=cur;setNote(r,v)}});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDr();if(e.key==='/'&&!['INPUT','TEXTAREA'].includes(document.activeElement.tagName)){e.preventDefault();$('#q').focus()}});
 $('#q').addEventListener('input',()=>{if($('#q').value.trim()&&$('#v-list').classList.contains('hide'))view('list');renderList()});
 $('#fst').innerHTML+=STATUS.map(s=>`<option>${s}</option>`).join('');

@@ -52,7 +52,7 @@ section.w .role{background:var(--cream);border-color:transparent}
 .plan li{background:#fff;border-radius:18px;padding:22px;border-top:5px solid var(--amber)}.plan .when{display:block;font-size:12px;font-weight:700;letter-spacing:1px;color:var(--brown);text-transform:uppercase}
 .plan b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:22px;margin:6px 0}.plan p{margin:0;font-size:14.5px;color:var(--mut)}
 .small{font-size:13px;color:var(--mut);margin-top:12px}
-.gets{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.get{background:var(--cream);border-radius:16px;padding:20px}.get b{display:block;font-size:16px;margin-bottom:6px}.get p{margin:0;font-size:14px;color:var(--mut)}
+.gets{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.get{background:#fff;border-radius:16px;padding:20px;border-top:4px solid var(--amber)}.get b{display:block;font-size:16px;margin-bottom:6px}.get p{margin:0;font-size:14px;color:var(--mut)}
 .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .steps li{display:flex;gap:12px;align-items:flex-start}.steps .n{flex:none;width:38px;height:38px;border-radius:50%;background:var(--ink);color:var(--amber);display:grid;place-items:center;font-weight:800;font-family:'Bricolage Grotesque',sans-serif}
 .steps b{display:block;font-size:16px}.steps p{margin:2px 0 0;font-size:14px;color:var(--mut)}
@@ -95,15 +95,15 @@ form.tf textarea{min-height:92px;resize:vertical}form.tf :focus{outline:none;bor
 <body>
 <header class="top"><div class="in"><a class="lg" href="/"><img src="img/logo-dark-ink.webp" alt="High"><span style="line-height:1">Comedia<i aria-hidden="true" style="display:inline-block;width:.38em;height:.38em;border-radius:50%;background:#AC1F01;margin-left:.07em;vertical-align:baseline;font-style:normal"></i></span></a>
 <nav class="tl" aria-label="Liên kết"><a href="khoa-hoc">Khoá học</a><a href="ve-high-club">Về High Club</a></nav><a class="btn sm" href="#de-lai">Để lại thông tin</a></div></header>
-<nav class="sub" aria-label="Mục lục trang"><div class="in"><a href="#vi-sao" data-spy="vi-sao">Vì sao</a><a href="#vi-tri" data-spy="vi-tri">Vị trí cần</a><a href="#ke-hoach" data-spy="ke-hoach">12 tháng tới</a><a href="#quyen-loi" data-spy="quyen-loi">Bạn nhận gì</a><a href="#quy-trinh" data-spy="quy-trinh">Cách tham gia</a><a href="#de-lai" data-spy="de-lai">Để lại thông tin</a><a href="#hoi-dap" data-spy="hoi-dap">Hỏi đáp</a></div></nav>
+<nav class="sub" aria-label="Mục lục trang"><div class="in"><a href="#vi-sao" data-spy="vi-sao">Vì sao</a><a href="#vi-tri" data-spy="vi-tri">Vị trí cần</a><a href="#ke-hoach" data-spy="ke-hoach">12 tháng tới</a><a href="#quyen-loi" data-spy="quyen-loi">Bạn được gì</a><a href="#quy-trinh" data-spy="quy-trinh">Cách tham gia</a><a href="#de-lai" data-spy="de-lai">Để lại thông tin</a><a href="#hoi-dap" data-spy="hoi-dap">Hỏi đáp</a></div></nav>
 <main>
 <section class="hero"><div class="wrap g">
  <div>
   <div class="k">Tìm đồng đội · House Team</div>
   <h1>Cùng xây High Comedia</h1>
-  <p class="lead">Ứng tác không chỉ cần diễn viên trên sân khấu. Một lớp học ấm áp, một đêm diễn trọn vẹn, một video khiến người lạ muốn thử, đều cần những người làm cùng nhau phía sau. Nếu bạn đã thích HIGH và muốn góp sức, đây là chỗ để bắt đầu.</p>
+  <p class="lead">Ứng tác đâu chỉ có diễn viên trên sân khấu. Đằng sau một lớp học ấm áp, một đêm diễn cười không ngớt hay một video khiến người lạ cũng muốn thử, là cả một đội cùng xắn tay áo. Nếu bạn đã lỡ thích HIGH và muốn góp một tay, thì chào mừng, bạn tới đúng chỗ rồi.</p>
   <div class="cta"><a class="btn" href="#de-lai">Để lại thông tin · 2 phút</a><a class="btn o" href="#vi-tri">Xem các vị trí</a></div>
-  <div class="note">Không cần CV. Không cần biết ứng tác với nhiều vị trí.</div>
+  <div class="note">Không cần CV. Nhiều vị trí không cần biết ứng tác.</div>
  </div>
  <div class="ph"><img src="img/ab-team.webp" alt="Các thành viên High Club ngồi cùng nhau sau buổi tập" width="1200" height="900" loading="eager" fetchpriority="high"></div>
 </div></section>
@@ -111,61 +111,61 @@ form.tf textarea{min-height:92px;resize:vertical}form.tf :focus{outline:none;bor
 <section class="s w" id="vi-sao"><div class="wrap why">
  <div>
   <div class="k">Vì sao</div>
-  <h2>House Team là cả một đội, không chỉ người đứng trên sân khấu</h2>
-  <p>High Club được đạo diễn Đào Ngọc Hà thành lập tại Hà Nội năm 2020. Từ năm 2026, High Comedia mở lớp đào tạo ứng tác, đưa show trở lại và mang ứng tác vào công việc, trường học.</p>
-  <p>Để làm được những điều đó một cách đều đặn, chúng tôi cần một đội: người lo lớp học, người chăm sóc học viên, người kể chuyện bằng video, người làm truyền thông, người tổ chức đêm diễn, và những người đã biết ứng tác muốn cùng giảng dạy.</p>
-  <p>Chúng tôi gọi tất cả những người đó là <b>House Team</b>.</p>
+  <h2>House Team là cả một đội, không chỉ những người đứng trên sân khấu</h2>
+  <p>High Club ra đời ở Hà Nội năm 2020. Giờ High Comedia đang làm thêm nhiều thứ: mở lớp ứng tác, đưa đêm diễn trở lại, mang ứng tác vào công việc và trường học.</p>
+  <p>Muốn làm đều tay thì không thể một mình. HIGH cần người lo lớp, người chăm học viên, người kể chuyện bằng video, người làm truyền thông, người tổ chức đêm diễn, và cả những bạn đã biết ứng tác muốn cùng đứng lớp.</p>
+  <p>Tất cả những người đó, HIGH gọi chung là <b>House Team</b>. Đội nhà.</p>
  </div>
  <img src="img/team-stage.webp" alt="Diễn viên và khán giả chụp ảnh chung sau một đêm diễn" loading="lazy" width="1200" height="750">
 </div></section>
 
 <section class="s" id="vi-tri"><div class="wrap">
  <div class="k">Vị trí cần trong 12 tháng tới</div>
- <h2>Bạn có thể góp sức ở đâu?</h2>
- <p class="intro"><b>Cần ngay</b> là những vị trí cần người từ khi các lớp đầu tiên khai giảng. <b>Năm 2027</b> là vị trí cần khi sân khấu và lớp nâng cao mở. Không thấy vị trí hợp với mình? Cứ chọn "Vị trí khác" trong form.</p>
+ <h2>Bạn hợp với vị trí nào?</h2>
+ <p class="intro"><b>Cần ngay</b> là những chỗ đang chờ người từ khi các lớp đầu tiên khai giảng. <b>Năm 2027</b> là những chỗ cần khi sân khấu và lớp nâng cao mở. Thấy mình chẳng giống vị trí nào nhưng vẫn muốn tham gia? Chọn "Vị trí khác" và kể cho HIGH nghe.</p>
  <div class="roles"><article class="role" id="r-tro-ly-lop"><div class="rt"><span class="tag r">Cần ngay</span><span class="tm">2–4 buổi/tháng · sáng cuối tuần</span></div>
-<h3>Trợ lý lớp học</h3><p>Đón học viên, điểm danh, chuẩn bị phòng tập, chụp ảnh buổi học, nhắc lịch trong nhóm Zalo lớp.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn chu đáo, thích không khí lớp học và muốn ở gần ứng tác mỗi tuần.</p>
-<button type="button" class="pick" data-role="Trợ lý lớp học">Tôi quan tâm vị trí này →</button></article><article class="role" id="r-van-hanh"><div class="rt"><span class="tag r">Cần ngay</span><span class="tm">Linh hoạt · có thể làm từ xa</span></div>
-<h3>Điều phối lớp &amp; chăm sóc học viên</h3><p>Trả lời tin nhắn, gọi xác nhận đăng ký, theo dõi đóng phí, giữ liên lạc với học viên trước và sau khoá.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn nói chuyện dễ chịu, làm việc gọn gàng, quen dùng Google Sheet.</p>
+<h3>Trợ lý lớp học</h3><p>Người mở cửa đón cả lớp: chào học viên, điểm danh, xếp phòng, chụp vài tấm ảnh thật xinh và nhắc lịch trong nhóm Zalo.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn chu đáo, thích không khí lớp học và muốn tuần nào cũng được ở gần những tràng cười.</p>
+<button type="button" class="pick" data-role="Trợ lý lớp học">Tôi quan tâm vị trí này →</button></article><article class="role" id="r-van-hanh"><div class="rt"><span class="tag r">Cần ngay</span><span class="tm">Linh hoạt · làm từ xa được</span></div>
+<h3>Điều phối lớp &amp; chăm sóc học viên</h3><p>Trả lời tin nhắn, gọi xác nhận, theo dõi học phí và hỏi han học viên trước, trong, sau khoá. Nói gọn là giữ cho ai cũng thấy được quan tâm.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn nói chuyện dễ thương, làm việc gọn gàng và không sợ Google Sheet.</p>
 <button type="button" class="pick" data-role="Điều phối lớp &amp; chăm sóc học viên">Tôi quan tâm vị trí này →</button></article><article class="role" id="r-noi-dung"><div class="rt"><span class="tag r">Cần ngay</span><span class="tm">Theo lịch quay · 2–4 buổi/tháng</span></div>
-<h3>Quay &amp; dựng video ngắn</h3><p>Quay buổi tập, buổi diễn; dựng TikTok, Reels về ứng tác ứng dụng trong đời sống và công việc.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn có máy quay hoặc điện thoại tốt, biết dựng CapCut / Premiere, có mắt kể chuyện.</p>
-<button type="button" class="pick" data-role="Quay &amp; dựng video ngắn">Tôi quan tâm vị trí này →</button></article><article class="role" id="r-truyen-thong"><div class="rt"><span class="tag r">Cần ngay</span><span class="tm">Bán thời gian · có thể làm từ xa</span></div>
-<h3>Marketing &amp; truyền thông</h3><p>Viết bài fanpage, lên lịch nội dung, chạy quảng cáo nhỏ, kết nối báo chí và đối tác truyền thông.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn hiểu mạng xã hội, viết tốt, thích đo đếm xem bài nào hiệu quả.</p>
+<h3>Quay &amp; dựng video ngắn</h3><p>Bắt lại những khoảnh khắc buồn cười, cảm động ở buổi tập, buổi diễn rồi biến chúng thành TikTok, Reels khiến người xem muốn thử ứng tác.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn có máy quay hoặc điện thoại xịn, dựng được CapCut / Premiere và có con mắt kể chuyện.</p>
+<button type="button" class="pick" data-role="Quay &amp; dựng video ngắn">Tôi quan tâm vị trí này →</button></article><article class="role" id="r-truyen-thong"><div class="rt"><span class="tag r">Cần ngay</span><span class="tm">Bán thời gian · làm từ xa được</span></div>
+<h3>Marketing &amp; truyền thông</h3><p>Viết bài fanpage, lên lịch nội dung, chạy quảng cáo nhỏ, kết nối báo chí và đối tác. Người giúp thêm nhiều người biết ứng tác vui thế nào.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn mê mạng xã hội, viết có duyên và thích soi số xem bài nào &quot;lên&quot;.</p>
 <button type="button" class="pick" data-role="Marketing &amp; truyền thông">Tôi quan tâm vị trí này →</button></article><article class="role" id="r-dien-vien"><div class="rt"><span class="tag a">Năm 2027</span><span class="tm">1 buổi tập/tuần · diễn theo lịch</span></div>
-<h3>Diễn viên House Team</h3><p>Tập luyện đều với đội, diễn các đêm ứng tác của High Club khi sân khấu mở lại.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn đã học hoặc diễn ứng tác, muốn tập nghiêm túc và lên sân khấu thường xuyên.</p>
+<h3>Diễn viên House Team</h3><p>Tập đều với đội mỗi tuần và cùng lên sân khấu trong các đêm diễn ứng tác của High Club.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn đã học hoặc diễn ứng tác, muốn tập nghiêm túc mà vẫn chơi hết mình.</p>
 <button type="button" class="pick" data-role="Diễn viên House Team">Tôi quan tâm vị trí này →</button></article><article class="role" id="r-giang-day"><div class="rt"><span class="tag a">Năm 2027</span><span class="tm">Theo lịch lớp · tối và cuối tuần</span></div>
-<h3>Trợ giảng &amp; giảng viên ứng tác</h3><p>Hỗ trợ trong lớp, dẫn khởi động, rồi đứng lớp theo giáo trình của High Comedia khi đã sẵn sàng.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn đã biết ứng tác, thích giảng dạy và muốn đồng hành dài hạn với HIGH.</p>
+<h3>Trợ giảng &amp; giảng viên ứng tác</h3><p>Bắt đầu từ việc hỗ trợ trong lớp, dẫn khởi động, rồi đứng lớp theo giáo trình của High Comedia khi bạn đã sẵn sàng.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn đã biết ứng tác, thích nhìn người khác &quot;mở&quot; ra và muốn đi đường dài cùng HIGH.</p>
 <button type="button" class="pick" data-role="Trợ giảng &amp; giảng viên ứng tác">Tôi quan tâm vị trí này →</button></article><article class="role" id="r-to-chuc"><div class="rt"><span class="tag a">Năm 2027</span><span class="tm">Theo từng chương trình</span></div>
-<h3>Tổ chức show &amp; sự kiện</h3><p>Quản lý sân khấu, hậu đài, âm thanh ánh sáng, bán vé, đón khán giả cho các đêm diễn và Jam cộng đồng.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn từng làm sự kiện hoặc sân khấu, bình tĩnh khi mọi thứ diễn ra trực tiếp.</p>
+<h3>Tổ chức show &amp; sự kiện</h3><p>Lo sân khấu, hậu đài, âm thanh ánh sáng, bán vé, đón khán giả. Những người giúp đêm diễn chạy trơn tru dù trên sân khấu chẳng có gì được lên kịch bản.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn từng làm sự kiện hoặc sân khấu và giữ được bình tĩnh khi mọi thứ diễn ra trực tiếp.</p>
 <button type="button" class="pick" data-role="Tổ chức show &amp; sự kiện">Tôi quan tâm vị trí này →</button></article><article class="role" id="r-hop-tac"><div class="rt"><span class="tag g">Hợp tác dự án</span><span class="tm">Theo dự án</span></div>
-<h3>Biên kịch, nghệ sĩ, MC &amp; Host</h3><p>Cùng làm show chủ đề, workshop, chương trình cho doanh nghiệp hoặc nội dung kết hợp ứng tác.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn có nghề riêng và tò mò ứng tác sẽ mở ra điều gì cho công việc của mình.</p>
+<h3>Biên kịch, nghệ sĩ, MC &amp; Host</h3><p>Cùng nghĩ ra show chủ đề, workshop, chương trình cho doanh nghiệp hay nội dung có màu ứng tác.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn có nghề riêng và tò mò không biết ứng tác sẽ &quot;phá&quot; công việc của mình theo hướng thú vị nào.</p>
 <button type="button" class="pick" data-role="Biên kịch, nghệ sĩ, MC &amp; Host">Tôi quan tâm vị trí này →</button></article></div>
 </div></section>
 
 <section class="s w" id="ke-hoach"><div class="wrap">
  <div class="k">12 tháng tới</div>
- <h2>Những gì High Comedia sẽ làm, và cần ai</h2>
- <ol class="plan"><li><span class="when">Cuối 2026 – đầu 2027</span><b>Mở lớp đều đặn</b><p>Drop-in hằng tháng, Improv 1 và Improv 2. Cần người lo lớp học, chăm sóc học viên và kể câu chuyện lớp học lên mạng xã hội.</p></li><li><span class="when">Giữa 2027</span><b>Sân khấu trở lại</b><p>Đội House Team tập luyện đều, các đêm diễn ứng tác và Jam cộng đồng. Cần diễn viên, người tổ chức show, bán vé, hậu đài.</p></li><li><span class="when">Cuối 2027</span><b>Ứng tác đi xa hơn</b><p>Lớp thiếu nhi, chương trình cho doanh nghiệp và trường học. Cần trợ giảng, giảng viên và đối tác cùng thiết kế chương trình.</p></li></ol>
+ <h2>HIGH sắp làm gì, và cần ai đi cùng</h2>
+ <ol class="plan"><li><span class="when">Cuối 2026 – đầu 2027</span><b>Lớp học chạy đều</b><p>Drop-in mỗi tháng, Improv 1 và Improv 2 nối nhau mở lớp. Lúc này rất cần người lo lớp, chăm học viên và kể chuyện lớp học lên mạng.</p></li><li><span class="when">Giữa 2027</span><b>Sân khấu sáng đèn trở lại</b><p>House Team tập đều, các đêm diễn và Jam cộng đồng quay lại. Cần diễn viên, người tổ chức show, bán vé, hậu đài.</p></li><li><span class="when">Cuối 2027</span><b>Mang ứng tác đi xa hơn</b><p>Lớp thiếu nhi, chương trình cho doanh nghiệp và trường học. Cần trợ giảng, giảng viên và bạn đồng hành cùng thiết kế chương trình.</p></li></ol>
  <p class="small">Kế hoạch dự kiến, có thể thay đổi theo thực tế. Lịch lớp mới nhất luôn ở trang <a href="khoa-hoc">Khoá học</a>.</p>
 </div></section>
 
 <section class="s" id="quyen-loi"><div class="wrap">
- <div class="k">Bạn nhận gì</div>
- <h2>Đi cùng HIGH, bạn có</h2>
- <div class="gets" style="margin-top:20px"><div class="get"><b>Học và tập cùng đội</b><p>Được tham gia buổi tập của đội, hiểu ứng tác từ bên trong.</p></div><div class="get"><b>Làm việc trực tiếp với đạo diễn</b><p>Làm cùng đạo diễn Đào Ngọc Hà, người dựng giáo trình và định hướng phong cách của HIGH.</p></div><div class="get"><b>Việc thật, sản phẩm thật</b><p>Lớp học, đêm diễn, video, chiến dịch có thật để đưa vào hồ sơ của bạn.</p></div><div class="get"><b>Nói rõ từ đầu</b><p>Thời gian, quyền lợi và thù lao (nếu có) được trao đổi rõ theo từng vị trí ngay buổi gặp đầu.</p></div></div>
+ <div class="k">Bạn được gì</div>
+ <h2>Ở lại với HIGH, bạn mang về</h2>
+ <div class="gets" style="margin-top:20px"><div class="get"><b>Tinh thần ứng tác</b><p>Ở cạnh lớp và đội lâu dần, bạn sẽ &quot;nhiễm&quot; tinh thần ứng tác lúc nào không hay: lắng nghe thật, nói &quot;Có, và…&quot; với ý tưởng của người khác, dám thử và cười được khi sai. Thứ này dùng được ở mọi nơi, không chỉ trên sân khấu.</p></div><div class="get"><b>Vận hành sản xuất</b><p>Bạn sẽ hiểu tường tận cách một sản phẩm ra đời: từ mở một lớp học, tổ chức một sự kiện đến dựng một đêm diễn, từ ý tưởng đến lúc khán giả vỗ tay. Kiến thức thực chiến khó tìm được ở lớp học nào khác.</p></div><div class="get"><b>Việc thật, sản phẩm thật</b><p>Lớp học, đêm diễn, video, chiến dịch đều có thật, có khán giả thật. Bạn có thứ để khoe trong hồ sơ, và để kể với bạn bè.</p></div><div class="get"><b>Rõ ràng từ đầu</b><p>Thời gian, quyền lợi, thù lao (nếu có) được nói thẳng, nói rõ theo từng vị trí ngay buổi cà phê đầu tiên. Không ai phải đoán.</p></div></div>
 </div></section>
 
 <section class="s w" id="quy-trinh"><div class="wrap">
  <div class="k">Cách tham gia</div>
- <h2>Bốn bước, không thủ tục</h2>
- <ol class="steps" style="margin-top:20px"><li><span class="n">1</span><div><b>Để lại thông tin</b><p>Khoảng 2 phút. Không cần CV, một đường link về bạn là đủ.</p></div></li><li><span class="n">2</span><div><b>Trò chuyện 30 phút</b><p>Trong 7 ngày, High Comedia nhắn Zalo hẹn cà phê hoặc gọi online.</p></div></li><li><span class="n">3</span><div><b>Thử cùng làm</b><p>Một buổi lớp, một buổi quay, một việc nhỏ. Hai bên cùng xem có hợp không.</p></div></li><li><span class="n">4</span><div><b>Chính thức đồng hành</b><p>Vào nhóm làm việc, nhận lịch và bắt đầu.</p></div></li></ol>
+ <h2>Bốn bước, nhẹ tênh</h2>
+ <ol class="steps" style="margin-top:20px"><li><span class="n">1</span><div><b>Để lại thông tin</b><p>Mất khoảng 2 phút. Không cần CV, một đường link về bạn là đủ.</p></div></li><li><span class="n">2</span><div><b>Cà phê 30 phút</b><p>Trong 7 ngày, High Comedia nhắn Zalo hẹn gặp hoặc gọi online. Nói chuyện thôi, không phỏng vấn căng thẳng.</p></div></li><li><span class="n">3</span><div><b>Thử làm cùng nhau</b><p>Một buổi lớp, một buổi quay, một việc nhỏ. Hai bên cùng xem có &quot;hợp vibe&quot; không.</p></div></li><li><span class="n">4</span><div><b>Vào team!</b><p>Vào nhóm làm việc, nhận lịch và bắt đầu cùng chơi, cùng làm.</p></div></li></ol>
 </div></section>
 
 <section class="s" id="de-lai"><div class="wrap fwrap">
  <div class="side">
   <div class="k">Để lại thông tin</div>
-  <h2>Kể cho chúng tôi một chút về bạn</h2>
-  <p style="color:var(--mut);margin:0">Thông tin đến thẳng đạo diễn Đào Ngọc Hà. Trong 7 ngày, High Comedia nhắn Zalo hẹn trò chuyện. Thông tin chỉ dùng để liên hệ, không chia sẻ cho bên thứ ba (<a href="chinh-sach#bao-mat">bảo mật</a>).</p>
+  <h2>Kể HIGH nghe một chút về bạn</h2>
+  <p style="color:var(--mut);margin:0">Thông tin tới thẳng tay đạo diễn Đào Ngọc Hà. Trong 7 ngày, HIGH sẽ nhắn Zalo rủ bạn đi cà phê. Thông tin chỉ dùng để liên hệ, không chia sẻ cho bên thứ ba (<a href="chinh-sach#bao-mat">bảo mật</a>).</p>
   <div class="z"><img src="img/zalo-qr.webp" alt="Mã QR Zalo High Comedia" width="84" height="84" loading="lazy"><div style="font-size:14px">Thích nói chuyện trước?<br><a href="https://zalo.me/0909851086" target="_blank" rel="noopener"><b>Nhắn Zalo 0909 851 086</b></a><br><a href="mailto:daongocha23@gmail.com?subject=T%C3%ACm%20%C4%91%E1%BB%93ng%20%C4%91%E1%BB%99i%20High%20Comedia">hoặc gửi email</a></div></div>
  </div>
  <div id="tfbox">
@@ -179,7 +179,7 @@ form.tf textarea{min-height:92px;resize:vertical}form.tf :focus{outline:none;bor
   <label class="f full">Link về bạn <span class="opt">(Facebook, TikTok, portfolio, video diễn…)</span><input type="url" name="link" placeholder="https://"></label>
   <label class="f full">Bạn đã làm gì liên quan? <textarea name="exp" placeholder="Ví dụ: 2 năm làm content fanpage; từng học ứng tác ở…; làm hậu đài cho…"></textarea></label>
   <label class="f">Thời gian bạn có thể <select name="time"><option value="">Chọn…</option><option>Sáng cuối tuần</option><option>Tối trong tuần</option><option>Linh hoạt, làm từ xa</option><option>Theo dự án</option></select></label>
-  <label class="f full">Điều gì ở HIGH khiến bạn muốn tham gia? <textarea name="note" placeholder="Một câu thôi cũng được."></textarea></label>
+  <label class="f full">Điều gì ở HIGH khiến bạn muốn tham gia? <textarea name="note" placeholder="Một câu thôi cũng được, kể cả là “vì vui”."></textarea></label>
   <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
   <label class="agree full"><input type="checkbox" name="agree" required><span>Tôi đồng ý để High Comedia lưu thông tin và liên hệ với tôi về việc hợp tác.</span></label>
   <div class="err full" data-e="form"></div>
@@ -190,11 +190,11 @@ form.tf textarea{min-height:92px;resize:vertical}form.tf :focus{outline:none;bor
 
 <section class="s w" id="hoi-dap"><div class="wrap" style="max-width:860px">
  <div class="k">Hỏi đáp</div>
- <h2>Bạn có thể đang thắc mắc</h2>
- <div class="faq"><details><summary>Mình chưa biết ứng tác, có tham gia được không?<span aria-hidden="true">+</span></summary><p>Được. Trợ lý lớp học, chăm sóc học viên, video, truyền thông, tổ chức sự kiện không cần biết ứng tác. Bạn sẽ học dần khi ở cạnh lớp và đội.</p></details><details><summary>Có cần ở Hà Nội không?<span aria-hidden="true">+</span></summary><p>Lớp học và đêm diễn ở Giảng Võ, Hà Nội. Chăm sóc học viên, truyền thông, dựng video có thể làm từ xa.</p></details><details><summary>Phải cam kết bao lâu?<span aria-hidden="true">+</span></summary><p>Tuỳ vị trí. Việc theo dự án có thể chỉ vài tuần. Với trợ lý lớp và House Team, mong bạn đi cùng ít nhất một khoá (khoảng 2–3 tháng).</p></details><details><summary>Có thù lao không?<span aria-hidden="true">+</span></summary><p>Tuỳ vị trí và khối lượng việc. Mọi điều kiện được nói rõ trong buổi trò chuyện đầu, trước khi bạn bắt đầu.</p></details><details><summary>Mình đang ở một nhóm ứng tác khác, có sao không?<span aria-hidden="true">+</span></summary><p>Không sao. High Comedia quý mọi người làm ứng tác. Cứ nói rõ để hai bên sắp lịch hợp lý.</p></details></div>
+ <h2>Chắc bạn đang thắc mắc</h2>
+ <div class="faq"><details><summary>Mình chưa biết ứng tác, có tham gia được không?<span aria-hidden="true">+</span></summary><p>Được chứ! Trợ lý lớp, chăm sóc học viên, video, truyền thông, tổ chức sự kiện đều không cần biết ứng tác. Ở cạnh lớp và đội một thời gian, bạn sẽ tự biết thôi.</p></details><details><summary>Có cần ở Hà Nội không?<span aria-hidden="true">+</span></summary><p>Lớp học và đêm diễn ở Giảng Võ, Hà Nội. Còn chăm sóc học viên, truyền thông, dựng video thì ở đâu làm cũng được.</p></details><details><summary>Phải cam kết bao lâu?<span aria-hidden="true">+</span></summary><p>Tuỳ vị trí. Việc theo dự án có khi chỉ vài tuần. Với trợ lý lớp và House Team, mong bạn đi cùng ít nhất một khoá (khoảng 2–3 tháng) để cả lớp kịp quen mặt bạn.</p></details><details><summary>Có thù lao không?<span aria-hidden="true">+</span></summary><p>Tuỳ vị trí và khối lượng việc. Mọi thứ được nói rõ trong buổi cà phê đầu, trước khi bạn bắt tay vào làm.</p></details><details><summary>Mình đang ở một nhóm ứng tác khác, có sao không?<span aria-hidden="true">+</span></summary><p>Không sao cả. Ai làm ứng tác cũng là người nhà. Cứ nói rõ để hai bên xếp lịch cho hợp lý.</p></details></div>
 </div></section>
 
-<section class="s"><div class="wrap"><div class="end"><h2>Sẵn sàng làm cùng HIGH?</h2><div class="cta"><a class="btn" href="#de-lai">Để lại thông tin</a><a class="btn o" style="color:var(--cream);border-color:var(--cream)" href="https://zalo.me/0909851086" target="_blank" rel="noopener">Nhắn Zalo</a></div></div></div></section>
+<section class="s"><div class="wrap"><div class="end"><h2>Vào đội cùng HIGH nhé?</h2><div class="cta"><a class="btn" href="#de-lai">Để lại thông tin</a><a class="btn o" style="color:var(--cream);border-color:var(--cream)" href="https://zalo.me/0909851086" target="_blank" rel="noopener">Nhắn Zalo</a></div></div></div></section>
 </main>
 <div class="mbar" id="mbar"><a class="btn" href="#de-lai">Để lại thông tin</a><a class="btn o" style="background:var(--cream);flex:0 0 auto" href="https://zalo.me/0909851086" target="_blank" rel="noopener">Zalo</a></div>
 
@@ -279,7 +279,7 @@ form.tf textarea{min-height:92px;resize:vertical}form.tf :focus{outline:none;bor
   var data={roles:roles.join('; '),name:g('name').value.trim(),phone:ph,email:em,birth:g('birth').value.trim(),city:g('city').value.trim(),link:g('link').value.trim(),exp:g('exp').value.trim(),time:g('time').value,note:g('note').value.trim(),website:g('website').value};
   ev('submit');
   var done=function(res){ev('success');
-    document.getElementById('tfbox').innerHTML='<div class="tf" style="display:block"><div class="done"><div class="ok" aria-hidden="true">✓</div><h3>Cảm ơn '+data.name.split(' ').pop().replace(/[<>&]/g,'')+'!</h3><p>Thông tin đã đến tay High Comedia'+(res&&res.code?' (mã '+res.code+')':'')+'. Trong 7 ngày, chúng tôi sẽ nhắn Zalo để hẹn trò chuyện. Email xác nhận đang trên đường tới hộp thư của bạn.</p><a class="btn" href="/">Về trang chủ</a> <a class="btn o" href="'+(CFG.zalo||'#')+'" target="_blank" rel="noopener">Nhắn Zalo ngay</a></div></div>';
+    document.getElementById('tfbox').innerHTML='<div class="tf" style="display:block"><div class="done"><div class="ok" aria-hidden="true">✓</div><h3>Cảm ơn '+data.name.split(' ').pop().replace(/[<>&]/g,'')+'!</h3><p>Thông tin đã đến tay High Comedia'+(res&&res.code?' (mã '+res.code+')':'')+'. Trong 7 ngày, HIGH sẽ nhắn Zalo rủ bạn đi cà phê. Email xác nhận đang trên đường tới hộp thư của bạn.</p><a class="btn" href="/">Về trang chủ</a> <a class="btn o" href="'+(CFG.zalo||'#')+'" target="_blank" rel="noopener">Nhắn Zalo ngay</a></div></div>';
     document.getElementById('de-lai').scrollIntoView({behavior:'smooth'});};
   if(!CFG.formUrl){setTimeout(function(){done({demo:1});},500);return;}
   fetch(CFG.formUrl,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({form:'team',cls:'house-team',data:data,page:location.pathname,ref:document.referrer.slice(0,200),id:Date.now().toString(36)+Math.random().toString(36).slice(2,8),t:Date.now()-t0})})

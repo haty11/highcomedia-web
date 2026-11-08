@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /_hen-gio/
+Disallow: /admin/
 Sitemap: https://highcomedia.com/sitemap.xml

@@ -449,7 +449,7 @@ const API=(window.HC_CONFIG||{}).formUrl||'';
 const TKEY='hc-adm-tk';
 let token='', me=null, clientId='', R=[], LOG=[], CLASSES={}, NOW=new Date(), sheetUrl='', firstLoad=true, known=new Set();
 const H=3600e3, D=24*H;
-const KINDS={reg:{n:'Học viên'},kids:{n:'Thiếu nhi'},waitlist:{n:'Chờ mở lớp'},quote:{n:'Doanh nghiệp'},lead:{n:'Tư vấn nhanh'}};
+const KINDS={reg:{n:'Học viên'},kids:{n:'Thiếu nhi'},waitlist:{n:'Chờ mở lớp'},quote:{n:'Doanh nghiệp'},lead:{n:'Tư vấn nhanh'},team:{n:'Đồng đội'}};
 const STATUS=['Mới','Đã liên hệ','Đã cọc','Đã thanh toán','Huỷ'];
 const SCLS={'Mới':'s-moi','Đã liên hệ':'s-lh','Đã cọc':'s-coc','Đã thanh toán':'s-tt','Huỷ':'s-huy'};
 const MIN_CLASS=6;
@@ -527,13 +527,14 @@ function norm(o){
   r.ph=String(f['SĐT (Zalo)']||'').replace(/^'/,''); r.em=f['Email']||''; r.src=f['Biết qua']||''; r.inote=f['Ghi chú nội bộ']||'';
   if(o.k==='kids'){r.n=f['Phụ huynh']||'';r.child=[f['Tên bé'],f['Năm sinh bé']?'('+f['Năm sinh bé']+')':''].filter(Boolean).join(' ');r.health=f['Sức khoẻ / dị ứng']||''}
   else if(o.k==='quote'){r.n=f['Công ty']||'';r.ct=[f['Người liên hệ'],f['Chức vụ']].filter(Boolean).join(' · ');r.size=f['Số người']||'';r.goal=f['Mục tiêu']||'';if(!r.c)r.c='applied'}
+  else if(o.k==='team'){r.n=f['Họ tên']||'';r.label=f['Vị trí quan tâm']||'Đồng đội'}
   else r.n=f['Họ tên']||'';
   if(o.k==='kids'&&!r.c)r.c='kids';
   r.fr=f['Đi cùng bạn']||'';
   const fk=o.k==='quote'?'Giá trị (đ)':'Học phí (đ)'; r.fee=fk in f?num(f[fk]):null; r.paid='Đã thu (đ)' in f?num(f['Đã thu (đ)']):null;
   return r;
 }
-const BUILD='20261108102233';
+const BUILD='20261108111029';
 /* Kiểm tra bản Admin mới (tránh trình duyệt giữ bản cũ trong bộ nhớ đệm) */
 async function checkVer(){try{const t=await fetch(location.pathname+'?v='+Date.now(),{cache:'no-store'}).then(r=>r.text());const m=t.match(/const BUILD='([^']+)'/);
   if(m&&m[1]!==BUILD&&BUILD!=='dev'){toast('<span>⟳ Có bản Admin mới, đang tải lại…</span>');setTimeout(()=>location.replace(location.pathname+'?v='+m[1]+location.hash),700);return true}}catch(e){}return false}

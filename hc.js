@@ -149,3 +149,35 @@
   var tk=false;window.addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(function(){tk=false;tick();});}},{passive:true});
   document.addEventListener('toggle',tick,true);tick();
 })();
+/* Cộng đồng: cửa sổ "Xem diễn" (đang chuẩn bị bán vé) và "Jam cộng đồng" — gắn bằng data-cd="show|jam" */
+(function(){
+  var C=window.HC_CONFIG||{}, FB='https://www.facebook.com/share/1FRAFYfvux/', MAIL=C.email||'daongocha23@gmail.com';
+  var mailto=function(s,b){return 'mailto:'+MAIL+'?subject='+encodeURIComponent(s)+'&body='+encodeURIComponent(b);};
+  var P={
+    show:{img:'/img/ab-audience-laugh.webp',alt:'Khán giả cười trong một đêm diễn ứng tác của High Club',k:'XEM DIỄN · ĐANG CHUẨN BỊ',h:'Sân khấu High Club sắp mở lại',
+      t:'<p>Trang bán vé đang được xây dựng. High Club sẽ mở bán vé các đêm diễn ứng tác trong thời gian sớm nhất.</p><p>Mỗi đêm diễn không có kịch bản: khán giả gợi ý, diễn viên dựng cảnh ngay tại chỗ, nên không đêm nào giống đêm nào.</p>',
+      b:'<a class="hcm-b" href="'+FB+'" target="_blank" rel="noopener">Theo dõi fanpage để nhận lịch diễn</a><a class="hcm-b o" href="'+(C.zalo||'#')+'" target="_blank" rel="noopener">Nhắn Zalo giữ chỗ sớm</a>'},
+    jam:{img:'/img/ab-garden-show.webp',alt:'Một buổi chơi ứng tác ngoài trời cùng khán giả',k:'JAM CỘNG ĐỒNG · SẼ TỔ CHỨC',h:'Một sân chơi ứng tác mở cho mọi người',
+      t:'<p>Jam là buổi chơi ứng tác mở: học viên cũ, người mới, người chỉ tò mò đều có thể đến. Không chấm điểm, không cần kinh nghiệm. Mọi người cùng chơi vài trò ứng tác, dựng vài cảnh ngắn, rồi ngồi lại nói chuyện.</p><p>Chúng tôi muốn Jam là nơi người học ứng tác có chỗ để tiếp tục chơi sau khoá học, và người mới có một cửa vào nhẹ nhàng. Những tiếng cười ở Jam thường là khởi đầu của những tình bạn mới.</p><p><b>Jam sẽ được tổ chức sau</b>, khi các lớp đầu tiên đã khai giảng. Muốn được báo sớm, hoặc muốn góp ý, góp chỗ, cùng tổ chức? Gửi email cho High Comedia.</p>',
+      b:'<a class="hcm-b" href="'+mailto('Mình muốn tham gia Jam cộng đồng','Chào High Comedia,\n\nMình tên là: \nSố điện thoại (Zalo): \nMình muốn: (được báo khi có Jam / cùng tổ chức / góp chỗ / khác)\n\n')+'">Gửi email cho High Comedia</a><a class="hcm-b o" href="'+(C.zalo||'#')+'" target="_blank" rel="noopener">Nhắn Zalo</a>'}
+  };
+  var css='.hcm{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(20,20,20,.62);opacity:0;transition:opacity .2s}.hcm.on{opacity:1}'
+   +'.hcm-c{position:relative;background:#F5EFE3;color:#1A1A1A;border-radius:22px;max-width:560px;width:100%;max-height:calc(100vh - 32px);overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.35);transform:translateY(14px);transition:transform .25s;font-family:"Be Vietnam Pro",sans-serif}.hcm.on .hcm-c{transform:none}'
+   +'.hcm-c img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}.hcm-in{padding:20px 24px 24px}.hcm-k{font-size:11.5px;font-weight:700;letter-spacing:1.4px;color:#8A4B00}'
+   +'.hcm-h{font-family:"Bricolage Grotesque",sans-serif;font-size:27px;line-height:1.12;font-weight:800;margin:6px 0 10px}.hcm-t p{margin:0 0 10px;font-size:15px;line-height:1.6;color:rgba(26,26,26,.82)}'
+   +'.hcm-bs{display:flex;flex-direction:column;gap:8px;margin-top:16px}.hcm-b{display:block;text-align:center;padding:13px 18px;border-radius:100px;background:#1A1A1A;color:#F5EFE3!important;font-weight:700;font-size:15px;text-decoration:none}.hcm-b.o{background:transparent;color:#1A1A1A!important;border:1.5px solid #1A1A1A}'
+   +'.hcm-x{position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:50%;border:0;background:rgba(245,239,227,.94);font-size:18px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2)}'
+   +'@media (max-width:600px){.hcm{align-items:flex-end;padding:0}.hcm-c{border-radius:22px 22px 0 0;max-height:92vh;transform:translateY(40px)}.hcm-in{padding:18px 18px calc(22px + env(safe-area-inset-bottom))}.hcm-h{font-size:24px}}';
+  var st=null,last=null;
+  function close(){var m=document.querySelector('.hcm');if(!m)return;m.classList.remove('on');setTimeout(function(){m.remove();},200);document.documentElement.style.overflow='';if(last)try{last.focus();}catch(e){}}
+  function open(k,src){var d=P[k];if(!d)return;if(!st){st=document.createElement('style');st.textContent=css;document.head.appendChild(st);}
+    last=src;var m=document.createElement('div');m.className='hcm';m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');m.setAttribute('aria-label',d.h);
+    m.innerHTML='<div class="hcm-c"><button type="button" class="hcm-x" aria-label="Đóng">✕</button><img src="'+d.img+'" alt="'+d.alt+'"><div class="hcm-in"><div class="hcm-k">'+d.k+'</div><div class="hcm-h">'+d.h+'</div><div class="hcm-t">'+d.t+'</div><div class="hcm-bs">'+d.b+'</div></div></div>';
+    document.body.appendChild(m);document.documentElement.style.overflow='hidden';requestAnimationFrame(function(){m.classList.add('on');});m.querySelector('.hcm-x').focus();
+    try{if(window.HC_track)HC_track('community_open',{item:k});}catch(e){}}
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-cd]');
+    if(a){e.preventDefault();open(a.getAttribute('data-cd'),a);return;}
+    var m=e.target.closest&&e.target.closest('.hcm');if(m&&(e.target===m||e.target.closest('.hcm-x')))close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+  if(/^#(xem-dien|jam)$/.test(location.hash))setTimeout(function(){open(location.hash==='#jam'?'jam':'show');},300);
+})();

@@ -2,6 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>High Comedia · Admin</title>
@@ -341,6 +342,17 @@ textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:1
 .ldbar{width:180px;height:4px;border-radius:4px;background:rgba(245,239,227,.12);margin:0 auto;overflow:hidden}
 .ldbar b{display:block;width:40%;height:100%;border-radius:4px;background:var(--amber);animation:slide 1.1s ease-in-out infinite}
 @keyframes slide{0%{transform:translateX(-100%)}100%{transform:translateX(260%)}}
+.mst{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--line,#eee)}.h4+.mst{border-top:0}.mst i{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:12px;font-weight:700;background:#EEE;color:#888}.mst.ok i{background:#E3F4E6;color:#1F7A3A}.mst.warn i{background:#FFF1D6;color:#8A4B00}.mst b{display:block;font-size:13px}.mst small{display:block;font-size:12px;color:var(--mut,#777);line-height:1.45;margin-top:1px}
+#rfbtn{gap:6px}#rfbtn.spin svg{animation:rfs .8s linear infinite}@keyframes rfs{to{transform:rotate(360deg)}}
+.recs{margin-bottom:14px;border:1.5px solid #F3D9A4;background:#FFFCF5}.recs .ch{flex-wrap:wrap;gap:4px 10px}
+.rtd{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2DB55D;margin-right:6px;vertical-align:1px;box-shadow:0 0 0 0 rgba(45,181,93,.5);animation:rtp 1.8s infinite}@keyframes rtp{70%{box-shadow:0 0 0 7px rgba(45,181,93,0)}100%{box-shadow:0 0 0 0 rgba(45,181,93,0)}}
+.rec{border-top:1px solid #F1E8D6;cursor:pointer}.rec:first-of-type{border-top:0}
+.rec .rh{display:flex;align-items:center;gap:12px;padding:11px 2px}.rec .ri{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:17px;background:#F1F7F2}
+.rec.r .ri{background:#FDE8E4}.rec.a .ri{background:#FFF1D6}.rec .rt{flex:1;min-width:0}.rec .rt b{display:block;font-size:14px;line-height:1.35}.rec .rt small{display:block;font-size:12.5px;color:var(--muted);margin-top:2px;line-height:1.4}
+.rec.r .rt b{color:#B4321F}.rec .rc{flex:none;font-size:20px;color:#B9AE98;transition:transform .2s}.rec.on .rc{transform:rotate(90deg)}
+.rec .rb{padding:0 4px 14px 48px;font-size:13.5px;line-height:1.6;cursor:default}.rec .rb p{margin:0 0 6px}.rec .rb ol{margin:0 0 10px;padding-left:18px}.rec .rb li{margin:2px 0}
+.recmore{display:block;width:100%;margin-top:4px;padding:10px;border:0;border-top:1px solid #F1E8D6;background:none;font:inherit;font-size:13px;font-weight:700;color:var(--brown,#8A4B00);cursor:pointer}
+@media (max-width:860px){#rfbtn .hm2{display:none}#rfbtn{padding:8px 10px}.rec .rb{padding-left:4px}.rec .rh{gap:10px}.rec .ri{width:30px;height:30px;font-size:15px}}
 </style>
 </head>
 <body>
@@ -364,6 +376,7 @@ textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:1
       <div><h1 id="ttl">Chào sếp 👋</h1><div class="sub" id="sub"></div></div>
       <span class="live"><i></i><span id="upd">Đồng bộ với Sheet · vừa xong</span></span>
       <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" placeholder="Tìm tên, SĐT, mã…" autocomplete="off"><kbd>/</kbd></label>
+      <button class="btn" id="rfbtn" title="Lấy lại dữ liệu mới nhất từ Sheet, Google Analytics và Clarity"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg><span class="hm2">Làm mới</span></button>
       <a class="btn dk" id="shbtn" href="#" target="_blank" rel="noopener">Mở Sheet ↗</a>
     </div>
     
@@ -381,7 +394,7 @@ textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:1
       <div class="grid kpis" id="kpis"></div>
       <div class="grid row2">
         <div class="card">
-          <div class="ch"><h3>Cần xử lý <span class="s" id="qn"></span></h3><div class="seg" id="qseg"><button class="on" data-f="all">Tất cả</button><button data-f="late">Quá hạn</button><button data-f="new">Mới</button><button data-f="pay">Chờ tiền</button><button data-f="mine">Của tôi</button></div></div>
+          <div class="ch"><h3>Cần xử lý <span class="s" id="qn"></span></h3><div class="seg" id="qseg"><button class="on" data-f="all">Tất cả</button><button data-f="late">Quá hạn</button><button data-f="new">Mới</button><button data-f="pay">Chờ tiền</button><button data-f="mail">Chưa gửi mail</button><button data-f="mine">Của tôi</button></div></div>
           <div class="q" id="queue"></div>
         </div>
         <div class="card">
@@ -499,10 +512,11 @@ async function start(){
   const cached=readCache();
   if(cached){applyData(cached,true);hideGate()} else showLoading();
   try{await load()}catch(e){clearInterval(ldTimer);return}
-  hideGate();
-  clearInterval(timer);timer=setInterval(()=>{if(!document.hidden&&!pending)load().catch(()=>{})},60000);
+  hideGate(); checkVer();
+  clearInterval(timer);timer=setInterval(()=>{if(document.hidden||pending)return;load().catch(()=>{});if(!$('#v-ana').classList.contains('hide')&&anaData[anaDays]){const k=anaDays;api('analytics',{days:k}).then(r=>{if(r.ok){anaData[k]=r;if(k===anaDays&&!$('#v-ana').classList.contains('hide'))renderAna()}}).catch(()=>{})}},60000);
 }
-document.addEventListener('visibilitychange',()=>{if(!document.hidden&&me&&!pending)load().catch(()=>{})});
+let lastVerChk=Date.now();
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&me&&!pending){load().catch(()=>{});if(Date.now()-lastVerChk>5*60e3){lastVerChk=Date.now();checkVer()}}});
 function logout(){try{google.accounts.id.disableAutoSelect();sessionStorage.removeItem(TKEY);sessionStorage.removeItem(CKEY)}catch(e){};token='';me=null;clearInterval(timer);showLogin()}
 
 /* ===================== CHUẨN HOÁ DỮ LIỆU ===================== */
@@ -519,10 +533,29 @@ function norm(o){
   const fk=o.k==='quote'?'Giá trị (đ)':'Học phí (đ)'; r.fee=fk in f?num(f[fk]):null; r.paid='Đã thu (đ)' in f?num(f['Đã thu (đ)']):null;
   return r;
 }
+const BUILD='20261108100022';
+/* Kiểm tra bản Admin mới (tránh trình duyệt giữ bản cũ trong bộ nhớ đệm) */
+async function checkVer(){try{const t=await fetch(location.pathname+'?v='+Date.now(),{cache:'no-store'}).then(r=>r.text());const m=t.match(/const BUILD='([^']+)'/);
+  if(m&&m[1]!==BUILD&&BUILD!=='dev'){toast('<span>⟳ Có bản Admin mới, đang tải lại…</span>');setTimeout(()=>location.replace(location.pathname+'?v='+m[1]+location.hash),700);return true}}catch(e){}return false}
+let rfBusy=false;
+async function refreshAll(){
+  if(rfBusy)return; rfBusy=true; const b=$('#rfbtn'); if(b)b.classList.add('spin');
+  try{
+    if(await checkVer())return;
+    try{sessionStorage.removeItem(CKEY)}catch(e){}
+    const jobs=[load(true)];
+    const onAna=!$('#v-ana').classList.contains('hide');
+    if(onAna||Object.keys(anaData).length){anaData={};if(me&&me.perm&&me.perm.analytics!==false&&onAna)jobs.push(loadAna(true,true))}
+    await Promise.all(jobs.map(j=>Promise.resolve(j).catch(e=>e)));
+    const A=anaData[anaDays], cm={ok:'Clarity vừa lấy mới',quota:'Clarity đã dùng hết lượt hôm nay (10/ngày), giữ số liệu gần nhất',notoken:'chưa có token Clarity',err:'Clarity lỗi, giữ số liệu cũ'};
+    let cmsg=''; if(A&&A.clarityMsg){cmsg=cm[A.clarityMsg]||(A.clarityMsg.startsWith('cool:')?'Clarity vừa lấy lúc trước, lấy lại được sau '+new Date(A.clarityMsg.slice(5)).toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'}):'')}
+    toast('<span>✓ Đã đồng bộ Sheet'+(A?' · Google Analytics':'')+(cmsg?' · '+esc(cmsg):'')+'</span>');
+  }finally{rfBusy=false;if(b)b.classList.remove('spin')}
+}
 const CKEY='hc-adm-cache';
 function readCache(){try{const c=JSON.parse(sessionStorage.getItem(CKEY)||'null');return c&&Date.now()-c._at<30*60e3?c:null}catch(e){return null}}
-async function load(){
-  const d=await api('list'); if(!d.ok)throw d; if(pending)return;
+async function load(fresh){
+  const d=await api('list',fresh?{fresh:1}:{}); if(!d.ok)throw d; if(pending)return;
   try{d._at=Date.now();sessionStorage.setItem(CKEY,JSON.stringify(d))}catch(e){}
   applyData(d,false);
 }
@@ -556,6 +589,14 @@ const held=r=>r.s==='Đã cọc'||r.s==='Đã thanh toán';
 const capOf=(c,co)=>(co&&co.capacity)||c.capacity||10;
 
 /* ===================== BỘ NÃO: ưu tiên & cảnh báo ===================== */
+/* Lịch sử email: lấy từ Nhật ký (gửi qua Admin) + dấu trong "Ghi chú nội bộ" (gửi từ menu Sheet) */
+function mailInfo(r){
+  const pick=(act,re)=>{const a=LOG.filter(l=>l.code===r.id&&l.act===act).map(l=>({t:l.t,who:String(l.who||'').split(' <')[0]}));
+    (String(r.inote||'').match(re)||[]).forEach(m=>{const x=m.match(/(\d\d)\/(\d\d) (\d\d):(\d\d)/);if(!x)return;const t=new Date(r.t.getFullYear(),x[2]-1,x[1],x[3],x[4]);if(t<r.t)t.setFullYear(t.getFullYear()+1);if(!a.some(y=>Math.abs(y.t-t)<120e3))a.push({t,who:''})});
+    return a.sort((x,y)=>y.t-x.t)};
+  return {confirm:pick('Gửi email xác nhận',/Đã gửi email xác nhận giữ chỗ \d\d\/\d\d \d\d:\d\d/g),receipt:pick('Gửi lại email nhận ĐK',/Đã gửi lại email nhận đăng ký \d\d\/\d\d \d\d:\d\d/g)};
+}
+const fdt=t=>t.toLocaleString('vi-VN',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'});
 const SLA={reg:24,kids:24,quote:12,lead:24,waitlist:72};
 function issues(r){
   const o=[]; if(!live(r))return o;
@@ -563,6 +604,7 @@ function issues(r){
   if(r.s==='Mới'){ if(h>sla)o.push({lv:r.k==='waitlist'?2:3,tg:r.k==='waitlist'?'a':'r',t:'Chờ liên hệ '+(h>48?Math.round(h/24)+' ngày':Math.round(h)+'h'),k:'late'}); else if(h>sla/2)o.push({lv:2,tg:'a',t:'Sắp quá '+sla+'h',k:'late'}); else o.push({lv:1,tg:'a',t:'Mới · '+since(r.t),k:'new'}); }
   if(paying(r)&&!held(r)){ const left=48-h; if(left<0)o.push({lv:3,tg:'r',t:'Quá hạn cọc '+Math.round(-left)+'h',k:'pay'}); else if(left<12)o.push({lv:2,tg:'a',t:'Hạn cọc còn '+Math.round(left)+'h',k:'pay'}); }
   const co=cohortOf(r); if(co&&paying(r)&&r.paid!=null){const d=daysTo(co.start),rest=feeOf(r)-(r.paid||0); if(rest>0&&held(r)&&d<=10&&d>=0)o.push({lv:2,tg:'a',t:'Còn thu '+mshort(rest)+' · KG sau '+d+' ngày',k:'pay'});}
+  if(paying(r)&&held(r)&&r.em&&!mailInfo(r).confirm.length)o.push({lv:2,tg:'a',t:'Chưa gửi email xác nhận',k:'mail'});
   if(r.k==='quote'&&r.s==='Mới')o.push({lv:3,tg:'r',t:'Doanh nghiệp mới',k:'new'});
   const dup=R.find(x=>x!==r&&x.ph&&x.ph===r.ph&&live(x)&&x.k===r.k); if(dup)o.push({lv:1,tg:'b',t:'Trùng SĐT với '+dup.id,k:''});
   if(r.fr)o.push({lv:1,tg:'g',t:'Đi cùng bạn · ưu đãi nhóm',k:''});
@@ -625,8 +667,8 @@ function renderToday(){
   $('#sub').textContent=new Date().toLocaleDateString('vi-VN',{weekday:'long',day:'2-digit',month:'2-digit',year:'numeric'});
   $('#tdH').innerHTML= act.length? 'Hôm nay có <span style="color:var(--amber)">'+act.length+' việc</span> cần làm' : 'Không còn việc gì tồn đọng 🎉';
   $('#tdP').textContent= act.length? ('Khoảng '+Math.max(5,act.length*3)+' phút nếu làm liền một mạch. '+(late?'Ưu tiên '+late+' việc gấp màu đỏ trước.':'Không có việc quá hạn.')) : (R.length?'Mọi đăng ký đều đã được xử lý.':'Chưa có đăng ký nào. Khi có người đăng ký, Admin sẽ báo ngay ở đây.');
-  const pay=act.filter(r=>issues(r).some(i=>i.k==='pay')).length, nw=R.filter(r=>r.s==='Mới'&&live(r)).length;
-  $('#tdT').innerHTML=[late&&'<span class="chipx r" data-q="late">⏰ <b>'+late+'</b> quá hạn</span>',nw&&'<span class="chipx a" data-q="new">✨ <b>'+nw+'</b> chưa liên hệ</span>',pay&&'<span class="chipx a" data-q="pay">💸 <b>'+pay+'</b> chờ tiền</span>','<span class="chipx g">📥 <b>'+newToday+'</b> đăng ký trong 24h</span>'].filter(Boolean).join('');
+  const pay=act.filter(r=>issues(r).some(i=>i.k==='pay')).length, ml=R.filter(r=>issues(r).some(i=>i.k==='mail')).length, nw=R.filter(r=>r.s==='Mới'&&live(r)).length;
+  $('#tdT').innerHTML=[late&&'<span class="chipx r" data-q="late">⏰ <b>'+late+'</b> quá hạn</span>',nw&&'<span class="chipx a" data-q="new">✨ <b>'+nw+'</b> chưa liên hệ</span>',pay&&'<span class="chipx a" data-q="pay">💸 <b>'+pay+'</b> chờ tiền</span>',ml&&'<span class="chipx a" data-q="mail">✉ <b>'+ml+'</b> chưa gửi xác nhận</span>','<span class="chipx g">📥 <b>'+newToday+'</b> đăng ký trong 24h</span>'].filter(Boolean).join('');
   const doneToday=LOG.filter(l=>NOW-l.t<D&&me&&l.who.includes(me.email)&&/trạng thái/i.test(l.act)).length;
   const total=act.length+doneToday||1;
   $('#rg').style.strokeDashoffset=226*(act.length/total); $('#rgv').textContent=act.length;
@@ -773,9 +815,15 @@ function openDr(id,keep){
     ${can('pay')&&fee&&['reg','kids','quote'].includes(r.k)?`<div class="card"><div class="h4">${r.k==='quote'?'Giá trị hợp đồng':'Học phí'}</div><div class="pay"><div><small>${r.k==='quote'?'Giá trị':'Học phí'}</small><b>${mshort(fee)}</b></div><div><small>Đã thu</small><b style="color:var(--green)">${mshort(paid)}</b></div><div><small>Còn lại</small><b style="color:${fee-paid>0?'var(--red)':'var(--green)'}">${mshort(Math.max(0,fee-paid))}</b></div></div>
       <div class="inl"><input id="pin" inputmode="numeric" placeholder="Số tiền vừa nhận, ví dụ 1000000"><button class="btn dark" id="pbtn">Ghi đã thu</button></div>
       <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap">${[r.k==='quote'?0:1000000,fee-paid].filter((v,i,a)=>v>0&&v<=fee-paid&&a.indexOf(v)===i).map(v=>`<button class="btn sm" data-amt="${v}">+ ${mshort(v)}${v===fee-paid?' (đủ)':' (cọc)'}</button>`).join('')}</div></div>`:''}
-    ${me.perm.mail.length?`<div class="card"><div class="h4">Email cho khách</div><div style="display:flex;flex-direction:column;gap:8px">
-      ${paying(r)&&me.perm.mail.includes('confirm')?`<button class="btn ${held(r)?'amber':''}" data-mail="confirm" ${held(r)?'':'disabled title="Chỉ gửi sau khi khách đã cọc"'}>${ICO.mail} Gửi email xác nhận giữ chỗ</button>`:''}
-      ${me.perm.mail.includes('receipt')?`<button class="btn" data-mail="receipt">${ICO.mail} Gửi lại email "Đã nhận đăng ký"</button>`:''}</div><div class="hint">Gửi từ Gmail High Comedia tới ${esc(r.em||'(chưa có email)')}.</div></div>`:''}
+    ${me.perm.mail.length||r.em?(()=>{const mi=mailInfo(r),c0=mi.confirm[0],r0=mi.receipt[0],who=x=>x.who?' · '+esc(x.who):'';
+      const rowR=`<div class="mst ok"><i>✓</i><div><b>Đã nhận đăng ký</b><small>Tự gửi khi khách bấm đăng ký · ${fdt(r.t)}${r0?`<br>Gửi lại ${mi.receipt.length} lần, gần nhất ${fdt(r0.t)}${who(r0)}`:''}</small></div></div>`;
+      const rowC=!paying(r)?'':c0?`<div class="mst ok"><i>✓</i><div><b>Xác nhận giữ chỗ</b><small>Đã gửi ${fdt(c0.t)}${who(c0)}${mi.confirm.length>1?' · tổng '+mi.confirm.length+' lần':''}</small></div></div>`
+        :held(r)?`<div class="mst warn"><i>!</i><div><b>Xác nhận giữ chỗ</b><small>Chưa gửi · khách đã cọc, nên gửi ngay</small></div></div>`
+        :`<div class="mst"><i>–</i><div><b>Xác nhận giữ chỗ</b><small>Chưa gửi · chờ khách cọc</small></div></div>`;
+      return `<div class="card"><div class="h4">Email cho khách</div>${r.em?rowR+rowC:'<div class="hint" style="margin:0 0 8px">Khách không để lại email.</div>'}
+      ${me.perm.mail.length&&r.em?`<div style="display:flex;flex-direction:column;gap:8px;margin-top:10px">
+      ${paying(r)&&me.perm.mail.includes('confirm')?`<button class="btn ${held(r)&&!c0?'amber':''}" data-mail="confirm" ${held(r)?'':'disabled title="Chỉ gửi sau khi khách đã cọc"'}>${ICO.mail} ${c0?'Gửi lại email xác nhận giữ chỗ':'Gửi email xác nhận giữ chỗ'}</button>`:''}
+      ${me.perm.mail.includes('receipt')?`<button class="btn" data-mail="receipt">${ICO.mail} Gửi lại email "Đã nhận đăng ký"</button>`:''}</div><div class="hint">Gửi từ Gmail High Comedia tới ${esc(r.em)}.</div>`:''}</div>`})():''}
     ${asg!=='none'?`<div class="card"><div class="h4">Người phụ trách</div><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">${r.assignee===me.email?'<b>Bạn đang phụ trách</b><button class="btn sm" data-asg="">Bỏ nhận</button>':`<button class="btn sm dark" data-asg="${esc(me.email)}">Tôi nhận việc này</button>${r.assignee&&asg==='all'?'<button class="btn sm" data-asg="">Bỏ giao</button>':''}`}${asg==='all'?`<div class="inl" style="width:100%;margin-top:4px"><input id="asgin" placeholder="hoặc giao cho email…" value=""><button class="btn" id="asgbtn">Giao</button></div>`:''}</div></div>`:''}
     <div class="card"><div class="h4">Thông tin</div><div class="kv">${kv.map(([a,b])=>`<span>${esc(a)}</span><b>${esc(b)}</b>`).join('')}</div></div>
     ${can('note')?`<div class="card"><div class="h4">Ghi chú nội bộ</div><textarea id="note" placeholder="Ví dụ: đã gọi, hẹn chuyển khoản tối nay…">${esc(r.inote||'')}</textarea><div class="hint" id="nsv">Tự lưu khi rời ô.</div></div>`:''}
@@ -814,7 +862,7 @@ function setStatus(r,s,isUndo){
 function sendMail(r,type){if(!confirm('Gửi email tới '+r.em+'?'))return;
   const t=toast('<span>✉ Đang gửi email tới <b>'+esc(r.em)+'</b>…</span>');
   pending++;saveInd();
-  const job=()=>api('mail',{kind:r.k,code:r.id,type}).then(res=>{if(res.ok){toast('<span>✉ Đã gửi tới <b>'+esc(r.em)+'</b></span>');LOG.push({t:new Date(),who:me.name+' <'+me.email+'>',act:type==='confirm'?'Gửi email xác nhận':'Gửi lại email nhận ĐK',code:r.id,d:r.em});if(cur&&cur.id===r.id)openDr(r.id,true)}else toast('<span>⚠ '+esc(ERR[res.error]||res.error)+'</span>')}).catch(()=>toast('<span>⚠ Mất kết nối, email chưa gửi.</span>')).finally(()=>{pending--;saveInd()});
+  const job=()=>api('mail',{kind:r.k,code:r.id,type}).then(res=>{if(res.ok){toast('<span>✉ Đã gửi tới <b>'+esc(r.em)+'</b></span>');LOG.push({t:new Date(),who:me.name+' <'+me.email+'>',act:type==='confirm'?'Gửi email xác nhận':'Gửi lại email nhận ĐK',code:r.id,d:r.em});rerender(r)}else toast('<span>⚠ '+esc(ERR[res.error]||res.error)+'</span>')}).catch(()=>toast('<span>⚠ Mất kết nối, email chưa gửi.</span>')).finally(()=>{pending--;saveInd()});
   chain=chain.then(job,job);
 }
 function addPaid(r,v){v=Math.round(Number(String(v).replace(/\D/g,'')));if(!v)return;
@@ -841,11 +889,11 @@ function delta(a,b,inv){if(!b)return '<span class="mu">chưa có kỳ trước</
 const SRC_MAP=[[/facebook|fb|l\.facebook|m\.facebook|instagram/i,'Facebook'],[/tiktok/i,'TikTok'],[/google/i,'Google'],[/zalo/i,'Zalo'],[/\(direct\)/i,'Truy cập thẳng']];
 function srcName(s){for(const [re,n] of SRC_MAP)if(re.test(s))return n;return s==='(not set)'?'Không rõ':s}
 function pageName(p){const m={'/':'Trang chủ','/khoa-hoc':'Khoá học','/khoa-hoc-drop-in':'Drop-in','/khoa-hoc-improv-1':'Improv 1','/khoa-hoc-improv-2':'Improv 2','/khoa-hoc-kids':'Thiếu nhi','/khoa-hoc-performer-1':'Performer 1','/khoa-hoc-performer-2':'Performer 2','/ung-tac':'Ứng tác là gì','/danh-cho-ai':'Dành cho ai','/buoi-tap':'Một buổi tập','/bao-chi':'Báo chí','/ve-high-club':'Về High Club','/ung-dung-ung-tac':'Doanh nghiệp','/kien-thuc/':'Kiến thức (tổng)','/chinh-sach':'Chính sách'};const k=p.replace(/\.html$/,'').replace(/\/index$/,'/');return m[k]||(k.startsWith('/kien-thuc/')?'📖 '+(KT_TITLES[k.slice(11).replace(/\/$/,'')]||k.slice(11).replace(/\/$/,'').replace(/-/g,' ')):k)}
-async function loadAna(force){
+async function loadAna(force,fresh){
   if((window._gsVer||0)<11){$('#ana').innerHTML='<div class="note">⚠ <b>Apps Script chưa được cập nhật bản mới.</b> Cần dán 3 file Form-Code (v11), Admin, Analytics, chạy <b>setup</b>, bật dịch vụ <b>Google Analytics Data API</b>, rồi <b>Triển khai › Phiên bản mới</b>.</div>';return}
   if(anaLoading)return; if(anaData[anaDays]&&!force){renderAna();return}
   anaLoading=true; $('#ana').style.opacity=.55;
-  try{const r=await api('analytics',{days:anaDays});if(r.ok){anaData[anaDays]=r;renderAna()}else $('#ana').innerHTML=`<div class="note">⚠ ${esc(ERR[r.error]||r.error)}</div>`}
+  try{const r=await api('analytics',fresh?{days:anaDays,fresh:1}:{days:anaDays});if(r.ok){anaData[anaDays]=r;renderAna()}else $('#ana').innerHTML=`<div class="note">⚠ ${esc(ERR[r.error]||r.error)}</div>`}
   catch(e){}finally{anaLoading=false;$('#ana').style.opacity=1}
 }
 /* Clarity: chuẩn hoá tên chỉ số, lấy số đầu tiên tìm thấy trong các trường */
@@ -868,13 +916,66 @@ function claritySummary(rows){
   return {last:day(last),hist:tot.map(day),urls:Object.values(urls).sort((a,b)=>(b.sess||0)-(a.sess||0)).slice(0,12),dev,at:last.at};
 }
 function bars(list,valK,labK,color){const mx=Math.max(1,...list.map(x=>x[valK]||0));return `<div class="src">${list.map(x=>`<div class="sr"><span title="${esc(x[labK])}" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(x[labK])}</span><div class="b"><i style="width:${(x[valK]||0)/mx*100}%;${color?'background:'+color:''}"></i></div><span class="n">${nf(x[valK])}</span></div>`).join('')}</div>`}
+/* ===================== GỢI Ý HÀNH ĐỘNG (mục tiêu: tuyển học viên) ===================== */
+function buildRecs(X){
+  const o=[], {U,UP,courseU,regU,openU,leadU,lead,errN,SL,mobShare,avgSess,regN,days,cl,kt,rt}=X, wk=Math.max(1,days/7), perWk=U/wk;
+  const holdRate=X.heldN&&lead?Math.min(1,X.heldN/lead):.5, convU=U?leadU/U:0;
+  // 1) Lớp sắp khai giảng chưa đủ người
+  if(R.length&&Object.keys(CLASSES).length){classStats().filter(s=>s.days!=null&&s.held<MIN_CLASS&&s.days<=45).sort((a,b)=>a.days-b.days).slice(0,2).forEach(s=>{
+    const need=MIN_CLASS-s.held, wait=s.reg-s.held, name=(s.c.en||s.id)+(s.co?' '+s.co.code:''), weeks=Math.max(1,s.days/7);
+    const visNeed=convU>0?Math.ceil(Math.max(0,need-wait*.5)/(convU*holdRate)/weeks):null;
+    o.push({lv:s.days<=14?3:2,ic:'🎯',t:`${name}: cần thêm ${need} người giữ chỗ`,s:`Còn ${s.days} ngày khai giảng · đang có ${s.held}/${MIN_CLASS} người tối thiểu`,
+      why:`Lớp có ${s.reg} đăng ký, ${s.held} người đã cọc${wait?`, ${wait} người chưa cọc`:''}. Mỗi tuần cần chốt khoảng ${Math.ceil(need/weeks)} người.${visNeed?` Với tỷ lệ chuyển đổi hiện tại (${pct(convU)}), web cần thêm khoảng <b>${nf(visNeed)} người truy cập/tuần</b> chỉ cho lớp này.`:''}`,
+      steps:[wait?`Gọi/Zalo ${wait} người đã đăng ký chưa cọc trong hôm nay, nhắc hạn giữ chỗ 48h.`:'',
+        'Đăng 2–3 video TikTok/Reels tuần này dẫn thẳng về trang khoá học (link bio), nhấn ngày khai giảng và số chỗ còn lại.',
+        s.wl?`Báo cho ${s.wl} người trong danh sách chờ.`:'Nhắc ưu đãi "đi cùng bạn" để một người kéo thêm một người.',
+        s.days<=14?'Cân nhắc chạy quảng cáo nhỏ nhắm Hà Nội, 20–35 tuổi, trong 7 ngày tới.':''].filter(Boolean),go:'cls:'+s.key})})}
+  // 2) Đăng ký chưa xử lý
+  if(R.length){const lateN=R.filter(r=>live(r)&&r.s==='Mới'&&r.k!=='waitlist'&&hrs(r.t)>(SLA[r.k]||24)).length, unpaid=R.filter(r=>live(r)&&paying(r)&&!held(r)&&r.s!=='Mới').length;
+    if(lateN)o.push({lv:3,ic:'⏰',t:`${lateN} người đăng ký chờ liên hệ quá 24h`,s:'Khách nguội rất nhanh, gọi trong hôm nay',why:'Người vừa đăng ký có hứng thú cao nhất trong 24h đầu. Sau 2 ngày, tỷ lệ chốt thường giảm rõ.',steps:['Mở Tổng quan › Cần xử lý › Quá hạn, gọi lần lượt từ trên xuống.','Không nghe máy: nhắn Zalo kèm lịch khai giảng và cách giữ chỗ.'],go:'q:late'});
+    if(unpaid)o.push({lv:2,ic:'💸',t:`${unpaid} người đã liên hệ nhưng chưa cọc`,s:'Đây là nguồn chốt nhanh nhất',why:'Họ đã biết lớp và đã nói chuyện với mình, chỉ cần một lý do để cọc ngay.',steps:['Nhắn Zalo: còn bao nhiêu chỗ, hạn giữ chỗ, số tài khoản.','Gợi ý cọc trước 1 triệu, phần còn lại đóng trước khai giảng.'],go:'q:pay'})}
+  // 3) Form
+  if(errN)o.push({lv:3,ic:'🛠',t:`${errN} lần gửi form bị lỗi`,s:'Mất khách ngay ở bước cuối',why:`GA ghi nhận ${errN} lần khách bấm gửi nhưng form báo lỗi.`,steps:['Tự thử gửi form trên điện thoại và máy tính.','Mở Clarity › Recordings, lọc sự kiện form_error để xem khách gặp lỗi gì.']});
+  if(openU>=5&&leadU/openU<.5)o.push({lv:2,ic:'📝',t:`${pct(1-leadU/openU)} người mở form rồi bỏ dở`,s:`${nf(openU)} người mở → ${nf(leadU)} người gửi`,why:'Form dài hoặc hỏi nhiều thông tin khiến khách ngại. Mục tiêu nên đạt trên 50%.',steps:['Xem Clarity recordings ở trang có form để biết khách dừng ở ô nào.','Cân nhắc bớt ô không bắt buộc (Biết qua, Ghi chú).','Thêm dòng "Hoặc nhắn Zalo cho nhanh" ngay trong form.']});
+  // 4) Trang khoá học & nút đăng ký
+  if(U>=20&&courseU/U<.3)o.push({lv:2,ic:'🧭',t:'Khách chưa tìm tới trang khoá học',s:`Chỉ ${pct(courseU/U)} người truy cập vào xem khoá học`,why:'Muốn tuyển được học viên thì khách phải xem trang khoá học. Hiện phần lớn khách dừng ở trang chủ hoặc bài viết.',steps:['Thêm khối "Khoá sắp khai giảng" có nút bấm ở cuối mỗi bài Kiến thức.','Đưa lịch khai giảng gần nhất lên màn hình đầu của trang chủ.']});
+  if(courseU>=10&&regU/courseU<.15)o.push({lv:2,ic:'👆',t:'Ít người bấm "Đăng ký" ở trang khoá học',s:`${nf(regU)}/${nf(courseU)} người xem khoá học bấm đăng ký (${pct(regU/courseU)})`,why:'Khách đã quan tâm nhưng chưa đủ lý do để bấm. Nên đạt 15–25%.',steps:['Nêu rõ ngày khai giảng, số chỗ còn lại, học phí ngay cạnh nút.','Thêm cảm nhận học viên thật hoặc video buổi tập gần nút đăng ký.']});
+  // 5) Lượng truy cập
+  if(perWk<50)o.push({lv:2,ic:'📣',t:'Lượng truy cập còn thấp',s:`Khoảng ${nf(perWk)} người/tuần`,why:`Để mở được một lớp ${MIN_CLASS} người, với tỷ lệ chuyển đổi phổ biến 2–4% và một nửa người đăng ký sẽ cọc, cần khoảng ${nf(MIN_CLASS/0.03/0.5)} người truy cập trước khai giảng.`,steps:['Giữ nhịp 4–5 video TikTok/tuần, mỗi video gắn lời kêu gọi xem lịch lớp.','Chia sẻ bài Kiến thức vào các nhóm Facebook về kịch nói, kỹ năng mềm ở Hà Nội.','Gắn link web vào bio TikTok, Facebook, Zalo OA.']});
+  if(UP&&U<UP*.8)o.push({lv:2,ic:'📉',t:`Truy cập giảm ${Math.round((1-U/UP)*100)}% so với kỳ trước`,s:`${nf(U)} người, kỳ trước ${nf(UP)}`,why:'Thường do giảm tần suất đăng nội dung hoặc một kênh ngừng mang khách về.',steps:['Xem mục "Khách đến từ đâu" để biết kênh nào giảm.','Đăng lại nội dung từng chạy tốt ở kênh đó.']});
+  // 6) Kênh
+  const best=SL.filter(x=>x.s>=5&&x.lead).sort((a,b)=>b.lead/b.s-a.lead/a.s)[0], dry=SL.filter(x=>x.s>=10&&!x.lead)[0];
+  if(best)o.push({lv:1,ic:'🚀',t:`${best.n} đang chuyển đổi tốt nhất`,s:`${nf(best.s)} phiên → ${best.lead} lần gửi form (${pct(best.lead/best.s)})`,why:'Kênh có tỷ lệ gửi form cao nhất là nơi đáng dồn thêm công sức và ngân sách.',steps:[`Tăng tần suất đăng trên ${best.n}.`,'Nếu chạy quảng cáo, ưu tiên kênh này trước.']});
+  if(dry)o.push({lv:1,ic:'🔍',t:`${dry.n} mang khách về nhưng chưa ra đăng ký`,s:`${nf(dry.s)} phiên, 0 lần gửi form`,why:'Khách từ kênh này có thể chưa đúng đối tượng, hoặc trang đích chưa khớp với nội dung họ vừa xem.',steps:['Kiểm tra link từ kênh này đang dẫn về trang nào.','Dẫn thẳng về trang khoá học thay vì trang chủ.']});
+  // 7) Trải nghiệm (Clarity)
+  if(cl){const bad=cl.urls.find(u=>(u.rage||0)>=5||(u.dead||0)>=20);
+    if(bad)o.push({lv:2,ic:'😤',t:`Trang ${pageName(bad.p)} có nhiều lượt bấm hỏng`,s:`Bấm giận dữ ${bad.rage!=null?bad.rage.toFixed(0)+'%':'–'} · chỗ chết ${bad.dead!=null?bad.dead.toFixed(0)+'%':'–'}`,why:'Khách bấm vào chỗ họ tưởng là nút nhưng không có gì xảy ra, dễ bỏ đi.',steps:['Mở Clarity › Heatmaps trang này, xem vùng bị bấm nhiều.','Biến vùng đó thành nút/link thật, hoặc bỏ kiểu trông giống nút.']});
+    const cs=cl.urls.find(u=>/khoa-hoc/.test(u.p)&&u.scroll!=null&&u.scroll<40&&(u.sess||0)>=5);
+    if(cs)o.push({lv:2,ic:'📜',t:`Khách chỉ đọc ${Math.round(cs.scroll)}% trang ${pageName(cs.p)}`,s:'Phần lớn không kéo tới nút đăng ký cuối trang',why:'Nếu nút đăng ký nằm ở cuối trang, đa số khách không thấy.',steps:['Thêm nút đăng ký ở màn hình đầu và giữa trang.','Rút gọn đoạn giới thiệu đầu trang.']})}
+  if(mobShare>.7)o.push({lv:1,ic:'📱',t:`${pct(mobShare)} khách xem bằng điện thoại`,s:'Ưu tiên trải nghiệm di động',why:'Mọi thay đổi nên thử trên điện thoại trước.',steps:['Tự đi hết đường: trang chủ → khoá học → đăng ký trên điện thoại.']});
+  // 8) Nội dung
+  if(kt&&kt[0])o.push({lv:1,ic:'📖',t:`Bài "${pageName(kt[0].pagePath).replace('📖 ','')}" được đọc nhiều nhất`,s:`${nf(kt[0].screenPageViews)} lượt xem`,why:'Bài đã thu hút khách là chỗ tốt để giới thiệu khoá học.',steps:['Thêm đoạn kết dẫn sang khoá học liên quan.','Làm 1 video TikTok ngắn từ ý chính của bài.']});
+  // 9) Chất lượng dữ liệu
+  if(avgSess>900)o.push({lv:1,ic:'🧹',t:'Lọc lượt truy cập của chính mình',s:`Thời gian/phiên ${dur(avgSess)} là bất thường`,why:'Có thể do mình và đội mở web để thử, làm sai lệch số liệu khi lượt truy cập còn ít.',steps:['GA4 › Quản trị › Luồng dữ liệu › Định cấu hình thẻ › Xác định lưu lượng truy cập nội bộ (thêm IP nhà, văn phòng).','GA4 › Quản trị › Bộ lọc dữ liệu › bật bộ lọc "Internal Traffic".']});
+  if(regN>5&&regN>lead*1.5)o.push({lv:1,ic:'🧪',t:'Sheet còn dữ liệu thử',s:`${regN} đăng ký trong Sheet nhưng GA chỉ ghi ${lead} lần gửi form`,why:'Dữ liệu thử làm sai sĩ số lớp và các tỷ lệ.',steps:['Sheet › menu High Comedia › 🧹 Xoá toàn bộ dữ liệu thử (khi sẵn sàng mở đăng ký thật).']});
+  if(!o.length)o.push({lv:1,ic:'✅',t:'Các chỉ số đang ổn',s:'Giữ nhịp đăng nội dung và gọi khách đúng hạn',why:'',steps:[]});
+  return o.sort((a,b)=>b.lv-a.lv);
+}
+let recOpen=-1, recAll=false;
+function recsHtml(list,rt){
+  const lvC={3:'r',2:'a',1:'g'}, shown=recAll?list:list.slice(0,3);
+  return `<div class="card recs"><div class="ch"><h3>🎯 Việc nên làm để tuyển học viên</h3><span class="s">${rt&&rt.users!=null?`<span class="rtd"></span>${rt.users} người đang xem web · `:''}cập nhật ${new Date().toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'})}</span></div>
+  ${shown.map((x,i)=>`<div class="rec ${lvC[x.lv]} ${recOpen===i?'on':''}" data-rec="${i}"><div class="rh"><span class="ri">${x.ic}</span><div class="rt"><b>${esc(x.t)}</b><small>${x.s}</small></div>${x.why||x.steps.length?'<span class="rc">›</span>':''}</div>
+    ${recOpen===i?`<div class="rb">${x.why?`<p>${x.why}</p>`:''}${x.steps.length?`<ol>${x.steps.map(s=>`<li>${s}</li>`).join('')}</ol>`:''}${x.go?`<button class="btn sm" data-recgo="${x.go}">Mở danh sách liên quan →</button>`:''}</div>`:''}</div>`).join('')}
+  ${list.length>3?`<button class="recmore" data-recall>${recAll?'Thu gọn':'Xem thêm '+(list.length-3)+' gợi ý'}</button>`:''}</div>`;
+}
 function renderAna(){
-  const A=anaData[anaDays]; if(!A)return; const ga=A.ga, rg=A.regs||{}, cl=claritySummary(A.clarity||[]);
+  const A=anaData[anaDays]; if(!A)return; window._recCtx=null; const ga=A.ga, rg=A.regs||{}, cl=claritySummary(A.clarity||[]);
   const regN=Object.values(rg.byKind||{}).reduce((a,b)=>a+b,0);
   const today=new Date(), dkey=d=>new Date(d.getTime()+7*3600e3).toISOString().slice(0,10);
   let regPrev=0; Object.entries(rg.byDay||{}).forEach(([d,o])=>{const age=(today-new Date(d+'T12:00:00+07:00'))/864e5;if(age>=anaDays&&age<2*anaDays)regPrev+=Object.values(o).reduce((a,b)=>a+b,0)});
   $('#aat').textContent=ga?'GA '+new Date(ga.at).toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'})+(cl?' · Clarity '+new Date(cl.at).toLocaleString('vi-VN',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'}):''):'';
-  let h='';
+  let h='<!--RECS-->';
   if(!ga)h+=`<div class="note">⚠ Chưa lấy được Google Analytics: <b>${esc({noprop:'chưa có GA4 · Property ID trong tab Cấu hình',noservice:'chưa bật dịch vụ "Google Analytics Data API" trong Apps Script'}[A.gaErr]||A.gaErr)}</b>.</div>`;
   if(!A.clarityToken)h+='<div class="note">⚠ Chưa có <b>Clarity · API token</b> trong tab ⚙ Cấu hình.</div>';
   else if(!cl)h+='<div class="note">ℹ Clarity đã có token, dữ liệu đầu tiên về lúc 7h hoặc 19h (hoặc Sheet › menu High Comedia › "Cập nhật số liệu Clarity ngay").</div>';
@@ -882,6 +983,7 @@ function renderAna(){
     const T=ga.totals||[], cur=T.find(x=>x.dateRange==='date_range_0')||T[0]||{}, prv=T.find(x=>x.dateRange==='date_range_1')||{};
     const ev=n=>(ga.events||[]).filter(x=>x.eventName===n&&(!x.dateRange||x.dateRange==='date_range_0')).reduce((a,x)=>a+x.eventCount,0);
     const evp=n=>(ga.events||[]).filter(x=>x.eventName===n&&x.dateRange==='date_range_1').reduce((a,x)=>a+x.eventCount,0);
+    const evU=n=>(ga.events||[]).filter(x=>x.eventName===n&&(!x.dateRange||x.dateRange==='date_range_0')).reduce((a,x)=>a+(x.totalUsers||0),0)||ev(n);
     const lead=ev('generate_lead'), leadP=evp('generate_lead'), U=cur.activeUsers||0;
     const conv=U?Math.min(1,lead/U):0, convP=prv.activeUsers?Math.min(1,leadP/prv.activeUsers):0;
     const kp=(l,v,d,hot,tip)=>`<div class="card kpi ${hot?'hot':''}" ${tip?`title="${esc(tip)}"`:''}><div class="l">${l}</div><div class="v">${v}</div><div class="d">${d}</div></div>`;
@@ -898,16 +1000,10 @@ function renderAna(){
     (ga.srcEvents||[]).filter(x=>x.eventName==='generate_lead').forEach(x=>{const n=srcName(x.sessionSource);sm[n]=sm[n]||{n,s:0,lead:0};sm[n].lead+=x.eventCount});
     const SL=Object.values(sm).sort((a,b)=>b.s-a.s).slice(0,8), totS=SL.reduce((a,x)=>a+x.s,0)||1;
     const open=ev('form_open'), errN=ev('form_error'), mob=(ga.devices||[]).find(x=>x.deviceCategory==='mobile'), allDev=(ga.devices||[]).reduce((a,x)=>a+x.sessions,0);
-    const ins=[];
-    if(SL[0])ins.push(`<b>${esc(SL[0].n)}</b> mang về ${Math.round(SL[0].s/totS*100)}% lượt truy cập.`);
-    if(open)ins.push(`${nf(open)} lần mở form → ${nf(lead)} lần gửi thành công (<b>${pct(lead/open)}</b>). ${lead/open<.4?'Nhiều người bỏ dở form: cân nhắc rút gọn form hoặc thêm nút Zalo trong form.':'Form hoạt động tốt.'}`);
-    if(errN)ins.push(`<span class="dn">${errN} lần gửi form bị lỗi</span>, nên kiểm tra.`);
-    if(mob&&allDev)ins.push(`${Math.round(mob.sessions/allDev*100)}% khách xem bằng điện thoại.`);
-    if(regN>lead*1.5&&regN>5)ins.push(`Sheet có ${regN} đăng ký nhưng GA chỉ ghi ${lead} lần gửi form: có thể còn dữ liệu thử trong Sheet, hoặc GA mới gắn chưa lâu.`);
-    h+=`<div class="card ainsight"><div class="h4">💡 Nhận định nhanh</div><ul>${ins.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
     // ---- phễu dạng bậc
-    const fs=[['👀','Truy cập',U],['📚','Xem khoá học',courseU],['👆','Bấm đăng ký',ev('click_register')],['📝','Mở form',open],['✅','Gửi form',lead],['💰','Đã giữ chỗ',rg.held||0]];
-    h+=`<div class="card" style="margin-bottom:14px"><div class="ch"><h3>Phễu: từ truy cập đến giữ chỗ</h3><span class="s">% = so với bước trước</span></div><div class="fstep">${fs.map((x,i)=>{const p=i&&fs[i-1][2]?x[2]/fs[i-1][2]:null;return `<div class="fsi ${i===fs.length-1?'g':''}"><div class="fic">${x[0]}</div><b>${nf(x[2])}</b><span>${x[1]}</span>${p!=null?`<em class="${p<.3?'lo':''}">${p>1?'↑':''}${pct(Math.min(p,9.99)).replace(/,0%$/,'%')}</em>`:''}</div>`}).join('')}</div></div>`;
+    const regU=evU('click_register'), openU=evU('form_open'), leadU=evU('generate_lead');
+    const fs=[['👀','Truy cập',U],['📚','Xem khoá học',courseU],['👆','Bấm đăng ký',regU],['📝','Mở form',openU],['✅','Gửi form',leadU],['💰','Đã giữ chỗ',rg.held||0]];
+    h+=`<div class="card" style="margin-bottom:14px"><div class="ch"><h3>Phễu: từ truy cập đến giữ chỗ</h3><span class="s">tính theo số người · % so với bước trước</span></div><div class="fstep">${fs.map((x,i)=>{const p=i&&fs[i-1][2]?x[2]/fs[i-1][2]:null;return `<div class="fsi ${i===fs.length-1?'g':''}"><div class="fic">${x[0]}</div><b>${nf(x[2])}</b><span>${x[1]}</span>${p!=null?`<em class="${p<.3?'lo':''}" ${p>1?'title="Nhiều hơn bước trước: khách có thể vào thẳng bước này, hoặc có dữ liệu thử"':''}>${p>1?'↑':pct(p).replace(/,0%$/,'%')}</em>`:''}</div>`}).join('')}</div>${(rg.held||0)>leadU&&leadU>=0&&(rg.held||0)>3?'<div class="hint" style="margin-top:8px">"Đã giữ chỗ" lấy từ Sheet, đang lớn hơn số người gửi form: có thể còn dữ liệu thử.</div>':''}</div>`;
     // ---- biểu đồ ngày (HTML) + nguồn
     const days=[];for(let i=anaDays-1;i>=0;i--)days.push(dkey(new Date(today-i*864e5)));
     const uMap={};(ga.daily||[]).forEach(x=>uMap[x.date.slice(0,4)+'-'+x.date.slice(4,6)+'-'+x.date.slice(6)]=x.activeUsers);
@@ -928,6 +1024,7 @@ function renderAna(){
     const DV=(ga.devices||[]).map(x=>({l:{mobile:'Điện thoại',desktop:'Máy tính',tablet:'Máy tính bảng'}[x.deviceCategory]||x.deviceCategory,v:x.sessions,c:{mobile:'#FFA406',desktop:'#1A1A1A',tablet:'#8A4B00'}[x.deviceCategory]||'#aaa'}));
     const BOT=/^(Ashburn|Boardman|Council Bluffs|Chicago|San Jose|Santa Clara|Mountain View|Columbus|Dublin|Frankfurt|Singapore|The Dalles|Quincy)$/;
     const cm={};(ga.cities||[]).forEach(x=>{let c=x.city;if(!c||c==='(not set)')c='Không rõ';else if(BOT.test(c))c='Máy chủ nước ngoài (bot)';cm[c]=(cm[c]||0)+x.activeUsers});
+    window._recCtx={U,UP:prv.activeUsers||0,courseU,regU,openU,leadU,lead,errN,SL,mobShare:mob&&allDev?mob.sessions/allDev:0,avgSess:cur.averageSessionDuration||0,regN,days:anaDays,kt,heldN:rg.held||0};
     const CT=Object.entries(cm).map(([l,v])=>({l,v})).sort((a,b)=>b.v-a.v).slice(0,6);
     const ACT=[['click_register','Bấm đăng ký'],['form_open','Mở form'],['generate_lead','Gửi form thành công'],['click_zalo','Bấm Zalo'],['click_call','Bấm gọi'],['click_facebook','Bấm Facebook'],['form_error','Gửi form lỗi']].map(([k,l])=>({l,v:ev(k)})).filter(x=>x.v||x.l==='Gửi form thành công');
     h+=`<div class="an3"><div class="card"><div class="ch"><h3>Thiết bị</h3></div><div class="split">${DV.map(x=>`<i style="width:${x.v/(allDev||1)*100}%;background:${x.c}"></i>`).join('')}</div>${DV.map(x=>`<div class="dvl"><span style="background:${x.c}"></span>${x.l}<b>${pct(x.v/(allDev||1))}</b></div>`).join('')}</div>
@@ -944,7 +1041,11 @@ function renderAna(){
       ${cl.urls.length?`<table class="tb" style="margin-top:12px"><tr><th>Trang</th><th class="n">Phiên</th><th class="n">Giận dữ</th><th class="n">Chỗ chết</th><th class="n hm">Cuộn</th></tr>${cl.urls.slice(0,8).map(u=>`<tr class="${flag(u.rage,5)||flag(u.dead,20)?'bad':''}"><td><span class="pth">${esc(pageName(u.p))}</span></td><td class="n">${nf(u.sess)}</td><td class="n">${u.rage!=null?u.rage.toFixed(0)+'%':'–'}</td><td class="n">${u.dead!=null?u.dead.toFixed(0)+'%':'–'}</td><td class="n hm">${u.scroll!=null?Math.round(u.scroll)+'%':'–'}</td></tr>`).join('')}</table>`:''}
       <div class="ins">💡 ${bad.length?`Trang <b>${esc(pageName(bad[0].p))}</b> có nhiều lượt bấm hỏng: mở Clarity › Recordings, lọc trang này để xem khách bấm vào đâu.`:'Không có trang nào bị bấm hỏng bất thường.'} ${H.length>1?`Đã lưu ${H.length} ngày dữ liệu.`:'Dữ liệu Clarity sẽ dày dần mỗi ngày.'}</div></div>`;
   }
-  $('#ana').innerHTML=h||'<div class="note">Chưa có dữ liệu.</div>';
+  let recH='';
+  if(ga&&window._recCtx){window._recs=buildRecs(Object.assign({},window._recCtx,{cl,rt:A.rt}));recH=recsHtml(window._recs,A.rt)}
+  else if(A.rt&&A.rt.users!=null)recH=`<div class="note"><span class="rtd"></span>${A.rt.users} người đang xem web</div>`;
+  if((window._gsVer||0)<12)recH+='<div class="note">ℹ Cập nhật Apps Script (Admin.gs, Analytics.gs mới) để có số người đang xem và nút Làm mới lấy lại Clarity.</div>';
+  $('#ana').innerHTML=(h||'<div class="note">Chưa có dữ liệu.</div>').replace('<!--RECS-->',recH);
 }
 
 /* ===================== LỚP HỌC: sĩ số & danh sách học viên ===================== */
@@ -988,14 +1089,14 @@ function renderCls(){
   const F=[['all','Tất cả',all.length],['ok','Sẵn sàng',nOk],['hold','Còn thiếu tiền',nHold],['wait','Chưa cọc',nWait]];
   let rows=all.filter(r=>cfilter==='all'||(cfilter==='wait'?r._rd[2]<=1:r._rd[0]===cfilter)).sort((a,b)=>b._rd[2]-a._rd[2]||a.t-b.t);
   const kids=C.id==='kids', money=can('money');
-  const head=['#','Mã','Học viên',kids?'Phụ huynh':null,'Năm sinh','SĐT (Zalo)',kids?'Lưu ý sức khoẻ':'Biết qua',money?'Học phí':null,money?'Đã thu':null,money?'Còn lại':null,'Tình trạng'].filter(x=>x!==null);
+  const head=['#','Mã','Học viên',kids?'Phụ huynh':null,'Năm sinh','SĐT (Zalo)',kids?'Lưu ý sức khoẻ':'Biết qua',money?'Học phí':null,money?'Đã thu':null,money?'Còn lại':null,'Tình trạng','Email XN'].filter(x=>x!==null);
   $('#croster').innerHTML=`<div class="printhd"><h2 style="margin:0">${esc(C.c.vi||'')} · ${esc(C.c.en)}${C.co?' · Lớp '+esc(C.co.code):''}</h2><div>${C.co&&C.co.start?'Khai giảng '+dmy(new Date(C.co.start))+'/'+C.co.start.slice(0,4)+(C.co.time?' · '+esc(C.co.time):''):''} · In ngày ${new Date().toLocaleDateString('vi-VN')}</div></div>
     ${warn}<div class="csum">${S.map(x=>`<div class="card"><small>${x[0]}</small><b>${x[1]}</b></div>`).join('')}</div>
     <div class="card" style="padding:14px 14px 6px"><div class="ch"><h3>${esc(C.c.en)}${C.co?' · '+esc(C.co.code):''} <span class="s">${C.co&&C.co.start?dmy(new Date(C.co.start))+(C.co.time?' · '+esc(C.co.time):''):''}${cancel?' · '+cancel+' đã huỷ':''}</span></h3>
       <div class="seg" id="cseg">${F.map(f=>`<button data-cf="${f[0]}" class="${cfilter===f[0]?'on':''}">${f[1]} ${f[2]}</button>`).join('')}</div></div>
       <div class="cbar" title="Xanh đậm: đủ tiền · Xanh: đã cọc · Vàng: chưa cọc"><i style="width:${nOk/C.cap*100}%;background:#1F7A3E"></i><i style="width:${nHold/C.cap*100}%;background:#7CC895"></i><i style="width:${nWait/C.cap*100}%;background:#F5C25C"></i></div>
       <div class="tw" style="max-height:none;margin-top:10px"><table class="rost"><thead><tr>${head.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>
-      ${rows.length?rows.map((r,i)=>{const fee=feeOf(r),pd=r.paid||0;return `<tr class="rw" data-id="${r.id}"><td class="idx hm">${i+1}</td><td class="mu hm">${r.id}</td><td><b>${esc(studentName(r))}</b>${r.fr?' <span class="tg g">đi cùng bạn</span>':''}</td>${kids?`<td>${esc(r.n)}</td>`:''}<td>${esc(birthOf(r))}</td><td><a href="tel:${esc(r.ph)}" data-stop style="text-decoration:none">${esc(r.ph)}</a></td><td class="hm">${esc(kids?(r.health||''):(r.src||''))}</td>${money?`<td class="money hm">${money?mshort(fee):''}</td><td class="money hm">${pd?mshort(pd):'–'}</td><td class="money hm" style="color:${fee-pd>0?'var(--red)':'var(--green)'}">${fee-pd>0?mshort(fee-pd):'0'}</td>`:''}<td><span class="ready ${r._rd[0]}">${esc(r._rd[1])}</span></td></tr>`}).join(''):`<tr><td colspan="${head.length}"><div class="empty">Không có học viên trong mục này.</div></td></tr>`}
+      ${rows.length?rows.map((r,i)=>{const fee=feeOf(r),pd=r.paid||0;return `<tr class="rw" data-id="${r.id}"><td class="idx hm">${i+1}</td><td class="mu hm">${r.id}</td><td><b>${esc(studentName(r))}</b>${r.fr?' <span class="tg g">đi cùng bạn</span>':''}</td>${kids?`<td>${esc(r.n)}</td>`:''}<td>${esc(birthOf(r))}</td><td><a href="tel:${esc(r.ph)}" data-stop style="text-decoration:none">${esc(r.ph)}</a></td><td class="hm">${esc(kids?(r.health||''):(r.src||''))}</td>${money?`<td class="money hm">${money?mshort(fee):''}</td><td class="money hm">${pd?mshort(pd):'–'}</td><td class="money hm" style="color:${fee-pd>0?'var(--red)':'var(--green)'}">${fee-pd>0?mshort(fee-pd):'0'}</td>`:''}<td><span class="ready ${r._rd[0]}">${esc(r._rd[1])}</span></td><td>${(()=>{const c=mailInfo(r).confirm[0];return c?`<span class="mu" title="Đã gửi ${fdt(c.t)}">✓ ${fdt(c.t).split(' ').pop()}</span>`:held(r)&&r.em?'<span class="tg a">chưa gửi</span>':'<span class="mu">–</span>'})()}</td></tr>`}).join(''):`<tr><td colspan="${head.length}"><div class="empty">Không có học viên trong mục này.</div></td></tr>`}
       </tbody></table></div></div>`;
 }
 function rosterText(){
@@ -1022,6 +1123,10 @@ document.addEventListener('click',e=>{
   if(e.target.closest('#cprint')){window.print();return}
   if(e.target.closest('#ccopy')){const t=rosterText();(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast('<span>📋 Đã copy danh sách, dán vào Zalo được ngay</span>')).catch(()=>prompt('Copy danh sách:',t));return}
   const clrow=e.target.closest('.cl[id^="cls-"]');if(clrow&&!e.target.closest('button')){ccur=clrow.id.slice(4).replace('-',':');view('cls');return}
+  if(e.target.closest('#rfbtn')){refreshAll();return}
+  const rc=e.target.closest('[data-recgo]');if(rc){const g=rc.dataset.recgo;if(g.startsWith('cls:')){ccur=g.slice(4);cfilter='all';view('cls')}else if(g.startsWith('q:')){view('dash');qFilter=g.slice(2);$$('#qseg button').forEach(b=>b.classList.toggle('on',b.dataset.f===qFilter));renderQueue();setTimeout(()=>$('#queue').scrollIntoView({behavior:'smooth',block:'center'}),100)}return}
+  if(e.target.closest('[data-recall]')){recAll=!recAll;recOpen=-1;renderAna();return}
+  const rr=e.target.closest('.rec[data-rec]');if(rr){const i=+rr.dataset.rec;recOpen=recOpen===i?-1:i;renderAna();return}
   if(e.target.closest('#amore')){aAll=!aAll;renderAlerts();return}
   if(e.target.closest('#qmore')){qAll=!qAll;renderQueue();return}
   const qi=e.target.closest('.qi,tr.rw');if(qi){openDr(qi.dataset.id);return}

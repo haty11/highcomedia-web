@@ -50,28 +50,32 @@ a{color:#1A1A1A;-webkit-tap-highlight-color:transparent}
 .toc{display:flex;gap:18px;overflow-x:auto;scrollbar-width:none}.toc::-webkit-scrollbar{display:none}
 .mnav-t{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
 .mnav-b{width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;margin-right:-10px;-webkit-tap-highlight-color:transparent}
-.mnav-o{position:fixed;left:0;top:0;width:100vw;height:100vh;background:rgba(26,26,26,0.22);opacity:0;pointer-events:none;transition:opacity .25s;z-index:60}
-.mnav{position:fixed;top:0;right:0;height:100vh;height:100dvh;width:min(76vw,330px);box-sizing:border-box;background:rgba(26,26,26,0.78);-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);color:#F5EFE3;z-index:61;transform:translateX(105%);visibility:hidden;transition:transform .28s ease,visibility .28s;display:flex;flex-direction:column;padding:calc(10px + env(safe-area-inset-top,0px)) 22px calc(20px + env(safe-area-inset-bottom,0px));overflow-y:auto;box-shadow:-12px 0 32px rgba(0,0,0,0.18);border-left:1px solid rgba(245,239,227,0.08)}
-.mnav-t:checked ~ .mnav{transform:none;visibility:visible}
+.mnav-b svg path{stroke:#1A1A1A;animation:mnhb 2.4s ease-in-out 1s 3}
+@keyframes mnhb{0%,100%{stroke:#1A1A1A}50%{stroke:#FFA406}}
+@media (prefers-reduced-motion:reduce){.mnav-b svg path{animation:none}}
+.mnav-t:checked ~ .mnav-b svg path{stroke:#FFA406;animation:none}
+.mnav-o{position:fixed;inset:0;background:rgba(26,26,26,0.12);opacity:0;pointer-events:none;transition:opacity .2s;z-index:60}
+.mnav{position:fixed;top:calc(8px + env(safe-area-inset-top,0px));right:10px;width:min(78vw,292px);max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px);overflow-y:auto;box-sizing:border-box;
+ background:rgba(26,26,26,0.66);-webkit-backdrop-filter:blur(20px) saturate(150%);backdrop-filter:blur(20px) saturate(150%);color:#F5EFE3;z-index:61;border-radius:18px;
+ border:1px solid rgba(245,239,227,0.1);box-shadow:0 18px 40px rgba(0,0,0,0.22);padding:4px 16px 10px;
+ opacity:0;transform:translateY(-8px) scale(.98);transform-origin:top right;visibility:hidden;transition:opacity .18s,transform .2s,visibility .2s;text-transform:lowercase}
+.mnav-t:checked ~ .mnav{opacity:1;transform:none;visibility:visible}
 .mnav-t:checked ~ .mnav-o{opacity:1;pointer-events:auto}
-.mnav a{text-decoration:none;color:rgba(245,239,227,0.92)}
-.mnav .mh{display:flex;justify-content:space-between;align-items:center;height:48px;margin-bottom:10px}
-.mnav .mh span{font-size:10px;font-weight:600;letter-spacing:2px;color:rgba(255,164,6,0.85)}
-.mnav .mx{width:40px;height:40px;margin-right:-8px;display:flex;align-items:center;justify-content:center;cursor:pointer}
-.mnav .r{display:flex;justify-content:space-between;align-items:center;min-height:50px;font-size:16px;font-weight:400;letter-spacing:.01em;border-bottom:1px solid rgba(245,239,227,0.09)}
-.mnav .r i{font-style:normal;color:rgba(255,164,6,0.7);font-size:16px;font-weight:300}
+.mnav a{text-decoration:none;color:rgba(245,239,227,0.9)}
+.mnav .mh{display:flex;justify-content:space-between;align-items:center;height:42px;border-bottom:1px solid rgba(245,239,227,0.08)}
+.mnav .mh span{font-size:12px;font-weight:600;letter-spacing:.5px;color:#FFA406}
+.mnav .mx{width:36px;height:36px;margin-right:-8px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.mnav .r,.mnav summary{display:flex;justify-content:space-between;align-items:center;min-height:42px;font-size:14px;font-weight:400;letter-spacing:.01em;border-bottom:1px solid rgba(245,239,227,0.07);cursor:pointer;color:rgba(245,239,227,0.9);list-style:none;-webkit-tap-highlight-color:transparent}
+.mnav summary::-webkit-details-marker{display:none}
+.mnav .r i,.mnav summary i{font-style:normal;color:rgba(255,164,6,0.75);font-size:14px;transition:transform .2s}
+.mnav details[open]>summary i{transform:rotate(90deg)}
+.mnav details[open]>summary{color:#FFA406}
 .mnav .r.on{color:#FFA406;font-weight:500}
-.mnav .r small{font-size:11px;font-weight:600;color:rgba(245,239,227,0.5)}
-.mnav .sb{display:flex;flex-wrap:wrap;gap:6px;padding:8px 0 14px;border-bottom:1px solid rgba(245,239,227,0.09)}
-.mnav .sb a,.mnav .sb span{font-size:12px;font-weight:400;padding:5px 11px;border-radius:100px;border:1px solid rgba(245,239,227,0.18)}
-.mnav .sb span{border-color:#FFA406;color:#FFA406}
-.mnav .mc{margin-top:auto;padding-top:22px;display:flex;flex-direction:column;gap:8px}
-.mnav .mc a{height:44px;border-radius:100px;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:500;font-size:14px;letter-spacing:.01em}
-.mnav .mc .cta{background:#FFA406;color:#1A1A1A;font-weight:600}
-.mnav .mc .z{border:1px solid rgba(245,239,227,0.28);color:rgba(245,239,227,0.9)}
-main [id^="m-"],section[id^="m-"]{scroll-margin-top:104px}
-.mmore>summary{list-style:none}.mmore>summary::-webkit-details-marker{display:none}.mmore[open]>summary{display:none}
-.mnav .soon{font-size:10px;font-weight:600;color:rgba(245,239,227,0.45)}
+.mnav .sub{padding:2px 0 8px 12px;border-left:1px solid rgba(255,164,6,0.35);margin:6px 0 6px 2px}
+.mnav .sub a,.mnav .sub span{display:block;font-size:13px;padding:7px 0;color:rgba(245,239,227,0.72)}
+.mnav .sub span{color:#FFA406}
+.mnav .last{border-bottom:0}
+/*mnav-end*/
 ::selection{background:#FFE58F;color:#1A1A1A}::-moz-selection{background:#FFE58F;color:#1A1A1A}
 .kf{position:absolute;opacity:0;pointer-events:none}
 /* Thẻ lớp xen kẽ 2 nền; hc.js tự tính lại theo các thẻ đang hiển thị khi lọc */
@@ -281,18 +285,11 @@ html,body{background:#F5EFE3}
 <header style="position:sticky;top:env(safe-area-inset-top,0px);z-index:50;height:52px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;background:#F5EFE3;border-bottom:1px solid rgba(26,26,26,0.08)">
   <a href="/" style="display:flex;align-items:flex-end;gap:5px;font-weight:800;font-size:15px;text-decoration:none"><img src="img/logo-dark-ink.webp" alt="High" style="height:24px;width:auto;display:block"><span style="line-height:1">Comedia<i aria-hidden="true" style="display:inline-block;width:.38em;height:.38em;border-radius:50%;background:#AC1F01;margin-left:.07em;vertical-align:baseline;font-style:normal"></i></span></a>
   <input type="checkbox" id="m-nav" class="mnav-t" aria-label="Mở menu điều hướng" onchange="document.documentElement.style.overflow=this.checked?'hidden':''">
-  <label for="m-nav" class="mnav-b"><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Mở menu</span><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:#1A1A1A;stroke-width:2;stroke-linecap:round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></label>
+  <label for="m-nav" class="mnav-b"><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Mở menu</span><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke-width:2;stroke-linecap:round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></label>
   <label for="m-nav" class="mnav-o" aria-hidden="true"></label>
   <nav class="mnav" aria-label="Menu chính">
-    <div class="mh"><span>MENU</span><label for="m-nav" class="mx" aria-label="Đóng menu"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:#F5EFE3;stroke-width:2;stroke-linecap:round"><path d="M6 6l12 12M18 6L6 18"></path></svg></label></div>
-    <a class="r" href="ung-tac" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Ứng tác là gì<i aria-hidden="true">›</i></a>
-    <div class="sb"><a href="danh-cho-ai" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Dành cho ai</a><a href="buoi-tap" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Một buổi tập</a><a href="bao-chi" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Báo chí</a></div>
-    <span class="r on">Khoá học &amp; lịch học<small>đang xem</small></span>
-    <a class="r" href="ung-dung-ung-tac" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Ứng tác doanh nghiệp<i aria-hidden="true">›</i></a>
-    <a class="r" href="/#m-cong-dong" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Cộng đồng<i aria-hidden="true">›</i></a>
-    <a class="r" href="kien-thuc/" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Kiến thức<i aria-hidden="true">›</i></a>
-    <a class="r" href="ve-high-club" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">Về High Club<i aria-hidden="true">›</i></a>
-    <div class="mc"><a class="cta" href="#" data-hc-act="reg:dropin" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''"><span>Học thử Drop-in · 150K</span></a><a class="z" href="https://zalo.me/0909851086" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round"><path d="M4 5h16v11H9l-4 3v-3H4z"></path></svg><span>Nhắn Zalo tư vấn</span></a></div>
+    <div class="mh"><span>khám phá tôi</span><label for="m-nav" class="mx" aria-label="Đóng menu"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:#F5EFE3;stroke-width:2;stroke-linecap:round"><path d="M6 6l12 12M18 6L6 18"></path></svg></label></div>
+    <details><summary class="">ứng tác là gì<i aria-hidden="true">›</i></summary><div class="sub"><a href="/ung-tac" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">ứng tác là gì</a><a href="/danh-cho-ai" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">dành cho ai</a><a href="/buoi-tap" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">một buổi tập</a><a href="/bao-chi" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">báo chí nói gì</a></div></details><details open><summary class="">khoá học<i aria-hidden="true">›</i></summary><div class="sub"><a href="/khoa-hoc" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">tất cả khoá & lịch học</a><a href="/khoa-hoc-drop-in" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">drop-in · học thử</a><a href="/khoa-hoc-improv-1" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">improv 1 · cơ bản 1</a><a href="/khoa-hoc-improv-2" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">improv 2 · cơ bản 2</a><a href="/khoa-hoc-performer-1" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">diễn viên ứng tác 1</a><span>diễn viên ứng tác 2</span><a href="/khoa-hoc-kids" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">thiếu nhi 8–14 tuổi</a></div></details><a class="r" href="/ung-dung-ung-tac" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">ứng tác doanh nghiệp<i aria-hidden="true">›</i></a><details><summary class="">kiến thức<i aria-hidden="true">›</i></summary><div class="sub"><a href="/kien-thuc/" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">tổng quan</a><a href="/kien-thuc/bai-viet/" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">bài viết</a><a href="/kien-thuc/lich-su/" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">lịch sử ứng tác</a><a href="/kien-thuc/tin-tuc/" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">tin tức</a><a href="/kien-thuc/tu-dien-ung-tac" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">từ điển ứng tác</a></div></details><details><summary class="">cộng đồng<i aria-hidden="true">›</i></summary><div class="sub"><a href="/#xem-dien" data-cd="show" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">xem diễn</a><a href="/#jam" data-cd="jam" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">jam cộng đồng</a><a href="/dong-doi" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">tìm đồng đội</a></div></details><a class="r last" href="/ve-high-club" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">về high club<i aria-hidden="true">›</i></a>
   </nav>
 </header>
 

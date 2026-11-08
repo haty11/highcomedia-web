@@ -307,6 +307,28 @@ textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:1
 @media (max-width:860px){.csum{grid-template-columns:repeat(2,minmax(0,1fr))}#ccopy,#cprint{flex:1;justify-content:center}}
 @media print{.side,.top,.bnav,.tbar,.toasts,.al,#v-dash,#v-list,#v-ana{display:none!important}.app{display:block}main{padding:0}body{background:#fff}.card{box-shadow:none;border:1px solid #ddd}.rost tr{break-inside:avoid}.printhd{display:block!important}}
 .printhd{display:none;margin-bottom:10px}
+.ainsight{margin-bottom:14px;background:#FFFBF1}.ainsight ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.65}
+.fstep{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.fsi{background:#FBF7EE;border-radius:12px;padding:12px 10px 10px;text-align:center;position:relative}
+.fsi .fic{font-size:18px}.fsi b{display:block;font-size:22px;font-weight:800;line-height:1.2}.fsi span{font-size:12px;color:var(--muted)}
+.fsi em{position:absolute;left:-14px;top:50%;transform:translateY(-50%);font-style:normal;font-size:10.5px;font-weight:700;background:var(--ink);color:#fff;border-radius:100px;padding:2px 6px;z-index:1}
+.fsi em.lo{background:var(--red)}.fsi.g{background:var(--green-s)}.fsi.g b{color:var(--green)}
+.dchart{display:flex;align-items:flex-end;gap:2px;height:170px;border-bottom:1px solid var(--line);padding-top:6px}
+.dc{flex:1;height:100%;display:flex;align-items:flex-end;position:relative;min-width:2px}
+.dc i{display:block;width:100%;background:#1A1A1A;border-radius:3px 3px 0 0;opacity:.85;min-height:1px}
+.dc b{position:absolute;left:25%;right:25%;bottom:0;background:var(--amber);border-radius:3px 3px 0 0;min-height:3px}
+.dc:hover i{opacity:1;background:var(--brown)}
+.dlab{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:5px}
+.lg1,.lg2{display:inline-block;width:10px;height:10px;border-radius:2px;background:#1A1A1A;margin:0 4px 0 8px;vertical-align:-1px}.lg2{background:var(--amber)}
+.srow{display:grid;grid-template-columns:110px minmax(0,1fr) 44px 44px;gap:8px;align-items:center;font-size:13px;padding:5px 0}
+.srow .b{height:10px;background:var(--grey-s);border-radius:6px;overflow:hidden}.srow .b i{display:block;height:100%;background:var(--amber)}
+.srow b{text-align:right}.srow em{font-style:normal;font-size:11.5px;color:var(--green);text-align:right}
+.krow{display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:8px;align-items:center;padding:7px 0;border-top:1px solid #F3EDE0;font-size:13px}.krow:first-of-type{border-top:0}
+.krow .kn{width:22px;height:22px;border-radius:50%;background:var(--amber-s);color:var(--brown);font-weight:800;font-size:11px;display:flex;align-items:center;justify-content:center}
+.krow .kt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.split{display:flex;height:14px;border-radius:8px;overflow:hidden;margin:4px 0 12px}.split i{display:block;height:100%}
+.dvl{display:flex;align-items:center;gap:8px;font-size:13px;padding:4px 0}.dvl span{width:10px;height:10px;border-radius:3px}.dvl b{margin-left:auto}
+@media (max-width:860px){.pth{max-width:46vw}.tb td.n,.tb th.n{padding-left:4px;padding-right:4px}.an2>.card,.an3>.card{min-width:0;overflow:hidden}.bnav a{padding:4px 6px}.fstep{grid-template-columns:repeat(3,minmax(0,1fr))}.fsi em{left:auto;right:6px;top:6px;transform:none}.srow{grid-template-columns:90px minmax(0,1fr) 38px 38px}.dchart{height:130px}}
 .busy{cursor:progress}.busy .dr,.busy main{pointer-events:none}
 .gate{transition:opacity .35s}.gate.out{opacity:0}
 .ldav{position:relative;width:84px;height:84px;margin:6px auto 16px;animation:bob 1.4s ease-in-out infinite}
@@ -849,65 +871,78 @@ function bars(list,valK,labK,color){const mx=Math.max(1,...list.map(x=>x[valK]||
 function renderAna(){
   const A=anaData[anaDays]; if(!A)return; const ga=A.ga, rg=A.regs||{}, cl=claritySummary(A.clarity||[]);
   const regN=Object.values(rg.byKind||{}).reduce((a,b)=>a+b,0);
-  const today=new Date(), dkey=d=>d.toISOString().slice(0,10);
+  const today=new Date(), dkey=d=>new Date(d.getTime()+7*3600e3).toISOString().slice(0,10);
   let regPrev=0; Object.entries(rg.byDay||{}).forEach(([d,o])=>{const age=(today-new Date(d+'T12:00:00+07:00'))/864e5;if(age>=anaDays&&age<2*anaDays)regPrev+=Object.values(o).reduce((a,b)=>a+b,0)});
-  $('#aat').textContent=ga?'GA cập nhật '+new Date(ga.at).toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'})+(cl?' · Clarity '+new Date(cl.at).toLocaleString('vi-VN',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'}):''):'';
+  $('#aat').textContent=ga?'GA '+new Date(ga.at).toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'})+(cl?' · Clarity '+new Date(cl.at).toLocaleString('vi-VN',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'}):''):'';
   let h='';
   if(!ga)h+=`<div class="note">⚠ Chưa lấy được Google Analytics: <b>${esc({noprop:'chưa có GA4 · Property ID trong tab Cấu hình',noservice:'chưa bật dịch vụ "Google Analytics Data API" trong Apps Script'}[A.gaErr]||A.gaErr)}</b>.</div>`;
   if(!A.clarityToken)h+='<div class="note">⚠ Chưa có <b>Clarity · API token</b> trong tab ⚙ Cấu hình.</div>';
-  else if(!cl)h+='<div class="note">ℹ Clarity đã có token, dữ liệu đầu tiên sẽ về lúc 7h hoặc 19h (hoặc vào Sheet › menu High Comedia › "Cập nhật số liệu Clarity ngay").</div>';
-  // ---- KPI
+  else if(!cl)h+='<div class="note">ℹ Clarity đã có token, dữ liệu đầu tiên về lúc 7h hoặc 19h (hoặc Sheet › menu High Comedia › "Cập nhật số liệu Clarity ngay").</div>';
   if(ga){
     const T=ga.totals||[], cur=T.find(x=>x.dateRange==='date_range_0')||T[0]||{}, prv=T.find(x=>x.dateRange==='date_range_1')||{};
     const ev=n=>(ga.events||[]).filter(x=>x.eventName===n&&(!x.dateRange||x.dateRange==='date_range_0')).reduce((a,x)=>a+x.eventCount,0);
     const evp=n=>(ga.events||[]).filter(x=>x.eventName===n&&x.dateRange==='date_range_1').reduce((a,x)=>a+x.eventCount,0);
-    const conv=cur.activeUsers?regN/cur.activeUsers:0, convP=prv.activeUsers?regPrev/prv.activeUsers:0;
-    const K=[['Người truy cập',nf(cur.activeUsers),delta(cur.activeUsers,prv.activeUsers)],['Lượt xem trang',nf(cur.screenPageViews),delta(cur.screenPageViews,prv.screenPageViews)],
-      ['Thời gian TB / phiên',dur(cur.averageSessionDuration),delta(cur.averageSessionDuration,prv.averageSessionDuration)],['Tỷ lệ tương tác',pct(cur.engagementRate),delta(cur.engagementRate,prv.engagementRate)],
-      ['Đăng ký (Sheet)',nf(regN),delta(regN,regPrev)],['Tỷ lệ chuyển đổi',pct(conv),delta(conv,convP)]];
-    h+=`<div class="anag">${K.map((k,i)=>`<div class="card kpi ${i>=4?'hot':''}"><div class="l">${k[0]}</div><div class="v">${k[1]}</div><div class="d">${k[2]}</div></div>`).join('')}</div>`;
-    // ---- chart + funnel
-    const days=[];for(let i=anaDays-1;i>=0;i--){const d=new Date(today-i*864e5);days.push(dkey(new Date(d.getTime()+7*3600e3)))}
+    const lead=ev('generate_lead'), leadP=evp('generate_lead'), U=cur.activeUsers||0;
+    const conv=U?Math.min(1,lead/U):0, convP=prv.activeUsers?Math.min(1,leadP/prv.activeUsers):0;
+    const kp=(l,v,d,hot,tip)=>`<div class="card kpi ${hot?'hot':''}" ${tip?`title="${esc(tip)}"`:''}><div class="l">${l}</div><div class="v">${v}</div><div class="d">${d}</div></div>`;
+    h+=`<div class="anag">${[
+      kp('Người truy cập',nf(U),delta(U,prv.activeUsers)),
+      kp('Lượt xem trang',nf(cur.screenPageViews),delta(cur.screenPageViews,prv.screenPageViews)),
+      kp('Thời gian / phiên',dur(cur.averageSessionDuration),delta(cur.averageSessionDuration,prv.averageSessionDuration)),
+      kp('Tỷ lệ tương tác',pct(cur.engagementRate),delta(cur.engagementRate,prv.engagementRate),0,'Phiên có ở lại >10 giây, xem ≥2 trang hoặc có hành động'),
+      kp('Gửi form thành công',nf(lead),delta(lead,leadP),1),
+      kp('Tỷ lệ chuyển đổi',pct(conv),delta(conv,convP),1,'Số lần gửi form thành công / số người truy cập')].join('')}</div>`;
+    // ---- nhận định nhanh
+    const pages=ga.pages||[], courseU=Math.min(U,pages.filter(p=>/khoa-hoc|ung-dung/.test(p.pagePath)).reduce((a,p)=>a+p.activeUsers,0));
+    const sm={};(ga.sources||[]).forEach(x=>{const n=srcName(x.sessionSource);sm[n]=sm[n]||{n,s:0,lead:0};sm[n].s+=x.sessions});
+    (ga.srcEvents||[]).filter(x=>x.eventName==='generate_lead').forEach(x=>{const n=srcName(x.sessionSource);sm[n]=sm[n]||{n,s:0,lead:0};sm[n].lead+=x.eventCount});
+    const SL=Object.values(sm).sort((a,b)=>b.s-a.s).slice(0,8), totS=SL.reduce((a,x)=>a+x.s,0)||1;
+    const open=ev('form_open'), errN=ev('form_error'), mob=(ga.devices||[]).find(x=>x.deviceCategory==='mobile'), allDev=(ga.devices||[]).reduce((a,x)=>a+x.sessions,0);
+    const ins=[];
+    if(SL[0])ins.push(`<b>${esc(SL[0].n)}</b> mang về ${Math.round(SL[0].s/totS*100)}% lượt truy cập.`);
+    if(open)ins.push(`${nf(open)} lần mở form → ${nf(lead)} lần gửi thành công (<b>${pct(lead/open)}</b>). ${lead/open<.4?'Nhiều người bỏ dở form: cân nhắc rút gọn form hoặc thêm nút Zalo trong form.':'Form hoạt động tốt.'}`);
+    if(errN)ins.push(`<span class="dn">${errN} lần gửi form bị lỗi</span>, nên kiểm tra.`);
+    if(mob&&allDev)ins.push(`${Math.round(mob.sessions/allDev*100)}% khách xem bằng điện thoại.`);
+    if(regN>lead*1.5&&regN>5)ins.push(`Sheet có ${regN} đăng ký nhưng GA chỉ ghi ${lead} lần gửi form: có thể còn dữ liệu thử trong Sheet, hoặc GA mới gắn chưa lâu.`);
+    h+=`<div class="card ainsight"><div class="h4">💡 Nhận định nhanh</div><ul>${ins.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+    // ---- phễu dạng bậc
+    const fs=[['👀','Truy cập',U],['📚','Xem khoá học',courseU],['👆','Bấm đăng ký',ev('click_register')],['📝','Mở form',open],['✅','Gửi form',lead],['💰','Đã giữ chỗ',rg.held||0]];
+    h+=`<div class="card" style="margin-bottom:14px"><div class="ch"><h3>Phễu: từ truy cập đến giữ chỗ</h3><span class="s">% = so với bước trước</span></div><div class="fstep">${fs.map((x,i)=>{const p=i&&fs[i-1][2]?x[2]/fs[i-1][2]:null;return `<div class="fsi ${i===fs.length-1?'g':''}"><div class="fic">${x[0]}</div><b>${nf(x[2])}</b><span>${x[1]}</span>${p!=null?`<em class="${p<.3?'lo':''}">${p>1?'↑':''}${pct(Math.min(p,9.99)).replace(/,0%$/,'%')}</em>`:''}</div>`}).join('')}</div></div>`;
+    // ---- biểu đồ ngày (HTML) + nguồn
+    const days=[];for(let i=anaDays-1;i>=0;i--)days.push(dkey(new Date(today-i*864e5)));
     const uMap={};(ga.daily||[]).forEach(x=>uMap[x.date.slice(0,4)+'-'+x.date.slice(4,6)+'-'+x.date.slice(6)]=x.activeUsers);
-    const series=days.map(d=>({d,u:uMap[d]||0,r:Object.values((rg.byDay||{})[d]||{}).reduce((a,b)=>a+b,0)}));
-    const W=520,Hh=150,mx=Math.max(4,...series.map(x=>x.u)),mr=Math.max(1,...series.map(x=>x.r)),bw=W/series.length;
-    let svg=`<svg viewBox="0 0 ${W} ${Hh+22}" width="100%" style="display:block">`;
-    series.forEach((x,i)=>{const bh=x.u/mx*Hh;svg+=`<rect x="${i*bw+1}" y="${Hh-bh}" width="${Math.max(1,bw-2)}" height="${bh}" rx="2" fill="#1A1A1A" opacity=".8"><title>${x.d}: ${x.u} người · ${x.r} đăng ký</title></rect>`;if(x.r)svg+=`<circle cx="${i*bw+bw/2}" cy="${Hh-x.r/mr*Hh*.9}" r="${Math.min(6,2+x.r)}" fill="#FFA406" stroke="#fff" stroke-width="1.5"><title>${x.r} đăng ký</title></circle>`});
-    svg+=`<text x="0" y="${Hh+16}" font-size="10" fill="#888">${series[0].d.slice(8)}/${series[0].d.slice(5,7)}</text><text x="${W}" y="${Hh+16}" font-size="10" fill="#888" text-anchor="end">Hôm nay</text></svg>`;
-    const pages=ga.pages||[], courseU=pages.filter(p=>/khoa-hoc|ung-dung/.test(p.pagePath)).reduce((a,p)=>a+p.activeUsers,0);
-    const fs=[['Người truy cập',cur.activeUsers||0],['Xem trang khoá học',courseU],['Bấm nút đăng ký',ev('click_register')],['Mở form',ev('form_open')],['Gửi form thành công',ev('generate_lead')],['Đăng ký trong Sheet',regN],['Đã giữ chỗ',rg.held||0]];
-    const f0=fs[0][1]||1;
-    const drop=fs.slice(1,5).map((x,i)=>[fs[i][0]+' → '+x[0],fs[i][1]?x[1]/fs[i][1]:1]).sort((a,b)=>a[1]-b[1])[0];
-    h+=`<div class="an2"><div class="card"><div class="ch"><h3>Người truy cập & đăng ký mỗi ngày</h3><span class="s"><span style="color:#1A1A1A">▮</span> người truy cập · <span style="color:var(--amber)">●</span> đăng ký</span></div>${svg}</div>
-      <div class="card"><div class="ch"><h3>Phễu: từ truy cập đến giữ chỗ</h3></div><div class="fn">${fs.map((x,i)=>`<div class="fs"><span style="font-size:11.5px">${x[0]}</span><div><div class="b" style="width:${Math.max(6,x[1]/f0*100)}%;background:${i>=5?'#1F7A3E':i>=3?'#8A4B00':'#1A1A1A'}">${nf(x[1])}</div></div><span class="p">${i?pct(x[1]/f0):''}</span></div>`).join('')}</div>
-      <div class="ins">💡 ${drop&&drop[1]<1?`Điểm rơi lớn nhất: <b>${esc(drop[0])}</b> (chỉ ${pct(drop[1])}).`:'Phễu đang thông.'} ${ev('form_error')?`Có <b>${ev('form_error')}</b> lần gửi form bị lỗi, nên xem lại.`:''}</div></div></div>`;
-    // ---- sources vs registrations
-    const sm={};(ga.sources||[]).forEach(x=>{const n=srcName(x.sessionSource);sm[n]=sm[n]||{n,s:0,lead:0,reg:0};sm[n].s+=x.sessions});
-    (ga.srcEvents||[]).filter(x=>x.eventName==='generate_lead').forEach(x=>{const n=srcName(x.sessionSource);sm[n]=sm[n]||{n,s:0,lead:0,reg:0};sm[n].lead+=x.eventCount});
-    Object.entries(rg.bySrc||{}).forEach(([k,v])=>{const n=srcName(k)==='Không rõ'?k:srcName(k);if(sm[n])sm[n].reg+=v;else if(['Facebook','TikTok','Google'].includes(n)){sm[n]={n,s:0,lead:0,reg:v}}});
-    const SL=Object.values(sm).sort((a,b)=>b.s-a.s).slice(0,9);
-    const best=SL.filter(x=>x.s>=10).map(x=>({...x,cr:(x.lead||x.reg)/x.s})).sort((a,b)=>b.cr-a.cr)[0], top=SL[0];
-    const dv=(ga.devices||[]).map(x=>({l:{mobile:'📱 Điện thoại',desktop:'💻 Máy tính',tablet:'Máy tính bảng'}[x.deviceCategory]||x.deviceCategory,v:x.sessions}));
-    h+=`<div class="an3"><div class="card"><div class="ch"><h3>Khách đến từ đâu</h3><span class="s">phiên · gửi form · ĐK Sheet</span></div>
-      <table class="tb"><tr><th>Nguồn</th><th class="n">Phiên</th><th class="n">Gửi form</th><th class="n hm">Tỷ lệ</th></tr>${SL.map(x=>`<tr><td>${esc(x.n)}</td><td class="n">${nf(x.s)}</td><td class="n">${nf(x.lead)}</td><td class="n hm">${x.s?pct(x.lead/x.s):'–'}</td></tr>`).join('')}</table>
-      <div class="ins">💡 ${top?`<b>${esc(top.n)}</b> mang về nhiều lượt nhất.`:''} ${best&&best!==top?` Chốt tốt nhất: <b>${esc(best.n)}</b> (${pct(best.cr)}).`:''}</div></div>
-      <div class="card"><div class="ch"><h3>Thiết bị</h3></div>${bars(dv,'v','l')}<div class="ch" style="margin-top:16px"><h3>Thành phố</h3></div>${bars((ga.cities||[]).map(x=>({l:x.city==='(not set)'?'Không rõ':x.city,v:x.activeUsers})),'v','l','#1A1A1A')}</div>
-      <div class="card"><div class="ch"><h3>Hành động trên web</h3></div>${bars([['click_register','Bấm đăng ký'],['form_open','Mở form'],['generate_lead','Gửi form thành công'],['click_zalo','Bấm Zalo'],['click_call','Bấm gọi'],['click_facebook','Bấm Facebook'],['form_error','Gửi lỗi']].map(([k,l])=>({l,v:ev(k)})),'v','l')}</div></div>`;
-    // ---- pages
-    const kt=pages.filter(p=>p.pagePath.startsWith('/kien-thuc/')&&p.pagePath.length>12).slice(0,5);
-    h+=`<div class="an2"><div class="card"><div class="ch"><h3>Trang được xem nhiều nhất</h3><span class="s">lượt xem · người · thời gian đọc TB</span></div>
-      <table class="tb"><tr><th>Trang</th><th class="n">Lượt xem</th><th class="n hm">Người</th><th class="n">Đọc TB</th></tr>${pages.slice(0,12).map(p=>`<tr><td><span class="pth" title="${esc(p.pagePath)}">${esc(pageName(p.pagePath))}</span></td><td class="n">${nf(p.screenPageViews)}</td><td class="n hm">${nf(p.activeUsers)}</td><td class="n">${dur(p.activeUsers?p.userEngagementDuration/p.activeUsers:0)}</td></tr>`).join('')}</table></div>
-      <div class="card"><div class="ch"><h3>Bài Kiến thức hút khách</h3></div>${kt.length?bars(kt.map(p=>({l:pageName(p.pagePath).replace('📖 ',''),v:p.screenPageViews})),'v','l','#8A4B00'):'<div class="empty">Chưa có lượt xem bài viết.</div>'}
-      <div class="ins">💡 Bài đọc lâu là chủ đề khách quan tâm thật: nên làm thêm video TikTok cùng chủ đề và gắn link về bài.</div></div></div>`;
+    const ser=days.map(d=>({d,u:uMap[d]||0,r:Object.values((rg.byDay||{})[d]||{}).reduce((a,b)=>a+b,0)}));
+    const mx=Math.max(1,...ser.map(x=>x.u),...ser.map(x=>x.r)), lab=d=>d.slice(8)+'/'+d.slice(5,7);
+    const chart=`<div class="dchart">${ser.map(x=>`<div class="dc" title="${lab(x.d)}: ${x.u} người truy cập · ${x.r} đăng ký"><i style="height:${x.u/mx*100}%"></i>${x.r?`<b style="height:${x.r/mx*100}%"></b>`:''}</div>`).join('')}</div><div class="dlab"><span>${lab(ser[0].d)}</span><span>${lab(ser[Math.floor(ser.length/2)].d)}</span><span>Hôm nay</span></div>`;
+    h+=`<div class="an2"><div class="card"><div class="ch"><h3>Mỗi ngày</h3><span class="s"><span class="lg1"></span>người truy cập <span class="lg2"></span>đăng ký (Sheet)</span></div>${chart}</div>
+      <div class="card"><div class="ch"><h3>Khách đến từ đâu</h3><span class="s">phiên · gửi form</span></div>
+      ${SL.map(x=>`<div class="srow"><span>${esc(x.n)}</span><div class="b"><i style="width:${x.s/SL[0].s*100}%"></i></div><b>${nf(x.s)}</b><em>${x.lead?'✅ '+x.lead:''}</em></div>`).join('')||'<div class="empty">Chưa có dữ liệu.</div>'}</div></div>`;
+    // ---- trang + bài viết
+    const HUB={'lich-su':'Lịch sử (trang tổng)','bai-viet':'Bài viết (trang tổng)','tin-tuc':'Tin tức (trang tổng)'};
+    const pn=p=>{const k=p.replace(/\.html$/,'').replace(/\/index$/,'/'),sl=k.startsWith('/kien-thuc/')?k.slice(11).replace(/\/$/,''):'';return HUB[sl]?'📚 '+HUB[sl]:pageName(p)};
+    const kt=pages.filter(p=>{const sl=p.pagePath.replace(/\.html$/,'').replace(/^\/kien-thuc\//,'').replace(/\/$/,'');return p.pagePath.startsWith('/kien-thuc/')&&sl&&!HUB[sl]}).slice(0,6);
+    h+=`<div class="an2"><div class="card"><div class="ch"><h3>Trang được xem nhiều nhất</h3></div>
+      <table class="tb"><tr><th>Trang</th><th class="n">Lượt xem</th><th class="n hm">Người</th><th class="n">Đọc TB</th></tr>${pages.slice(0,10).map(p=>`<tr><td><span class="pth" title="${esc(p.pagePath)}">${esc(pn(p.pagePath))}</span></td><td class="n">${nf(p.screenPageViews)}</td><td class="n hm">${nf(p.activeUsers)}</td><td class="n">${dur(p.activeUsers?p.userEngagementDuration/p.activeUsers:0)}</td></tr>`).join('')}</table></div>
+      <div class="card"><div class="ch"><h3>Bài Kiến thức đọc nhiều</h3></div>${kt.length?kt.map((p,i)=>`<div class="krow"><span class="kn">${i+1}</span><span class="kt">${esc(pn(p.pagePath).replace('📖 ',''))}</span><b>${nf(p.screenPageViews)}</b></div>`).join(''):'<div class="empty">Chưa có lượt đọc bài.</div>'}</div></div>`;
+    // ---- thiết bị · thành phố · hành động
+    const DV=(ga.devices||[]).map(x=>({l:{mobile:'Điện thoại',desktop:'Máy tính',tablet:'Máy tính bảng'}[x.deviceCategory]||x.deviceCategory,v:x.sessions,c:{mobile:'#FFA406',desktop:'#1A1A1A',tablet:'#8A4B00'}[x.deviceCategory]||'#aaa'}));
+    const BOT=/^(Ashburn|Boardman|Council Bluffs|Chicago|San Jose|Santa Clara|Mountain View|Columbus|Dublin|Frankfurt|Singapore|The Dalles|Quincy)$/;
+    const cm={};(ga.cities||[]).forEach(x=>{let c=x.city;if(!c||c==='(not set)')c='Không rõ';else if(BOT.test(c))c='Máy chủ nước ngoài (bot)';cm[c]=(cm[c]||0)+x.activeUsers});
+    const CT=Object.entries(cm).map(([l,v])=>({l,v})).sort((a,b)=>b.v-a.v).slice(0,6);
+    const ACT=[['click_register','Bấm đăng ký'],['form_open','Mở form'],['generate_lead','Gửi form thành công'],['click_zalo','Bấm Zalo'],['click_call','Bấm gọi'],['click_facebook','Bấm Facebook'],['form_error','Gửi form lỗi']].map(([k,l])=>({l,v:ev(k)})).filter(x=>x.v||x.l==='Gửi form thành công');
+    h+=`<div class="an3"><div class="card"><div class="ch"><h3>Thiết bị</h3></div><div class="split">${DV.map(x=>`<i style="width:${x.v/(allDev||1)*100}%;background:${x.c}"></i>`).join('')}</div>${DV.map(x=>`<div class="dvl"><span style="background:${x.c}"></span>${x.l}<b>${pct(x.v/(allDev||1))}</b></div>`).join('')}</div>
+      <div class="card"><div class="ch"><h3>Thành phố</h3></div>${bars(CT,'v','l','#1A1A1A')}</div>
+      <div class="card"><div class="ch"><h3>Hành động trên web</h3></div>${bars(ACT,'v','l')}</div></div>`;
   }
   // ---- Clarity
-  if(cl){const L=cl.last, H=cl.hist;
-    const flag=(v,th)=>v!=null&&v>=th;
-    h+=`<div class="card" style="margin-bottom:14px"><div class="ch"><h3>Trải nghiệm người dùng · Microsoft Clarity</h3><span class="s">24 giờ gần nhất (${esc(L.d)}) · <a href="https://clarity.microsoft.com/projects/view/${A.clarityId}/dashboard" target="_blank" rel="noopener" style="color:var(--brown)">Mở Clarity ↗</a></span></div>
-      <div class="cx"><div><small>Phiên thật</small><b>${nf(L.sess)}</b></div><div><small>Người dùng</small><b>${nf(L.users)}</b></div><div><small>Cuộn trang TB</small><b>${L.scroll!=null?Math.round(L.scroll)+'%':'–'}</b></div><div><small>Thời gian tương tác</small><b>${L.active!=null?dur(L.active):'–'}</b></div>
-      <div class="${flag(L.rage,5)?'r':''}"><small>Bấm giận dữ (rage)</small><b>${L.rage!=null?L.rage.toFixed(1)+'%':'–'}</b></div><div class="${flag(L.dead,15)?'r':''}"><small>Bấm vào chỗ chết (dead)</small><b>${L.dead!=null?L.dead.toFixed(1)+'%':'–'}</b></div><div class="${flag(L.quick,15)?'r':''}"><small>Quay lại ngay (quickback)</small><b>${L.quick!=null?L.quick.toFixed(1)+'%':'–'}</b></div><div class="${flag(L.err,3)?'r':''}"><small>Lỗi code trên trang</small><b>${L.err!=null?L.err.toFixed(1)+'%':'–'}</b></div></div>
-      ${cl.urls.length?`<table class="tb" style="margin-top:12px"><tr><th>Trang</th><th class="n">Phiên</th><th class="n">Rage</th><th class="n">Dead</th><th class="n hm">Quickback</th><th class="n hm">Cuộn</th></tr>${cl.urls.map(u=>`<tr class="${flag(u.rage,5)||flag(u.dead,20)?'bad':''}"><td><span class="pth">${esc(pageName(u.p))}</span></td><td class="n">${nf(u.sess)}</td><td class="n">${u.rage!=null?u.rage.toFixed(0)+'%':'–'}</td><td class="n">${u.dead!=null?u.dead.toFixed(0)+'%':'–'}</td><td class="n hm">${u.quick!=null?u.quick.toFixed(0)+'%':'–'}</td><td class="n hm">${u.scroll!=null?Math.round(u.scroll)+'%':'–'}</td></tr>`).join('')}</table>`:''}
-      <div class="ins">💡 ${(()=>{const bad=cl.urls.filter(u=>flag(u.rage,5)||flag(u.dead,20));return bad.length?`Trang <b>${esc(pageName(bad[0].p))}</b> có nhiều lượt bấm hỏng. Mở Clarity › Recordings, lọc trang này để xem khách bấm vào đâu.`:'Không có trang nào bị bấm hỏng bất thường.'})()} ${H.length>1?`Đã lưu ${H.length} ngày dữ liệu Clarity.`:'Dữ liệu Clarity sẽ dày dần mỗi ngày.'}</div></div>`;
+  if(cl){const L=cl.last, H=cl.hist, flag=(v,th)=>v!=null&&v>=th;
+    const box=(l,v,bad,tip)=>`<div class="${bad?'r':''}" ${tip?`title="${esc(tip)}"`:''}><small>${l}</small><b>${v}</b></div>`;
+    const bad=cl.urls.filter(u=>flag(u.rage,5)||flag(u.dead,20));
+    h+=`<div class="card" style="margin-bottom:14px"><div class="ch"><h3>Trải nghiệm người dùng · Clarity</h3><span class="s">24 giờ gần nhất · <a href="https://clarity.microsoft.com/projects/view/${A.clarityId}/dashboard" target="_blank" rel="noopener" style="color:var(--brown)">Mở Clarity ↗</a></span></div>
+      <div class="cx">${box('Phiên thật',nf(L.sess))}${box('Người dùng',nf(L.users))}${box('Cuộn trang TB',L.scroll!=null?Math.round(L.scroll)+'%':'–')}${box('Thời gian tương tác',L.active!=null?dur(L.active):'–')}
+      ${box('Bấm giận dữ',L.rage!=null?L.rage.toFixed(1)+'%':'–',flag(L.rage,5),'Bấm liên tục nhiều lần vào một chỗ, dấu hiệu khó chịu')}${box('Bấm vào chỗ chết',L.dead!=null?L.dead.toFixed(1)+'%':'–',flag(L.dead,15),'Bấm vào chỗ không phản hồi')}${box('Quay lại ngay',L.quick!=null?L.quick.toFixed(1)+'%':'–',flag(L.quick,15),'Vào trang rồi quay lại ngay')}${box('Lỗi code',L.err!=null?L.err.toFixed(1)+'%':'–',flag(L.err,3))}</div>
+      ${cl.urls.length?`<table class="tb" style="margin-top:12px"><tr><th>Trang</th><th class="n">Phiên</th><th class="n">Giận dữ</th><th class="n">Chỗ chết</th><th class="n hm">Cuộn</th></tr>${cl.urls.slice(0,8).map(u=>`<tr class="${flag(u.rage,5)||flag(u.dead,20)?'bad':''}"><td><span class="pth">${esc(pageName(u.p))}</span></td><td class="n">${nf(u.sess)}</td><td class="n">${u.rage!=null?u.rage.toFixed(0)+'%':'–'}</td><td class="n">${u.dead!=null?u.dead.toFixed(0)+'%':'–'}</td><td class="n hm">${u.scroll!=null?Math.round(u.scroll)+'%':'–'}</td></tr>`).join('')}</table>`:''}
+      <div class="ins">💡 ${bad.length?`Trang <b>${esc(pageName(bad[0].p))}</b> có nhiều lượt bấm hỏng: mở Clarity › Recordings, lọc trang này để xem khách bấm vào đâu.`:'Không có trang nào bị bấm hỏng bất thường.'} ${H.length>1?`Đã lưu ${H.length} ngày dữ liệu.`:'Dữ liệu Clarity sẽ dày dần mỗi ngày.'}</div></div>`;
   }
   $('#ana').innerHTML=h||'<div class="note">Chưa có dữ liệu.</div>';
 }

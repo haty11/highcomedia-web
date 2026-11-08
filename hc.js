@@ -91,9 +91,13 @@
   var hides=[].filter.call(document.querySelectorAll('[data-bar-hide]'),vis);
   var last=window.pageYOffset||0, ticking=false;
   function inView(el){var r=el.getBoundingClientRect(),V=window.innerHeight;return r.top<V*0.9&&r.bottom>V*0.5;}
+  /* Nút đăng ký có sẵn trong trang đang hiện trên màn hình thì ẩn thanh nổi, tránh hai nút trùng nhau */
+  function ctaInView(){var V=window.innerHeight,a=document.querySelectorAll('[data-hc-act^="reg"]');
+    for(var i=0;i<a.length;i++){var el=a[i];if(el.closest('[data-hc-bar]')||el.closest('.mnav')||!vis(el))continue;var r=el.getBoundingClientRect();if(r.top<V-70&&r.bottom>60)return true;}return false;}
   function tick(){ticking=false;var y=window.pageYOffset||0;
-    if(start){var past=start.getBoundingClientRect().top<window.innerHeight*0.6;var hid=hides.some(inView);set(!past||hid);return;}
-    var d=y-last; if(y<120){set(false);}else if(d>8){set(true);}else if(d<-8){set(false);}
+    if(start){var past=start.getBoundingClientRect().top<window.innerHeight*0.6;var hid=hides.some(inView)||ctaInView();set(!past||hid);return;}
+    var d=y-last;
+    if(ctaInView()){set(true);}else if(y<400){set(true);}else if(d>8){set(true);}else if(d<-8){set(false);}
     if(Math.abs(d)>8)last=y;}
   window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(tick);}},{passive:true});
   window.addEventListener('resize',function(){start=[].filter.call(document.querySelectorAll('[data-bar-start]'),vis)[0];hides=[].filter.call(document.querySelectorAll('[data-bar-hide]'),vis);tick();});

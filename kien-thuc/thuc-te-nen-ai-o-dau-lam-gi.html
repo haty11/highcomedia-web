@@ -33,7 +33,7 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 /* cards */
 .chips{display:flex;gap:8px;flex-wrap:wrap}.chip{font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:100px;border:1px solid rgba(26,26,26,0.22);background:transparent;cursor:pointer;color:#1A1A1A;text-decoration:none}
 .chip.on,.chip:hover{background:#1A1A1A;color:#F5EFE3;border-color:#1A1A1A}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.mx{display:none!important}.more-btn{display:block;margin:22px auto 0;font:inherit;font-weight:700;font-size:15px;padding:12px 26px;border-radius:100px;border:1.5px solid #1A1A1A;background:transparent;color:#1A1A1A;cursor:pointer}.more-btn:hover{background:#1A1A1A;color:#F5EFE3}
 .card{background:#fff;border-radius:18px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s}
 .card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(26,26,26,0.12);color:#1A1A1A}
 .card img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
@@ -113,7 +113,7 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 .src{font-size:14px;color:rgba(26,26,26,0.65);border-top:1px solid rgba(26,26,26,0.12);padding-top:14px;margin-top:10px}
 @media (max-width:900px){.tiles{grid-template-columns:minmax(0,1fr)}.tile{min-height:0}.empty{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:640px){.tl:before{left:7px}.tl li{grid-template-columns:16px minmax(0,1fr);gap:0 14px}.tl .yr{grid-column:2;text-align:left;padding:0 0 6px}.tl .dt{grid-row:1;grid-column:1;margin:4px 0 0}.tl .tc{grid-column:2;grid-template-columns:44px minmax(0,1fr);gap:12px;padding:16px}.tl .av,.tl .avx{width:44px;height:44px;font-size:16px}
- .nw{grid-template-columns:62px minmax(0,1fr);gap:14px;padding:16px}.nw .d{padding-right:12px}.nw .d b{font-size:22px}.empty{padding:22px}.tile b{font-size:24px}}
+ .nw{grid-template-columns:62px minmax(0,1fr);gap:14px;padding:16px}.nw .d{padding-right:12px}.nw .d b{font-size:22px}.empty{padding:22px}.tile b{font-size:20px}.tiles{gap:8px;margin-top:20px}.tile{padding:14px 16px!important;min-height:0}.tile p{display:none}.tile .n{display:none}}
 .feat{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);border-radius:22px;margin-bottom:20px}.feat img{height:100%;aspect-ratio:auto;min-height:300px}
 .feat .b{padding:30px 32px;justify-content:center}.feat h3{font-size:32px}.feat p{font-size:16px}
 @media (max-width:760px){.feat{grid-template-columns:minmax(0,1fr)}.feat img{min-height:0;aspect-ratio:16/10}.feat .b{padding:18px 18px 20px}.feat h3{font-size:24px}.feat p{font-size:14px}}
@@ -220,7 +220,7 @@ document.querySelectorAll('.toc-m a').forEach(function(a){a.addEventListener('cl
 <footer class="ft"><div class="in"><span>© 2026 High Comedia · nhánh đào tạo của HIGH (Haha Improv Games Hanoi)</span><span><a href="/khoa-hoc">Khoá học</a> · <a href="/ve-high-club">Về High Club</a> · <a href="/chinh-sach#bao-mat">Bảo mật</a> · <a href="https://zalo.me/0909851086" target="_blank" rel="noopener">Zalo</a></span></div></footer>
 <script src="/hc-config.js?v=c17e1b24"></script>
 <script src="/hc-data.js?v=05510804"></script>
-<script src="/hc.js?v=5387c3b7"></script>
+<script src="/hc.js?v=9f71ec92"></script>
 <script src="/hc-form.js?v=207f8da5"></script>
 <script src="/hc-track.js?v=7fc7b9a0"></script>
 </body>

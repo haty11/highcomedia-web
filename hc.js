@@ -140,3 +140,12 @@
     if(mode==='open'&&dx<-40){setOpen(true);mode=null;}
     else if(mode==='close'&&dx>60&&Math.abs(dx)>Math.abs(dy)*1.5){setOpen(false);mode=null;}},{passive:true});
 })();
+
+/* Menu phụ của bài dài: tô sáng phần đang đọc */
+(function(){
+  var navs=[].slice.call(document.querySelectorAll('[data-spy]')); if(!navs.length) return;
+  var sets=navs.map(function(nav){return [].slice.call(nav.querySelectorAll('a[href^="#"]')).map(function(a){return {a:a,t:document.getElementById(a.getAttribute('href').slice(1))};}).filter(function(x){return x.t;});});
+  function tick(){sets.forEach(function(L){var cur=null;L.forEach(function(x){if(x.t.offsetParent!==null&&x.t.getBoundingClientRect().top<240)cur=x;});L.forEach(function(x){x.a.classList.toggle('on',x===cur);});});}
+  var tk=false;window.addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(function(){tk=false;tick();});}},{passive:true});
+  document.addEventListener('toggle',tick,true);tick();
+})();

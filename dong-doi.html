@@ -41,12 +41,12 @@ h2{font-size:clamp(28px,4vw,40px);line-height:1.1;margin:8px 0 14px;letter-spaci
 .why{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}.why p{margin:0 0 14px}
 .why img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;border-radius:18px;display:block}
 .roles{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
-.role{background:#fff;border:1px solid rgba(26,26,26,.12);border-radius:18px;padding:20px;display:flex;flex-direction:column}
+.role{background:#fff;border:1px solid rgba(26,26,26,.12);border-radius:18px;padding:20px;display:flex;flex-direction:column}.role summary{list-style:none;display:flex;align-items:flex-start;gap:10px;cursor:default}.role summary::-webkit-details-marker{display:none}.rs{flex:1;min-width:0;display:flex;flex-direction:column-reverse;gap:10px}.rn{font-family:'Bricolage Grotesque',sans-serif;font-size:20px;line-height:1.2}.rm{display:flex;justify-content:space-between;align-items:center;gap:8px}.rc{display:none;font-style:normal}.rb{margin-top:8px;display:flex;flex-direction:column;flex:1}
 section.w .role{background:var(--cream);border-color:transparent}
-.role .rt{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+
 .tag{font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:100px;white-space:nowrap;flex:none}.tag.r{background:var(--ink);color:var(--amber)}.tag.a{background:#FFE8BD;color:#7A4300}.tag.g{background:#DDEFE3;color:#1F6B3A}
 .tm{font-size:12px;color:var(--mut);text-align:right}
-.role h3{font-size:20px;line-height:1.2;margin:0 0 8px}.role p{font-size:14.5px;margin:0 0 10px;color:rgba(26,26,26,.82)}.role .fit{font-size:14px;color:var(--mut)}
+.role p{font-size:14.5px;margin:0 0 10px;color:rgba(26,26,26,.82)}.role .fit{font-size:14px;color:var(--mut)}
 .pick{margin-top:auto;align-self:flex-start;background:none;border:0;padding:6px 0;font:inherit;font-size:14px;font-weight:700;color:var(--brown);cursor:pointer}
 .pick:hover{text-decoration:underline}
 .plan{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:p}
@@ -82,21 +82,78 @@ form.tf textarea{min-height:92px;resize:vertical}form.tf :focus{outline:none;bor
  .hero .g,.why,.fwrap{grid-template-columns:1fr;gap:26px}.hero .ph{order:-1}.hero{padding:20px 0 40px}
  .plan,.gets,.steps{grid-template-columns:1fr 1fr}.side{position:static}.top nav.tl{display:none}
 }
+.top .mm{display:none}
+@media (max-width:900px){.top .mm{display:block}}
 @media (max-width:600px){
- .wrap,.top .in,.sub .in{padding-left:16px;padding-right:16px}section.s{padding:40px 0}
+ body{font-size:15px;line-height:1.6}h1{font-size:31px;margin:8px 0 12px}h2{font-size:23px;margin:6px 0 10px}.k{font-size:11px}
+ .intro{font-size:15px;margin-bottom:18px}.why p{font-size:15px}.note{font-size:12.5px}
+ .btn{padding:11px 18px;font-size:14px}.cta .btn{flex:1}.top .in{height:52px;padding-top:0;padding-bottom:0}.top .lg img{height:26px}.top .lg{font-size:16px}
+ .sub{top:52px}.sub a{font-size:12.5px;padding:5px 11px}html{scroll-padding-top:104px}
+ .roles{display:flex;flex-direction:column;gap:8px}
+ .role{padding:0;border-radius:14px;border-color:rgba(26,26,26,.1)}
+ .role summary{padding:13px 14px;cursor:pointer;align-items:center;-webkit-tap-highlight-color:transparent}
+ .rs{flex-direction:column;gap:5px}.rn{font-size:16px}.rm{justify-content:flex-start}.tag{font-size:10.5px;padding:2px 8px}.tm{font-size:11.5px;text-align:left}
+ .rc{display:block;color:var(--brown);font-size:20px;line-height:1;transition:transform .2s}.role[open] .rc{transform:rotate(90deg)}
+ .role[open]{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber)}
+ .rb{margin:0;padding:0 14px 14px}.role p{font-size:14px;margin:0 0 8px}.role .fit{font-size:13.5px}.pick{font-size:13.5px}
+ .plan li,.get{padding:16px}.plan b{font-size:18px}.plan p,.get p,.steps p{font-size:13.5px}.get b,.steps b{font-size:15px}.steps .n{width:32px;height:32px;font-size:14px}
+ .faq summary{font-size:15px}.faq p{font-size:14px}.end h2{font-size:22px}.side p{font-size:14px}
+ .side .z img{display:none}.side .z{padding:12px 14px;margin-top:14px}
+ form.tf label.f{font-size:13.5px}.chip span{font-size:13px;padding:7px 11px}.agree{font-size:13px}
+ .wrap,.top .in,.sub .in{padding-left:16px;padding-right:16px}section.s{padding:36px 0}.hero{padding:14px 0 32px}
  .plan,.gets,.steps{grid-template-columns:1fr}form.tf{grid-template-columns:1fr;padding:18px;box-shadow:5px 5px 0 var(--amber)}
- .lead{font-size:16.5px}.hero .ph img{box-shadow:5px 5px 0 var(--amber);aspect-ratio:16/11}.top .btn{display:none}
+ .lead{font-size:15px;margin-bottom:20px}.hero .ph img{box-shadow:5px 5px 0 var(--amber);aspect-ratio:16/10}.top .btn{display:none}
  .end{padding:26px 20px}
  .mbar{display:flex;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:30;gap:8px;transition:transform .25s}
  .mbar .btn{flex:1;box-shadow:0 6px 20px rgba(0,0,0,.18)}.mbar.hide{transform:translateY(140%)}
  body{padding-bottom:70px}
 }
+.mnav-t{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.mnav-b{width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;margin-right:-10px;-webkit-tap-highlight-color:transparent}
+.mnav-b svg path{stroke:#1A1A1A;animation:mnhb 2.4s ease-in-out 1s 3}
+@keyframes mnhb{0%,100%{stroke:#1A1A1A}50%{stroke:#FFA406}}
+@media (prefers-reduced-motion:reduce){.mnav-b svg path{animation:none}}
+.mnav-t:checked ~ .mnav-b svg path{stroke:#FFA406;animation:none}
+.mnav-o{position:fixed;inset:0;background:rgba(26,26,26,0.12);opacity:0;pointer-events:none;transition:opacity .2s;z-index:60}
+.mnav{position:fixed;top:calc(8px + env(safe-area-inset-top,0px));right:10px;width:min(78vw,292px);max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px);overflow-y:auto;box-sizing:border-box;
+ background:rgba(26,26,26,0.66);-webkit-backdrop-filter:blur(20px) saturate(150%);backdrop-filter:blur(20px) saturate(150%);color:#F5EFE3;z-index:61;border-radius:18px;
+ border:1px solid rgba(245,239,227,0.1);box-shadow:0 18px 40px rgba(0,0,0,0.22);padding:4px 16px 10px;
+ opacity:0;transform:translateY(-8px) scale(.98);transform-origin:top right;visibility:hidden;transition:opacity .18s,transform .2s,visibility .2s;text-transform:lowercase}
+.mnav-t:checked ~ .mnav{opacity:1;transform:none;visibility:visible}
+.mnav-t:checked ~ .mnav-o{opacity:1;pointer-events:auto}
+.mnav a{text-decoration:none;color:rgba(245,239,227,0.9)}
+.mnav .mh{display:flex;justify-content:space-between;align-items:center;padding:12px 0 12px;margin-bottom:4px;border-bottom:1.5px solid rgba(255,164,6,0.55)}
+.mnav .mg{display:flex;align-items:center;gap:10px}
+.mnav .mg img{width:30px;height:30px;display:block;filter:drop-shadow(0 2px 6px rgba(255,164,6,.35))}
+.mnav-t:checked ~ .mnav .mg img{animation:mngs .55s cubic-bezier(.3,1.5,.5,1) .05s both}
+@keyframes mngs{from{transform:rotate(-120deg) scale(.6);opacity:0}to{transform:none;opacity:1}}
+.mnav .mg b{font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:800;line-height:1;color:#F5EFE3;letter-spacing:-.01em}
+.mnav .mg small{display:block;white-space:nowrap;font-size:10.5px;font-weight:500;color:rgba(245,239,227,0.55);margin-top:3px;letter-spacing:.3px}
+@media (prefers-reduced-motion:reduce){.mnav-t:checked ~ .mnav .mg img{animation:none}}
+.mnav .mx{width:36px;height:36px;margin-right:-8px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.mnav .r,.mnav summary{display:flex;justify-content:space-between;align-items:center;min-height:42px;font-size:14px;font-weight:400;letter-spacing:.01em;border-bottom:1px solid rgba(245,239,227,0.07);cursor:pointer;color:rgba(245,239,227,0.9);list-style:none;-webkit-tap-highlight-color:transparent}
+.mnav summary::-webkit-details-marker{display:none}
+.mnav .r i,.mnav summary i{font-style:normal;color:rgba(255,164,6,0.75);font-size:14px;transition:transform .2s}
+.mnav details[open]>summary i{transform:rotate(90deg)}
+.mnav details[open]>summary{color:#FFA406}
+.mnav .r.on{color:#FFA406;font-weight:500}
+.mnav .sub{padding:2px 0 8px 12px;border-left:1px solid rgba(255,164,6,0.35);margin:6px 0 6px 2px}
+.mnav .sub a,.mnav .sub span{display:block;font-size:13px;padding:7px 0;color:rgba(245,239,227,0.72)}
+.mnav .sub span{color:#FFA406}
+.mnav .last{border-bottom:0}
+/*mnav-end*/
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Mình chưa biết ứng tác, có tham gia được không?", "acceptedAnswer": {"@type": "Answer", "text": "Được chứ! Trợ lý lớp, chăm sóc học viên, video, truyền thông, tổ chức sự kiện đều không cần biết ứng tác. Ở cạnh lớp và đội một thời gian, bạn sẽ tự biết thôi."}}, {"@type": "Question", "name": "Có cần ở Hà Nội không?", "acceptedAnswer": {"@type": "Answer", "text": "Lớp học và đêm diễn ở Giảng Võ, Hà Nội. Còn chăm sóc học viên, truyền thông, dựng video thì ở đâu làm cũng được."}}, {"@type": "Question", "name": "Phải cam kết bao lâu?", "acceptedAnswer": {"@type": "Answer", "text": "Tuỳ vị trí. Việc theo dự án có khi chỉ vài tuần. Với trợ lý lớp và House Team, mong bạn đi cùng ít nhất một khoá (khoảng 2–3 tháng) để cả lớp kịp quen mặt bạn."}}, {"@type": "Question", "name": "Có thù lao không?", "acceptedAnswer": {"@type": "Answer", "text": "Tuỳ vị trí và khối lượng việc. Mọi thứ được nói rõ trong buổi cà phê đầu, trước khi bạn bắt tay vào làm."}}, {"@type": "Question", "name": "Mình đang ở một nhóm ứng tác khác, có sao không?", "acceptedAnswer": {"@type": "Answer", "text": "Không sao cả. Ai làm ứng tác cũng là người nhà. Cứ nói rõ để hai bên xếp lịch cho hợp lý."}}]}</script>
 </head>
 <body>
 <header class="top"><div class="in"><a class="lg" href="/"><img src="img/logo-dark-ink.webp" alt="High"><span style="line-height:1">Comedia<i aria-hidden="true" style="display:inline-block;width:.38em;height:.38em;border-radius:50%;background:#AC1F01;margin-left:.07em;vertical-align:baseline;font-style:normal"></i></span></a>
-<nav class="tl" aria-label="Liên kết"><a href="khoa-hoc">Khoá học</a><a href="ve-high-club">Về High Club</a></nav><a class="btn sm" href="#de-lai">Để lại thông tin</a></div></header>
+<nav class="tl" aria-label="Liên kết"><a href="khoa-hoc">Khoá học</a><a href="ve-high-club">Về High Club</a></nav><a class="btn sm" href="#de-lai">Để lại thông tin</a><div class="mm"><input type="checkbox" id="m-nav" class="mnav-t" aria-label="Mở menu điều hướng" onchange="document.documentElement.style.overflow=this.checked?'hidden':''">
+  <label for="m-nav" class="mnav-b"><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Mở menu</span><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke-width:2;stroke-linecap:round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></label>
+  <label for="m-nav" class="mnav-o" aria-hidden="true"></label>
+  <nav class="mnav" aria-label="Menu chính">
+    <div class="mh"><div class="mg"><img src="/img/high-g.webp" alt="" width="30" height="30" loading="lazy"><div><b>khám phá tôi</b><small>high comedia · hà nội</small></div></div><label for="m-nav" class="mx" aria-label="Đóng menu"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:#F5EFE3;stroke-width:2;stroke-linecap:round"><path d="M6 6l12 12M18 6L6 18"></path></svg></label></div>
+    <details><summary class="">ứng tác là gì<i aria-hidden="true">›</i></summary><div class="sub"><a href="/ung-tac" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">ứng tác là gì</a><a href="/danh-cho-ai" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">dành cho ai</a><a href="/buoi-tap" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">một buổi tập</a><a href="/bao-chi" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">báo chí nói gì</a></div></details><details><summary class="">khoá học<i aria-hidden="true">›</i></summary><div class="sub"><a href="/khoa-hoc" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">tất cả khoá & lịch học</a><a href="/khoa-hoc-drop-in" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">drop-in · học thử</a><a href="/khoa-hoc-improv-1" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">improv 1 · cơ bản 1</a><a href="/khoa-hoc-improv-2" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">improv 2 · cơ bản 2</a><a href="/khoa-hoc-performer-1" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">diễn viên ứng tác 1</a><a href="/khoa-hoc-performer-2" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">diễn viên ứng tác 2</a><a href="/khoa-hoc-kids" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">thiếu nhi 8–14 tuổi</a></div></details><a class="r" href="/ung-dung-ung-tac" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">ứng tác doanh nghiệp<i aria-hidden="true">›</i></a><details><summary class="">kiến thức<i aria-hidden="true">›</i></summary><div class="sub"><a href="/kien-thuc/" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">tổng quan</a><a href="/kien-thuc/bai-viet/" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">bài viết</a><a href="/kien-thuc/lich-su/" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">lịch sử ứng tác</a><a href="/kien-thuc/tin-tuc/" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">tin tức</a><a href="/kien-thuc/tu-dien-ung-tac" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">từ điển ứng tác</a></div></details><details open><summary class="">cộng đồng<i aria-hidden="true">›</i></summary><div class="sub"><a href="/#xem-dien" data-cd="show" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">xem diễn</a><a href="/#jam" data-cd="jam" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">jam cộng đồng</a><span>tìm đồng đội</span></div></details><a class="r last" href="/ve-high-club" onclick="var c=document.getElementById('m-nav');if(c)c.checked=false;document.documentElement.style.overflow=''">về high club<i aria-hidden="true">›</i></a>
+  </nav></div></div></header>
 <nav class="sub" aria-label="Mục lục trang"><div class="in"><a href="#vi-sao" data-spy="vi-sao">Vì sao</a><a href="#vi-tri" data-spy="vi-tri">Vị trí cần</a><a href="#ke-hoach" data-spy="ke-hoach">12 tháng tới</a><a href="#quyen-loi" data-spy="quyen-loi">Bạn được gì</a><a href="#quy-trinh" data-spy="quy-trinh">Cách tham gia</a><a href="#de-lai" data-spy="de-lai">Để lại thông tin</a><a href="#hoi-dap" data-spy="hoi-dap">Hỏi đáp</a></div></nav>
 <main>
 <section class="hero"><div class="wrap g">
@@ -125,23 +182,15 @@ form.tf textarea{min-height:92px;resize:vertical}form.tf :focus{outline:none;bor
  <div class="k">Vị trí cần trong 12 tháng tới</div>
  <h2>Bạn hợp với vị trí nào?</h2>
  <p class="intro"><b>Cần ngay</b> là những chỗ đang chờ người từ khi các lớp đầu tiên khai giảng. <b>Năm 2027</b> là những chỗ cần khi sân khấu và lớp nâng cao mở. Thấy mình chẳng giống vị trí nào nhưng vẫn muốn tham gia? Chọn "Vị trí khác" và kể cho HIGH nghe.</p>
- <div class="roles"><article class="role" id="r-tro-ly-lop"><div class="rt"><span class="tag r">Cần ngay</span><span class="tm">2–4 buổi/tháng · sáng cuối tuần</span></div>
-<h3>Trợ lý lớp học</h3><p>Người mở cửa đón cả lớp: chào học viên, điểm danh, xếp phòng, chụp vài tấm ảnh thật xinh và nhắc lịch trong nhóm Zalo.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn chu đáo, thích không khí lớp học và muốn tuần nào cũng được ở gần những tràng cười.</p>
-<button type="button" class="pick" data-role="Trợ lý lớp học">Tôi quan tâm vị trí này →</button></article><article class="role" id="r-van-hanh"><div class="rt"><span class="tag r">Cần ngay</span><span class="tm">Linh hoạt · làm từ xa được</span></div>
-<h3>Điều phối lớp &amp; chăm sóc học viên</h3><p>Trả lời tin nhắn, gọi xác nhận, theo dõi học phí và hỏi han học viên trước, trong, sau khoá. Nói gọn là giữ cho ai cũng thấy được quan tâm.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn nói chuyện dễ thương, làm việc gọn gàng và không sợ Google Sheet.</p>
-<button type="button" class="pick" data-role="Điều phối lớp &amp; chăm sóc học viên">Tôi quan tâm vị trí này →</button></article><article class="role" id="r-noi-dung"><div class="rt"><span class="tag r">Cần ngay</span><span class="tm">Theo lịch quay · 2–4 buổi/tháng</span></div>
-<h3>Quay &amp; dựng video ngắn</h3><p>Bắt lại những khoảnh khắc buồn cười, cảm động ở buổi tập, buổi diễn rồi biến chúng thành TikTok, Reels khiến người xem muốn thử ứng tác.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn có máy quay hoặc điện thoại xịn, dựng được CapCut / Premiere và có con mắt kể chuyện.</p>
-<button type="button" class="pick" data-role="Quay &amp; dựng video ngắn">Tôi quan tâm vị trí này →</button></article><article class="role" id="r-truyen-thong"><div class="rt"><span class="tag r">Cần ngay</span><span class="tm">Bán thời gian · làm từ xa được</span></div>
-<h3>Marketing &amp; truyền thông</h3><p>Viết bài fanpage, lên lịch nội dung, chạy quảng cáo nhỏ, kết nối báo chí và đối tác. Người giúp thêm nhiều người biết ứng tác vui thế nào.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn mê mạng xã hội, viết có duyên và thích soi số xem bài nào &quot;lên&quot;.</p>
-<button type="button" class="pick" data-role="Marketing &amp; truyền thông">Tôi quan tâm vị trí này →</button></article><article class="role" id="r-dien-vien"><div class="rt"><span class="tag a">Năm 2027</span><span class="tm">1 buổi tập/tuần · diễn theo lịch</span></div>
-<h3>Diễn viên House Team</h3><p>Tập đều với đội mỗi tuần và cùng lên sân khấu trong các đêm diễn ứng tác của High Club.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn đã học hoặc diễn ứng tác, muốn tập nghiêm túc mà vẫn chơi hết mình.</p>
-<button type="button" class="pick" data-role="Diễn viên House Team">Tôi quan tâm vị trí này →</button></article><article class="role" id="r-giang-day"><div class="rt"><span class="tag a">Năm 2027</span><span class="tm">Theo lịch lớp · tối và cuối tuần</span></div>
-<h3>Trợ giảng &amp; giảng viên ứng tác</h3><p>Bắt đầu từ việc hỗ trợ trong lớp, dẫn khởi động, rồi đứng lớp theo giáo trình của High Comedia khi bạn đã sẵn sàng.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn đã biết ứng tác, thích nhìn người khác &quot;mở&quot; ra và muốn đi đường dài cùng HIGH.</p>
-<button type="button" class="pick" data-role="Trợ giảng &amp; giảng viên ứng tác">Tôi quan tâm vị trí này →</button></article><article class="role" id="r-to-chuc"><div class="rt"><span class="tag a">Năm 2027</span><span class="tm">Theo từng chương trình</span></div>
-<h3>Tổ chức show &amp; sự kiện</h3><p>Lo sân khấu, hậu đài, âm thanh ánh sáng, bán vé, đón khán giả. Những người giúp đêm diễn chạy trơn tru dù trên sân khấu chẳng có gì được lên kịch bản.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn từng làm sự kiện hoặc sân khấu và giữ được bình tĩnh khi mọi thứ diễn ra trực tiếp.</p>
-<button type="button" class="pick" data-role="Tổ chức show &amp; sự kiện">Tôi quan tâm vị trí này →</button></article><article class="role" id="r-hop-tac"><div class="rt"><span class="tag g">Hợp tác dự án</span><span class="tm">Theo dự án</span></div>
-<h3>Biên kịch, nghệ sĩ, MC &amp; Host</h3><p>Cùng nghĩ ra show chủ đề, workshop, chương trình cho doanh nghiệp hay nội dung có màu ứng tác.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn có nghề riêng và tò mò không biết ứng tác sẽ &quot;phá&quot; công việc của mình theo hướng thú vị nào.</p>
-<button type="button" class="pick" data-role="Biên kịch, nghệ sĩ, MC &amp; Host">Tôi quan tâm vị trí này →</button></article></div>
+ <div class="roles"><details class="role" id="r-tro-ly-lop"><summary><span class="rs"><b class="rn">Trợ lý lớp học</b><span class="rm"><span class="tag r">Cần ngay</span><span class="tm">2–4 buổi/tháng · sáng cuối tuần</span></span></span><i class="rc" aria-hidden="true">›</i></summary>
+<div class="rb"><p>Người mở cửa đón cả lớp: chào học viên, điểm danh, xếp phòng, chụp vài tấm ảnh thật xinh và nhắc lịch trong nhóm Zalo.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn chu đáo, thích không khí lớp học và muốn tuần nào cũng được ở gần những tràng cười.</p><button type="button" class="pick" data-role="Trợ lý lớp học">Tôi quan tâm vị trí này →</button></div></details><details class="role" id="r-van-hanh"><summary><span class="rs"><b class="rn">Điều phối lớp &amp; chăm sóc học viên</b><span class="rm"><span class="tag r">Cần ngay</span><span class="tm">Linh hoạt · làm từ xa được</span></span></span><i class="rc" aria-hidden="true">›</i></summary>
+<div class="rb"><p>Trả lời tin nhắn, gọi xác nhận, theo dõi học phí và hỏi han học viên trước, trong, sau khoá. Nói gọn là giữ cho ai cũng thấy được quan tâm.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn nói chuyện dễ thương, làm việc gọn gàng và không sợ Google Sheet.</p><button type="button" class="pick" data-role="Điều phối lớp &amp; chăm sóc học viên">Tôi quan tâm vị trí này →</button></div></details><details class="role" id="r-noi-dung"><summary><span class="rs"><b class="rn">Quay &amp; dựng video ngắn</b><span class="rm"><span class="tag r">Cần ngay</span><span class="tm">Theo lịch quay · 2–4 buổi/tháng</span></span></span><i class="rc" aria-hidden="true">›</i></summary>
+<div class="rb"><p>Bắt lại những khoảnh khắc buồn cười, cảm động ở buổi tập, buổi diễn rồi biến chúng thành TikTok, Reels khiến người xem muốn thử ứng tác.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn có máy quay hoặc điện thoại xịn, dựng được CapCut / Premiere và có con mắt kể chuyện.</p><button type="button" class="pick" data-role="Quay &amp; dựng video ngắn">Tôi quan tâm vị trí này →</button></div></details><details class="role" id="r-truyen-thong"><summary><span class="rs"><b class="rn">Marketing &amp; truyền thông</b><span class="rm"><span class="tag r">Cần ngay</span><span class="tm">Bán thời gian · làm từ xa được</span></span></span><i class="rc" aria-hidden="true">›</i></summary>
+<div class="rb"><p>Viết bài fanpage, lên lịch nội dung, chạy quảng cáo nhỏ, kết nối báo chí và đối tác. Người giúp thêm nhiều người biết ứng tác vui thế nào.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn mê mạng xã hội, viết có duyên và thích soi số xem bài nào &quot;lên&quot;.</p><button type="button" class="pick" data-role="Marketing &amp; truyền thông">Tôi quan tâm vị trí này →</button></div></details><details class="role" id="r-dien-vien"><summary><span class="rs"><b class="rn">Diễn viên House Team</b><span class="rm"><span class="tag a">Năm 2027</span><span class="tm">1 buổi tập/tuần · diễn theo lịch</span></span></span><i class="rc" aria-hidden="true">›</i></summary>
+<div class="rb"><p>Tập đều với đội mỗi tuần và cùng lên sân khấu trong các đêm diễn ứng tác của High Club.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn đã học hoặc diễn ứng tác, muốn tập nghiêm túc mà vẫn chơi hết mình.</p><button type="button" class="pick" data-role="Diễn viên House Team">Tôi quan tâm vị trí này →</button></div></details><details class="role" id="r-giang-day"><summary><span class="rs"><b class="rn">Trợ giảng &amp; giảng viên ứng tác</b><span class="rm"><span class="tag a">Năm 2027</span><span class="tm">Theo lịch lớp · tối và cuối tuần</span></span></span><i class="rc" aria-hidden="true">›</i></summary>
+<div class="rb"><p>Bắt đầu từ việc hỗ trợ trong lớp, dẫn khởi động, rồi đứng lớp theo giáo trình của High Comedia khi bạn đã sẵn sàng.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn đã biết ứng tác, thích nhìn người khác &quot;mở&quot; ra và muốn đi đường dài cùng HIGH.</p><button type="button" class="pick" data-role="Trợ giảng &amp; giảng viên ứng tác">Tôi quan tâm vị trí này →</button></div></details><details class="role" id="r-to-chuc"><summary><span class="rs"><b class="rn">Tổ chức show &amp; sự kiện</b><span class="rm"><span class="tag a">Năm 2027</span><span class="tm">Theo từng chương trình</span></span></span><i class="rc" aria-hidden="true">›</i></summary>
+<div class="rb"><p>Lo sân khấu, hậu đài, âm thanh ánh sáng, bán vé, đón khán giả. Những người giúp đêm diễn chạy trơn tru dù trên sân khấu chẳng có gì được lên kịch bản.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn từng làm sự kiện hoặc sân khấu và giữ được bình tĩnh khi mọi thứ diễn ra trực tiếp.</p><button type="button" class="pick" data-role="Tổ chức show &amp; sự kiện">Tôi quan tâm vị trí này →</button></div></details><details class="role" id="r-hop-tac"><summary><span class="rs"><b class="rn">Biên kịch, nghệ sĩ, MC &amp; Host</b><span class="rm"><span class="tag g">Hợp tác dự án</span><span class="tm">Theo dự án</span></span></span><i class="rc" aria-hidden="true">›</i></summary>
+<div class="rb"><p>Cùng nghĩ ra show chủ đề, workshop, chương trình cho doanh nghiệp hay nội dung có màu ứng tác.</p><p class="fit"><b>Hợp với bạn nếu:</b> Bạn có nghề riêng và tò mò không biết ứng tác sẽ &quot;phá&quot; công việc của mình theo hướng thú vị nào.</p><button type="button" class="pick" data-role="Biên kịch, nghệ sĩ, MC &amp; Host">Tôi quan tâm vị trí này →</button></div></details></div>
 </div></section>
 
 <section class="s w" id="ke-hoach"><div class="wrap">
@@ -291,6 +340,12 @@ form.tf textarea{min-height:92px;resize:vertical}form.tf :focus{outline:none;bor
      fe.textContent={phone:'Số điện thoại chưa đúng.',email:'Email chưa đúng.',rate:'Bạn gửi hơi nhiều lần, thử lại sau ít phút hoặc nhắn Zalo.',form:'Hệ thống đang cập nhật, vui lòng nhắn Zalo cho High Comedia.'}[res&&res.error]||'Chưa gửi được. Thử lại hoặc nhắn Zalo cho High Comedia.';
    }).catch(function(){ev('error');btn.disabled=false;btn.textContent=txt;fe.textContent='Mạng chập chờn, chưa gửi được. Thử lại hoặc nhắn Zalo.';});
  });
+ // vị trí: máy tính mở hết dạng thẻ; điện thoại mở từng mục, mở mục này đóng mục khác
+ var R=[].slice.call(document.querySelectorAll('details.role')), wide=matchMedia('(min-width:601px)');
+ function lay(){R.forEach(function(d){d.open=wide.matches;});} lay(); wide.addEventListener&&wide.addEventListener('change',lay);
+ R.forEach(function(d){d.addEventListener('toggle',function(){ if(wide.matches){if(!d.open)d.open=true;return;}
+   if(d.open){R.forEach(function(o){if(o!==d&&o.open)o.open=false;}); var t=d.getBoundingClientRect().top; if(t<110||t>innerHeight-120)window.scrollTo({top:scrollY+t-118,behavior:'smooth'});} });});
+ document.addEventListener('click',function(e){var sm=e.target.closest&&e.target.closest('details.role summary');if(sm&&wide.matches)e.preventDefault();},true);
  // menu mục lục: tô mục đang xem
  var links=[].slice.call(document.querySelectorAll('.sub a')), secs=links.map(function(a){return document.getElementById(a.getAttribute('data-spy'));});
  function spy(){var y=window.scrollY+140,cur=0;secs.forEach(function(s,i){if(s&&s.offsetTop<=y)cur=i;});links.forEach(function(a,i){var on=i===cur&&window.scrollY>200;a.classList.toggle('on',on);if(on&&a.scrollIntoView&&a.parentNode.scrollWidth>a.parentNode.clientWidth)a.parentNode.scrollTo({left:a.offsetLeft-40,behavior:'smooth'});});

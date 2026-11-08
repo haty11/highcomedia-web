@@ -6,6 +6,7 @@
    - Sự kiện window 'hc:form' {type:'open'|'submit'|'success'|'error', form, cls} để gắn đo lường. */
 (function(){
   var CFG=window.HC_CONFIG||{}, D=window.HC_DATA||{};
+  var INAPP=/FBAN|FBAV|FB_IAB|Instagram|Zalo|musical_ly|Bytedance|TikTok|Line\//i.test(navigator.userAgent||'');
   var LIVE=!!CFG.formUrl&&!/claude|localhost|^$/.test(location.hostname); // bản xem thử trên claude.ai không gửi được ra ngoài -> chế độ xem thử
   var A='#FFA406', INK='#1A1A1A', BG='#F5EFE3';
   var WD=['CN','T2','T3','T4','T5','T6','T7'];
@@ -91,6 +92,7 @@
   +'.hcf .ok{width:56px;height:56px;flex:0 0 56px;border-radius:50%;background:'+A+';display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800}'
   +'.hcf .qr{display:flex;gap:12px;align-items:center}.hcf .qr img{width:96px;height:96px;border-radius:10px;background:#fff;padding:4px}'
   +'[data-hc-act]{cursor:pointer}'
+  +'.hcf-cal{display:inline-block;margin-top:8px;font-size:13.5px;font-weight:700;color:#8A4B00;text-decoration:underline;text-underline-offset:3px}'
   +'.hcf-pay{display:flex;gap:16px;align-items:flex-start;background:#fff;border-radius:14px;padding:14px;border:2px solid #1A1A1A;box-shadow:4px 4px 0 #FFA406}.hcf-qrbox{display:flex;flex-direction:column;align-items:center;gap:6px;flex:0 0 auto}.hcf-qr{width:168px;height:168px;background:#F5EFE3;border-radius:8px}.hcf-qr img{display:block;width:168px;height:168px}.hcf-save{font-size:13px;font-weight:700;color:#8A4B00}.hcf-bank{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px;font-size:14px}.hcf-bank dl{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;margin:6px 0;align-items:center}.hcf-bank dt{color:rgba(26,26,26,.6);font-size:13px}.hcf-bank dd{margin:0;word-break:break-word}.hcf-bank .hl{background:#FFE58F;padding:1px 6px;border-radius:4px}.hcf-bank button{font:inherit;font-size:12px;font-weight:700;border:1.5px solid #1A1A1A;background:#fff;border-radius:100px;padding:2px 10px;cursor:pointer;margin-left:4px}@media (max-width:640px){.hcf-pay{flex-direction:column;align-items:stretch}.hcf-qrbox{align-self:center}}'
   +'@media (max-width:640px){.hcf-bd{align-items:flex-end;padding:0}.hcf{max-width:none;max-height:92vh;border-radius:20px 20px 0 0;border-width:2px 0 0;box-shadow:none;transform:translateY(100%)}.hcf form,.hcf .hcf-done{grid-template-columns:1fr;padding-bottom:calc(22px + env(safe-area-inset-bottom,0px))}.hcf .qr img{display:none}.hcf-h{padding:14px 18px 8px}.hcf-h small{font-size:10px}.hcf-h b{font-size:19px;margin-top:3px}.hcf-h em{font-size:12px}.hcf-x{flex:0 0 34px;height:34px;font-size:17px;border-width:1px}.hcf form,.hcf .hcf-done{gap:14px 10px;padding:4px 18px 20px}.hcf label{font-size:12.5px;line-height:1.4;gap:6px}.hcf input:not([type=checkbox]):not([type=radio]),.hcf select{height:42px;border-width:1.5px;border-radius:10px;padding:0 12px}.hcf textarea{height:66px;border-width:1.5px;border-radius:10px}.hcf .seg{border-width:1.5px}.hcf .seg button{height:34px;font-size:12.5px}.hcf .pick{border-width:1.5px;border-radius:14px;padding:10px 12px}.hcf .pick-t{font-size:14px}.hcf .pick-m{font-size:12.5px;line-height:1.5;margin-top:4px}.hcf .pick-p{font-size:13px}.hcf .badge{font-size:11px;padding:2px 8px}.hcf .chg{font-size:12px}.hcf .note{font-size:11.5px}.hcf .chk{font-size:12.5px}.hcf .chk input{width:18px;height:18px;flex:0 0 18px}.hcf .chips label{font-size:12.5px;padding:5px 10px}.hcf-go{height:46px;font-size:15px}.hcf-alt{height:42px;font-size:13px}}'
   +'@media (prefers-reduced-motion:reduce){.hcf-bd,.hcf{transition:none}}';
@@ -212,15 +214,23 @@
   function drawQR(root){
     var box=root&&root.querySelector('[data-pay]'); if(!box)return;
     function go(){try{var q=qrcode(0,'M');q.addData(box.getAttribute('data-pay'));q.make();var u=q.createDataURL(6,3);
-      box.querySelector('.hcf-qr').innerHTML='<img src="'+u+'" alt="Mã QR chuyển khoản" width="168" height="168">';var a=box.querySelector('.hcf-save');a.href=u;a.hidden=false;}catch(e){}}
+      box.querySelector('.hcf-qr').innerHTML='<img src="'+u+'" alt="Mã QR chuyển khoản" width="168" height="168">';var a=box.querySelector('.hcf-save');if(INAPP){a.removeAttribute('download');a.removeAttribute('href');a.textContent='Nhấn giữ mã để lưu ảnh';a.style.cursor='default';}else a.href=u;a.hidden=false;}catch(e){}}
     if(window.qrcode)return go();
     var s=document.createElement('script');s.src='/qr.js?v=ec9f8b65';s.onload=go;document.head.appendChild(s);
   }
   document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-copy]');if(!b)return;
     var v=b.getAttribute('data-copy'),ok=function(){var t=b.textContent;b.textContent='Đã chép ✓';setTimeout(function(){b.textContent=t;},1500);};
-    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(v).then(ok,function(){});else{var i=document.createElement('textarea');i.value=v;document.body.appendChild(i);i.select();try{document.execCommand('copy');ok();}catch(x){}i.remove();}});
+    var fb=function(){var i=document.createElement('textarea');i.value=v;i.setAttribute('readonly','');i.style.cssText='position:fixed;top:0;left:0;opacity:0';document.body.appendChild(i);i.select();i.setSelectionRange(0,99);try{if(document.execCommand('copy'))ok();}catch(x){}document.body.removeChild(i);};
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(v).then(ok,fb);else fb();});
 
   /* ---------- Màn hình sau khi gửi ---------- */
+  function calUrl(cid,x){
+    var c=D[cid]||{}, m=String(x.time||'9:00–11:00').match(/(\d{1,2})[:h](\d{2})?\D+(\d{1,2})[:h](\d{2})?/);
+    var at=function(h,mi){var d=new Date(x.start+'T'+('0'+h).slice(-2)+':'+(mi||'00')+':00+07:00');return d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');};
+    var dt=m?at(m[1],m[2])+'/'+at(m[3],m[4]):x.start.replace(/-/g,'')+'/'+x.start.replace(/-/g,'');
+    return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent('High Comedia · '+full(cid)+(x.code?' · '+x.code:'')+' · Buổi 1')
+      +'&dates='+dt+'&location='+encodeURIComponent(c.loc||'Hà Nội')+'&details='+encodeURIComponent('Có mặt trước 10 phút. Hỏi đáp: Zalo '+(CFG.phoneDisplay||'')+'\n'+location.origin+'/'+String(c.page||'khoa-hoc').replace(/\.html$/,''));
+  }
   function doneHTML(kind,data,res){
     var z=CFG.zalo||'#', pay='', cid=data.cls, x=cid&&data.cohort?cohortById(cid,data.cohort):null;
     var bank=CFG.bank||{}, hasBank=bank.acct&&bank.bank&&bank.bin;
@@ -240,7 +250,7 @@
     var sub={reg:'High Comedia sẽ gọi hoặc nhắn Zalo cho bạn trong 24 giờ để xác nhận chỗ.',kids:'High Comedia sẽ liên hệ phụ huynh trong 24 giờ để xác nhận lịch học của con.',waitlist:'Bạn sẽ là người đầu tiên được báo khi lớp mở, kèm ưu đãi cho danh sách chờ.',quote:'Đạo diễn Đào Ngọc Hà sẽ liên hệ trong 1–2 ngày làm việc để đặt lịch buổi tư vấn.'}[kind];
     return '<div class="hcf-done" role="status">'
       +'<div class="full" style="display:flex;gap:14px;align-items:center"><div class="ok" aria-hidden="true">✓</div><div><b style="font-family:\'Bricolage Grotesque\',sans-serif;font-size:22px;display:block">'+head+'</b><span style="font-size:14px;color:rgba(26,26,26,0.75)">'+sub+'</span></div></div>'
-      +(cid&&kind!=='quote'?'<div class="sum full"><b>'+esc(full(cid))+'</b>'+(kind!=='waitlist'?'<br>'+cohortLine(cid,x):'')+'</div>':'')+pay
+      +(cid&&kind!=='quote'?'<div class="sum full"><b>'+esc(full(cid))+'</b>'+(kind!=='waitlist'?'<br>'+cohortLine(cid,x):'')+(x&&x.start&&(kind==='reg'||kind==='kids')?'<br><a class="hcf-cal" href="'+esc(calUrl(cid,x))+'" target="_blank" rel="noopener">📅 Lưu ngày học vào Google Calendar</a>':'')+'</div>':'')+pay
       +'<div class="full qr">'+(CFG.zaloQr?'<img src="'+esc(CFG.zaloQr)+'" alt="Mã QR Zalo High Comedia">':'')+'<div style="flex:1;display:flex;flex-direction:column;gap:8px"><span class="note">Cần hỏi ngay? Nhắn Zalo cho High Comedia.</span><a class="hcf-alt" href="'+esc(z)+'" target="_blank" rel="noopener">Nhắn Zalo '+esc(CFG.phoneDisplay||'')+'</a></div></div>'
       +(res&&res.demo?'<div class="note full" style="color:#8A4B00">Chế độ xem thử: dữ liệu chưa được gửi đi (chưa kết nối Google Sheet).</div>':'')
       +'<button type="button" class="hcf-go full" data-hcf-close>Đóng</button></div>';

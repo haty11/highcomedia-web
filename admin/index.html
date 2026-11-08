@@ -533,7 +533,7 @@ function norm(o){
   const fk=o.k==='quote'?'Giá trị (đ)':'Học phí (đ)'; r.fee=fk in f?num(f[fk]):null; r.paid='Đã thu (đ)' in f?num(f['Đã thu (đ)']):null;
   return r;
 }
-const BUILD='20261108100022';
+const BUILD='20261108102233';
 /* Kiểm tra bản Admin mới (tránh trình duyệt giữ bản cũ trong bộ nhớ đệm) */
 async function checkVer(){try{const t=await fetch(location.pathname+'?v='+Date.now(),{cache:'no-store'}).then(r=>r.text());const m=t.match(/const BUILD='([^']+)'/);
   if(m&&m[1]!==BUILD&&BUILD!=='dev'){toast('<span>⟳ Có bản Admin mới, đang tải lại…</span>');setTimeout(()=>location.replace(location.pathname+'?v='+m[1]+location.hash),700);return true}}catch(e){}return false}
@@ -594,7 +594,7 @@ function mailInfo(r){
   const pick=(act,re)=>{const a=LOG.filter(l=>l.code===r.id&&l.act===act).map(l=>({t:l.t,who:String(l.who||'').split(' <')[0]}));
     (String(r.inote||'').match(re)||[]).forEach(m=>{const x=m.match(/(\d\d)\/(\d\d) (\d\d):(\d\d)/);if(!x)return;const t=new Date(r.t.getFullYear(),x[2]-1,x[1],x[3],x[4]);if(t<r.t)t.setFullYear(t.getFullYear()+1);if(!a.some(y=>Math.abs(y.t-t)<120e3))a.push({t,who:''})});
     return a.sort((x,y)=>y.t-x.t)};
-  return {confirm:pick('Gửi email xác nhận',/Đã gửi email xác nhận giữ chỗ \d\d\/\d\d \d\d:\d\d/g),receipt:pick('Gửi lại email nhận ĐK',/Đã gửi lại email nhận đăng ký \d\d\/\d\d \d\d:\d\d/g)};
+  return {confirm:pick('Gửi email xác nhận',/Đã gửi email xác nhận giữ chỗ \d\d\/\d\d \d\d:\d\d/g),receipt:pick('Gửi lại email nhận ĐK',/Đã gửi lại email nhận đăng ký \d\d\/\d\d \d\d:\d\d/g),remind:(String(r.inote||'').match(/Đã gửi nhắc lịch D-\d \d\d\/\d\d \d\d:\d\d/g)||[]).map(m=>m.replace('Đã gửi nhắc lịch ',''))};
 }
 const fdt=t=>t.toLocaleString('vi-VN',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'});
 const SLA={reg:24,kids:24,quote:12,lead:24,waitlist:72};
@@ -820,7 +820,8 @@ function openDr(id,keep){
       const rowC=!paying(r)?'':c0?`<div class="mst ok"><i>✓</i><div><b>Xác nhận giữ chỗ</b><small>Đã gửi ${fdt(c0.t)}${who(c0)}${mi.confirm.length>1?' · tổng '+mi.confirm.length+' lần':''}</small></div></div>`
         :held(r)?`<div class="mst warn"><i>!</i><div><b>Xác nhận giữ chỗ</b><small>Chưa gửi · khách đã cọc, nên gửi ngay</small></div></div>`
         :`<div class="mst"><i>–</i><div><b>Xác nhận giữ chỗ</b><small>Chưa gửi · chờ khách cọc</small></div></div>`;
-      return `<div class="card"><div class="h4">Email cho khách</div>${r.em?rowR+rowC:'<div class="hint" style="margin:0 0 8px">Khách không để lại email.</div>'}
+      const rowN=mi.remind.length?`<div class="mst ok"><i>✓</i><div><b>Nhắc lịch học</b><small>${mi.remind.map(esc).join(' · ')}</small></div></div>`:(held(r)&&cohortOf(r)?`<div class="mst"><i>⏰</i><div><b>Nhắc lịch học</b><small>Tự gửi lúc 9h, trước buổi đầu 3 ngày và 1 ngày</small></div></div>`:'');
+      return `<div class="card"><div class="h4">Email cho khách</div>${r.em?rowR+rowC+rowN:'<div class="hint" style="margin:0 0 8px">Khách không để lại email.</div>'}
       ${me.perm.mail.length&&r.em?`<div style="display:flex;flex-direction:column;gap:8px;margin-top:10px">
       ${paying(r)&&me.perm.mail.includes('confirm')?`<button class="btn ${held(r)&&!c0?'amber':''}" data-mail="confirm" ${held(r)?'':'disabled title="Chỉ gửi sau khi khách đã cọc"'}>${ICO.mail} ${c0?'Gửi lại email xác nhận giữ chỗ':'Gửi email xác nhận giữ chỗ'}</button>`:''}
       ${me.perm.mail.includes('receipt')?`<button class="btn" data-mail="receipt">${ICO.mail} Gửi lại email "Đã nhận đăng ký"</button>`:''}</div><div class="hint">Gửi từ Gmail High Comedia tới ${esc(r.em)}.</div>`:''}</div>`})():''}

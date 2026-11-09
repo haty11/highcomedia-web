@@ -117,6 +117,8 @@
 /* Thanh nổi mobile:
    - Trang có [data-bar-start] (trang chủ): chỉ hiện khi đã cuộn tới khối đó, ẩn khi khối [data-bar-hide] (đã có nút đăng ký) đang hiện.
    - Trang khác: cuộn xuống đọc thì ẩn, cuộn lên thì hiện lại.
+   - Đọc chăm chú: cuộn xuống chậm, đều quá FOCUS_MS (2 phút) mà không lướt nhanh → giữ ẩn, kéo lên đọc lại cũng không hiện.
+   - Lướt tìm: vuốt nhanh liên tục (lên hoặc xuống, quãng cuộn trong 1 giây ≥ 1,5 màn hình) → hiện lại và thoát chế độ đọc chăm chú.
    - Nút × tắt thanh trong phiên truy cập. */
 (function(){
   var bars=document.querySelectorAll('[data-hc-bar]'); if(!bars.length) return;
@@ -127,14 +129,22 @@
   var start=[].filter.call(document.querySelectorAll('[data-bar-start]'),vis)[0];
   var hides=[].filter.call(document.querySelectorAll('[data-bar-hide]'),vis);
   var last=window.pageYOffset||0, ticking=false;
+  var FOCUS_MS=window.HC_FOCUS_MS||120000, prevY=last, hist=[], readStart=0, focus=false;
+  function now(){return (window.performance&&performance.now)?performance.now():Date.now();}
   function inView(el){var r=el.getBoundingClientRect(),V=window.innerHeight;return r.top<V*0.9&&r.bottom>V*0.5;}
   /* Nút đăng ký có sẵn trong trang đang hiện trên màn hình thì ẩn thanh nổi, tránh hai nút trùng nhau */
   function ctaInView(){var V=window.innerHeight,a=document.querySelectorAll('[data-hc-act^="reg"]');
     for(var i=0;i<a.length;i++){var el=a[i];if(el.closest('[data-hc-bar]')||el.closest('.mnav')||!vis(el))continue;var r=el.getBoundingClientRect();if(r.top<V-70&&r.bottom>60)return true;}return false;}
   function tick(){ticking=false;var y=window.pageYOffset||0;
     if(start){var past=start.getBoundingClientRect().top<window.innerHeight*0.6;var hid=hides.some(inView)||ctaInView();set(!past||hid);return;}
+    var t=now(),dy=y-prevY;prevY=y;hist.push([t,Math.abs(dy)]);while(hist.length&&t-hist[0][0]>1000)hist.shift();
+    var sum=0;for(var i=0;i<hist.length;i++)sum+=hist[i][1];
+    var fast=sum>=window.innerHeight*1.5;                       /* lướt nhanh liên tục */
+    if(fast){readStart=0;focus=false;}
+    else if(dy>0){if(!readStart)readStart=t;if(t-readStart>=FOCUS_MS)focus=true;}  /* cuộn xuống chậm = đang đọc */
     var d=y-last;
-    if(ctaInView()){set(true);}else if(y<400){set(true);}else if(d>8){set(true);}else if(d<-8){set(false);}
+    if(ctaInView()){set(true);}else if(y<400){set(true);}else if(fast){set(false);}else if(focus){set(true);}
+    else if(d>8){set(true);}else if(d<-8){set(false);}
     if(Math.abs(d)>8)last=y;}
   window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(tick);}},{passive:true});
   window.addEventListener('resize',function(){start=[].filter.call(document.querySelectorAll('[data-bar-start]'),vis)[0];hides=[].filter.call(document.querySelectorAll('[data-bar-hide]'),vis);tick();});

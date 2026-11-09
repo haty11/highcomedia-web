@@ -102,9 +102,14 @@
     if(window.HC_refresh) window.HC_refresh();
     try{window.dispatchEvent(new CustomEvent('hc:data'));}catch(e){}
   }
+  /* 3 lớp, từ nhanh đến mới nhất: (1) bản đã nhớ trên máy khách, (2) ảnh chụp hc-live.json trên chính web (~0,2 giây, cập nhật 10 phút/lần),
+     (3) hỏi thẳng Apps Script (2–6 giây, mới nhất). Bản mới hơn luôn ghi đè; Apps Script về rồi thì bỏ qua ảnh chụp đến muộn. */
+  var live=false;
   try{ var c=JSON.parse(localStorage.getItem(KEY)||'null'); if(c&&c.data&&Date.now()-c.t<864e5) apply(c.data); }catch(e){}
+  fetch('/hc-live.json?t='+Math.floor(Date.now()/6e4)).then(function(r){return r.ok?r.json():null;}).then(function(d){ if(d&&!live) apply(d); }).catch(function(){});
   fetch(C.formUrl+'?action=data').then(function(r){return r.json();}).then(function(j){
     if(!j||!j.data) return;
+    live=true;
     try{ localStorage.setItem(KEY,JSON.stringify({t:Date.now(),data:j.data})); }catch(e){}
     apply(j.data);
   }).catch(function(){});

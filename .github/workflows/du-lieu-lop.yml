@@ -1,0 +1,30 @@
+# Ảnh chụp dữ liệu lớp (lịch, giá, số chỗ) từ Google Sheet -> hc-live.json, để web hiện số liệu đúng ngay khi mở trang
+# (nhanh hơn chờ Apps Script 2–6 giây). Chạy 10 phút/lần; chỉ commit khi số liệu thay đổi. Web vẫn hỏi Apps Script sau đó để lấy bản mới nhất.
+name: Du lieu lop
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+concurrency: dang-bai
+jobs:
+  du-lieu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lay du lieu tu Sheet
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          url=$(grep -o '"formUrl": *"[^"]*"' hc-config.js | sed 's/.*"\(https[^"]*\)"/\1/')
+          [ -z "$url" ] && { echo "Chưa có formUrl"; exit 0; }
+          curl -sL --max-time 60 "$url?action=data" -o /tmp/d.json || exit 0
+          jq -e '.ok and .data' /tmp/d.json >/dev/null || { echo "Dữ liệu lỗi, bỏ qua"; exit 0; }
+          jq -cS '.data' /tmp/d.json > hc-live.json
+          git add hc-live.json
+          if git diff --cached --quiet; then echo "Không đổi"; exit 0; fi
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "Cập nhật dữ liệu lớp"
+          git push
+          gh api -X POST "repos/$GITHUB_REPOSITORY/pages/builds" >/dev/null || true

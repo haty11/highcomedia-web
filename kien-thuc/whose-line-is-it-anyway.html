@@ -92,6 +92,17 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 .tw{overflow-x:auto;margin:0 0 26px;border:1px solid rgba(26,26,26,0.12);border-radius:14px}
 .prose table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.5}.prose th,.prose td{padding:11px 14px;text-align:left;vertical-align:top;border-bottom:1px solid rgba(26,26,26,0.1)}
 .prose th{background:#1A1A1A;color:#F5EFE3;font-weight:700}.prose tr:last-child td{border-bottom:0}.prose td:first-child{font-weight:700;color:#1A1A1A}.prose tbody tr:nth-child(even){background:rgba(26,26,26,0.03)}
+@media (max-width:640px){
+ .tw{border:0;border-radius:0;overflow:visible}.prose .tw table,.prose .tw tbody,.prose .tw tr,.prose .tw td{display:block;width:auto}.prose .tw thead{display:none}
+ .prose .tw tbody tr:nth-child(even){background:transparent}
+ .prose .tb-c tr{background:#fff!important;border:1px solid rgba(26,26,26,0.12);border-radius:14px;padding:12px 14px 6px;margin:0 0 12px}
+ .prose .tb-c td{padding:0 0 9px;border:0;font-size:15px;line-height:1.55}.prose .tb-c td:first-child{font-family:'Bricolage Grotesque',sans-serif;font-size:17px;line-height:1.3;padding:0 0 10px;margin-bottom:10px;border-bottom:1px solid rgba(26,26,26,0.1)}
+ .prose .tb-c td:not(:first-child)::before{content:attr(data-l);display:block;font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8A4B00;margin-bottom:1px}
+ .prose .tb-c td:first-child::before{content:attr(data-l);display:block;font-family:'Be Vietnam Pro',sans-serif;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:rgba(26,26,26,0.5);margin-bottom:2px}
+ .prose .tb-c td[data-l=""]::before{display:none}.prose .tb-c td.e{display:none}
+ .prose .tb-2{background:#fff;border-radius:14px;padding:4px 14px}.prose .tb-2 tr{padding:10px 0;border-bottom:1px solid rgba(26,26,26,0.1)}.prose .tb-2 tr:last-child{border-bottom:0}
+ .prose .tb-2 td{padding:0;border:0;font-size:15px;line-height:1.55}.prose .tb-2 td:first-child{font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8A4B00;margin-bottom:2px}
+}
 .prose blockquote.note{font-family:'Be Vietnam Pro',sans-serif;font-size:16px;font-weight:400;line-height:1.7;letter-spacing:0;background:#FFF6E0;border:0;border-left:4px solid #FFA406;border-radius:0 14px 14px 0;box-shadow:none;padding:16px 20px;margin:28px 0}
 .prose blockquote.note::before,.prose blockquote.note::after{content:none}
 .faq details{background:#fff;border-radius:14px;padding:0 18px;margin-bottom:10px}.faq summary{cursor:pointer;font-weight:700;padding:15px 0;list-style:none;font-size:16px}.faq summary::-webkit-details-marker{display:none}
@@ -294,7 +305,7 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 <p>Điểm số chẳng có ý nghĩa gì. Điều có ý nghĩa là bạn dám bước ra và chơi.</p>
 </blockquote>
 <h2 id="tom-tat-nhanh">Tóm tắt nhanh</h2>
-<div class="tw"><table>
+<div class="tw tb-2"><table>
 <thead>
 <tr>
 <th>Mục</th>
@@ -302,30 +313,12 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>Ra đời</td>
-<td>1988, BBC Radio 4 (Anh); sáng tạo bởi Dan Patterson, Mark Leveson</td>
-</tr>
-<tr>
-<td>Phiên bản Anh</td>
-<td>Channel 4, 1988–1999, dẫn bởi Clive Anderson</td>
-</tr>
-<tr>
-<td>Phiên bản Mỹ</td>
-<td>ABC từ 5/8/1998 (Drew Carey); The CW từ 16/7/2013 đến 1/11/2024 (Aisha Tyler)</td>
-</tr>
-<tr>
-<td>Gương mặt quen thuộc</td>
-<td>Ryan Stiles, Colin Mochrie, Wayne Brady</td>
-</tr>
-<tr>
-<td>Hình thức</td>
-<td>Ứng tác dạng ngắn, dựng như game show, điểm số tuỳ hứng</td>
-</tr>
-<tr>
-<td>Nguồn gốc trò chơi</td>
-<td>Phần lớn từ Theatresports của Keith Johnstone</td>
-</tr>
+<tr><td data-l="Mục">Ra đời</td><td data-l="Thông tin">1988, BBC Radio 4 (Anh); sáng tạo bởi Dan Patterson, Mark Leveson</td></tr>
+<tr><td data-l="Mục">Phiên bản Anh</td><td data-l="Thông tin">Channel 4, 1988–1999, dẫn bởi Clive Anderson</td></tr>
+<tr><td data-l="Mục">Phiên bản Mỹ</td><td data-l="Thông tin">ABC từ 5/8/1998 (Drew Carey); The CW từ 16/7/2013 đến 1/11/2024 (Aisha Tyler)</td></tr>
+<tr><td data-l="Mục">Gương mặt quen thuộc</td><td data-l="Thông tin">Ryan Stiles, Colin Mochrie, Wayne Brady</td></tr>
+<tr><td data-l="Mục">Hình thức</td><td data-l="Thông tin">Ứng tác dạng ngắn, dựng như game show, điểm số tuỳ hứng</td></tr>
+<tr><td data-l="Mục">Nguồn gốc trò chơi</td><td data-l="Thông tin">Phần lớn từ Theatresports của Keith Johnstone</td></tr>
 </tbody>
 </table></div>
 <p class="rm">Xem thêm: <a href="/kien-thuc/keith-johnstone">Keith Johnstone</a> · <a href="/kien-thuc/saturday-night-live">Saturday Night Live</a> · <a href="/kien-thuc/upright-citizens-brigade">Upright Citizens Brigade</a> · <a href="/kien-thuc/lich-su/">Dòng thời gian Lịch sử ứng tác</a></p><p class="src"><b>Nguồn tham khảo:</b> Wikipedia (Whose Line Is It Anyway?; Whose Line Is It Anyway? (American TV series)); TVLine (11/2022)</p></div><script type="application/json" id="gdata">{"suggestion": ["Suggestion", "Gợi ý của khán giả", "Một từ, một câu, một đồ vật… khán giả đưa ra làm điểm xuất phát cho cảnh. Nó cho thấy show không được chuẩn bị trước.", ""], "theatresports": ["Theatresports", "Theatresports", "Thể thức thi đấu ứng tác do Keith Johnstone tạo ra: các đội tranh tài như một trận thể thao, có trọng tài và khán giả chấm điểm.", "/kien-thuc/hinh-thuc-thi-dau-ung-tac"], "scenes-from-a-hat": ["Scenes from a Hat", "Cảnh rút từ mũ", "Game dạng ngắn: người dẫn rút từ mũ những tình huống khán giả viết sẵn, diễn viên bước ra diễn một câu, một cảnh cực ngắn.", ""], "party-quirks": ["Party Quirks", "Bữa tiệc kỳ quặc", "Game dạng ngắn: chủ tiệc phải đoán mỗi vị khách mang một “tật” bí mật gì.", ""], "questions-only": ["Questions Only", "Chỉ nói bằng câu hỏi", "Game dạng ngắn: cả cảnh chỉ được nói bằng câu hỏi, ai lỡ trả lời hay nói câu khẳng định là bị loại.", ""], "hoedown": ["Hoedown", "Hoedown", "Game hát ứng tác: mỗi người hát một đoạn theo điệu nhạc đồng quê về chủ đề khán giả đưa ra.", ""], "long-form": ["Long form", "Ứng tác dạng dài", "Một vở diễn dài liền mạch, nhiều cảnh liên kết, game không định trước mà người diễn tự tìm ra. Harold, Montage là ví dụ.", "/kien-thuc/ung-tac-dang-ngan-va-dang-dai"], "harold": ["Harold", "Harold", "Hình thức dạng dài kinh điển do Del Close phát triển: phần mở màn, ba lượt cảnh xen game nhóm, cuối cùng các cảnh tìm được mối liên hệ với nhau.", "/kien-thuc/del-close"]}</script><script>(function(){var D=JSON.parse(document.getElementById('gdata').textContent),c=null,cur=null,tShow=0,tHide=0,touch=matchMedia('(hover:none),(max-width:760px)').matches;

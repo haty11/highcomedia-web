@@ -92,6 +92,17 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 .tw{overflow-x:auto;margin:0 0 26px;border:1px solid rgba(26,26,26,0.12);border-radius:14px}
 .prose table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.5}.prose th,.prose td{padding:11px 14px;text-align:left;vertical-align:top;border-bottom:1px solid rgba(26,26,26,0.1)}
 .prose th{background:#1A1A1A;color:#F5EFE3;font-weight:700}.prose tr:last-child td{border-bottom:0}.prose td:first-child{font-weight:700;color:#1A1A1A}.prose tbody tr:nth-child(even){background:rgba(26,26,26,0.03)}
+@media (max-width:640px){
+ .tw{border:0;border-radius:0;overflow:visible}.prose .tw table,.prose .tw tbody,.prose .tw tr,.prose .tw td{display:block;width:auto}.prose .tw thead{display:none}
+ .prose .tw tbody tr:nth-child(even){background:transparent}
+ .prose .tb-c tr{background:#fff!important;border:1px solid rgba(26,26,26,0.12);border-radius:14px;padding:12px 14px 6px;margin:0 0 12px}
+ .prose .tb-c td{padding:0 0 9px;border:0;font-size:15px;line-height:1.55}.prose .tb-c td:first-child{font-family:'Bricolage Grotesque',sans-serif;font-size:17px;line-height:1.3;padding:0 0 10px;margin-bottom:10px;border-bottom:1px solid rgba(26,26,26,0.1)}
+ .prose .tb-c td:not(:first-child)::before{content:attr(data-l);display:block;font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8A4B00;margin-bottom:1px}
+ .prose .tb-c td:first-child::before{content:attr(data-l);display:block;font-family:'Be Vietnam Pro',sans-serif;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:rgba(26,26,26,0.5);margin-bottom:2px}
+ .prose .tb-c td[data-l=""]::before{display:none}.prose .tb-c td.e{display:none}
+ .prose .tb-2{background:#fff;border-radius:14px;padding:4px 14px}.prose .tb-2 tr{padding:10px 0;border-bottom:1px solid rgba(26,26,26,0.1)}.prose .tb-2 tr:last-child{border-bottom:0}
+ .prose .tb-2 td{padding:0;border:0;font-size:15px;line-height:1.55}.prose .tb-2 td:first-child{font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8A4B00;margin-bottom:2px}
+}
 .prose blockquote.note{font-family:'Be Vietnam Pro',sans-serif;font-size:16px;font-weight:400;line-height:1.7;letter-spacing:0;background:#FFF6E0;border:0;border-left:4px solid #FFA406;border-radius:0 14px 14px 0;box-shadow:none;padding:16px 20px;margin:28px 0}
 .prose blockquote.note::before,.prose blockquote.note::after{content:none}
 .faq details{background:#fff;border-radius:14px;padding:0 18px;margin-bottom:10px}.faq summary{cursor:pointer;font-weight:700;padding:15px 0;list-style:none;font-size:16px}.faq summary::-webkit-details-marker{display:none}
@@ -260,7 +271,7 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 <p>Theo Frances-White, phần lớn những công trình <strong>mang tính nền móng</strong> của ứng tác ra đời trong khoảng từ thập niên 1950 đến thập niên 1970. Phần lớn các nhóm ứng tác trên thế giới hôm nay vẫn diễn một phiên bản nào đó của Theatresports hoặc Harold, thay đổi cách mở màn hay cách trình bày trò chơi, nhưng cấu trúc cốt lõi gần như giữ nguyên.</p>
 <p>Đó là một nhận xét gây tranh luận, và bà dùng nó để đặt ra câu hỏi lớn hơn về tương lai của ứng tác. Chúng tôi bàn kỹ hơn trong bài <a href="/kien-thuc/ung-tac-va-dien-anh">70 năm ứng tác và 50 năm điện ảnh</a>.</p>
 <h2 id="dong-thoi-gian-tom-tat">Dòng thời gian tóm tắt</h2>
-<div class="tw"><table>
+<div class="tw tb-c"><table>
 <thead>
 <tr>
 <th>Thời gian</th>
@@ -269,36 +280,12 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>Từ thập niên 1930</td>
-<td>Chicago</td>
-<td>Viola Spolin phát triển trò chơi sân khấu, chủ yếu dùng trong phòng tập</td>
-</tr>
-<tr>
-<td>1955</td>
-<td>Chicago</td>
-<td>The Compass Players diễn <span class="gt" tabindex="0" data-g="scenario-play">kịch theo dàn ý</span>, lời thoại ứng biến</td>
-</tr>
-<tr>
-<td>Thập niên 1950</td>
-<td>London</td>
-<td>Keith Johnstone bắt đầu phát triển kỹ thuật ứng tác</td>
-</tr>
-<tr>
-<td>1959</td>
-<td>Chicago</td>
-<td>The Second City ra đời</td>
-</tr>
-<tr>
-<td>Cuối thập niên 1960</td>
-<td>Mỹ</td>
-<td>Del Close phát triển Harold</td>
-</tr>
-<tr>
-<td>Thập niên 1970</td>
-<td>Calgary</td>
-<td>Keith Johnstone xây dựng Theatresports</td>
-</tr>
+<tr><td data-l="Thời gian">Từ thập niên 1930</td><td data-l="Nơi">Chicago</td><td data-l="Cột mốc">Viola Spolin phát triển trò chơi sân khấu, chủ yếu dùng trong phòng tập</td></tr>
+<tr><td data-l="Thời gian">1955</td><td data-l="Nơi">Chicago</td><td data-l="Cột mốc">The Compass Players diễn <span class="gt" tabindex="0" data-g="scenario-play">kịch theo dàn ý</span>, lời thoại ứng biến</td></tr>
+<tr><td data-l="Thời gian">Thập niên 1950</td><td data-l="Nơi">London</td><td data-l="Cột mốc">Keith Johnstone bắt đầu phát triển kỹ thuật ứng tác</td></tr>
+<tr><td data-l="Thời gian">1959</td><td data-l="Nơi">Chicago</td><td data-l="Cột mốc">The Second City ra đời</td></tr>
+<tr><td data-l="Thời gian">Cuối thập niên 1960</td><td data-l="Nơi">Mỹ</td><td data-l="Cột mốc">Del Close phát triển Harold</td></tr>
+<tr><td data-l="Thời gian">Thập niên 1970</td><td data-l="Nơi">Calgary</td><td data-l="Cột mốc">Keith Johnstone xây dựng Theatresports</td></tr>
 </tbody>
 </table></div>
 <blockquote>

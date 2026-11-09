@@ -92,6 +92,17 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 .tw{overflow-x:auto;margin:0 0 26px;border:1px solid rgba(26,26,26,0.12);border-radius:14px}
 .prose table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.5}.prose th,.prose td{padding:11px 14px;text-align:left;vertical-align:top;border-bottom:1px solid rgba(26,26,26,0.1)}
 .prose th{background:#1A1A1A;color:#F5EFE3;font-weight:700}.prose tr:last-child td{border-bottom:0}.prose td:first-child{font-weight:700;color:#1A1A1A}.prose tbody tr:nth-child(even){background:rgba(26,26,26,0.03)}
+@media (max-width:640px){
+ .tw{border:0;border-radius:0;overflow:visible}.prose .tw table,.prose .tw tbody,.prose .tw tr,.prose .tw td{display:block;width:auto}.prose .tw thead{display:none}
+ .prose .tw tbody tr:nth-child(even){background:transparent}
+ .prose .tb-c tr{background:#fff!important;border:1px solid rgba(26,26,26,0.12);border-radius:14px;padding:12px 14px 6px;margin:0 0 12px}
+ .prose .tb-c td{padding:0 0 9px;border:0;font-size:15px;line-height:1.55}.prose .tb-c td:first-child{font-family:'Bricolage Grotesque',sans-serif;font-size:17px;line-height:1.3;padding:0 0 10px;margin-bottom:10px;border-bottom:1px solid rgba(26,26,26,0.1)}
+ .prose .tb-c td:not(:first-child)::before{content:attr(data-l);display:block;font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8A4B00;margin-bottom:1px}
+ .prose .tb-c td:first-child::before{content:attr(data-l);display:block;font-family:'Be Vietnam Pro',sans-serif;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:rgba(26,26,26,0.5);margin-bottom:2px}
+ .prose .tb-c td[data-l=""]::before{display:none}.prose .tb-c td.e{display:none}
+ .prose .tb-2{background:#fff;border-radius:14px;padding:4px 14px}.prose .tb-2 tr{padding:10px 0;border-bottom:1px solid rgba(26,26,26,0.1)}.prose .tb-2 tr:last-child{border-bottom:0}
+ .prose .tb-2 td{padding:0;border:0;font-size:15px;line-height:1.55}.prose .tb-2 td:first-child{font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8A4B00;margin-bottom:2px}
+}
 .prose blockquote.note{font-family:'Be Vietnam Pro',sans-serif;font-size:16px;font-weight:400;line-height:1.7;letter-spacing:0;background:#FFF6E0;border:0;border-left:4px solid #FFA406;border-radius:0 14px 14px 0;box-shadow:none;padding:16px 20px;margin:28px 0}
 .prose blockquote.note::before,.prose blockquote.note::after{content:none}
 .faq details{background:#fff;border-radius:14px;padding:0 18px;margin-bottom:10px}.faq summary{cursor:pointer;font-weight:700;padding:15px 0;list-style:none;font-size:16px}.faq summary::-webkit-details-marker{display:none}
@@ -283,7 +294,7 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 <p>Cảnh hay không đến từ một người giỏi, mà từ nhiều người cùng nghe, cùng nhận và cùng góp thêm.</p>
 </blockquote>
 <h2 id="tom-lai">Tóm lại</h2>
-<div class="tw"><table>
+<div class="tw tb-c"><table>
 <thead>
 <tr>
 <th>Luật</th>
@@ -292,21 +303,9 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>Có, và…</td>
-<td>Đón nhận rồi góp thêm</td>
-<td>Xây ý tưởng thay vì gạt đi</td>
-</tr>
-<tr>
-<td>Lắng nghe</td>
-<td>Nghe lời và nghe ý</td>
-<td>Hiểu người đối diện trước khi trả lời</td>
-</tr>
-<tr>
-<td>Cùng hợp tác</td>
-<td>Cảnh diễn trên hết</td>
-<td>Thành công của nhóm trên hết</td>
-</tr>
+<tr><td data-l="Luật">Có, và…</td><td data-l="Cốt lõi">Đón nhận rồi góp thêm</td><td data-l="Ngoài đời">Xây ý tưởng thay vì gạt đi</td></tr>
+<tr><td data-l="Luật">Lắng nghe</td><td data-l="Cốt lõi">Nghe lời và nghe ý</td><td data-l="Ngoài đời">Hiểu người đối diện trước khi trả lời</td></tr>
+<tr><td data-l="Luật">Cùng hợp tác</td><td data-l="Cốt lõi">Cảnh diễn trên hết</td><td data-l="Ngoài đời">Thành công của nhóm trên hết</td></tr>
 </tbody>
 </table></div>
 <p>Ba luật nghe đơn giản, nhưng để chúng thành phản xạ thì cần thực hành. Đó cũng là phần lớn thời gian của người học ứng tác ở giai đoạn đầu.</p></div><script type="application/json" id="gdata">{"happy-accident": ["Happy accident", "Tai nạn đẹp", "Một lỗi, một câu nói nhầm hay một sự cố bất ngờ được người diễn đón lấy và biến thành điểm sáng của cảnh.", "/kien-thuc/khong-co-loi-chi-co-tai-nan-dep"], "yes-and": ["Yes, and", "Có, và…", "“Có” là chấp nhận điều bạn diễn vừa đưa ra như một sự thật. “Và…” là góp thêm điều mới của mình. Nguyên tắc số một giúp cảnh luôn đi tới.", "/kien-thuc/co-va-la-gi"], "blocking": ["Blocking", "Chặn", "Phủ nhận điều bạn diễn vừa đưa ra, buộc cảnh phải dựng lại từ đầu. Ví dụ: “Đây không phải bệnh viện, đây là nhà tôi.”", ""], "group-mind": ["Group mind", "Tâm trí nhóm", "Trạng thái cả nhóm phối hợp như một người: ai cũng biết mình cần làm gì để cảnh hay hơn, không cần bàn trước.", "/kien-thuc/tam-tri-nhom"]}</script><script>(function(){var D=JSON.parse(document.getElementById('gdata').textContent),c=null,cur=null,tShow=0,tHide=0,touch=matchMedia('(hover:none),(max-width:760px)').matches;

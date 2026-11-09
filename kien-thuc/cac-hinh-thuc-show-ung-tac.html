@@ -92,6 +92,17 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 .tw{overflow-x:auto;margin:0 0 26px;border:1px solid rgba(26,26,26,0.12);border-radius:14px}
 .prose table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.5}.prose th,.prose td{padding:11px 14px;text-align:left;vertical-align:top;border-bottom:1px solid rgba(26,26,26,0.1)}
 .prose th{background:#1A1A1A;color:#F5EFE3;font-weight:700}.prose tr:last-child td{border-bottom:0}.prose td:first-child{font-weight:700;color:#1A1A1A}.prose tbody tr:nth-child(even){background:rgba(26,26,26,0.03)}
+@media (max-width:640px){
+ .tw{border:0;border-radius:0;overflow:visible}.prose .tw table,.prose .tw tbody,.prose .tw tr,.prose .tw td{display:block;width:auto}.prose .tw thead{display:none}
+ .prose .tw tbody tr:nth-child(even){background:transparent}
+ .prose .tb-c tr{background:#fff!important;border:1px solid rgba(26,26,26,0.12);border-radius:14px;padding:12px 14px 6px;margin:0 0 12px}
+ .prose .tb-c td{padding:0 0 9px;border:0;font-size:15px;line-height:1.55}.prose .tb-c td:first-child{font-family:'Bricolage Grotesque',sans-serif;font-size:17px;line-height:1.3;padding:0 0 10px;margin-bottom:10px;border-bottom:1px solid rgba(26,26,26,0.1)}
+ .prose .tb-c td:not(:first-child)::before{content:attr(data-l);display:block;font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8A4B00;margin-bottom:1px}
+ .prose .tb-c td:first-child::before{content:attr(data-l);display:block;font-family:'Be Vietnam Pro',sans-serif;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:rgba(26,26,26,0.5);margin-bottom:2px}
+ .prose .tb-c td[data-l=""]::before{display:none}.prose .tb-c td.e{display:none}
+ .prose .tb-2{background:#fff;border-radius:14px;padding:4px 14px}.prose .tb-2 tr{padding:10px 0;border-bottom:1px solid rgba(26,26,26,0.1)}.prose .tb-2 tr:last-child{border-bottom:0}
+ .prose .tb-2 td{padding:0;border:0;font-size:15px;line-height:1.55}.prose .tb-2 td:first-child{font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8A4B00;margin-bottom:2px}
+}
 .prose blockquote.note{font-family:'Be Vietnam Pro',sans-serif;font-size:16px;font-weight:400;line-height:1.7;letter-spacing:0;background:#FFF6E0;border:0;border-left:4px solid #FFA406;border-radius:0 14px 14px 0;box-shadow:none;padding:16px 20px;margin:28px 0}
 .prose blockquote.note::before,.prose blockquote.note::after{content:none}
 .faq details{background:#fff;border-radius:14px;padding:0 18px;margin-bottom:10px}.faq summary{cursor:pointer;font-weight:700;padding:15px 0;list-style:none;font-size:16px}.faq summary::-webkit-details-marker{display:none}
@@ -284,7 +295,7 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 <p class="rm">Đọc thêm: <a href="/kien-thuc/the-spontaneity-shop">The Spontaneity Shop</a></p>
 <h2 id="dat-cac-hinh-thuc-len-ba-truc">Đặt các hình thức lên ba trục</h2>
 <p>Ở bảng dưới, ô để trống là những điểm tài liệu không nói rõ.</p>
-<div class="tw"><table>
+<div class="tw tb-c"><table>
 <thead>
 <tr>
 <th>Hình thức</th>
@@ -294,36 +305,11 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>Theatresports</td>
-<td>Nhiều mảnh</td>
-<td>Phá (nói với khán giả)</td>
-<td>Thiên về trò chơi</td>
-</tr>
-<tr>
-<td>Harold</td>
-<td>Nhiều mảnh, kết nối với nhau ở cuối</td>
-<td>Giữ</td>
-<td>Thiên về cảnh</td>
-</tr>
-<tr>
-<td>Montage</td>
-<td>Nhiều mảnh, thường không quay lại cảnh cũ</td>
-<td>Giữ</td>
-<td>Thiên về cảnh</td>
-</tr>
-<tr>
-<td>Die-Nasty</td>
-<td>Một chuyện, nhiều tuyến, kéo dài nhiều tập</td>
-<td></td>
-<td>Thiên về cảnh</td>
-</tr>
-<tr>
-<td>DreamDate</td>
-<td>Một chuyện</td>
-<td>Phá (hỏi khán giả giữa các cảnh)</td>
-<td>Cảnh, đôi khi có trò chơi</td>
-</tr>
+<tr><td data-l="Hình thức">Theatresports</td><td data-l="Mảnh rời hay một chuyện?">Nhiều mảnh</td><td data-l="Bức tường thứ tư">Phá (nói với khán giả)</td><td data-l="Trò chơi hay cảnh?">Thiên về trò chơi</td></tr>
+<tr><td data-l="Hình thức">Harold</td><td data-l="Mảnh rời hay một chuyện?">Nhiều mảnh, kết nối với nhau ở cuối</td><td data-l="Bức tường thứ tư">Giữ</td><td data-l="Trò chơi hay cảnh?">Thiên về cảnh</td></tr>
+<tr><td data-l="Hình thức">Montage</td><td data-l="Mảnh rời hay một chuyện?">Nhiều mảnh, thường không quay lại cảnh cũ</td><td data-l="Bức tường thứ tư">Giữ</td><td data-l="Trò chơi hay cảnh?">Thiên về cảnh</td></tr>
+<tr><td data-l="Hình thức">Die-Nasty</td><td data-l="Mảnh rời hay một chuyện?">Một chuyện, nhiều tuyến, kéo dài nhiều tập</td><td data-l="Bức tường thứ tư" class="e"></td><td data-l="Trò chơi hay cảnh?">Thiên về cảnh</td></tr>
+<tr><td data-l="Hình thức">DreamDate</td><td data-l="Mảnh rời hay một chuyện?">Một chuyện</td><td data-l="Bức tường thứ tư">Phá (hỏi khán giả giữa các cảnh)</td><td data-l="Trò chơi hay cảnh?">Cảnh, đôi khi có trò chơi</td></tr>
 </tbody>
 </table></div>
 <h2 id="cau-hoi-quan-trong-nhat">Câu hỏi quan trọng nhất</h2>

@@ -22,7 +22,7 @@ window.HC_DATA={
     "enrolled": 0
    }
   ],
-  "plan": "1 buổi · 120 phút · mỗi tháng 1 buổi",
+  "plan": "1 buổi · 120 phút · mở định kỳ",
   "page": "khoa-hoc-drop-in.html"
  },
  "improv1": {
@@ -53,15 +53,7 @@ window.HC_DATA={
   "capacity": 10,
   "base": 4900,
   "sale": 3500,
-  "cohorts": [
-   {
-    "code": "K01",
-    "start": "2027-02-14",
-    "time": "10:00–12:00",
-    "capacity": 10,
-    "enrolled": 0
-   }
-  ],
+  "cohorts": [],
   "plan": "10 buổi trong 2 tháng · 120 phút/buổi",
   "page": "khoa-hoc-improv-2.html"
  },
@@ -73,7 +65,15 @@ window.HC_DATA={
   "capacity": 10,
   "base": 7900,
   "sale": 5900,
-  "cohorts": [],
+  "cohorts": [
+   {
+    "code": "A01",
+    "start": "2027-05-01",
+    "time": "10:00–12:01",
+    "capacity": 6,
+    "enrolled": 0
+   }
+  ],
   "plan": "16 buổi trong 3 tháng · 120 phút/buổi",
   "page": "khoa-hoc-performer-1.html"
  },

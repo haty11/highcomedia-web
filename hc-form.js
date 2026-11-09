@@ -20,7 +20,7 @@
   function left(x){return Math.max(0,(x.capacity||0)-(x.enrolled||0));}
 
   /* Khoá mở đăng ký và khoá chờ mở. Tên: tiếng Việt trước, tiếng Anh sau. */
-  var REG=['dropin','improv1','improv2'], KID='kids';
+  var REG=['dropin','improv1','improv2','performer1','performer2'], KID='kids';
   var WAIT={performer1:['Diễn viên Ứng tác 1','Performer 1'],performer2:['Diễn viên Ứng tác 2','Performer 2'],'teens-ensemble':['Đội diễn Thiếu niên','Teens Ensemble'],'house-team':['Đội diễn High Club','House Team'],'improv-for-writers':['Ứng tác cho Biên kịch','Improv for Writers'],'improv-for-presenters':['Ứng tác cho MC/BTV','Improv for Presenters'],'improv-teacher-1-&-2':['Giảng viên Ứng tác','Improv Teacher']};
   function nm(cid){var c=D[cid];if(c&&c.vi)return [c.vi,c.en];return WAIT[cid]||[cid,''];}
   function full(cid){var n=nm(cid);return n[0]+(n[1]?' · '+n[1]:'');}
@@ -150,7 +150,7 @@
     return (x.code?x.code+' · ':'')+dlong(x.start)+(x.time?' · '+x.time:'')+' · '+esc((D[cid]||{}).loc||'');
   }
   function pickerHTML(st){
-    var cid=st.cid, x=st.code?cohortById(cid,st.code):null, list=st.mode==='kid'?[KID]:REG;
+    var cid=st.cid, x=st.code?cohortById(cid,st.code):null, list=st.mode==='kid'?[KID]:REG.filter(function(id){return id===cid||!D[id]||!D[id].cohorts||cohorts(id).length;}); // chỉ hiện khoá đang có lớp mở
     var top=cid?'<div class="pick-top"><div class="pick-t">'+esc(nm(cid)[0])+'<span>'+esc(nm(cid)[1])+'</span></div>'+((list.length>1||cohorts(cid).length>1)?'<button type="button" class="chg" data-pk-toggle aria-expanded="'+(st.open?'true':'false')+'">'+(st.open?'Thu gọn':'Đổi lớp')+' ›</button>':'')+'</div>'
       +'<div class="pick-m">'+cohortLine(cid,x)+'</div>'
       +'<div class="pick-p"><span>'+priceHTML(cid)+'</span>'+(x?'<span class="badge">'+(left(x)?'Còn '+left(x)+'/'+x.capacity+' chỗ':'Hết chỗ')+'</span>':'<span class="badge mut">Tối đa '+((D[cid]||{}).capacity||'')+' '+(cid===KID?'bé':'người')+'</span>')+'</div>'
@@ -190,7 +190,7 @@
       +chk('agree','Tôi đã đọc quy định lớp học, chính sách học bù và hoàn phí.',{req:1});
   }
   function waitBody(cid){
-    var ids=Object.keys(WAIT);
+    var ids=(cid&&!WAIT[cid]&&D[cid]?[cid]:[]).concat(Object.keys(WAIT)); // khoá thường chưa mở lớp cũng vào danh sách chờ
     return '<label class="full">'+lab('Khoá quan tâm',1)+'<select name="cls" required>'+ids.map(function(id){return '<option value="'+esc(id)+'"'+(id===cid?' selected':'')+'>'+esc(full(id))+'</option>';}).join('')+'</select><span class="err"></span></label>'
       +inp('name','Họ và tên',{req:1,full:1,auto:'name'})+inp('phone','Số điện thoại (Zalo)',{type:'tel',req:1})+inp('email','Email (nhận tin khi mở lớp)',{type:'email',req:1})
       +area('note','Bạn đã học ứng tác ở đâu? Mong muốn gì?');
@@ -277,12 +277,12 @@
     renderPicker();
   }
   function open(act,trigger){
-    var parts=act.split(':'), kind=parts[0], cid=parts.slice(1).join(':');
-    if(kind==='reg'&&cid&&D[cid]&&cohorts(cid).length&&!bestCohort(cid)){kind='waitlist';} // khoá hết chỗ mọi lớp -> danh sách chờ
+    var parts=act.split(':'), kind=parts[0], cid=parts[1]||'', pick=parts[2]||''; // reg:khoa:malop = chọn sẵn lớp
+    if(kind==='reg'&&cid&&cid!==KID&&D[cid]&&D[cid].cohorts&&!bestCohort(cid)){kind='waitlist';} // khoá hết chỗ hoặc chưa mở lớp nào -> danh sách chờ
     if(['reg','waitlist','quote'].indexOf(kind)<0) return;
     lastFocus=trigger; opened=Date.now();
     ST={kind:kind,mode:cid===KID?'kid':'self',cid:(kind==='reg'&&(REG.indexOf(cid)>=0||cid===KID))?cid:'',code:'',open:false};
-    if(ST.cid)ST.code=(bestCohort(ST.cid)||{}).code||'';
+    if(ST.cid){var pc=pick&&cohortById(ST.cid,pick);ST.code=(pc&&left(pc)?pc:bestCohort(ST.cid)||{}).code||'';}
     var head=kind==='quote'?['ỨNG TÁC CHO DOANH NGHIỆP','Nhận tư vấn & báo giá','']:kind==='waitlist'?['BÁO TÔI KHI MỞ LỚP',nm(cid)[0]||'Nhận tin khi mở lớp',nm(cid)[1]||'']:['ĐĂNG KÝ HỌC','',''];
     var body=kind==='reg'?regBody(ST):kind==='waitlist'?waitBody(cid):quoteBody();
     var btn={reg:'Gửi đăng ký',waitlist:'Đăng ký nhận tin',quote:'Gửi yêu cầu tư vấn'}[kind];

@@ -16,10 +16,15 @@
     var d=c.start?new Date(c.start+'T00:00:00'):null, ds=d?p(d.getDate())+'/'+p(d.getMonth()+1)+'/'+d.getFullYear():'[NGÀY]';
     var left=Math.max(0,(c.capacity||0)-(c.enrolled||0));
     switch(f){
-      case 'start': return ds; case 'startw': return d?WS[d.getDay()]+' '+ds:'[NGÀY]';
-      case 'startlong': return d?WD[d.getDay()]+' '+ds:'[NGÀY]'; case 'weekday': return d?WD[d.getDay()]:'[THỨ]';
-      case 'seats': return left?'Còn '+left+'/'+c.capacity+' chỗ':'Hết chỗ';
-      case 'left': return left+'/'+c.capacity; case 'leftn': return String(left); case 'cap': return String(c.capacity);
+      case 'start': return d?ds:'Chưa có lịch'; case 'startw': return d?WS[d.getDay()]+' '+ds:'Chưa có lịch';
+      case 'startlong': return d?WD[d.getDay()]+' '+ds:'Chưa có lịch'; case 'weekday': return d?WD[d.getDay()]:'';
+      case 'when': return d?WD[d.getDay()]+' '+ds+(c.time?' · '+c.time:''):'Sẽ thông báo';
+      case 'status': return d?'Lớp '+c.code+' · khai giảng '+WD[d.getDay()]+' '+ds+' · '+fmt(a[0]+'.seats')+'.':'Lịch khai giảng sẽ được thông báo. Đăng ký nhận tin để được báo sớm nhất.';
+      case 'next': return d?'Khai giảng '+WS[d.getDay()]+' '+ds+'.':'Nhận tin khi mở lớp.';
+      case 'time': return c.start&&c.time?c.time:'Chưa có lịch'; case 'code': return c.start&&c.code?c.code:'Sắp mở';
+      case 'seats': return !c.start&&c.cohorts?'Sắp mở lớp':left?'Còn '+left+'/'+c.capacity+' chỗ':'Hết chỗ';
+      case 'left': if(!c.start&&c.cohorts)return 'Sắp mở'; return left+'/'+c.capacity;
+      case 'leftn': return String(left); case 'cap': return String(c.capacity);
       case 'base': case 'sale': case 'deposit': return c[f]?k(c[f]):'';
       case 'pp': return c.sale?k(Math.round(c.sale/(c.capacity||10))):'';
       default: return c[f]==null?'[CHƯA CÓ]':String(c[f]);
@@ -27,8 +32,33 @@
   }
   function run(){var els=document.querySelectorAll('[data-hc]');for(var i=0;i<els.length;i++){var v=fmt(els[i].getAttribute('data-hc'));if(v!=null)els[i].textContent=v;}
     var ts=document.querySelectorAll('[data-hct]');for(var j=0;j<ts.length;j++){ts[j].textContent=ts[j].getAttribute('data-hct').replace(/\{(\w+\.\w+)\}/g,function(_,key){var v=fmt(key);return v==null?'':v;});}}
-  window.HC_refresh=function(){derive();run();};
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+  /* Khoá chưa có lớp nào đang mở trên web (Sheet: không có dòng khai giảng hoặc "Hiện trên web" = Không)
+     -> nút Đăng ký/Giữ chỗ đổi thành "Báo khi mở lớp" (danh sách chờ); có lớp lại thì trả về như cũ. Thiếu nhi giữ luồng riêng. */
+  function closed(cid){var c=D[cid];return !!(c&&c.cohorts&&cid!=='kids'&&!c.start);}
+  function lab(t,txt){return txt+(/→\s*$/.test(t)?' →':'');}
+  function swap(el,cid,to,txt){el.setAttribute('data-hc-sw',cid);el.setAttribute('data-hc-orig',el.innerHTML);el.setAttribute('data-hc-oact',el.getAttribute('data-hc-act'));el.setAttribute('data-hc-act',to+':'+cid);
+    var sp=el.firstElementChild&&el.firstElementChild.tagName==='SPAN'&&el.children.length===1?el.firstElementChild:el;sp.textContent=lab(el.textContent,txt);}
+  function back(el){el.setAttribute('data-hc-act',el.getAttribute('data-hc-oact'));var o=el.getAttribute('data-hc-orig');if(o!=null)el.innerHTML=o;['data-hc-sw','data-hc-orig','data-hc-oact'].forEach(function(a){el.removeAttribute(a);});}
+  /* Nút tự đổi theo lịch lớp: khoá chưa có lớp mở -> "Báo khi mở lớp" (danh sách chờ); khoá vừa có lớp -> nút danh sách chờ thành "Đăng ký". */
+  function gate(){var els=document.querySelectorAll('[data-hc-act^="reg:"],[data-hc-act^="waitlist:"],[data-hc-sw]'),ch=false;
+    for(var i=0;i<els.length;i++){var el=els[i],sw=el.getAttribute('data-hc-sw');
+      if(sw){var oa=el.getAttribute('data-hc-oact')||'';if((oa.indexOf('reg:')===0)===closed(sw))continue;back(el);ch=true;}
+      var a=el.getAttribute('data-hc-act'),k=a.split(':')[0],cid=a.slice(k.length+1),c=D[cid];if(!c||!c.cohorts||cid==='kids')continue;
+      if(k==='reg'&&closed(cid))swap(el,cid,'waitlist','Báo khi mở lớp');
+      else if(k==='waitlist'&&!closed(cid))swap(el,cid,'reg','Đăng ký'+(el.textContent.length>16?' '+(c.en||''):''));}
+    if(ch)run();}
+  /* Trang khoá: khi có từ 2 lớp sắp khai giảng trở lên -> liệt kê đủ, mỗi lớp một nút giữ chỗ chọn sẵn lớp đó */
+  function lists(){var bx=document.querySelectorAll('[data-hc-list]');if(!bx.length)return;
+    var t=new Date(),td=t.getFullYear()+'-'+p(t.getMonth()+1)+'-'+p(t.getDate());
+    for(var i=0;i<bx.length;i++){var cid=bx[i].getAttribute('data-hc-list'),c=D[cid],cs=(c&&c.cohorts||[]).filter(function(x){return x.start&&x.start>=td;}).sort(function(a,b){return a.start<b.start?-1:1;});
+      if(cs.length<2){bx[i].innerHTML='';continue;}
+      bx[i].innerHTML='<div style="margin-top:14px;background:#FFFFFF;border-radius:16px;padding:14px 16px"><div style="font-size:12px;font-weight:700;letter-spacing:1px;color:#8A4B00;margin-bottom:4px">CÁC LỚP SẮP KHAI GIẢNG</div>'
+        +cs.map(function(x,j){var d=new Date(x.start+'T00:00:00'),l=Math.max(0,(x.capacity||0)-(x.enrolled||0));
+          return '<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;padding:10px 0;'+(j?'border-top:1px solid rgba(26,26,26,0.08)':'')+'"><div style="font-size:14px;line-height:1.5"><b>'+(x.code||'')+'</b> · '+WS[d.getDay()]+' '+p(d.getDate())+'/'+p(d.getMonth()+1)+'/'+d.getFullYear()+(x.time?' · '+x.time:'')+'<br><span style="font-size:12px;font-weight:700;color:'+(l?'#8A4B00':'rgba(26,26,26,0.5)')+'">'+(l?'Còn '+l+'/'+x.capacity+' chỗ':'Hết chỗ')+'</span></div>'
+            +(l?'<a href="#" data-hc-act="reg:'+cid+':'+x.code+'" style="background:#1A1A1A;color:#F5EFE3;text-decoration:none;padding:9px 16px;border-radius:100px;font-weight:700;font-size:13px;white-space:nowrap">Giữ chỗ lớp '+(x.code||'')+'</a>':'')+'</div>';}).join('')+'</div>';}}
+  function all(){run();gate();lists();}
+  window.HC_refresh=function(){derive();all();};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',all);else all();
 })();
 /* Video YouTube phát ngay trên trang: bấm vào ảnh [data-yt] thì thay bằng trình phát nhúng (chỉ tải YouTube khi người xem bấm). */
 (function(){

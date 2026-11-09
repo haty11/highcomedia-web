@@ -227,7 +227,7 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
       <div class="prose"><p>Một cuộc họp có mười người, nhưng chỉ hai người nói. Một buổi brainstorm mà ý nào đưa ra cũng bị gạt bằng câu “cái đó làm rồi”, “không khả thi đâu”. Một đội nhóm giỏi từng người nhưng phối hợp lại rời rạc.</p>
 <p>Những vấn đề này không thiếu kiến thức chuyên môn. Chúng thiếu những kỹ năng mà diễn viên ứng tác luyện tập mỗi ngày.</p>
 <h2 id="ung-tac-ung-dung-la-gi">Ứng tác ứng dụng là gì?</h2>
-<p>Ứng tác ứng dụng (tiếng Anh: <em>applied improv</em>) là việc đưa các nguyên tắc và trò chơi của ứng tác vào những lĩnh vực ngoài sân khấu: doanh nghiệp, giáo dục, y tế, lãnh đạo. Trên thế giới, nhiều trường kinh doanh và tập đoàn đã đưa ứng tác vào chương trình đào tạo kỹ năng mềm.</p>
+<p><span class="gt" tabindex="0" data-g="applied-improv">Ứng tác ứng dụng</span> (tiếng Anh: <em>applied improv</em>) là việc đưa các nguyên tắc và trò chơi của ứng tác vào những lĩnh vực ngoài sân khấu: doanh nghiệp, giáo dục, y tế, lãnh đạo. Trên thế giới, nhiều trường kinh doanh và tập đoàn đã đưa ứng tác vào chương trình đào tạo kỹ năng mềm.</p>
 <p>Lý do rất đơn giản: công việc hằng ngày <strong>không có kịch bản</strong>. Một khách hàng đổi ý vào phút chót, một cuộc họp lệch chương trình, một câu hỏi khó từ sếp. Người đi làm cũng đang ứng tác mỗi ngày, chỉ là chưa được luyện tập.</p>
 <h2 id="4-dieu-ung-tac-thay-doi-o-noi-lam-viec">4 điều ứng tác thay đổi ở nơi làm việc</h2>
 <h3 id="1-cuoc-hop-tu-khong-nhung-sang-co-va">1. Cuộc họp: từ “Không, nhưng…” sang “Có, và…”</h3>
@@ -247,7 +247,24 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 </blockquote>
 <h2 id="khong-chi-mot-buoi-vui">Không chỉ một buổi vui</h2>
 <p>Một buổi team building ứng tác có thể rất vui, nhưng để thay đổi cách đội ngũ làm việc, cần <strong>một quá trình</strong>: nhiều buổi, mỗi buổi tập trung vào một kỹ năng, có thời gian để mọi người mang những điều học được vào công việc thật rồi quay lại chia sẻ.</p>
-<p>High Comedia thiết kế chương trình ứng tác ứng dụng riêng cho từng doanh nghiệp, dựa trên mục tiêu và đặc thù của đội ngũ.</p></div>
+<p>High Comedia thiết kế chương trình ứng tác ứng dụng riêng cho từng doanh nghiệp, dựa trên mục tiêu và đặc thù của đội ngũ.</p></div><script type="application/json" id="gdata">{"applied-improv": ["Applied improv", "Ứng tác ứng dụng", "Dùng kỹ năng, trò chơi ứng tác cho mục tiêu ngoài sân khấu: giao tiếp, làm việc nhóm, lãnh đạo, giáo dục.", ""]}</script><script>(function(){var D=JSON.parse(document.getElementById('gdata').textContent),c=null,cur=null,tShow=0,tHide=0,touch=matchMedia('(hover:none),(max-width:760px)').matches;
+function card(){if(c)return c;c=document.createElement('div');c.id='gcard';c.setAttribute('role','tooltip');document.body.appendChild(c);
+c.addEventListener('mouseenter',function(){clearTimeout(tHide)});c.addEventListener('mouseleave',function(){hide(150)});
+c.addEventListener('click',function(e){if(e.target.closest('.gx'))hide(0)});return c}
+function esc(s){return s.replace(/[&<>]/g,function(x){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[x]})}
+function show(el){var d=D[el.getAttribute('data-g')];if(!d)return;var k=card();if(cur&&cur!==el)cur.classList.remove('on');cur=el;el.classList.add('on');
+k.innerHTML='<button class="gx" type="button" aria-label="Đóng">✕</button><div class="ge">'+esc(d[0])+'</div><div class="gv">'+esc(d[1])+'</div><div class="gb">'+esc(d[2])+'</div>'+(d[3]?'<a class="gl" href="'+d[3]+'">Đọc kỹ hơn →</a>':'');
+k.id='gcard';el.setAttribute('aria-describedby','gcard');
+if(!touch){var r=el.getBoundingClientRect(),w=k.offsetWidth||320,h=k.offsetHeight,x=Math.min(Math.max(12,r.left+r.width/2-w/2),innerWidth-w-12),y=r.top-h-10;if(y<12)y=r.bottom+10;k.style.left=x+'px';k.style.top=y+'px'}
+requestAnimationFrame(function(){k.classList.add('on')})}
+function hide(ms){clearTimeout(tShow);clearTimeout(tHide);tHide=setTimeout(function(){if(c)c.classList.remove('on');if(cur){cur.classList.remove('on');cur.removeAttribute('aria-describedby');cur=null}},ms)}
+document.addEventListener('mouseover',function(e){if(touch)return;var g=e.target.closest&&e.target.closest('.gt');if(!g)return;clearTimeout(tHide);clearTimeout(tShow);tShow=setTimeout(function(){show(g)},220)});
+document.addEventListener('mouseout',function(e){if(touch)return;var g=e.target.closest&&e.target.closest('.gt');if(g&&!(e.relatedTarget&&e.relatedTarget.closest&&(e.relatedTarget.closest('.gt')===g||e.relatedTarget.closest('#gcard'))))hide(180)});
+document.addEventListener('focusin',function(e){var g=e.target.closest&&e.target.closest('.gt');if(g)show(g)});
+document.addEventListener('focusout',function(e){if(e.target.closest&&e.target.closest('.gt'))hide(150)});
+document.addEventListener('click',function(e){var g=e.target.closest&&e.target.closest('.gt');if(g){if(cur===g&&c&&c.classList.contains('on'))hide(0);else show(g);return}if(c&&!e.target.closest('#gcard'))hide(0)});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')hide(0)});
+addEventListener('scroll',function(){if(!touch&&cur)hide(0)},{passive:true})})();</script>
       <h2 id="hoi-dap" class="hd" style="font-size:28px;margin:44px 0 14px">Hỏi đáp</h2><div class="faq"><details><summary>Ứng tác ứng dụng khác team building thông thường thế nào?</summary><p>Team building thường là hoạt động vui một lần. Ứng tác ứng dụng là quá trình rèn những kỹ năng cụ thể như lắng nghe, đón nhận ý tưởng, phản xạ và phối hợp, qua nhiều buổi, để thay đổi cách đội ngũ làm việc hằng ngày.</p></details><details><summary>Nhân viên ngại thể hiện có tham gia được không?</summary><p>Được. Các hoạt động được thiết kế từ dễ đến khó, bắt đầu bằng trò chơi cả nhóm cùng làm. Không ai bị ép lên diễn một mình.</p></details><details><summary>Chương trình phù hợp với quy mô đội ngũ nào?</summary><p>High Comedia thiết kế chương trình riêng cho từng doanh nghiệp, tuỳ số lượng người và mục tiêu. Bạn có thể liên hệ để được tư vấn.</p></details></div>
       <div class="box"><div class="k" style="color:#FFA406;margin-bottom:6px">Học cùng High Comedia</div>
       <div class="hd" style="font-size:24px;font-weight:800;line-height:1.2;margin-bottom:6px">Ứng tác cho Doanh nghiệp</div>

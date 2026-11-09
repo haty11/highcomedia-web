@@ -69,7 +69,11 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 .prose p{margin:0 0 20px}.prose h2{font-family:'Bricolage Grotesque',sans-serif;font-size:30px;line-height:1.2;color:#1A1A1A;margin:44px 0 14px;letter-spacing:-0.02em}
 .prose h3{font-size:20px;color:#1A1A1A;margin:28px 0 8px}
 .prose ul{padding-left:22px;margin:0 0 20px}.prose li{margin:0 0 8px}.prose strong{color:#1A1A1A}
-.prose blockquote{margin:30px 0;padding:4px 0 4px 22px;border-left:4px solid #FFA406;font-family:'Bricolage Grotesque',sans-serif;font-size:24px;line-height:1.4;font-weight:700;color:#1A1A1A}
+/* Câu ghi nhớ: khung trắng, viền mực, bóng cam lệch; nhãn "Ghi nhớ" + dấu ngoặc kép lớn */
+.prose blockquote{position:relative;margin:36px 8px 38px 0;padding:24px 28px 24px 30px;background:#fff;border:1.5px solid #1A1A1A;border-radius:18px;box-shadow:7px 7px 0 #FFA406;
+ font-family:'Bricolage Grotesque',sans-serif;font-size:24px;line-height:1.38;font-weight:700;letter-spacing:-0.01em;color:#1A1A1A}
+.prose blockquote::before{content:"Ghi nhớ";display:block;font-family:'Be Vietnam Pro',sans-serif;font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#8A4B00;margin-bottom:10px}
+.prose blockquote::after{content:"“";position:absolute;right:22px;top:-22px;height:40px;overflow:hidden;padding:0 8px;background:linear-gradient(#F5EFE3 56%,#fff 56%);font-family:Georgia,'Times New Roman',serif;font-size:76px;line-height:66px;font-weight:700;color:#FFA406}
 .prose blockquote p{margin:0}
 .prose p.rm,.prose .rm{font-size:14.5px;font-style:italic;line-height:1.55;color:rgba(26,26,26,0.62)}.prose p.rm{margin:-12px 0 26px}
 .prose li .rm{display:block;margin-top:4px}.prose .rm a{font-weight:600;text-underline-offset:3px}
@@ -79,7 +83,8 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 .tw{overflow-x:auto;margin:0 0 26px;border:1px solid rgba(26,26,26,0.12);border-radius:14px}
 .prose table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.5}.prose th,.prose td{padding:11px 14px;text-align:left;vertical-align:top;border-bottom:1px solid rgba(26,26,26,0.1)}
 .prose th{background:#1A1A1A;color:#F5EFE3;font-weight:700}.prose tr:last-child td{border-bottom:0}.prose td:first-child{font-weight:700;color:#1A1A1A}.prose tbody tr:nth-child(even){background:rgba(26,26,26,0.03)}
-.prose blockquote.note{font-family:'Be Vietnam Pro',sans-serif;font-size:16px;font-weight:400;line-height:1.7;background:#FFF6E0;border-radius:0 14px 14px 0;padding:16px 20px}
+.prose blockquote.note{font-family:'Be Vietnam Pro',sans-serif;font-size:16px;font-weight:400;line-height:1.7;letter-spacing:0;background:#FFF6E0;border:0;border-left:4px solid #FFA406;border-radius:0 14px 14px 0;box-shadow:none;padding:16px 20px;margin:28px 0}
+.prose blockquote.note::before,.prose blockquote.note::after{content:none}
 .faq details{background:#fff;border-radius:14px;padding:0 18px;margin-bottom:10px}.faq summary{cursor:pointer;font-weight:700;padding:15px 0;list-style:none;font-size:16px}.faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"+";float:right;color:#8A4B00;font-size:20px;line-height:1}.faq details[open] summary::after{content:"−"}.faq p{margin:0 0 16px;font-size:15px;line-height:1.7;color:rgba(26,26,26,0.8)}
 .box{background:#1A1A1A;color:#F5EFE3;border-radius:20px;padding:26px 28px;margin:36px 0}.box a.go{background:#FFA406;color:#1A1A1A;text-decoration:none;font-weight:800;padding:0 22px;height:46px;border-radius:100px;display:inline-flex;align-items:center}
@@ -89,7 +94,7 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 @media (max-width:900px){.art{grid-template-columns:minmax(0,1fr);gap:0}.toc{display:none}.toc-m{display:block}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:820px){.nav,.top .cta{display:none}.mm{display:block}}
 @media (max-width:640px){.wrap{padding:0 20px}.top .in{height:52px}.logo img{height:26px}.grid{grid-template-columns:minmax(0,1fr);gap:14px}
- .prose{font-size:16.5px;line-height:1.75}.prose p.rm,.prose .rm{font-size:14px}.prose p.rm{margin:-10px 0 22px}.prose h2{font-size:23px;margin:34px 0 10px}.prose blockquote{font-size:19px}.box{padding:20px}.ft .in{padding:20px}html{scroll-padding-top:68px}}
+ .prose{font-size:16.5px;line-height:1.75}.prose p.rm,.prose .rm{font-size:14px}.prose p.rm{margin:-10px 0 22px}.prose h2{font-size:23px;margin:34px 0 10px}.prose blockquote{font-size:20px;padding:20px 20px 20px 22px;box-shadow:5px 5px 0 #FFA406;margin:30px 5px 32px 0}.prose blockquote::after{font-size:64px;line-height:56px;height:34px;top:-18px;right:14px;background:linear-gradient(#F5EFE3 54%,#fff 54%)}.prose blockquote.note{font-size:15.5px;padding:14px 16px}.box{padding:20px}.ft .in{padding:20px}html{scroll-padding-top:68px}}
 
 .sub{border-bottom:1px solid rgba(26,26,26,0.1);background:#F5EFE3}
 .subn{display:flex;gap:6px;overflow-x:auto;padding:10px 0;scrollbar-width:none}.subn::-webkit-scrollbar{display:none}
@@ -256,7 +261,7 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 <h2 id="ton-trong-khan-gia-la-diem-xuat-phat">Tôn trọng khán giả là điểm xuất phát</h2>
 <p>Dù là nghiệp dư hay chuyên nghiệp, điều quan trọng nhất là thái độ. Khán giả bỏ thời gian đến xem không phải để chứng kiến một nhóm người tự vui với nhau. Họ đến để được bất ngờ, được cười, được thấy những điều thông minh nảy ra ngay trước mắt.</p>
 <blockquote>
-<p>““Không có kịch bản” là lý do để chuẩn bị kỹ hơn, không phải lý do để chuẩn bị ít đi.”</p>
+<p>“Không có kịch bản” là lý do để chuẩn bị kỹ hơn, không phải lý do để chuẩn bị ít đi.</p>
 </blockquote>
 <p>Người diễn ứng tác không học thoại, nhưng họ học <strong>nguyên tắc, kỹ năng và phản xạ</strong>, và tập luyện chúng đều đặn như vận động viên. Đó là cách để mỗi đêm diễn, dù không có kịch bản, vẫn xứng đáng với khán giả.</p><p class="src"><b>Nguồn tham khảo:</b> Tom Salinsky, “Two Stories”, trong Tom Salinsky &amp; Deborah Frances-White, The Improv Handbook (2008)</p></div><script type="application/json" id="gdata">{"sketch": ["Sketch comedy", "Hài tiểu phẩm", "Những màn hài ngắn có kịch bản, mỗi màn một tình huống. Nhiều tiểu phẩm hay được tạo ra bằng ứng tác rồi mới viết lại.", "/kien-thuc/the-second-city"], "game": ["Game of the scene", "Game (mạch hài)", "Điều buồn cười cốt lõi của cảnh: một kiểu hành vi bất thường được lặp lại và đẩy cao. Tóm được tiểu phẩm bằng một câu, câu đó là game.", "/kien-thuc/mach-hai-cua-canh-dien"]}</script><script>(function(){var D=JSON.parse(document.getElementById('gdata').textContent),c=null,cur=null,tShow=0,tHide=0,touch=matchMedia('(hover:none),(max-width:760px)').matches;
 function card(){if(c)return c;c=document.createElement('div');c.id='gcard';c.setAttribute('role','tooltip');document.body.appendChild(c);

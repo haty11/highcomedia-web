@@ -20,11 +20,13 @@
       case 'startlong': return d?WD[d.getDay()]+' '+ds:'[NGÀY]'; case 'weekday': return d?WD[d.getDay()]:'[THỨ]';
       case 'seats': return left?'Còn '+left+'/'+c.capacity+' chỗ':'Hết chỗ';
       case 'left': return left+'/'+c.capacity; case 'leftn': return String(left); case 'cap': return String(c.capacity);
-      case 'base': case 'sale': return c[f]?k(c[f]):'';
+      case 'base': case 'sale': case 'deposit': return c[f]?k(c[f]):'';
+      case 'pp': return c.sale?k(Math.round(c.sale/(c.capacity||10))):'';
       default: return c[f]==null?'[CHƯA CÓ]':String(c[f]);
     }
   }
-  function run(){var els=document.querySelectorAll('[data-hc]');for(var i=0;i<els.length;i++){var v=fmt(els[i].getAttribute('data-hc'));if(v!=null)els[i].textContent=v;}}
+  function run(){var els=document.querySelectorAll('[data-hc]');for(var i=0;i<els.length;i++){var v=fmt(els[i].getAttribute('data-hc'));if(v!=null)els[i].textContent=v;}
+    var ts=document.querySelectorAll('[data-hct]');for(var j=0;j<ts.length;j++){ts[j].textContent=ts[j].getAttribute('data-hct').replace(/\{(\w+\.\w+)\}/g,function(_,key){var v=fmt(key);return v==null?'':v;});}}
   window.HC_refresh=function(){derive();run();};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
 })();

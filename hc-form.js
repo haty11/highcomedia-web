@@ -235,7 +235,7 @@
     var z=CFG.zalo||'#', pay='', cid=data.cls, x=cid&&data.cohort?cohortById(cid,data.cohort):null;
     var bank=CFG.bank||{}, hasBank=bank.acct&&bank.bank&&bank.bin;
     if((kind==='reg'&&cid)||(kind==='kids'&&x)){
-      var drop=cid==='dropin', amtK=drop?((D.dropin||{}).sale||150):(CFG.deposit||1000), amt=k(amtK), info=normPhone(data.phone);
+      var drop=cid==='dropin', amtK=drop?((D.dropin||{}).sale||150):((D.site||{}).deposit||CFG.deposit||1000), amt=k(amtK), info=normPhone(data.phone);
       pay='<div class="sum full"><b>Bước tiếp theo · giữ chỗ</b><br>'+(drop?'Thanh toán '+amt+' để giữ chỗ buổi Drop-in.':'Đặt cọc '+amt+' để giữ chỗ, phần còn lại thanh toán trước buổi 1.')
         +(hasBank?' Bạn có thể <b>chuyển khoản ngay</b> bằng mã QR dưới đây, hoặc chờ High Comedia nhắn Zalo hướng dẫn.'
           :'<br>High Comedia sẽ nhắn Zalo thông tin chuyển khoản cho bạn trong 24 giờ.')+'</div>'

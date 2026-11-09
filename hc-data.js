@@ -2,16 +2,17 @@
 window.HC_DATA={
  "_ghi_chu": "NGUỒN DỮ LIỆU DUY NHẤT cho khoá học. Mỗi khoá có danh sách lớp (cohorts): code, start (YYYY-MM-DD), time, capacity, enrolled. Thêm lớp mới = thêm 1 dòng vào cohorts rồi chạy sh gen/run_all.sh. Trang web tự lấy lớp sắp khai giảng gần nhất còn chỗ để hiển thị; lớp đã qua ngày khai giảng tự ẩn khỏi form.",
  "site": {
-  "address": "Giảng Võ, Hà Nội"
+  "address": "Giảng Võ, Hà Nội",
+  "deposit": 1000
  },
  "dropin": {
   "vi": "Trải nghiệm Ứng tác",
   "en": "Drop-in",
   "name": "Improv Drop-in",
-  "loc": "Giảng Võ, Hà Nội",
+  "loc": "Đống Đa, Hà Nội",
   "capacity": 10,
-  "base": 250,
-  "sale": 150,
+  "base": 300,
+  "sale": 250,
   "cohorts": [
    {
     "code": "T12",
@@ -41,14 +42,14 @@ window.HC_DATA={
     "enrolled": 0
    }
   ],
-  "plan": "10 buổi trong 2 tháng · 2 tuần đầu 2 buổi/tuần, sau đó 1 buổi/tuần · 120 phút/buổi",
+  "plan": "10 buổi trong 2 tháng · 120 phút/buổi",
   "page": "khoa-hoc-improv-1.html"
  },
  "improv2": {
   "vi": "Ứng tác Cơ bản 2",
   "en": "Improv 2",
   "name": "Improv 2",
-  "loc": "Giảng Võ, Hà Nội",
+  "loc": "Hà Nội",
   "capacity": 10,
   "base": 4900,
   "sale": 3500,
@@ -61,14 +62,14 @@ window.HC_DATA={
     "enrolled": 0
    }
   ],
-  "plan": "10 buổi trong 2 tháng · 2 tuần đầu 2 buổi/tuần, sau đó 1 buổi/tuần · 120 phút/buổi",
+  "plan": "10 buổi trong 2 tháng · 120 phút/buổi",
   "page": "khoa-hoc-improv-2.html"
  },
  "performer1": {
   "vi": "Diễn viên Ứng tác 1",
   "en": "Performer 1",
   "name": "Improv Performer 1",
-  "loc": "Giảng Võ, Hà Nội",
+  "loc": "Hà Nội",
   "capacity": 10,
   "base": 7900,
   "sale": 5900,
@@ -80,7 +81,7 @@ window.HC_DATA={
   "vi": "Diễn viên Ứng tác 2",
   "en": "Performer 2",
   "name": "Improv Performer 2",
-  "loc": "Giảng Võ, Hà Nội",
+  "loc": "Hà Nội",
   "capacity": 10,
   "base": 7900,
   "sale": 5900,
@@ -92,7 +93,7 @@ window.HC_DATA={
   "vi": "Ứng tác Thiếu nhi",
   "en": "Kids Improv",
   "name": "Kids Improv",
-  "loc": "Giảng Võ, Hà Nội",
+  "loc": "Hà Nội",
   "capacity": 8,
   "base": 5200,
   "sale": 3800,
@@ -104,7 +105,7 @@ window.HC_DATA={
   "vi": "Ứng tác cho Doanh nghiệp",
   "en": "Applied Improv",
   "name": "Applied Improv",
-  "loc": "Giảng Võ, Hà Nội",
+  "loc": "Hà Nội",
   "capacity": 10,
   "base": null,
   "sale": 30000,

@@ -71,6 +71,8 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 .prose ul{padding-left:22px;margin:0 0 20px}.prose li{margin:0 0 8px}.prose strong{color:#1A1A1A}
 .prose blockquote{margin:30px 0;padding:4px 0 4px 22px;border-left:4px solid #FFA406;font-family:'Bricolage Grotesque',sans-serif;font-size:24px;line-height:1.4;font-weight:700;color:#1A1A1A}
 .prose blockquote p{margin:0}
+.prose p.rm,.prose .rm{font-size:14.5px;font-style:italic;line-height:1.55;color:rgba(26,26,26,0.62)}.prose p.rm{margin:-12px 0 26px}
+.prose li .rm{display:block;margin-top:4px}.prose .rm a{font-weight:600;text-underline-offset:3px}
 .prose figure{margin:30px 0}.prose figure img{width:100%;max-height:none;margin:0 0 10px}.prose figcaption{font-size:13.5px;line-height:1.5;color:rgba(26,26,26,0.6);text-align:center}
 .prose img{display:block;max-width:100%;max-height:640px;width:auto;height:auto;margin:6px auto 26px;border-radius:16px}
 .prose ol{padding-left:22px;margin:0 0 20px}.prose a{color:#8A4B00;font-weight:600;text-decoration:underline;text-underline-offset:3px}
@@ -87,7 +89,7 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 @media (max-width:900px){.art{grid-template-columns:minmax(0,1fr);gap:0}.toc{display:none}.toc-m{display:block}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:820px){.nav,.top .cta{display:none}.mm{display:block}}
 @media (max-width:640px){.wrap{padding:0 20px}.top .in{height:52px}.logo img{height:26px}.grid{grid-template-columns:minmax(0,1fr);gap:14px}
- .prose{font-size:16.5px;line-height:1.75}.prose h2{font-size:23px;margin:34px 0 10px}.prose blockquote{font-size:19px}.box{padding:20px}.ft .in{padding:20px}html{scroll-padding-top:68px}}
+ .prose{font-size:16.5px;line-height:1.75}.prose p.rm,.prose .rm{font-size:14px}.prose p.rm{margin:-10px 0 22px}.prose h2{font-size:23px;margin:34px 0 10px}.prose blockquote{font-size:19px}.box{padding:20px}.ft .in{padding:20px}html{scroll-padding-top:68px}}
 
 .sub{border-bottom:1px solid rgba(26,26,26,0.1);background:#F5EFE3}
 .subn{display:flex;gap:6px;overflow-x:auto;padding:10px 0;scrollbar-width:none}.subn::-webkit-scrollbar{display:none}
@@ -232,7 +234,8 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 <p>Ngày <strong>11/10/1975</strong>, kênh <strong>NBC</strong> phát sóng tập đầu tiên của một chương trình hài đêm khuya, khi ấy tên là <em>NBC’s Saturday Night</em>. Người tạo ra nó là nhà sản xuất trẻ người Canada <strong>Lorne Michaels</strong>. Ông muốn một chương trình hài <strong>trẻ, táo bạo, châm biếm thời sự</strong>, phát trực tiếp từ New York, khác hẳn những chương trình tạp kỹ bóng bẩy thời đó.</p>
 <h3 id="nhung-nguoi-chua-san-sang-cho-gio-vang">“Những người chưa sẵn sàng cho giờ vàng”</h3>
 <p>Dàn diễn viên đầu tiên được đặt biệt danh <strong>“Not Ready for Prime-Time Players”</strong>, tạm dịch: những diễn viên chưa sẵn sàng cho giờ vàng. Họ gồm <strong>Dan Aykroyd, John Belushi, Chevy Chase, Jane Curtin, Garrett Morris, Laraine Newman, Gilda Radner</strong>.</p>
-<p>Hãy nhìn lý lịch của họ: <strong>John Belushi</strong> từ The Second City Chicago, <strong>Dan Aykroyd</strong> và <strong>Gilda Radner</strong> từ The Second City Toronto, <strong>Laraine Newman</strong> từ <strong>The Groundlings</strong> ở Los Angeles. Ngay từ đêm đầu tiên, SNL đã là <strong>“đội tuyển” của các sân khấu ứng tác</strong>. Đọc thêm: <a href="/kien-thuc/the-second-city">The Second City</a>.</p>
+<p>Hãy nhìn lý lịch của họ: <strong>John Belushi</strong> từ The Second City Chicago, <strong>Dan Aykroyd</strong> và <strong>Gilda Radner</strong> từ The Second City Toronto, <strong>Laraine Newman</strong> từ <strong>The Groundlings</strong> ở Los Angeles. Ngay từ đêm đầu tiên, SNL đã là <strong>“đội tuyển” của các sân khấu ứng tác</strong>.</p>
+<p class="rm">Đọc thêm: <a href="/kien-thuc/the-second-city">The Second City</a></p>
 <figure><img loading="lazy" src="/img/ls-snl-2.webp" alt="Các diễn viên SNL trong một tiểu phẩm dựng trên sân khấu tường gạch" width="1280" height="720"><figcaption>Mỗi tuần, dàn diễn viên SNL dựng một loạt tiểu phẩm hoàn toàn mới chỉ trong vài ngày.</figcaption></figure>
 
 <h2 id="mot-tuan-lam-snl-viet-nhu-ung-tac">Một tuần làm SNL: viết như ứng tác</h2>
@@ -240,19 +243,20 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 <p>Nhịp làm việc ấy cần đúng những gì sân khấu ứng tác rèn luyện:</p>
 <ul>
 <li><strong>Tự nghĩ ra nhân vật và tình huống</strong>, không chờ ai viết hộ.</li>
-<li><strong><span class="gt" tabindex="0" data-g="finding-the-game">Tìm ra game</span> (<span class="gt" tabindex="0" data-g="game">mạch hài</span>) của cảnh</strong> rồi <span class="gt" tabindex="0" data-g="heightening">đẩy cao</span> nó cho thật chặt. Đọc thêm: <a href="/kien-thuc/mach-hai-cua-canh-dien">Game (mạch hài) của cảnh diễn</a>.</li>
+<li><strong><span class="gt" tabindex="0" data-g="finding-the-game">Tìm ra game</span> (<span class="gt" tabindex="0" data-g="game">mạch hài</span>) của cảnh</strong> rồi <span class="gt" tabindex="0" data-g="heightening">đẩy cao</span> nó cho thật chặt.<span class="rm">Đọc thêm: <a href="/kien-thuc/mach-hai-cua-canh-dien">Game (mạch hài) của cảnh diễn</a></span></li>
 <li><strong>Phản ứng ngay</strong> khi có sự cố trên sóng trực tiếp: đạo cụ hỏng, bạn diễn quên thoại, khán giả cười sớm.</li>
 <li><strong>Làm việc nhóm</strong> dưới áp lực thời gian cực lớn.</li>
 </ul>
 <p>Nói cách khác, SNL không diễn ứng tác, nhưng nó <strong>được vận hành bởi những người có bộ não ứng tác</strong>.</p>
 <h2 id="nha-sieu-hinh-hoc-thuong-tru">“Nhà siêu hình học thường trú”</h2>
-<p>Đầu thập niên <strong>1980</strong>, <strong>Del Close</strong>, người thầy ứng tác huyền thoại ở Chicago, được mời làm cố vấn cho SNL với danh xưng vui <strong>“nhà siêu hình học thường trú”</strong>, vì nhiều diễn viên của chương trình là học trò cũ của ông. Đọc thêm: <a href="/kien-thuc/del-close">Del Close</a>.</p>
+<p>Đầu thập niên <strong>1980</strong>, <strong>Del Close</strong>, người thầy ứng tác huyền thoại ở Chicago, được mời làm cố vấn cho SNL với danh xưng vui <strong>“nhà siêu hình học thường trú”</strong>, vì nhiều diễn viên của chương trình là học trò cũ của ông.</p>
+<p class="rm">Đọc thêm: <a href="/kien-thuc/del-close">Del Close</a></p>
 <h2 id="nhung-the-he-ngoi-sao-tu-san-khau-ung-tac">Những thế hệ ngôi sao từ sân khấu ứng tác</h2>
 <p>Qua hơn 50 mùa, các nhà hát ứng tác liên tục “gửi quân” cho SNL:</p>
 <ul>
 <li><strong>The Second City:</strong> John Belushi, Bill Murray, Gilda Radner, Chris Farley, Tim Meadows, Tina Fey…</li>
 <li><strong>The Groundlings</strong> (Los Angeles): Laraine Newman, Phil Hartman, Jon Lovitz, Will Ferrell, Kristen Wiig…</li>
-<li><strong>iO và Upright Citizens Brigade:</strong> Amy Poehler và nhiều biên kịch, diễn viên khác. Đọc thêm: <a href="/kien-thuc/upright-citizens-brigade">Upright Citizens Brigade</a>.</li>
+<li><strong>iO và Upright Citizens Brigade:</strong> Amy Poehler và nhiều biên kịch, diễn viên khác.<span class="rm">Đọc thêm: <a href="/kien-thuc/upright-citizens-brigade">Upright Citizens Brigade</a></span></li>
 </ul>
 <p><strong>Tina Fey</strong> là một ví dụ tiêu biểu: học ứng tác ở Chicago, diễn ở The Second City, rồi trở thành <strong>nữ biên kịch trưởng đầu tiên</strong> của SNL, và cùng <strong>Amy Poehler</strong> dẫn mục tin tức châm biếm <em>Weekend Update</em>.</p>
 <figure><img loading="lazy" src="/img/ls-snl-3.webp" alt="Tiểu phẩm châm biếm chính trị trên Saturday Night Live" width="960" height="540"><figcaption>Châm biếm chính trị là “đặc sản” của SNL: chính khách nào đang nổi bật đều có thể bị nhại ngay tuần sau.</figcaption></figure>
@@ -303,7 +307,7 @@ a{color:#1A1A1A}a:hover{color:#8A4B00}
 </tr>
 </tbody>
 </table></div>
-<p>Xem thêm: <a href="/kien-thuc/the-compass-players">The Compass Players</a> · <a href="/kien-thuc/the-second-city">The Second City</a> · <a href="/kien-thuc/upright-citizens-brigade">Upright Citizens Brigade</a> · <a href="/kien-thuc/lich-su/">Dòng thời gian Lịch sử ứng tác</a></p><p class="src"><b>Nguồn tham khảo:</b> Wikipedia (Saturday Night Live, The Second City, Upright Citizens Brigade, Del Close); NBC</p></div><script type="application/json" id="gdata">{"sketch": ["Sketch comedy", "Hài tiểu phẩm", "Những màn hài ngắn có kịch bản, mỗi màn một tình huống. Nhiều tiểu phẩm hay được tạo ra bằng ứng tác rồi mới viết lại.", "/kien-thuc/the-second-city"], "finding-the-game": ["Finding the game", "Tìm game", "Nhận ra điều bất thường thú vị trong cảnh rồi cả hai cùng chơi tiếp nó, thay vì liên tục đưa thêm ý mới.", "/kien-thuc/mach-hai-cua-canh-dien"], "game": ["Game of the scene", "Game (mạch hài)", "Điều buồn cười cốt lõi của cảnh: một kiểu hành vi bất thường được lặp lại và đẩy cao. Tóm được tiểu phẩm bằng một câu, câu đó là game.", "/kien-thuc/mach-hai-cua-canh-dien"], "heightening": ["Heightening", "Đẩy cao", "Làm điều bất thường bất thường hơn nữa, theo câu hỏi “Nếu điều này đúng, thì còn gì cũng đúng?”. Mỗi lần lặp lại phải lớn hơn lần trước.", ""]}</script><script>(function(){var D=JSON.parse(document.getElementById('gdata').textContent),c=null,cur=null,tShow=0,tHide=0,touch=matchMedia('(hover:none),(max-width:760px)').matches;
+<p class="rm">Xem thêm: <a href="/kien-thuc/the-compass-players">The Compass Players</a> · <a href="/kien-thuc/the-second-city">The Second City</a> · <a href="/kien-thuc/upright-citizens-brigade">Upright Citizens Brigade</a> · <a href="/kien-thuc/lich-su/">Dòng thời gian Lịch sử ứng tác</a></p><p class="src"><b>Nguồn tham khảo:</b> Wikipedia (Saturday Night Live, The Second City, Upright Citizens Brigade, Del Close); NBC</p></div><script type="application/json" id="gdata">{"sketch": ["Sketch comedy", "Hài tiểu phẩm", "Những màn hài ngắn có kịch bản, mỗi màn một tình huống. Nhiều tiểu phẩm hay được tạo ra bằng ứng tác rồi mới viết lại.", "/kien-thuc/the-second-city"], "finding-the-game": ["Finding the game", "Tìm game", "Nhận ra điều bất thường thú vị trong cảnh rồi cả hai cùng chơi tiếp nó, thay vì liên tục đưa thêm ý mới.", "/kien-thuc/mach-hai-cua-canh-dien"], "game": ["Game of the scene", "Game (mạch hài)", "Điều buồn cười cốt lõi của cảnh: một kiểu hành vi bất thường được lặp lại và đẩy cao. Tóm được tiểu phẩm bằng một câu, câu đó là game.", "/kien-thuc/mach-hai-cua-canh-dien"], "heightening": ["Heightening", "Đẩy cao", "Làm điều bất thường bất thường hơn nữa, theo câu hỏi “Nếu điều này đúng, thì còn gì cũng đúng?”. Mỗi lần lặp lại phải lớn hơn lần trước.", ""]}</script><script>(function(){var D=JSON.parse(document.getElementById('gdata').textContent),c=null,cur=null,tShow=0,tHide=0,touch=matchMedia('(hover:none),(max-width:760px)').matches;
 function card(){if(c)return c;c=document.createElement('div');c.id='gcard';c.setAttribute('role','tooltip');document.body.appendChild(c);
 c.addEventListener('mouseenter',function(){clearTimeout(tHide)});c.addEventListener('mouseleave',function(){hide(150)});
 c.addEventListener('click',function(e){if(e.target.closest('.gx'))hide(0)});return c}

@@ -52,6 +52,13 @@
   +'.hcf .chk{flex-direction:row;align-items:flex-start;gap:8px;font-weight:500;line-height:1.5}'
   +'.hcf .chk input{width:20px;height:20px;margin:1px 0 0;accent-color:'+INK+';flex:0 0 20px}'
   +'.hcf .chk.bad{color:#B3261E}'
+  +'.hcf .pol{margin:-6px 0 0 28px;font-size:13px;line-height:1.55;color:rgba(26,26,26,0.78)}'
+  +'.hcf .pol summary{cursor:pointer;font-weight:600;color:#8A4B00;list-style:none;display:inline-flex;align-items:center;gap:4px;padding:2px 0}'
+  +'.hcf .pol summary::-webkit-details-marker{display:none}'
+  +'.hcf .pol summary::after{content:"▾";transition:transform .2s}.hcf .pol[open] summary::after{transform:rotate(180deg)}'
+  +'.hcf .pol-b{margin-top:8px;background:#fff;border-radius:12px;padding:12px 14px}'
+  +'.hcf .pol ul{margin:0;padding-left:18px}.hcf .pol li{margin:0 0 6px}.hcf .pol b{color:'+INK+'}'
+  +'.hcf .pol a{font-weight:600;color:'+INK+'}'
   +'.hcf .chips{display:flex;flex-wrap:wrap;gap:6px}'
   +'.hcf .chips label{flex-direction:row;align-items:center;gap:6px;background:#fff;border:1.5px solid rgba(26,26,26,0.25);border-radius:100px;padding:6px 12px;font-weight:500;cursor:pointer}'
   +'.hcf .chips input{accent-color:'+INK+'}'
@@ -187,7 +194,15 @@
       +chk('photo','Đồng ý cho High Comedia chụp ảnh con trong lớp để gửi riêng cho phụ huynh và dùng trên kênh của High Comedia',{grp:'kid'})
       +sel('source','Bạn biết High Comedia qua',SRC,{full:1})
       +area('note','Ghi chú',{ph:'Kinh nghiệm, mong muốn, câu hỏi…'})
-      +chk('agree','Tôi đã đọc quy định lớp học, chính sách học bù và hoàn phí.',{req:1});
+      +chk('agree','Tôi đã đọc quy định lớp học, chính sách học bù và hoàn phí.',{req:1})
+      +'<details class="pol full" data-pol><summary>Xem tóm tắt quy định</summary><div class="pol-b">'+polHTML(st.cid)+'</div></details>';
+  }
+  /* Tóm tắt chính sách ngay trong form (bản đầy đủ: /chinh-sach) */
+  function polHTML(cid){
+    var dep=k((D.site||{}).deposit||CFG.deposit||1000), li=function(a){return '<ul>'+a.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul>';};
+    var body=cid==='dropin'?li(['<b>Thanh toán:</b> đủ phí khi đăng ký.','<b>Đổi buổi / hoàn phí:</b> báo trước 24 giờ được chuyển sang buổi sau hoặc hoàn 100%. Báo muộn hơn không hoàn.','<b>Học tiếp:</b> đăng ký Ứng tác Cơ bản trong 30 ngày được trừ 250K.'])
+      :li(['<b>Giữ chỗ:</b> cọc '+dep+', đóng phần còn lại trước buổi 1.','<b>Học bù:</b> vắng có báo trước 24 giờ được học bù ở lớp sau hoặc nhận video, tài liệu buổi đó.','<b>Huỷ:</b> trước khai giảng 7 ngày hoàn 100%. Trong 7 ngày cuối hoàn 50% hoặc bảo lưu sang khoá sau. Sau buổi 1 không hoàn, được bảo lưu một lần trong 6 tháng. Sau buổi 3 không hoàn, không bảo lưu.']);
+    return body+li(['<b>Trong lớp:</b> tôn trọng nhau, không phán xét. Không muốn lên ảnh, video thì báo giảng viên.'])+'<a href="/chinh-sach" target="_blank" rel="noopener">Đọc đầy đủ ↗</a>';
   }
   function waitBody(cid){
     var ids=(cid&&!WAIT[cid]&&D[cid]?[cid]:[]).concat(Object.keys(WAIT)); // khoá thường chưa mở lớp cũng vào danh sách chờ
@@ -267,7 +282,7 @@
     if(!bd||!ST)return; var t=bd.querySelector('#hcf-t'), s=bd.querySelector('#hcf-s'), kk=bd.querySelector('#hcf-k');
     if(ST.kind==='reg'){kk.textContent=ST.mode==='kid'?'ĐĂNG KÝ CHO CON':'ĐĂNG KÝ HỌC';var n=ST.cid?nm(ST.cid):['Chọn khoá học',''];t.textContent=n[0];s.textContent=n[1];}
   }
-  function renderPicker(){var p=bd.querySelector('[data-picker]');p.innerHTML=pickerHTML(ST);setTitle();}
+  function renderPicker(){var p=bd.querySelector('[data-picker]');p.innerHTML=pickerHTML(ST);var q=bd.querySelector('[data-pol] .pol-b');if(q)q.innerHTML=polHTML(ST.cid);setTitle();}
   function setMode(mode){
     ST.mode=mode; var f=bd.querySelector('form');
     var g=f.querySelectorAll('[data-grp]');for(var i=0;i<g.length;i++)g[i].hidden=g[i].getAttribute('data-grp')!==mode;

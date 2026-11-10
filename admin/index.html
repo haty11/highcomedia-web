@@ -534,7 +534,7 @@ function norm(o){
   const fk=o.k==='quote'?'Giá trị (đ)':'Học phí (đ)'; r.fee=fk in f?num(f[fk]):null; r.paid='Đã thu (đ)' in f?num(f['Đã thu (đ)']):null;
   return r;
 }
-const BUILD='20261110080034';
+const BUILD='20261110081823';
 /* Kiểm tra bản Admin mới (tránh trình duyệt giữ bản cũ trong bộ nhớ đệm) */
 async function checkVer(){try{const t=await fetch(location.pathname+'?v='+Date.now(),{cache:'no-store'}).then(r=>r.text());const m=t.match(/const BUILD='([^']+)'/);
   if(m&&m[1]!==BUILD&&BUILD!=='dev'){toast('<span>⟳ Có bản Admin mới, đang tải lại…</span>');setTimeout(()=>location.replace(location.pathname+'?v='+m[1]+location.hash),700);return true}}catch(e){}return false}

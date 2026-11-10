@@ -79,8 +79,8 @@ html,body{background:#F5EFE3}
 .v-mob{display:none}
 @media (max-width:640px){.v-desk{display:none}.v-mob{display:block}}
 .hc-bar{position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:40;transition:transform .3s ease,opacity .3s ease}.hc-bar.off{transform:translateY(calc(100% + 28px));opacity:0;pointer-events:none}.hc-bar-in{display:flex;align-items:center;gap:6px;background:rgba(26,26,26,0.97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#F5EFE3;border-radius:100px;padding:6px 6px 6px 18px;box-shadow:0 10px 28px rgba(26,26,26,0.22)}.hc-bar-info{flex:1;min-width:0;line-height:1.3;font-size:11px;color:rgba(245,239,227,0.68);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hc-bar-info b{display:block;font-size:13px;color:#F5EFE3;overflow:hidden;text-overflow:ellipsis}.hc-bar-info .s{color:#FFA406;font-weight:700}.hc-bar a{flex:0 0 auto;height:38px;border-radius:100px;display:flex;align-items:center;font-size:13px;text-decoration:none;white-space:nowrap}.hc-bar-z{padding:0 12px;border:1px solid rgba(245,239,227,0.3);color:#F5EFE3;font-weight:700}.hc-bar-cta{padding:0 16px;background:#FFA406;color:#1A1A1A;font-weight:800}.hc-bar-x{flex:0 0 auto;width:28px;height:28px;margin-left:-2px;border:0;border-radius:50%;background:rgba(245,239,227,0.12);color:#F5EFE3;font-size:16px;line-height:1;padding:0;cursor:pointer}.hc-bar.off{visibility:hidden}</style>
-<link rel="preload" as="image" href="img/hero-home.webp" media="(min-width: 641px)" fetchpriority="high">
-<link rel="preload" as="image" href="img/floor-warmup.webp" media="(max-width: 640px)" fetchpriority="high">
+<link rel="preload" as="image" href="img/hero-table-four.webp" media="(min-width: 641px)" fetchpriority="high">
+<link rel="preload" as="image" href="img/hero-table-four.webp" media="(max-width: 640px)" fetchpriority="high">
 <link rel="preconnect" href="https://script.google.com"><link rel="preconnect" href="https://script.googleusercontent.com">
 </head>
 <body>
@@ -108,64 +108,66 @@ html,body{background:#F5EFE3}
 </header>
 
 <!-- HERO -->
-<section id="top" style="padding:56px 0 64px">
-  <div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:48px;align-items:center;position:relative">
-    <div>
-      <div style="display:inline-flex;align-items:center;gap:8px;background:#1A1A1A;color:#F5EFE3;padding:6px 14px;border-radius:100px;font-size:13px;font-weight:600;margin-bottom:20px">
-        <span style="width:8px;height:8px;border-radius:50%;background:#FFA406;display:inline-block"></span>Khai giảng lớp Cơ bản: <span data-hc="improv1.startlong">Chủ nhật 06/12/2026</span>
-      </div>
-      <h1 class="hd hero-h" style="font-size:48px;line-height:1.05;font-weight:800;margin:0 0 20px"><span style="display:block;font-family:'Be Vietnam Pro',sans-serif;font-size:20px;line-height:1.3;font-weight:700;letter-spacing:0;color:#8A4B00;margin-bottom:10px">Học ứng tác tại Hà Nội</span>Không kịch bản.<br>Vẫn <span style="background:#FFA406;padding:0 10px;border-radius:10px">tự tin</span>.</h1>
-      <p style="font-size:18px;line-height:1.6;color:rgba(26,26,26,0.78);margin:0 0 28px;max-width:500px">Học ứng tác để nói chuyện tự tin hơn, làm việc nhóm ăn ý hơn và nghĩ nhanh hơn — kể cả khi mọi thứ không theo kế hoạch. Lớp Cơ bản từ 15 tuổi, có lớp thiếu nhi riêng cho bé 8–14.</p>
-      <div style="display:flex;gap:12px;flex-wrap:wrap">
-        <a href="khoa-hoc-improv-1" data-hc-page="khoa-hoc/improv1" style="background:#FFA406;color:#1A1A1A;text-decoration:none;padding:15px 26px;border-radius:100px;font-weight:700;font-size:15px">Đăng ký lớp Cơ bản</a>
-        <a href="#buoi-tap" style="border:2px solid #1A1A1A;text-decoration:none;padding:13px 24px;border-radius:100px;font-weight:700;font-size:15px">Xem một buổi tập</a>
-      </div>
-      <div style="display:flex;gap:28px;flex-wrap:wrap;margin-top:32px;font-size:13px;color:rgba(26,26,26,0.7)">
-        <div><div class="hd" style="font-size:24px;font-weight:800;color:#1A1A1A">10 buổi</div>lớp Cơ bản</div>
-        <div><div class="hd" style="font-size:24px;font-weight:800;color:#1A1A1A">Từ 8 tuổi</div>có lớp thiếu nhi riêng</div>
-        <div><div class="hd" style="font-size:24px;font-weight:800;color:#1A1A1A">0</div>kinh nghiệm cần có</div>
+<section id="top" style="padding:44px 0 56px">
+  <div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:26px">
+      <h1 class="hd hero-h" style="font-size:56px;line-height:1.02;font-weight:800;margin:0;letter-spacing:-0.02em"><span style="display:block;font-family:'Be Vietnam Pro',sans-serif;font-size:16px;line-height:1.3;font-weight:700;letter-spacing:1.5px;color:#8A4B00;margin-bottom:14px">HỌC ỨNG TÁC TẠI HÀ NỘI</span>Không kịch bản.<br>Vẫn <span style="background:#FFA406;padding:0 12px;border-radius:12px">tự tin</span>.</h1>
+      <div style="display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding-bottom:6px">
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="#" data-hc-act="reg:dropin" style="background:#FFA406;color:#1A1A1A;text-decoration:none;padding:15px 26px;border-radius:100px;font-weight:800;font-size:15px">Giữ chỗ học thử · <span data-hc="dropin.sale">250K</span></a>
+          <a href="#loi-ich" style="border:2px solid #1A1A1A;text-decoration:none;padding:13px 24px;border-radius:100px;font-weight:700;font-size:15px">Ứng tác giúp gì cho bạn? ↓</a>
+        </div>
+        <div style="font-size:13px;color:rgba(26,26,26,0.62);padding-left:4px">1 buổi 2 giờ · <span data-hc="dropin.startw">T7 05/12/2026</span> · không cần kinh nghiệm</div>
       </div>
     </div>
-    <div style="position:relative">
-      <img loading="eager" fetchpriority="high" decoding="async" src="img/hero-home.webp" alt="Học viên đang diễn một cảnh ứng tác, các bạn xung quanh lắng nghe và cười" width="1200" height="960" style="width:100%;height:auto;aspect-ratio:5/4;object-fit:cover;object-position:50% 40%;border-radius:24px;display:block;background:#1A1A1A">
-      <div style="position:absolute;left:-14px;bottom:24px;background:#F5EFE3;border:2px solid #1A1A1A;border-radius:16px;padding:12px 16px;max-width:230px;box-shadow:5px 5px 0 #FFA406">
-        <div class="hd" style="font-weight:800;font-size:17px">“Có, và…”</div>
-        <div style="font-size:12px;color:rgba(26,26,26,0.72);margin-top:2px">Hai chữ đầu tiên bạn học ở High Comedia.</div>
+    <div style="position:relative;border-radius:24px;overflow:hidden;background:#1A1A1A;box-shadow:0 24px 60px rgba(26,26,26,0.18)">
+      <img loading="eager" fetchpriority="high" decoding="async" src="img/hero-table-four.webp" alt="Bốn học viên High Comedia cười nghiêng ngả quanh bàn sau giờ tập" width="1600" height="989" style="width:100%;height:auto;aspect-ratio:2.1/1;object-fit:cover;object-position:50% 45%;display:block">
+      <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,26,26,0.15) 0%,rgba(26,26,26,0) 30%,rgba(26,26,26,0) 70%,rgba(26,26,26,0.4) 100%);pointer-events:none"></div>
+      <div style="position:absolute;left:20px;bottom:20px;display:inline-flex;align-items:center;gap:8px;background:rgba(245,239,227,0.92);color:#1A1A1A;border-radius:100px;padding:8px 14px 8px 10px;font-size:13px;font-weight:700"><span style="width:8px;height:8px;border-radius:50%;background:#FFA406;display:inline-block"></span>Sau giờ tập · Hà Nội</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:28px;align-items:start;margin-top:28px">
+      <div style="background:#FFFFFF;border-radius:20px;padding:24px 26px 18px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:#8A4B00;margin-bottom:8px">NGHE QUEN KHÔNG?</div>
+        <ul style="list-style:none;margin:0;padding:0"><li style="display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid rgba(26,26,26,0.08);font-size:17px;line-height:1.45"><span aria-hidden="true" style="flex:0 0 24px;height:24px;border-radius:7px;border:1.5px solid rgba(26,26,26,0.25);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#8A4B00;margin-top:2px">✓</span><span>Gặp người mới, không biết mở lời thế nào.</span></li><li style="display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid rgba(26,26,26,0.08);font-size:17px;line-height:1.45"><span aria-hidden="true" style="flex:0 0 24px;height:24px;border-radius:7px;border:1.5px solid rgba(26,26,26,0.25);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#8A4B00;margin-top:2px">✓</span><span>Nói được hai câu thì… hết chuyện.</span></li><li style="display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid rgba(26,26,26,0.08);font-size:17px;line-height:1.45"><span aria-hidden="true" style="flex:0 0 24px;height:24px;border-radius:7px;border:1.5px solid rgba(26,26,26,0.25);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#8A4B00;margin-top:2px">✓</span><span>Bị hỏi bất ngờ trong họp, đầu trống trơn.</span></li><li style="display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid rgba(26,26,26,0.08);font-size:17px;line-height:1.45"><span aria-hidden="true" style="flex:0 0 24px;height:24px;border-radius:7px;border:1.5px solid rgba(26,26,26,0.25);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#8A4B00;margin-top:2px">✓</span><span>Về đến nhà mới nghĩ ra câu đáng lẽ nên nói.</span></li></ul>
+      </div>
+      <div style="padding:6px 0 0">
+        <p class="hd" style="font-size:30px;line-height:1.15;font-weight:800;margin:0 0 14px;letter-spacing:-0.01em">Không phải bạn thiếu tự tin.<br>Bạn chỉ chưa có chỗ để tập.</p>
+        <p style="font-size:17px;line-height:1.6;color:rgba(26,26,26,0.78);margin:0 0 22px;max-width:520px">Ứng tác (improv) là trò chơi diễn không kịch bản: 2 giờ mỗi tuần tập đúng những khoảnh khắc ấy, trong một phòng toàn người cũng đang tập. Bạn sẽ ngạc nhiên với cách mình phản ứng khi không kịp nghĩ.</p>
+        <div style="display:flex;gap:28px;flex-wrap:wrap;font-size:13px;color:rgba(26,26,26,0.7)">
+          <div><div class="hd" style="font-size:24px;font-weight:800;color:#1A1A1A">6–10</div>người mỗi lớp</div>
+          <div><div class="hd" style="font-size:24px;font-weight:800;color:#1A1A1A">Từ 8 tuổi</div>có lớp thiếu nhi riêng</div>
+          <div><div class="hd" style="font-size:24px;font-weight:800;color:#1A1A1A">0</div>kinh nghiệm cần có</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- BENEFITS -->
-<section id="ung-tac" style="background:#1A1A1A;color:#F5EFE3;padding:72px 0">
+<section id="ung-tac" style="background:#1A1A1A;color:#F5EFE3;padding:72px 0;scroll-margin-top:70px"><span id="loi-ich"></span>
   <div class="wrap">
     <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:36px">
       <div>
         <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:#FFA406;margin-bottom:12px">ỨNG TÁC GIÚP GÌ CHO BẠN</div>
-        <h2 class="hd" style="font-size:38px;line-height:1.08;font-weight:800;margin:0;max-width:620px">Sân khấu là chỗ tập. Cuộc sống mới là nơi diễn thật.</h2>
+        <h2 class="hd" style="font-size:38px;line-height:1.08;font-weight:800;margin:0;max-width:620px">Ba thứ đổi khác sau vài buổi tập.</h2>
       </div>
-      <p style="font-size:15px;line-height:1.65;color:rgba(245,239,227,0.75);max-width:420px;margin:0">Học ứng tác không phải để diễn, mà để hiểu mình và hiểu người. Luật chơi trên sân khấu chính là luật của giao tiếp tốt. <a href="ung-tac" style="color:#FFA406;font-weight:700">Ứng tác là gì →</a></p>
+      <p style="font-size:15px;line-height:1.65;color:rgba(245,239,227,0.75);max-width:420px;margin:0">Không học để diễn. Học để lúc đời không theo kịch bản, bạn vẫn có câu để nói. <a href="ung-tac" style="color:#FFA406;font-weight:700">Ứng tác là gì →</a></p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
       <div style="background:rgba(245,239,227,0.06);border:1px solid rgba(245,239,227,0.14);border-radius:18px;padding:22px">
         <div class="hd" style="font-size:28px;font-weight:800;color:#FFA406">01</div>
-        <h3 class="hd" style="font-size:20px;margin:8px 0 6px">Tự tin</h3>
-        <p style="font-size:14px;line-height:1.55;color:rgba(245,239,227,0.75);margin:0">Đứng trước đám đông mà không cần thuộc bài. Sai thì cười, rồi đi tiếp.</p>
+        <h3 class="hd" style="font-size:20px;line-height:1.3;margin:8px 0 6px">Dám nói khi chưa chắc <span style="color:#FFA406">→</span> Sai thì cười, rồi đi tiếp.</h3>
+        <p style="font-size:14px;line-height:1.55;color:rgba(245,239,227,0.75);margin:0">Sợ nói sai nên im luôn? Lớp là nơi an toàn nhất để sai, và sai nhiều mới thấy chẳng ai chết cả.</p>
       </div>
       <div style="background:rgba(245,239,227,0.06);border:1px solid rgba(245,239,227,0.14);border-radius:18px;padding:22px">
         <div class="hd" style="font-size:28px;font-weight:800;color:#FFA406">02</div>
-        <h3 class="hd" style="font-size:20px;margin:8px 0 6px">Giao tiếp</h3>
-        <p style="font-size:14px;line-height:1.55;color:rgba(245,239,227,0.75);margin:0">Nghe để hiểu, không phải nghe để chờ đến lượt mình nói.</p>
+        <h3 class="hd" style="font-size:20px;line-height:1.3;margin:8px 0 6px">Đầu trống trơn <span style="color:#FFA406">→</span> thành có câu để nói.</h3>
+        <p style="font-size:14px;line-height:1.55;color:rgba(245,239,227,0.75);margin:0">Bị hỏi bất ngờ trong họp, phỏng vấn hay buổi hẹn đầu: bình tĩnh nói điều đầu tiên nghĩ tới, rồi nói tiếp.</p>
       </div>
       <div style="background:rgba(245,239,227,0.06);border:1px solid rgba(245,239,227,0.14);border-radius:18px;padding:22px">
         <div class="hd" style="font-size:28px;font-weight:800;color:#FFA406">03</div>
-        <h3 class="hd" style="font-size:20px;margin:8px 0 6px">Hợp tác nhóm</h3>
-        <p style="font-size:14px;line-height:1.55;color:rgba(245,239,227,0.75);margin:0">Làm bạn diễn tỏa sáng — và phát hiện ra mình cũng sáng theo.</p>
-      </div>
-      <div style="background:rgba(245,239,227,0.06);border:1px solid rgba(245,239,227,0.14);border-radius:18px;padding:22px">
-        <div class="hd" style="font-size:28px;font-weight:800;color:#FFA406">04</div>
-        <h3 class="hd" style="font-size:20px;margin:8px 0 6px">Tư duy linh hoạt</h3>
-        <p style="font-size:14px;line-height:1.55;color:rgba(245,239,227,0.75);margin:0">Biến tình huống bất ngờ thành chất liệu, thay vì thành nỗi sợ.</p>
+        <h3 class="hd" style="font-size:20px;line-height:1.3;margin:8px 0 6px">Chuyện tắt sau hai câu <span style="color:#FFA406">→</span> thành biết đón ý để nói tiếp.</h3>
+        <p style="font-size:14px;line-height:1.55;color:rgba(245,239,227,0.75);margin:0">Nghe đến chữ cuối, bắt được điều người kia thật sự muốn nói, câu chuyện tự chạy.</p>
       </div>
     </div>
   </div>
@@ -465,14 +467,14 @@ html,body{background:#F5EFE3}
 
 <!-- 1 · HERO: chào, nói đúng điều khách vừa xem trên kênh -->
 <section id="m-top" style="padding:14px 16px 26px">
-  <div style="position:relative;border-radius:20px;overflow:hidden">
-    <img loading="eager" fetchpriority="high" decoding="async" src="img/floor-warmup.webp" alt="Học viên lớp ứng tác cười trong trò chơi khởi động trên sàn tập" style="width:100%;aspect-ratio:4/5;object-fit:cover;object-position:28% 50%;display:block">
-    <div style="position:absolute;inset:auto 0 0 0;padding:90px 18px 20px;background:linear-gradient(180deg,rgba(26,26,26,0) 0%,rgba(26,26,26,0.72) 45%,rgba(26,26,26,0.92) 100%);color:#F5EFE3">
-      <div style="font-size:12px;font-weight:700;letter-spacing:1px;color:#FFA406;margin-bottom:8px">HỌC ỨNG TÁC TẠI HÀ NỘI</div>
-      <h1 style="font-size:31px;line-height:1.22;font-weight:800;letter-spacing:-0.02em;margin:0"><span style="display:block">Không kịch bản.</span><span style="display:block;margin-top:6px">Vẫn <span style="display:inline-block;line-height:1.15;background:#FFA406;color:#1A1A1A;padding:1px 8px 3px;border-radius:8px">tự tin</span>.</span></h1>
-    </div>
+  <div style="font-size:12px;font-weight:700;letter-spacing:1px;color:#8A4B00;margin:0 0 8px 2px">HỌC ỨNG TÁC TẠI HÀ NỘI</div>
+  <h1 style="font-size:34px;line-height:1.15;font-weight:800;letter-spacing:-0.02em;margin:0 2px 14px"><span style="display:block">Không kịch bản.</span><span style="display:block;margin-top:4px">Vẫn <span style="display:inline-block;line-height:1.15;background:#FFA406;padding:1px 8px 3px;border-radius:8px">tự tin</span>.</span></h1>
+  <div style="position:relative;border-radius:20px;overflow:hidden;background:#1A1A1A;box-shadow:0 14px 32px rgba(26,26,26,0.18)">
+    <img loading="eager" fetchpriority="high" decoding="async" src="img/hero-table-four.webp" alt="Bốn học viên High Comedia cười nghiêng ngả quanh bàn sau giờ tập" width="1600" height="989" style="width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;display:block">
+    <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,26,26,0.18) 0%,rgba(26,26,26,0) 35%,rgba(26,26,26,0) 70%,rgba(26,26,26,0.45) 100%);pointer-events:none"></div>
+    <div style="position:absolute;left:12px;bottom:12px;display:inline-flex;align-items:center;gap:7px;background:rgba(245,239,227,0.92);color:#1A1A1A;border-radius:100px;padding:6px 12px 6px 8px;font-size:12px;font-weight:700"><span style="width:8px;height:8px;border-radius:50%;background:#FFA406;display:inline-block"></span>Sau giờ tập · Hà Nội</div>
   </div>
-  <div style="margin:16px 0 0;background:#FFFFFF;border-radius:18px;padding:16px 16px 14px">
+  <div style="margin:14px 0 0;background:#FFFFFF;border-radius:18px;padding:16px 16px 14px">
     <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#8A4B00;margin-bottom:6px">NGHE QUEN KHÔNG?</div>
     <ul style="list-style:none;margin:0;padding:0;font-size:15px;line-height:1.45"><li style="display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid rgba(26,26,26,0.07)"><span aria-hidden="true" style="flex:0 0 22px;height:22px;border-radius:7px;border:1.5px solid rgba(26,26,26,0.25);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#8A4B00;margin-top:1px">✓</span><span>Gặp người mới, không biết mở lời thế nào.</span></li><li style="display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid rgba(26,26,26,0.07)"><span aria-hidden="true" style="flex:0 0 22px;height:22px;border-radius:7px;border:1.5px solid rgba(26,26,26,0.25);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#8A4B00;margin-top:1px">✓</span><span>Nói được hai câu thì… hết chuyện.</span></li><li style="display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid rgba(26,26,26,0.07)"><span aria-hidden="true" style="flex:0 0 22px;height:22px;border-radius:7px;border:1.5px solid rgba(26,26,26,0.25);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#8A4B00;margin-top:1px">✓</span><span>Bị hỏi bất ngờ trong họp, đầu trống trơn.</span></li><li style="display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid rgba(26,26,26,0.07)"><span aria-hidden="true" style="flex:0 0 22px;height:22px;border-radius:7px;border:1.5px solid rgba(26,26,26,0.25);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#8A4B00;margin-top:1px">✓</span><span>Về đến nhà mới nghĩ ra câu đáng lẽ nên nói.</span></li></ul>
     <p style="font-size:16px;line-height:1.45;font-weight:800;margin:14px 0 6px;letter-spacing:-0.01em">Không phải bạn thiếu tự tin. Bạn chỉ chưa có chỗ để tập.</p>

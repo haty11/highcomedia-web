@@ -9,7 +9,8 @@
       c.start=pick?pick.start:null;c.time=pick?pick.time:null;c.code=pick?pick.code:null;c.enrolled=pick?(pick.enrolled||0):0;if(pick&&pick.capacity)c.capacity=pick.capacity;}}
   window.HC_derive=derive; derive();
   var WD=['Chủ nhật','Thứ Hai','Thứ Ba','Thứ Tư','Thứ Năm','Thứ Sáu','Thứ Bảy'], WS=['CN','T2','T3','T4','T5','T6','T7'];
-  function k(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,'.')+'K';}
+  /* Giá lưu theo nghìn đồng: dưới 1 triệu ghi 250K, từ 1 triệu ghi 3,5 triệu */
+  function k(n){n=+n;return n>=1000?String(+(n/1000).toFixed(3)).replace('.',',')+' triệu':String(n)+'K';}
   function p(n){return (n<10?'0':'')+n;}
   function fmt(key){
     var a=key.split('.'), c=D[a[0]], f=a[1]; if(!c) return null;

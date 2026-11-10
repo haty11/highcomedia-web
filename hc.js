@@ -23,7 +23,7 @@
       case 'status': return d?'Lớp '+c.code+' · khai giảng '+WD[d.getDay()]+' '+ds+' · '+fmt(a[0]+'.seats')+'.':'Lịch khai giảng sẽ được thông báo. Đăng ký nhận tin để được báo sớm nhất.';
       case 'next': return d?'Khai giảng '+WS[d.getDay()]+' '+ds+'.':'Nhận tin khi mở lớp.';
       case 'time': return c.start&&c.time?c.time:'Chưa có lịch'; case 'code': return c.start&&c.code?c.code:'Sắp mở';
-      case 'seats': return !c.start&&c.cohorts?'Sắp mở lớp':left?'Còn '+left+'/'+c.capacity+' chỗ':'Hết chỗ';
+      case 'seats': return !c.start&&c.cohorts?'Sắp mở lớp':!left?'Hết chỗ':left<=5?'Còn '+left+' chỗ':'Còn chỗ';
       case 'left': if(!c.start&&c.cohorts)return 'Sắp mở'; return left+'/'+c.capacity;
       case 'leftn': return String(left); case 'cap': return String(c.capacity);
       case 'base': case 'sale': case 'deposit': return c[f]?k(c[f]):'';
@@ -55,7 +55,7 @@
       if(cs.length<2){bx[i].innerHTML='';continue;}
       bx[i].innerHTML='<div style="margin-top:14px;background:#FFFFFF;border-radius:16px;padding:14px 16px"><div style="font-size:12px;font-weight:700;letter-spacing:1px;color:#8A4B00;margin-bottom:4px">CÁC LỚP SẮP KHAI GIẢNG</div>'
         +cs.map(function(x,j){var d=new Date(x.start+'T00:00:00'),l=Math.max(0,(x.capacity||0)-(x.enrolled||0));
-          return '<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;padding:10px 0;'+(j?'border-top:1px solid rgba(26,26,26,0.08)':'')+'"><div style="font-size:14px;line-height:1.5"><b>'+(x.code||'')+'</b> · '+WS[d.getDay()]+' '+p(d.getDate())+'/'+p(d.getMonth()+1)+'/'+d.getFullYear()+(x.time?' · '+x.time:'')+'<br><span style="font-size:12px;font-weight:700;color:'+(l?'#8A4B00':'rgba(26,26,26,0.5)')+'">'+(l?'Còn '+l+'/'+x.capacity+' chỗ':'Hết chỗ')+'</span></div>'
+          return '<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;padding:10px 0;'+(j?'border-top:1px solid rgba(26,26,26,0.08)':'')+'"><div style="font-size:14px;line-height:1.5"><b>'+(x.code||'')+'</b> · '+WS[d.getDay()]+' '+p(d.getDate())+'/'+p(d.getMonth()+1)+'/'+d.getFullYear()+(x.time?' · '+x.time:'')+'<br><span style="font-size:12px;font-weight:700;color:'+(l?'#8A4B00':'rgba(26,26,26,0.5)')+'">'+(!l?'Hết chỗ':l<=5?'Còn '+l+' chỗ':'Còn chỗ')+'</span></div>'
             +(l?'<a href="#" data-hc-act="reg:'+cid+':'+x.code+'" style="background:#1A1A1A;color:#F5EFE3;text-decoration:none;padding:9px 16px;border-radius:100px;font-weight:700;font-size:13px;white-space:nowrap">Giữ chỗ lớp '+(x.code||'')+'</a>':'')+'</div>';}).join('')+'</div>';}}
   function all(){run();gate();lists();}
   window.HC_refresh=function(){derive();all();};

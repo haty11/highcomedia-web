@@ -69,7 +69,7 @@ window.HC_DATA={
    {
     "code": "A01",
     "start": "2027-05-01",
-    "time": "10:00–12:01",
+    "time": "10:00–12:00",
     "capacity": 6,
     "enrolled": 0
    }
@@ -85,7 +85,15 @@ window.HC_DATA={
   "capacity": 10,
   "base": 7900,
   "sale": 5900,
-  "cohorts": [],
+  "cohorts": [
+   {
+    "code": "AA01",
+    "start": "2027-01-14",
+    "time": "10:00–12:00",
+    "capacity": 8,
+    "enrolled": 0
+   }
+  ],
   "plan": "16 buổi trong 3 tháng · 120 phút/buổi",
   "page": "khoa-hoc-performer-2.html"
  },
@@ -97,7 +105,15 @@ window.HC_DATA={
   "capacity": 8,
   "base": 5200,
   "sale": 3800,
-  "cohorts": [],
+  "cohorts": [
+   {
+    "code": "E01",
+    "start": "2027-01-03",
+    "time": "10:00–12:00",
+    "capacity": 8,
+    "enrolled": 0
+   }
+  ],
   "plan": "8 buổi trong 2 tháng · 1 buổi/tuần · 90 phút/buổi",
   "page": "khoa-hoc-kids.html"
  },
@@ -110,7 +126,15 @@ window.HC_DATA={
   "base": null,
   "sale": 30000,
   "unit": "gói 6–10 người",
-  "cohorts": [],
+  "cohorts": [
+   {
+    "code": "DN01",
+    "start": "2027-01-13",
+    "time": "10:00–12:00",
+    "capacity": 10,
+    "enrolled": 0
+   }
+  ],
   "plan": "10 buổi trong 2 tháng · lớp riêng cho đội ngũ 6–10 người",
   "page": "ung-dung-ung-tac.html"
  }

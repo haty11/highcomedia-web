@@ -74,7 +74,20 @@
       bx[i].innerHTML=h;}}
   window.addEventListener('hc:data',function(){ready=true;lists();});
   setTimeout(function(){if(!ready){ready=true;lists();}},1500);
-  function all(){run();gate();lists();}
+  /* Có lớp / chưa có lớp: [data-hc-if="cid"] hiện khi khoá có lớp sắp khai giảng, [data-hc-ifnot="cid"] hiện khi chưa có.
+     [data-hc-lv="performer1:Cấp 1,performer2:Cấp 2"]: một dòng gọn cho khoá nhiều cấp ("Có 1 lớp Cấp 1, khai giảng …" hoặc "báo khi mở lớp."). */
+  var RED='#AC1F01';
+  function onoff(){var t=new Date(),td=t.getFullYear()+'-'+p(t.getMonth()+1)+'-'+p(t.getDate());
+    var a=document.querySelectorAll('[data-hc-if],[data-hc-ifnot]');
+    for(var i=0;i<a.length;i++){var y=a[i].getAttribute('data-hc-if'),c=D[y||a[i].getAttribute('data-hc-ifnot')],on=!!(c&&c.start);a[i].hidden=y?!on:on;}
+    var l=document.querySelectorAll('[data-hc-lv]');
+    for(var j=0;j<l.length;j++){var parts=[];l[j].getAttribute('data-hc-lv').split(',').forEach(function(it){var q=it.split(':'),c=D[q[0]];if(!c)return;
+        var n=(c.cohorts||[]).filter(function(x){return x.start&&x.start>=td;}).length;
+        if(n&&c.start)parts.push((parts.length?'':'Có ')+n+' lớp '+q[1]+' (<b class="hc-hl" style="color:'+RED+'">'+fmt(q[0]+'.startw')+'</b>)');});
+      l[j].innerHTML=parts.length?parts.join(' · ')+'.':'báo khi mở lớp.';}}
+  /* Nút Đăng ký (có lớp mở) màu đỏ chấm logo, khác nút "Báo khi mở lớp" / "Nhận tư vấn"; tự đổi theo khi nút bị chuyển trạng thái. */
+  (function(){var st=document.createElement('style');st.textContent='a[data-hc-act^="reg:"][style*="background"]:not([data-hc-act="reg:"]){background:'+RED+'!important;color:#FFFFFF!important;border-color:'+RED+'!important}';document.head.appendChild(st);})();
+  function all(){run();gate();onoff();lists();}
   window.HC_refresh=function(){derive();all();};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',all);else all();
 })();

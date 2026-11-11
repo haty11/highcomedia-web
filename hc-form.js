@@ -21,7 +21,7 @@
 
   /* Khoá mở đăng ký và khoá chờ mở. Tên: tiếng Việt trước, tiếng Anh sau. */
   var REG=['dropin','improv1','improv2','performer1','performer2'], KID='kids';
-  var WAIT={performer1:['Diễn viên Ứng tác 1','Performer 1'],performer2:['Diễn viên Ứng tác 2','Performer 2'],'teens-ensemble':['Đội diễn Thiếu niên','Teens Ensemble'],'house-team':['Đội diễn High Club','House Team'],'improv-for-writers':['Ứng tác cho Biên kịch','Improv for Writers'],'improv-for-presenters':['Ứng tác cho MC/BTV','Improv for Presenters'],'improv-teacher-1-&-2':['Giảng viên Ứng tác','Improv Teacher']};
+  var WAIT={performer1:['Diễn viên Ứng tác 1','Performer 1'],performer2:['Diễn viên Ứng tác 2','Performer 2'],'teens-ensemble':['Đội diễn Thiếu niên','Teens Ensemble'],'house-team':['Đội ngũ High','House Team'],'improv-for-actors':['Ứng tác cho Diễn viên','Improv for Actors'],'long-form-harold':['Ứng tác Dài · The Harold','Long-form'],'community-jam':['Jam Cộng đồng','Community Jam'],'rainbow-jam':['Sân chơi Ứng tác LGBTQIA+','Rainbow Jam'],'improv-for-writers':['Ứng tác cho Biên kịch','Improv for Writers'],'improv-for-presenters':['Ứng tác cho MC/BTV','Improv for Presenters'],'improv-teacher-1-&-2':['Giảng viên Ứng tác','Improv Teacher']};
   function nm(cid){var c=D[cid];if(c&&c.vi)return [c.vi,c.en];return WAIT[cid]||[cid,''];}
   function full(cid){var n=nm(cid);return n[0]+(n[1]?' · '+n[1]:'');}
   function cohorts(cid){var c=D[cid];if(!c||!c.cohorts)return [];var t=today();return c.cohorts.filter(function(x){return x.start&&x.start>=t;}).sort(function(a,b){return a.start<b.start?-1:1;});}

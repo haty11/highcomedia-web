@@ -48,32 +48,24 @@
       if(k==='reg'&&closed(cid))swap(el,cid,'waitlist','Báo khi mở lớp');
       else if(k==='waitlist'&&!closed(cid))swap(el,cid,'reg','Đăng ký'+(el.textContent.length>16?' '+(c.en||''):''));}
     if(ch)run();}
-  /* Trang khoá: khi có từ 2 lớp sắp khai giảng trở lên -> liệt kê đủ, mỗi lớp một nút giữ chỗ chọn sẵn lớp đó */
-  /* Danh sách lớp dưới mỗi thẻ khoá (data-hc-list). Quy tắc chung cho mọi khoá:
-     - chỉ xét lớp còn ở tương lai; "gần" = khai giảng trong 120 ngày tới;
-     - có >= 2 lớp gần -> liệt kê (tối đa 4), mỗi lớp một nút giữ chỗ chọn sẵn lớp đó; lớp hết chỗ vẫn hiện, không nút;
-     - chỉ 1 lớp gần nhưng còn lớp xa hơn -> một dòng "Lớp tiếp theo: tháng M/YYYY" (không nút, tránh người xem khựng vì ngày quá xa);
-     - không có gì đáng nói -> ô trống.
-     Chỉ vẽ sau khi dữ liệu sống về (hoặc sau 1,5 giây nếu không về) để không "hiện rồi tắt" khi bản dựng sẵn khác Sheet. */
-  var NEAR=120, ready=false;
+  /* Danh sách lớp dưới thẻ khoá (data-hc-list): có từ 2 lớp sắp khai giảng -> một dòng gập "Xem N lớp sắp khai giảng ▾", khách bấm mới mở
+     (không phá bố cục thẻ). Mỗi lớp một nút giữ chỗ chọn sẵn lớp đó; lớp hết chỗ vẫn hiện, không nút.
+     Chỉ vẽ khi dữ liệu đã chắc (hc:ready) để không "hiện rồi tắt". */
+  var ready=false;
   function lists(){var bx=document.querySelectorAll('[data-hc-list]');if(!bx.length||!ready)return;
-    var t=new Date(),td=t.getFullYear()+'-'+p(t.getMonth()+1)+'-'+p(t.getDate()),lim=new Date(t.getTime()+NEAR*864e5),ld=lim.getFullYear()+'-'+p(lim.getMonth()+1)+'-'+p(lim.getDate());
+    var t=new Date(),td=t.getFullYear()+'-'+p(t.getMonth()+1)+'-'+p(t.getDate());
     function fd(x){var d=new Date(x.start+'T00:00:00');return WS[d.getDay()]+' '+p(d.getDate())+'/'+p(d.getMonth()+1)+'/'+d.getFullYear();}
-    function fm(x){var d=new Date(x.start+'T00:00:00');return 'tháng '+(d.getMonth()+1)+'/'+d.getFullYear();}
-    for(var i=0;i<bx.length;i++){var cid=bx[i].getAttribute('data-hc-list'),c=D[cid],up=(c&&c.cohorts||[]).filter(function(x){return x.start&&x.start>=td;}).sort(function(a,b){return a.start<b.start?-1:1;});
-      var near=up.filter(function(x){return x.start<=ld;}),far=up.filter(function(x){return x.start>ld;}),h='';
-      if(near.length>=2){
-        h='<div style="margin-top:14px;background:#FFFFFF;border-radius:16px;padding:14px 16px"><div style="font-size:12px;font-weight:700;letter-spacing:1px;color:#8A4B00;margin-bottom:4px">CHỌN LỚP PHÙ HỢP</div>'
-          +near.slice(0,4).map(function(x,j){var l=Math.max(0,(x.capacity||0)-(x.enrolled||0));
-            return '<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;padding:10px 0;'+(j?'border-top:1px solid rgba(26,26,26,0.08)':'')+'"><div style="font-size:14px;line-height:1.5"><b>'+(x.code||'')+'</b> · '+fd(x)+(x.time?' · '+x.time:'')+'<br><span style="font-size:12px;font-weight:700;color:'+(l?'#8A4B00':'rgba(26,26,26,0.5)')+'">'+(!l?'Hết chỗ':l<=5?'Còn '+l+' chỗ':'Còn chỗ')+'</span></div>'
-              +(l?'<a href="#" data-hc-act="reg:'+cid+':'+x.code+'" style="background:#1A1A1A;color:#F5EFE3;text-decoration:none;padding:9px 16px;border-radius:100px;font-weight:700;font-size:13px;white-space:nowrap">Giữ chỗ lớp '+(x.code||'')+'</a>':'')+'</div>';})
-          .join('')+(far.length?'<div style="font-size:12px;color:rgba(26,26,26,0.6);padding-top:8px;border-top:1px solid rgba(26,26,26,0.08)">Sau đó: '+far.map(fm).join(', ')+'</div>':'')+'</div>';
-      } else if(near.length===1&&far.length){
-        h='<div style="margin-top:10px;font-size:12px;color:rgba(26,26,26,0.6)">Lớp tiếp theo: '+fm(far[0])+(far.length>1?' (+'+(far.length-1)+')':'')+'</div>';
-      }
-      bx[i].innerHTML=h;}}
-  window.addEventListener('hc:data',function(){ready=true;lists();});
-  setTimeout(function(){if(!ready){ready=true;lists();}},1500);
+    for(var i=0;i<bx.length;i++){var cid=bx[i].getAttribute('data-hc-list'),c=D[cid],h='',
+        up=(c&&c.cohorts||[]).filter(function(x){return x.start&&x.start>=td;}).sort(function(a,b){return a.start<b.start?-1:1;});
+      if(up.length>=2){var hl=cid!=='dropin',was=bx[i].querySelector('details[open]');
+        h='<details class="hc-cl"'+(was?' open':'')+' style="margin-top:10px"><summary style="cursor:pointer;font-size:13px;font-weight:700;color:#8A4B00;padding:8px 0">Xem '+up.length+' lớp sắp khai giảng</summary><div style="margin-top:4px;background:#FFFFFF;border-radius:14px;padding:2px 14px">'
+          +up.slice(0,4).map(function(x,j){var l=Math.max(0,(x.capacity||0)-(x.enrolled||0));
+            return '<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 12px;padding:10px 0;'+(j?'border-top:1px solid rgba(26,26,26,0.08)':'')+'"><div style="font-size:14px;line-height:1.5"><b>'+(x.code||'')+'</b> · <span style="'+(hl?'color:'+RED+';font-weight:700':'')+'">'+fd(x)+(x.time?' · '+x.time:'')+'</span><br><span style="font-size:12px;font-weight:700;color:'+(l?'#8A4B00':'rgba(26,26,26,0.5)')+'">'+(!l?'Hết chỗ':l<=5?'Còn '+l+' chỗ':'Còn chỗ')+'</span></div>'
+              +(l?'<a href="#" data-hc-act="reg:'+cid+':'+x.code+'" style="background:#1A1A1A;color:#F5EFE3;text-decoration:none;padding:9px 16px;border-radius:100px;font-weight:700;font-size:13px;white-space:nowrap">Giữ chỗ lớp '+(x.code||'')+'</a>':'')+'</div>';}).join('')+'</div></details>';}
+      bx[i].innerHTML=h;}
+    paint();}
+  window.addEventListener('hc:ready',function(){ready=true;lists();});
+  window.addEventListener('hc:data',function(){if(ready)lists();});
   /* Có lớp / chưa có lớp: [data-hc-if="cid"] hiện khi khoá có lớp sắp khai giảng, [data-hc-ifnot="cid"] hiện khi chưa có.
      [data-hc-lv="performer1:Cấp 1,performer2:Cấp 2"]: một dòng gọn cho khoá nhiều cấp ("Có 1 lớp Cấp 1, khai giảng …" hoặc "báo khi mở lớp."). */
   var RED='#AC1F01';
@@ -86,8 +78,10 @@
         if(n&&c.start)parts.push((parts.length?'':'Có ')+n+' lớp '+q[1]+' (<b class="hc-hl" style="color:'+RED+'">'+fmt(q[0]+'.startw')+'</b>)');});
       l[j].innerHTML=parts.length?parts.join(' · ')+'.':'báo khi mở lớp.';}}
   /* Nút Đăng ký (có lớp mở) màu đỏ chấm logo, khác nút "Báo khi mở lớp" / "Nhận tư vấn"; tự đổi theo khi nút bị chuyển trạng thái. */
-  (function(){var st=document.createElement('style');st.textContent='a[data-hc-act^="reg:"][style*="background"]:not([data-hc-act="reg:"]){background:'+RED+'!important;color:#FFFFFF!important;border-color:'+RED+'!important}';document.head.appendChild(st);})();
-  function all(){run();gate();onoff();lists();}
+  /* Nút Đăng ký đỏ chấm logo: chỉ khoá mới (không phải Drop-in) đang có lớp "Có" trên Sheet. Không có lớp -> nút giữ màu đen như thường. */
+  function paint(){var a=document.querySelectorAll('[data-hc-act^="reg:"]');for(var i=0;i<a.length;i++){var cid=a[i].getAttribute('data-hc-act').split(':')[1],c=D[cid];a[i].classList.toggle('hc-open',!!(cid&&cid!=='dropin'&&c&&c.start));}}
+  (function(){var st=document.createElement('style');st.textContent='a.hc-open[style*="background"]{background:'+RED+'!important;color:#FFFFFF!important;border-color:'+RED+'!important}.hc-cl>summary{list-style:none}.hc-cl>summary::-webkit-details-marker{display:none}.hc-cl>summary::after{content:" ▾"}.hc-cl[open]>summary::after{content:" ▴"}';document.head.appendChild(st);})();
+  function all(){run();gate();onoff();paint();lists();}
   window.HC_refresh=function(){derive();all();};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',all);else all();
 })();
@@ -126,24 +120,24 @@
 /* Dữ liệu sống: lịch lớp, học phí, số chỗ lấy từ tab "📅 Lịch lớp" của Google Sheet (qua Apps Script).
    Lần sau khách quay lại: dùng ngay bản đã nhớ (≤24h) rồi cập nhật ngầm. Lỗi mạng -> giữ số liệu có sẵn trong trang. */
 (function(){
-  var C=window.HC_CONFIG||{}, D=window.HC_DATA, KEY='hc-live-v1';
-  if(!C.formUrl||!D||!window.fetch||/claude|localhost|^$/.test(location.hostname)) return;
+  var C=window.HC_CONFIG||{}, D=window.HC_DATA, KEY='hc-live-v1', done=false;
+  /* Dữ liệu đã chắc -> hiện phần lịch (CSS trong <head> ẩn tạm [data-hc-if/ifnot/lv], trạng thái chỗ khi html chưa có .hc-ok, vẫn giữ chỗ trống nên không xô bố cục). */
+  function ok(){if(done)return;done=true;document.documentElement.classList.add('hc-ok');try{window.dispatchEvent(new CustomEvent('hc:ready'));}catch(e){}}
+  if(!C.formUrl||!D||!window.fetch||/claude|localhost|^$/.test(location.hostname)){ok();return;}
   function apply(data){
     for(var k in data){ var v=data[k]; if(D[k]&&typeof D[k]==='object'&&v&&typeof v==='object'){ for(var f in v) D[k][f]=v[f]; } else D[k]=v; }
     if(window.HC_refresh) window.HC_refresh();
     try{window.dispatchEvent(new CustomEvent('hc:data'));}catch(e){}
   }
-  /* 3 lớp, từ nhanh đến mới nhất: (1) bản đã nhớ trên máy khách, (2) ảnh chụp hc-live.json trên chính web (~0,2 giây, cập nhật 10 phút/lần),
-     (3) hỏi thẳng Apps Script (2–6 giây, mới nhất). Bản mới hơn luôn ghi đè; Apps Script về rồi thì bỏ qua ảnh chụp đến muộn. */
-  var live=false;
-  try{ var c=JSON.parse(localStorage.getItem(KEY)||'null'); if(c&&c.data&&Date.now()-c.t<864e5) apply(c.data); }catch(e){}
-  fetch('/hc-live.json?t='+Math.floor(Date.now()/6e4)).then(function(r){return r.ok?r.json():null;}).then(function(d){ if(d&&!live) apply(d); }).catch(function(){});
+  /* (1) Bản đã nhớ trên máy khách: dưới 30 phút thì tin luôn, cũ hơn thì chỉ dùng tạm (vẫn ẩn lịch) chờ bản mới.
+     (2) Hỏi thẳng Apps Script (đọc tab Lịch lớp, chỉ lớp "Hiện trên web = Có"), ~2 giây. Quá 4 giây không về -> hiện theo dữ liệu đang có. */
+  try{ var c=JSON.parse(localStorage.getItem(KEY)||'null'); if(c&&c.data&&Date.now()-c.t<864e5){ apply(c.data); if(Date.now()-c.t<18e5) ok(); } }catch(e){}
+  setTimeout(ok,4000);
   fetch(C.formUrl+'?action=data').then(function(r){return r.json();}).then(function(j){
-    if(!j||!j.data) return;
-    live=true;
+    if(!j||!j.data) return ok();
     try{ localStorage.setItem(KEY,JSON.stringify({t:Date.now(),data:j.data})); }catch(e){}
-    apply(j.data);
-  }).catch(function(){});
+    apply(j.data); ok();
+  }).catch(ok);
 })();
 /* Thanh nổi mobile:
    - Trang có [data-bar-start] (trang chủ): chỉ hiện khi đã cuộn tới khối đó, ẩn khi khối [data-bar-hide] (đã có nút đăng ký) đang hiện.

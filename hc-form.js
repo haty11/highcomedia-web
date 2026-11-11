@@ -88,6 +88,7 @@
   +'.hcf .coh button b{font-size:13px}.hcf .coh button span{font-size:11px;color:rgba(26,26,26,0.6)}'
   +'.hcf .coh button:hover{border-color:'+INK+'}.hcf .coh button[aria-pressed=true]{border-color:'+INK+';background:'+A+'}'
   +'.hcf .coh button.out{opacity:.5;text-decoration:line-through}'
+  +'.hcf .hcf-t{color:#AC1F01;font-weight:700}.hcf .coh button b{color:#AC1F01}.hcf .coh button[aria-pressed=true] b{color:'+INK+'}'
   +'.hcf-go{height:52px;border:0;border-radius:100px;background:'+INK+';color:'+BG+';font:inherit;font-weight:800;font-size:16px;cursor:pointer;transition:transform .12s,background .12s}'
   +'.hcf-go:hover{background:#000;transform:translateY(-1px)}.hcf-go:active{transform:translateY(1px)}'
   +'.hcf-go[disabled]{opacity:.6;cursor:wait;transform:none}'
@@ -154,7 +155,7 @@
   /* ---------- Thẻ lớp + bộ chọn khoá/lớp ---------- */
   function cohortLine(cid,x){
     if(!x) return 'Lịch khai giảng sẽ thông báo · đăng ký trước để giữ chỗ';
-    return (x.code?x.code+' · ':'')+dlong(x.start)+(x.time?' · '+x.time:'')+' · '+esc((D[cid]||{}).loc||'');
+    return (x.code?x.code+' · ':'')+'<span class="hcf-t">'+dlong(x.start)+(x.time?' · '+x.time:'')+'</span> · '+esc((D[cid]||{}).loc||'');
   }
   function pickerHTML(st){
     var cid=st.cid, x=st.code?cohortById(cid,st.code):null, list=st.mode==='kid'?[KID]:REG.filter(function(id){return id===cid||!D[id]||!D[id].cohorts||cohorts(id).length;}); // chỉ hiện khoá đang có lớp mở

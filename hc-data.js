@@ -20,13 +20,6 @@ window.HC_DATA={
     "time": "9:00–11:00",
     "capacity": 10,
     "enrolled": 0
-   },
-   {
-    "code": "D01",
-    "start": "2027-05-09",
-    "time": "10:00–12:00",
-    "capacity": 10,
-    "enrolled": 0
    }
   ],
   "plan": "1 buổi · 120 phút · mỗi tháng 1 buổi",

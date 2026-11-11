@@ -49,14 +49,31 @@
       else if(k==='waitlist'&&!closed(cid))swap(el,cid,'reg','Đăng ký'+(el.textContent.length>16?' '+(c.en||''):''));}
     if(ch)run();}
   /* Trang khoá: khi có từ 2 lớp sắp khai giảng trở lên -> liệt kê đủ, mỗi lớp một nút giữ chỗ chọn sẵn lớp đó */
-  function lists(){var bx=document.querySelectorAll('[data-hc-list]');if(!bx.length)return;
-    var t=new Date(),td=t.getFullYear()+'-'+p(t.getMonth()+1)+'-'+p(t.getDate());
-    for(var i=0;i<bx.length;i++){var cid=bx[i].getAttribute('data-hc-list'),c=D[cid],cs=(c&&c.cohorts||[]).filter(function(x){return x.start&&x.start>=td;}).sort(function(a,b){return a.start<b.start?-1:1;});
-      if(cs.length<2){bx[i].innerHTML='';continue;}
-      bx[i].innerHTML='<div style="margin-top:14px;background:#FFFFFF;border-radius:16px;padding:14px 16px"><div style="font-size:12px;font-weight:700;letter-spacing:1px;color:#8A4B00;margin-bottom:4px">CÁC LỚP SẮP KHAI GIẢNG</div>'
-        +cs.map(function(x,j){var d=new Date(x.start+'T00:00:00'),l=Math.max(0,(x.capacity||0)-(x.enrolled||0));
-          return '<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;padding:10px 0;'+(j?'border-top:1px solid rgba(26,26,26,0.08)':'')+'"><div style="font-size:14px;line-height:1.5"><b>'+(x.code||'')+'</b> · '+WS[d.getDay()]+' '+p(d.getDate())+'/'+p(d.getMonth()+1)+'/'+d.getFullYear()+(x.time?' · '+x.time:'')+'<br><span style="font-size:12px;font-weight:700;color:'+(l?'#8A4B00':'rgba(26,26,26,0.5)')+'">'+(!l?'Hết chỗ':l<=5?'Còn '+l+' chỗ':'Còn chỗ')+'</span></div>'
-            +(l?'<a href="#" data-hc-act="reg:'+cid+':'+x.code+'" style="background:#1A1A1A;color:#F5EFE3;text-decoration:none;padding:9px 16px;border-radius:100px;font-weight:700;font-size:13px;white-space:nowrap">Giữ chỗ lớp '+(x.code||'')+'</a>':'')+'</div>';}).join('')+'</div>';}}
+  /* Danh sách lớp dưới mỗi thẻ khoá (data-hc-list). Quy tắc chung cho mọi khoá:
+     - chỉ xét lớp còn ở tương lai; "gần" = khai giảng trong 120 ngày tới;
+     - có >= 2 lớp gần -> liệt kê (tối đa 4), mỗi lớp một nút giữ chỗ chọn sẵn lớp đó; lớp hết chỗ vẫn hiện, không nút;
+     - chỉ 1 lớp gần nhưng còn lớp xa hơn -> một dòng "Lớp tiếp theo: tháng M/YYYY" (không nút, tránh người xem khựng vì ngày quá xa);
+     - không có gì đáng nói -> ô trống.
+     Chỉ vẽ sau khi dữ liệu sống về (hoặc sau 1,5 giây nếu không về) để không "hiện rồi tắt" khi bản dựng sẵn khác Sheet. */
+  var NEAR=120, ready=false;
+  function lists(){var bx=document.querySelectorAll('[data-hc-list]');if(!bx.length||!ready)return;
+    var t=new Date(),td=t.getFullYear()+'-'+p(t.getMonth()+1)+'-'+p(t.getDate()),lim=new Date(t.getTime()+NEAR*864e5),ld=lim.getFullYear()+'-'+p(lim.getMonth()+1)+'-'+p(lim.getDate());
+    function fd(x){var d=new Date(x.start+'T00:00:00');return WS[d.getDay()]+' '+p(d.getDate())+'/'+p(d.getMonth()+1)+'/'+d.getFullYear();}
+    function fm(x){var d=new Date(x.start+'T00:00:00');return 'tháng '+(d.getMonth()+1)+'/'+d.getFullYear();}
+    for(var i=0;i<bx.length;i++){var cid=bx[i].getAttribute('data-hc-list'),c=D[cid],up=(c&&c.cohorts||[]).filter(function(x){return x.start&&x.start>=td;}).sort(function(a,b){return a.start<b.start?-1:1;});
+      var near=up.filter(function(x){return x.start<=ld;}),far=up.filter(function(x){return x.start>ld;}),h='';
+      if(near.length>=2){
+        h='<div style="margin-top:14px;background:#FFFFFF;border-radius:16px;padding:14px 16px"><div style="font-size:12px;font-weight:700;letter-spacing:1px;color:#8A4B00;margin-bottom:4px">CHỌN LỚP PHÙ HỢP</div>'
+          +near.slice(0,4).map(function(x,j){var l=Math.max(0,(x.capacity||0)-(x.enrolled||0));
+            return '<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;padding:10px 0;'+(j?'border-top:1px solid rgba(26,26,26,0.08)':'')+'"><div style="font-size:14px;line-height:1.5"><b>'+(x.code||'')+'</b> · '+fd(x)+(x.time?' · '+x.time:'')+'<br><span style="font-size:12px;font-weight:700;color:'+(l?'#8A4B00':'rgba(26,26,26,0.5)')+'">'+(!l?'Hết chỗ':l<=5?'Còn '+l+' chỗ':'Còn chỗ')+'</span></div>'
+              +(l?'<a href="#" data-hc-act="reg:'+cid+':'+x.code+'" style="background:#1A1A1A;color:#F5EFE3;text-decoration:none;padding:9px 16px;border-radius:100px;font-weight:700;font-size:13px;white-space:nowrap">Giữ chỗ lớp '+(x.code||'')+'</a>':'')+'</div>';})
+          .join('')+(far.length?'<div style="font-size:12px;color:rgba(26,26,26,0.6);padding-top:8px;border-top:1px solid rgba(26,26,26,0.08)">Sau đó: '+far.map(fm).join(', ')+'</div>':'')+'</div>';
+      } else if(near.length===1&&far.length){
+        h='<div style="margin-top:10px;font-size:12px;color:rgba(26,26,26,0.6)">Lớp tiếp theo: '+fm(far[0])+(far.length>1?' (+'+(far.length-1)+')':'')+'</div>';
+      }
+      bx[i].innerHTML=h;}}
+  window.addEventListener('hc:data',function(){ready=true;lists();});
+  setTimeout(function(){if(!ready){ready=true;lists();}},1500);
   function all(){run();gate();lists();}
   window.HC_refresh=function(){derive();all();};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',all);else all();

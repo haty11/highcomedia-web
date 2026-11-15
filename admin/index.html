@@ -535,7 +535,7 @@ function norm(o){
   const fk=o.k==='quote'?'Giá trị (đ)':'Học phí (đ)'; r.fee=fk in f?num(f[fk]):null; r.paid='Đã thu (đ)' in f?num(f['Đã thu (đ)']):null;
   return r;
 }
-const BUILD='6462419997aa';
+const BUILD='8ac2237b97da';
 /* Kiểm tra bản Admin mới (tránh trình duyệt giữ bản cũ trong bộ nhớ đệm) */
 async function checkVer(){if(typeof Posts!=='undefined'&&Posts.busy())return false;try{const t=await fetch(location.pathname+'?v='+Date.now(),{cache:'no-store'}).then(r=>r.text());const m=t.match(/const BUILD='([^']+)'/);
   if(m&&m[1]!==BUILD&&BUILD!=='dev'){toast('<span>⟳ Có bản Admin mới, đang tải lại…</span>');setTimeout(()=>location.replace(location.pathname+'?v='+m[1]+location.hash),700);return true}}catch(e){}return false}
@@ -1416,7 +1416,7 @@ const Posts=(function(){
     return out;
   }
   function canPublish(){return !checks().some(c=>c[0]==='no')}
-  function pubLabel(){const f=ed.f;if(!ed.wasDraft&&!ed.isNew)return 'Cập nhật bài';return f.date>today?'Hẹn đăng '+wd(f.date)+' '+dvn(f.date):'Đăng ngay'}
+  function pubLabel(){const f=ed.f;if(!ed.wasDraft&&!ed.isNew){if(ed.wasDate>today&&f.date<=today)return 'Đăng ngay';if(ed.wasDate>today&&f.date!==ed.wasDate)return 'Đổi lịch: '+wd(f.date)+' '+dvn(f.date);return 'Cập nhật bài'}return f.date>today?'Hẹn đăng '+wd(f.date)+' '+dvn(f.date):'Đăng ngay'}
   function renderEditor(){
     const f=ed.f, sl=freeSlots(4,ed.slug), P=(BLOG_META.paths||{})[f.section]||[], st=stageOf(), C=BLOG_META.cats||{};
     const s=ed.isNew?'d':(ed.wasDraft?'d':(ed.wasDate>today?'h':'p'));
@@ -1445,7 +1445,7 @@ const Posts=(function(){
         <div class="card" style="margin-bottom:12px"><h4>Đăng bài</h4>
           <label class="fl">Ngày đăng <em>(7:07 sáng, giờ VN)</em></label>
           <input type="date" class="fi" id="pf-date" value="${esc(f.date)}">
-          <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:6px">${sl.map(d=>`<button class="chipd${f.date===d?' on':''}" data-pd="${d}">${wd(d)} ${dvn(d).slice(0,5)}</button>`).join('')}<button class="chipd${f.date===today?' on':''}" data-pd="${today}">Hôm nay</button></div>
+          <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:6px">${sl.map(d=>`<button class="chipd${f.date===d?' on':''}" data-pd="${d}">${wd(d)} ${dvn(d).slice(0,5)}</button>`).join('')}<button class="chipd${f.date===today?' on':''}" data-pd="${today}">Hôm nay</button></div>${(ed.isNew||ed.wasDraft||ed.wasDate>today)&&f.date>today?`<div style="font-size:12px;color:var(--muted);margin-top:6px">Muốn đăng luôn? Bấm <b>Hôm nay</b>, nút bên dưới đổi thành <b>Đăng ngay</b>.</div>`:''}
           <ul class="ck">${checks().map(([k,t])=>`<li class="${k}"><i>${k==='ok'?'✓':k==='no'?'✕':'!'}</i>${esc(t)}</li>`).join('')}</ul>
           <div class="acts" style="margin-top:10px">${actBtns(true)}</div>
         </div>
@@ -1582,7 +1582,7 @@ const Posts=(function(){
     if(mode==='hide'&&!confirm('Ẩn bài “'+f.title+'” khỏi web? Bài chuyển về nháp, mở lại được bất cứ lúc nào.'))return;
     if(mode==='publish'){
       if(!canPublish()){toast('<span>Còn mục ✕ trong phần Đăng bài.</span>');return}
-      const msg=!ed.wasDraft&&!ed.isNew?'Cập nhật bài trên web? Khoảng 3 phút sau web có bản mới.':f.date>today?'Hẹn đăng bài vào '+wd(f.date)+' '+dvn(f.date)+' lúc 7:07 sáng?':'Đăng bài lên web ngay? Khoảng 3 phút sau bài xuất hiện.';
+      const msg=!ed.wasDraft&&!ed.isNew&&!(ed.wasDate>today&&f.date<=today)?(ed.wasDate>today&&f.date!==ed.wasDate?'Đổi lịch đăng sang '+wd(f.date)+' '+dvn(f.date)+' lúc 7:07 sáng?':'Cập nhật bài trên web? Khoảng 3 phút sau web có bản mới.'):f.date>today?'Hẹn đăng bài vào '+wd(f.date)+' '+dvn(f.date)+' lúc 7:07 sáng?':'Đăng bài lên web ngay? Khoảng 3 phút sau bài xuất hiện.';
       if(!confirm(msg))return;
     }
     const prevDraft=f.draft;

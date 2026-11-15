@@ -9,7 +9,7 @@ window.HC_DATA={
   "vi": "Trải nghiệm Ứng tác",
   "en": "Drop-in",
   "name": "Improv Drop-in",
-  "loc": "Đống Đa, Hà Nội",
+  "loc": "Đặng Tiến Đông, Hà Nội",
   "capacity": 10,
   "base": 300,
   "sale": 250,
@@ -18,13 +18,6 @@ window.HC_DATA={
     "code": "T12",
     "start": "2026-12-05",
     "time": "9:00–11:00",
-    "capacity": 10,
-    "enrolled": 0
-   },
-   {
-    "code": "T14",
-    "start": "2027-01-10",
-    "time": "10:00–12:00",
     "capacity": 10,
     "enrolled": 0
    }
@@ -92,15 +85,7 @@ window.HC_DATA={
   "capacity": 10,
   "base": 7900,
   "sale": 5900,
-  "cohorts": [
-   {
-    "code": "AA01",
-    "start": "2027-06-01",
-    "time": "10:00–12:00",
-    "capacity": 8,
-    "enrolled": 0
-   }
-  ],
+  "cohorts": [],
   "plan": "16 buổi trong 3 tháng · 120 phút/buổi",
   "page": "khoa-hoc-performer-2.html"
  },

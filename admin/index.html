@@ -535,7 +535,7 @@ function norm(o){
   const fk=o.k==='quote'?'Giá trị (đ)':'Học phí (đ)'; r.fee=fk in f?num(f[fk]):null; r.paid='Đã thu (đ)' in f?num(f['Đã thu (đ)']):null;
   return r;
 }
-const BUILD='8ac2237b97da';
+const BUILD='e1607831c442';
 /* Kiểm tra bản Admin mới (tránh trình duyệt giữ bản cũ trong bộ nhớ đệm) */
 async function checkVer(){if(typeof Posts!=='undefined'&&Posts.busy())return false;try{const t=await fetch(location.pathname+'?v='+Date.now(),{cache:'no-store'}).then(r=>r.text());const m=t.match(/const BUILD='([^']+)'/);
   if(m&&m[1]!==BUILD&&BUILD!=='dev'){toast('<span>⟳ Có bản Admin mới, đang tải lại…</span>');setTimeout(()=>location.replace(location.pathname+'?v='+m[1]+location.hash),700);return true}}catch(e){}return false}
@@ -1433,7 +1433,7 @@ const Posts=(function(){
           <button data-md="b" title="Chữ đậm"><b>B</b></button><button data-md="i" title="Chữ nghiêng"><i>I</i></button>
           <span class="sp"></span><button data-md="h2" title="Tiêu đề mục">Mục</button><button data-md="h3" title="Tiêu đề nhỏ">Mục nhỏ</button>
           <button data-md="ul" title="Danh sách">• Ý</button><button data-md="ol" title="Danh sách đánh số">1. Ý</button>
-          <span class="sp"></span><button data-md="q" title="Câu Ghi nhớ đóng khung">❝ Ghi nhớ</button><button data-md="rm" title="Dòng Đọc thêm (link bài khác)">Đọc thêm</button>
+          <span class="sp"></span><button data-md="q" title="Câu Ghi nhớ đóng khung">❝ Ghi nhớ</button><button data-md="rm" title="Dòng Đọc thêm (link bài khác)">Đọc thêm</button><button data-md="src" title="Thêm một nguồn vào mục Nguồn tham khảo cuối bài (chữ nhỏ, từ 4 nguồn tự gập lại)">Nguồn</button>
           <button data-md="link" title="Chèn link">🔗 Link</button><button data-md="img" title="Chèn ảnh trong bài">🖼 Ảnh</button>
           <span class="sp"></span><button data-pa="pv" class="hide-m" title="Xem trước">${ed.pv?'✎ Soạn':'👁 Xem trước'}</button>
         </div>
@@ -1499,6 +1499,7 @@ const Posts=(function(){
     const box=el('#ppv');if(!box)return;
     if(!window.marked){box.innerHTML='<p class="empty">Đang tải bộ xem trước…</p>';loadLib().then(renderPv).catch(()=>box.innerHTML='<p class="empty">Không tải được bộ xem trước.</p>');return}
     let h=marked.parse(String(ed.body||''),{gfm:true,breaks:false});
+    h=h.replace(/<h2[^>]*>\s*(?:Nguồn tham khảo|Tài liệu tham khảo|Nguồn)\s*:?\s*<\/h2>\s*([\s\S]*?)(?=<h2|$)/i,(m,x)=>{const n=(x.match(/<li>/g)||[]).length;return `<details style="font-size:13px;color:rgba(26,26,26,.65);border-top:1px solid rgba(26,26,26,.12);padding-top:10px"${n>=4?'':' open'}><summary style="cursor:pointer"><b>Nguồn tham khảo</b>${n>=4?' ('+n+')':''}</summary>${x}</details>`});
     h=h.replace(/<p>((?:Đọc thêm|Xem thêm|Đọc kỹ hơn)\s*:[\s\S]*?)<\/p>/g,'<p class="rm">$1</p>');
     h=h.replace(/src="\/img\/([a-z0-9-]+)\.webp"/g,(m,b)=>{const k=Object.keys(ed.pending).find(n=>n.replace(/\.\w+$/,'')===b);return k?'src="'+ed.pending[k].url+'"':m});
     const f=ed.f;
@@ -1524,6 +1525,9 @@ const Posts=(function(){
     if(k==='h2')return linePrefix('## ','Tiêu đề mục');if(k==='h3')return linePrefix('### ','Tiêu đề nhỏ');
     if(k==='ul')return linePrefix('- ','Ý');if(k==='ol')return linePrefix(i=>(i+1)+'. ','Ý');
     if(k==='q')return linePrefix('> ','Câu ghi nhớ của bài');
+    if(k==='src'){const t=el('#pf-body');if(!t)return;const tpl='- Tác giả (năm). [Tên bài hoặc nghiên cứu](https://). Tên tạp chí/báo.';
+      let v=t.value.replace(/\s+$/,'');v+=/^##\s*(Nguồn tham khảo|Tài liệu tham khảo)\s*$/mi.test(v)?'\n'+tpl:'\n\n## Nguồn tham khảo\n\n'+tpl;
+      t.value=v+'\n';t.focus();const a=v.lastIndexOf('Tác giả');t.selectionStart=a;t.selectionEnd=a+'Tác giả (năm)'.length;sync();return}
     if(k==='rm')return pickPost(p=>insertBlock('Đọc thêm: ['+p.title.split(/[:?]/)[0].trim()+'](/kien-thuc/'+p.slug+')'),'Chọn bài cho dòng “Đọc thêm”');
     if(k==='link')return linkModal();
     if(k==='img')return upload(async(name)=>{const cap=prompt('Chú thích ảnh (có thể bỏ trống):','')||'';const alt=prompt('Mô tả ảnh cho Google:',cap||ed.f.title)||cap;

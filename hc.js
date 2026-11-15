@@ -35,6 +35,7 @@
     var ts=document.querySelectorAll('[data-hct]');for(var j=0;j<ts.length;j++){ts[j].textContent=ts[j].getAttribute('data-hct').replace(/\{(\w+\.\w+)\}/g,function(_,key){var v=fmt(key);return v==null?'':v;});}}
   /* Khoá chưa có lớp nào đang mở trên web (Sheet: không có dòng khai giảng hoặc "Hiện trên web" = Không)
      -> nút Đăng ký/Giữ chỗ đổi thành "Báo khi mở lớp" (danh sách chờ); có lớp lại thì trả về như cũ. Thiếu nhi giữ luồng riêng. */
+  var VI={dropin:'học thử',improv1:'Cơ bản 1',improv2:'Cơ bản 2',performer1:'Diễn viên 1',performer2:'Diễn viên 2',kids:'Thiếu nhi'};   // tên ngắn tiếng Việt cho nút tự đổi
   function closed(cid){var c=D[cid];return !!(c&&c.cohorts&&cid!=='kids'&&!c.start);}
   function lab(t,txt){return txt+(/→\s*$/.test(t)?' →':'');}
   function swap(el,cid,to,txt){el.setAttribute('data-hc-sw',cid);el.setAttribute('data-hc-orig',el.innerHTML);el.setAttribute('data-hc-oact',el.getAttribute('data-hc-act'));el.setAttribute('data-hc-act',to+':'+cid);
@@ -46,7 +47,7 @@
       if(sw){var oa=el.getAttribute('data-hc-oact')||'';if((oa.indexOf('reg:')===0)===closed(sw))continue;back(el);ch=true;}
       var a=el.getAttribute('data-hc-act'),k=a.split(':')[0],cid=a.slice(k.length+1),c=D[cid];if(!c||!c.cohorts||cid==='kids')continue;
       if(k==='reg'&&closed(cid))swap(el,cid,'waitlist','Báo khi mở lớp');
-      else if(k==='waitlist'&&!closed(cid))swap(el,cid,'reg','Đăng ký'+(el.textContent.length>16?' '+(c.en||''):''));}
+      else if(k==='waitlist'&&!closed(cid))swap(el,cid,'reg','Đăng ký'+(el.textContent.length>16?' '+(VI[cid]||c.vi||''):''));}
     if(ch)run();}
   /* Danh sách lớp dưới thẻ khoá (data-hc-list): có từ 2 lớp sắp khai giảng -> một dòng gập "Xem N lớp sắp khai giảng ▾", khách bấm mới mở
      (không phá bố cục thẻ). Mỗi lớp một nút giữ chỗ chọn sẵn lớp đó; lớp hết chỗ vẫn hiện, không nút.

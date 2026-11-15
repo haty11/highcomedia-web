@@ -112,6 +112,6 @@ window.HC_DATA={
   "unit": "gói 6–10 người",
   "cohorts": [],
   "plan": "10 buổi trong 2 tháng · lớp riêng cho đội ngũ 6–10 người",
-  "page": "ung-dung-ung-tac.html"
+  "page": "ung-tac-cho-doanh-nghiep.html"
  }
 };

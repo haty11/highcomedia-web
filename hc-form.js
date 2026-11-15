@@ -211,6 +211,15 @@
       +inp('name','Họ và tên',{req:1,full:1,auto:'name'})+inp('phone','Số điện thoại (Zalo)',{type:'tel',req:1})+inp('email','Email (nhận tin khi mở lớp)',{type:'email',req:1})
       +area('note','Bạn đã học ứng tác ở đâu? Mong muốn gì?');
   }
+  /* Workshop cho trường học & giáo viên: dùng chung luồng báo giá (tab Doanh nghiệp), thêm ô đối tượng */
+  function schoolBody(){
+    return inp('company','Tên trường / trung tâm / tổ chức',{req:1,full:1,auto:'organization'})+inp('name','Người liên hệ',{req:1,auto:'name'})+inp('role','Chức vụ',{auto:'organization-title',ph:'VD: Hiệu phó, giáo viên chủ nhiệm'})
+      +inp('phone','Số điện thoại (Zalo)',{type:'tel',req:1})+inp('email','Email',{type:'email',req:1})
+      +sel('audience','Workshop dành cho',['Giáo viên','Học sinh tiểu học','Học sinh THCS','Học sinh THPT','Phụ huynh','Nhiều nhóm'],{req:1})
+      +sel('size','Số người tham gia',['Dưới 20 người','20–40 người','Trên 40 người','Chưa rõ'],{req:1})+sel('when','Thời gian mong muốn',['Trong học kỳ này','Học kỳ sau','Hè','Chưa xác định'])
+      +chipset('goals','Mục tiêu chính',['Tự tin nói trước lớp','Lắng nghe & làm việc nhóm','Cảm xúc – xã hội','Sáng tạo','Phương pháp dạy học tương tác'])
+      +area('note','Bối cảnh lớp / trường, mong muốn khác');
+  }
   function quoteBody(){
     return inp('company','Tên công ty / tổ chức',{req:1,full:1,auto:'organization'})+inp('name','Người liên hệ',{req:1,auto:'name'})+inp('role','Chức vụ',{auto:'organization-title'})
       +inp('phone','Số điện thoại (Zalo)',{type:'tel',req:1})+inp('email','Email công việc',{type:'email',req:1})
@@ -297,10 +306,10 @@
     if(kind==='reg'&&cid&&cid!==KID&&D[cid]&&D[cid].cohorts&&!bestCohort(cid)){kind='waitlist';} // khoá hết chỗ hoặc chưa mở lớp nào -> danh sách chờ
     if(['reg','waitlist','quote'].indexOf(kind)<0) return;
     lastFocus=trigger; opened=Date.now();
-    ST={kind:kind,mode:cid===KID?'kid':'self',cid:(kind==='reg'&&(REG.indexOf(cid)>=0||cid===KID))?cid:'',code:'',open:false};
+    ST={kind:kind,mode:cid===KID?'kid':'self',cid:(kind==='reg'&&(REG.indexOf(cid)>=0||cid===KID))?cid:'',code:'',open:false,school:kind==='quote'&&cid==='school'};
     if(ST.cid){var pc=pick&&cohortById(ST.cid,pick);ST.code=(pc&&left(pc)?pc:bestCohort(ST.cid)||{}).code||'';}
-    var head=kind==='quote'?['ỨNG TÁC CHO DOANH NGHIỆP','Nhận tư vấn & báo giá','']:kind==='waitlist'?['BÁO TÔI KHI MỞ LỚP',nm(cid)[0]||'Nhận tin khi mở lớp',nm(cid)[1]||'']:['ĐĂNG KÝ HỌC','',''];
-    var body=kind==='reg'?regBody(ST):kind==='waitlist'?waitBody(cid):quoteBody();
+    var head=kind==='quote'?(ST.school?['WORKSHOP CHO TRƯỜNG HỌC & GIÁO VIÊN','Nhận tư vấn workshop','']:['ỨNG TÁC CHO DOANH NGHIỆP','Nhận tư vấn & báo giá','']):kind==='waitlist'?['BÁO TÔI KHI MỞ LỚP',nm(cid)[0]||'Nhận tin khi mở lớp',nm(cid)[1]||'']:['ĐĂNG KÝ HỌC','',''];
+    var body=kind==='reg'?regBody(ST):kind==='waitlist'?waitBody(cid):ST.school?schoolBody():quoteBody();
     var btn={reg:'Gửi đăng ký',waitlist:'Đăng ký nhận tin',quote:'Gửi yêu cầu tư vấn'}[kind];
     bd=document.createElement('div'); bd.className='hcf-bd';
     bd.innerHTML='<div class="hcf" role="dialog" aria-modal="true" aria-labelledby="hcf-t"><div class="hcf-h"><div><small id="hcf-k">'+head[0]+'</small><b id="hcf-t">'+esc(head[1])+'</b><em id="hcf-s">'+esc(head[2])+'</em></div><button type="button" class="hcf-x" aria-label="Đóng" data-hcf-close>×</button></div>'
@@ -336,6 +345,7 @@
       if(!ok){firstBad&&firstBad.focus();return;}
       var data=collect(form), kind=ST.kind==='reg'&&ST.mode==='kid'?'kids':ST.kind;
       if(kind==='kids'){data.birth=data.kbirth;delete data.kbirth;}
+      if(ST.school){data.note='[Workshop trường học · '+(data.audience||'')+'] '+(data.note||'');delete data.audience;}   // vào tab Doanh nghiệp, gắn nhãn để lọc
       if(data.website||Date.now()-opened<2500){showDone(box,kind,data,{ok:true});return;} // bot: giả vờ thành công
       if(throttled()){form.outerHTML=failHTML();return;}
       var btn=form.querySelector('.hcf-go'), txt=btn.textContent; btn.disabled=true; btn.innerHTML='<span class="hcf-spin"></span>Đang gửi…';

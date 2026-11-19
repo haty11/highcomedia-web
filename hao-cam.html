@@ -279,7 +279,7 @@ ul.adv,ol.adv{padding-left:20px;margin:8px 0}ul.adv li,ol.adv li{margin:0 0 6px}
 'use strict';
 var app=document.getElementById('app'), D=null, S=null, KEY=null;
 var HT=['A','P','U','B','Z','K'], ALL=['A','P','U','B','Z','K','N','X','S'], LET='ABCDEFGH';
-var ICON={'Trường, lớp':'🎒','Học hành':'📚','Gia đình':'🏠','Nơi ở':'🔑','Nơi công cộng':'🚌','Bạn bè':'🍻','Mạng xã hội':'📱','Đi làm':'💼','Dịp đặc biệt':'🎉','Sân khấu, giải trí':'🎭','Hẹn hò, crush':'💌','Thể thao':'🏸','Du lịch, đi chơi':'🧳','Game':'🎮','Bán hàng online, câu lạc bộ':'🛍️','Bản thân':'🪞'};
+var ICON={'Trường, lớp':'🎒','Học hành':'📚','Gia đình':'🏠','Nơi ở':'🔑','Nơi công cộng':'🚌','Bạn bè':'🍻','Mạng xã hội':'📱','Đi làm':'💼','Dịp đặc biệt':'🎉','Sân khấu, giải trí':'🎭','Hẹn hò, crush':'💌','Thể thao':'🏸','Du lịch, đi chơi':'🧳','Game':'🎮','Bán hàng online, câu lạc bộ':'🛍️','Bản thân':'🪞','Vợ chồng, người yêu':'💑','Làm cha mẹ':'🧸'};
 var ASK1=['Phản xạ đầu tiên của bạn?','Lúc đó bạn sẽ…','Bạn làm gì?','Thật lòng thì bạn…','Bạn phản ứng thế nào?'];
 var NOTES=['Chọn theo phản xạ thật, không phải điều nên làm. Kết quả chỉ chuẩn khi bạn thật.','Không có lựa chọn đúng hay sai. Chỉ có lựa chọn giống bạn.','Nghĩ quá 5 giây? Chọn cái bật ra đầu tiên.','Đừng chọn kiểu "mình muốn được thấy là". Chọn kiểu "mình hay làm vậy".','Chưa gặp đúng chuyện này? Hình dung nếu gặp, bạn sẽ làm gì.','Người khác thấy bạn qua những phản xạ nhỏ như thế này.','Gần xong rồi. Giữ nhịp thật như từ đầu nhé.'];
 var VER={nhanh:{ten:'Bản nhanh',n:10,phut:2},chitiet:{ten:'Bản chi tiết',n:18,phut:5}};
@@ -309,7 +309,8 @@ function intro(msg){
   for(i=1;i<=12;i++)mons+='<option value="'+i+'"'+(me.mm==i?' selected':'')+'>Tháng '+i+'</option>';
   if(!vinfo(v))v='nhanh';
   var card=function(k,t,em,sp,ic){return '<label class="'+(k===v?'on':'')+'"><input type="radio" name="ver" value="'+k+'"'+(k===v?' checked':'')+'>'+(ic?'<i>'+ic+'</i>':'')+'<b>'+esc(t)+'</b>'+(em?'<em>'+esc(em)+'</em>':'')+'<span>'+esc(sp)+'</span></label>';};
-  var goiH=(D.goi||[]).map(function(g){return card(g.ma,g.ten,'',g.mo_ta,g.icon);}).join('');
+  var goiCards=function(age){var L=goiFor(age);if(goi(v)&&!L.some(function(g){return g.ma===v;}))v=L[0]?L[0].ma:'nhanh';return L.map(function(g){return card(g.ma,g.ten,'',g.mo_ta,g.icon);}).join('');};
+  var goiH=goiCards(me.year?y-me.year:20);
   var verH=card('nhanh','Bản nhanh','10 tình huống · 2 phút','Mọi bối cảnh, một lá thư ngắn cho bạn.')+card('chitiet','Bản chi tiết','18 tình huống · 5 phút','Lá thư đầy đủ, một bài học nhỏ và lời khuyên riêng.');
   var img=D.cfg.anh_trang_mo_dau||'san-khau.jpg';
   var h='<div class="intro"><div><p class="kick">High Comedia</p><h1 class="big">Đo Độ Hảo Cảm '+G_SVG+'</h1>'+
@@ -319,12 +320,17 @@ function intro(msg){
   '<div class="row"><label class="f" for="nm">Tên bạn</label><input class="t" id="nm" autocomplete="given-name" maxlength="30" value="'+esc(me.name||'')+'" placeholder="Hà"></div>'+
   '<div class="row"><label class="f" for="yr">Năm sinh</label><input class="t" id="yr" inputmode="numeric" maxlength="4" value="'+esc(me.year||'')+'" placeholder="2003"></div>'+
   '<div class="row"><label class="f">Ngày và tháng sinh <span class="opt">(không bắt buộc, để mở thêm góc vui cung hoàng đạo)</span></label><div class="two"><select class="t" id="dd" aria-label="Ngày sinh">'+days+'</select><select class="t" id="mm" aria-label="Tháng sinh">'+mons+'</select></div></div>'+
-  '<label class="f">Bạn muốn đo ở đâu? <span class="opt">5 tình huống, khoảng 1 phút</span></label><div class="ver goi" role="radiogroup">'+goiH+'</div>'+'<label class="f">Hoặc đo tổng hợp mọi bối cảnh</label><div class="ver" role="radiogroup">'+verH+'</div>'+
+  '<label class="f">Bạn muốn đo ở đâu? <span class="opt">5 tình huống, khoảng 1 phút</span></label><div class="ver goi" id="goi" role="radiogroup">'+goiH+'</div>'+'<label class="f">Hoặc đo tổng hợp mọi bối cảnh</label><div class="ver" role="radiogroup">'+verH+'</div>'+
   '<p class="err" id="er">'+(msg||'')+'</p><button class="btn w" type="submit">Bắt đầu đo</button>'+
   '<p class="small" style="margin:12px 0 0">🔒 Thông tin chỉ nằm trên máy của bạn, không gửi đi đâu.</p></form></div>'+
   '<div class="hero-img"><img loading="lazy" decoding="async" src="/img/hao-cam/'+esc(img)+'" alt="Các nhân vật sân khấu Commedia dell\'arte" width="1400" height="788"><div class="cap"><span>Arlecchino</span><span>Pierrot</span><span>Pulcinella</span><span>Brighella</span><span>Zanni</span><span>Il Pubblico</span><span>Pantalone</span></div><p class="small" style="margin:10px 0 0">Bảy nét duyên, đặt tên theo bảy vai của sân khấu ứng tác Commedia dell\'arte nước Ý. Bạn là ai trong số họ?</p></div></div>';
   app.innerHTML=frame(h,'full'); top();
-  app.querySelectorAll('.ver input').forEach(function(r){r.onchange=function(){app.querySelectorAll('.ver label').forEach(function(l){l.classList.toggle('on',l.querySelector('input').checked);});};});
+  var bindVer=function(){app.querySelectorAll('.ver input').forEach(function(r){r.onchange=function(){app.querySelectorAll('.ver label').forEach(function(l){l.classList.toggle('on',l.querySelector('input').checked);});};});};
+  bindVer();
+  document.getElementById('yr').addEventListener('input',function(){var yy=parseInt(this.value,10);if(!(yy>=1920&&yy<=y))return;
+    var cur=(app.querySelector('.ver input:checked')||{}).value;if(cur)v=cur;var box=document.getElementById('goi');box.innerHTML=goiCards(y-yy);
+    if(!app.querySelector('.ver input:checked')){var f=app.querySelector('.ver input[value="'+v+'"]');if(f){f.checked=true;f.parentNode.classList.add('on');}}
+    app.querySelectorAll('.ver label').forEach(function(l){l.classList.toggle('on',l.querySelector('input').checked);});bindVer();});
   document.getElementById('f').onsubmit=function(e){
     e.preventDefault();
     var nm=document.getElementById('nm').value.trim(), yr=parseInt(document.getElementById('yr').value,10),
@@ -341,7 +347,16 @@ function intro(msg){
 }
 
 /* ---------- bốc tình huống ---------- */
-function groups(){var by={chon1:[],chonnhieu:[],X:[],N:[],khac:[]};D.q.forEach(function(x){ if(x.loai==='thang')by[x.nhom==='X'||x.nhom==='N'?x.nhom:'khac'].push(x); else by[x.loai].push(x); });return by;}
+function ageGrp(age){
+  var have={}; D.q.forEach(function(x){have[x.tuoi]=1;});
+  var g=age<26?'18-25':(age<36?'26-35':'36+');
+  if(!have[g])g=have['26-35']&&age>=26?'26-35':'18-25';
+  return g;
+}
+function grpOf(){return (S&&S.me&&S.me.grp)||'18-25';}
+function hasThang(g){return String(D.cfg.nhom_co_thang||'18-25').split(',').map(function(x){return x.trim();}).indexOf(g)>=0;}
+function groups(){var g=grpOf(),by={chon1:[],chonnhieu:[],X:[],N:[],khac:[]};D.q.forEach(function(x){ if(String(x.tuoi)!==g)return; if(x.loai==='thang')by[x.nhom==='X'||x.nhom==='N'?x.nhom:'khac'].push(x); else by[x.loai].push(x); });return by;}
+function goiFor(age){var g=ageGrp(age);return (D.goi||[]).filter(function(x){return !x.tuoi||x.tuoi.indexOf(g)>=0;});}
 function codes(x){var c={};x.o.forEach(function(o){for(var k in o.p)c[k]=1;});return c;}
 function barHit(x,k){return x.o.some(function(o){return weigh(feat(o),COMP[k].pos)>=1;});}
 /* chọn k tình huống theo điểm ưu tiên, tránh trùng bối cảnh */
@@ -361,22 +376,24 @@ function spread(main,rs){
   return out;
 }
 function draw(ver){
-  var cfg=D.cfg, q=ver==='nhanh', by=groups(), G=goi(ver);
+  var cfg=D.cfg, q=ver==='nhanh', by=groups(), G=goi(ver), th=hasThang(grpOf());
   if(G){
+    var ntg=th?num(cfg.so_thang_goi,1):0;
     var pool=by.chon1.filter(function(x){return G.boi_canh.indexOf(x.bc)>=0;});
-    var ps=greedy(pool,num(cfg.so_chon1_goi,4),function(){return 0;},[]);
-    var pr=greedy(by.X,num(cfg.so_thang_goi,1),function(){return 0;});
+    var ps=greedy(pool,num(cfg.so_chon1_goi,4)+(num(cfg.so_thang_goi,1)-ntg),function(){return 0;},[]);
+    var pr=greedy(by.X,ntg,function(){return 0;});
     return spread(ps,pr);
   }
-  var n1=q?num(cfg.so_chon1_nhanh,7):num(cfg.so_chon1,13);
+  var nm0=q?num(cfg.so_chonnhieu_nhanh,1):num(cfg.so_chonnhieu,2), nt=th?(q?num(cfg.so_thang_nhanh,2):num(cfg.so_thang,3)):0;
+  var nmx=Math.min(nm0,by.chonnhieu.length);
+  var n1=(q?num(cfg.so_chon1_nhanh,7):num(cfg.so_chon1,13))+(nm0-nmx)+((q?num(cfg.so_thang_nhanh,2):num(cfg.so_thang,3))-nt);
   /* bản nhanh: tình huống nhẹ, phủ đủ 4 thanh; bản chi tiết: trộn nhẹ và sâu */
   var need={gan:1,cuoi:1,duyen:1,thoai:1};
   var s=greedy(by.chon1,n1,function(x){var v=q?(x.sau?-3:0):0;for(var k in need)if(need[k]&&barHit(x,k))v+=.8;return v;});
   var hasAy=function(x){return x.o.some(function(o){return o.ay==='ay';});};
   if(num(cfg.bat_buoc_an_y,1)&&!s.some(hasAy)){var ids=s.map(function(x){return x.id;}),ay=greedy(by.chon1.filter(function(x){return hasAy(x)&&ids.indexOf(x.id)<0;}),1,function(x){return q&&x.sau?-3:0;});if(ay.length)s[s.length-1]=ay[0];}
-  var m=greedy(by.chonnhieu,q?num(cfg.so_chonnhieu_nhanh,1):num(cfg.so_chonnhieu,2),function(x){return q&&x.sau?-3:0;});
-  var nt=q?num(cfg.so_thang_nhanh,2):num(cfg.so_thang,3);
-  var r=greedy(by.X,1,function(){return 0;}).concat(greedy(by.N,1,function(){return 0;}),greedy(by.khac,Math.max(0,nt-2),function(){return 0;}));
+  var m=greedy(by.chonnhieu,nmx,function(x){return q&&x.sau?-3:0;});
+  var r=nt?greedy(by.X,1,function(){return 0;}).concat(greedy(by.N,1,function(){return 0;}),greedy(by.khac,Math.max(0,nt-2),function(){return 0;})):[];
   return spread(s.concat(m),r);
 }
 /* làm tiếp từ bản nhanh: 8 tình huống nhắm vào chỗ còn mơ hồ */
@@ -384,14 +401,15 @@ function drawMore(R){
   var cfg=D.cfg, by=groups(), used=S.items.map(function(x){return x.id;}), bcs=S.items.map(function(x){return x.bc;});
   var free=function(a){return a.filter(function(x){return used.indexOf(x.id)<0;});};
   var r1=R.rank[0], r2=R.rank[1], lowBar=Object.keys(R.cover).sort(function(a,b){return R.cover[a]-R.cover[b];})[0];
-  var n1=num(cfg.so_chon1,13)-num(cfg.so_chon1_nhanh,7), nm=num(cfg.so_chonnhieu,2)-num(cfg.so_chonnhieu_nhanh,1);
+  var th=hasThang(grpOf()), nm0=num(cfg.so_chonnhieu,2)-num(cfg.so_chonnhieu_nhanh,1), nm=Math.min(nm0,free(by.chonnhieu).length), nt0=num(cfg.so_thang,3)-num(cfg.so_thang_nhanh,2), nt=th?nt0:0;
+  var n1=num(cfg.so_chon1,13)-num(cfg.so_chon1_nhanh,7)+(nm0-nm)+(nt0-nt);
   var s=greedy(free(by.chon1),n1,function(x){var c=codes(x),v=x.sau?2.5:0;if(c[r1]&&c[r2])v+=3;else if(c[r1]||c[r2])v+=1;if(barHit(x,lowBar))v+=1.5;return v;},bcs);
   var m=greedy(free(by.chonnhieu),nm,function(x){return x.sau?2:0;},bcs);
-  var nt=num(cfg.so_thang,3)-num(cfg.so_thang_nhanh,2);
   var r=greedy(free(by.khac),nt,function(x){return (x.sig.indexOf(r1)>=0?3:0)+(x.sig.indexOf(r2)>=0?2:0);});
   return spread(s.concat(m),r);
 }
 function start(me,ver){
+  me.grp=ageGrp(me.age); S={me:me};
   var items=draw(ver);
   S={me:me,ver:ver,items:items,ord:{},ans:{},cur:0,back:null,pb:null};
   items.forEach(prepOrder);

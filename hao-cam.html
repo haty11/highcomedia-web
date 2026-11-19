@@ -67,12 +67,12 @@ body.flow footer{display:none}
 /* thẻ tình huống */
 .mtop{display:flex;align-items:center;gap:10px;margin:0 0 2px}.mtop .bar{flex:1;height:8px;border-radius:4px;background:rgba(26,26,26,.1);overflow:hidden}.mtop .bar s{display:block;height:100%;background:var(--amber);border-radius:4px;transition:width .3s}
 .mtop span{font-size:13px;font-weight:700;color:var(--mut);white-space:nowrap}
-.qc{position:relative;background:#fff;border:1.5px solid var(--ink);border-radius:22px;padding:24px 20px 20px;overflow:hidden}
-@media(min-width:980px){.qc{padding:34px 34px 26px;min-height:520px}}
+.the-th{position:relative;background:#fff;border:1.5px solid var(--ink);border-radius:22px;padding:24px 20px 20px;overflow:hidden}
+@media(min-width:980px){.the-th{padding:34px 34px 26px;min-height:520px}}
 .wm{position:absolute;pointer-events:none;z-index:0}
 .wm.g{right:-70px;bottom:-80px;width:300px;opacity:.09}
 .wm.ch{right:26px;top:22px;width:34px;opacity:.08}
-.qc>*:not(.wm){position:relative;z-index:1}
+.the-th>*:not(.wm){position:relative;z-index:1}
 .meta{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--brown);background:var(--amber-xl);border:1px solid var(--amber-l);padding:4px 11px;border-radius:100px;margin:0 0 12px}
 .sit{font-size:21px;line-height:1.4;margin:0 0 6px;font-family:'Be Vietnam Pro',sans-serif;font-weight:700;letter-spacing:0}
 @media(min-width:980px){.sit{font-size:24px}}
@@ -280,7 +280,7 @@ function top(){window.scrollTo(0,0);}
 function frame(inner,wide){return '<div class="stage'+(wide===true?' wide':(wide?' '+wide:''))+'"><div class="valance" aria-hidden="true"></div><div class="stg">'+inner+'</div></div>';}
 document.addEventListener('keydown',function(e){if(KEY&&!e.altKey&&!e.ctrlKey&&!e.metaKey&&!/INPUT|SELECT|TEXTAREA/.test((e.target||{}).tagName||''))KEY(e);});
 
-fetch('hao-cam-data.json?v=2026-11-19').then(function(r){return r.json();}).then(function(d){D=d;intro();}).catch(function(){app.innerHTML='<p>Không tải được dữ liệu. Bạn tải lại trang giúp nhé.</p>';});
+fetch('/hao-cam-data.json?v=2026-11-19').then(function(r){return r.json();}).then(function(d){D=d;intro();}).catch(function(){app.innerHTML='<p>Không tải được dữ liệu. Bạn tải lại trang giúp nhé.</p>';});
 
 /* ---------- trang mở đầu ---------- */
 function intro(msg){
@@ -300,7 +300,7 @@ function intro(msg){
   '<label class="f">Chọn bản bạn muốn chơi</label><div class="ver" role="radiogroup">'+verH+'</div>'+
   '<p class="err" id="er">'+(msg||'')+'</p><button class="btn w" type="submit">Bắt đầu đo</button>'+
   '<p class="small" style="margin:12px 0 0">🔒 Thông tin chỉ nằm trên máy của bạn, không gửi đi đâu.</p></form></div>'+
-  '<div class="hero-img"><img loading="lazy" decoding="async" src="img/hao-cam/'+esc(img)+'" alt="Các nhân vật sân khấu Commedia dell\'arte" width="1400" height="788"><div class="cap"><span>Arlecchino</span><span>Pierrot</span><span>Pulcinella</span><span>Brighella</span><span>Zanni</span><span>Il Pubblico</span><span>Pantalone</span></div><p class="small" style="margin:10px 0 0">Bảy nét duyên, đặt tên theo bảy vai của sân khấu ứng tác Commedia dell\'arte nước Ý. Bạn là ai trong số họ?</p></div></div>';
+  '<div class="hero-img"><img loading="lazy" decoding="async" src="/img/hao-cam/'+esc(img)+'" alt="Các nhân vật sân khấu Commedia dell\'arte" width="1400" height="788"><div class="cap"><span>Arlecchino</span><span>Pierrot</span><span>Pulcinella</span><span>Brighella</span><span>Zanni</span><span>Il Pubblico</span><span>Pantalone</span></div><p class="small" style="margin:10px 0 0">Bảy nét duyên, đặt tên theo bảy vai của sân khấu ứng tác Commedia dell\'arte nước Ý. Bạn là ai trong số họ?</p></div></div>';
   app.innerHTML=frame(h,'full'); top();
   app.querySelectorAll('.ver input').forEach(function(r){r.onchange=function(){app.querySelectorAll('.ver label').forEach(function(l){l.classList.toggle('on',l.querySelector('input').checked);});};});
   document.getElementById('f').onsubmit=function(e){
@@ -363,7 +363,7 @@ function showQ(i){
   document.body.classList.add('flow'); S.cur=i;
   var q=S.items[i], N=S.items.length, a=S.ans[q.id], R=rails(), last=i===N-1;
   var c='<div><div class="mtop"><div class="bar"><s style="width:'+Math.round(100*(i)/N)+'%"></s></div><span>'+(i+1)+'/'+N+'</span></div>'+
-    '<section class="qc" aria-labelledby="sit"><span class="wm g">'+G_SVG+'</span><span class="wm ch">'+CHAIR+'</span>'+
+    '<section class="the-th" aria-labelledby="sit"><span class="wm g">'+G_SVG+'</span><span class="wm ch">'+CHAIR+'</span>'+
     '<p class="meta">'+(ICON[q.bc]||'🎭')+' '+esc(q.bc)+' · Tình huống '+(i+1)+'/'+N+'</p>';
   if(q.loai==='thang'){
     c+='<h2 class="sit" id="sit">'+esc(cq(q.txt))+'</h2><p class="ask">Nghe có giống bạn không?</p><div class="sc" role="group" aria-label="Mức độ giống bạn">';
@@ -423,7 +423,7 @@ function swap(i){
 /* ---------- xem lại ---------- */
 function review(){
   KEY=null; document.body.classList.add('flow');
-  var R=rails(), h='<section class="qc"><span class="wm g">'+G_SVG+'</span><h2 style="font-size:28px;margin:0 0 6px">Xem lại lựa chọn của bạn</h2><p class="lead2" style="margin:0 0 12px">Chạm "Đổi" ở tình huống nào muốn sửa. Xong thì xem độ Hảo cảm.</p><ul class="rv">';
+  var R=rails(), h='<section class="the-th"><span class="wm g">'+G_SVG+'</span><h2 style="font-size:28px;margin:0 0 6px">Xem lại lựa chọn của bạn</h2><p class="lead2" style="margin:0 0 12px">Chạm "Đổi" ở tình huống nào muốn sửa. Xong thì xem độ Hảo cảm.</p><ul class="rv">';
   S.items.forEach(function(q,i){
     var a=S.ans[q.id], ok=answered(q), txt;
     if(!ok)txt='<span class="miss">Chưa chọn</span>';
@@ -553,7 +553,7 @@ function result(R){
   var h='<div>'+(quick?'':'<nav class="subnav" aria-label="Mục kết quả">'+nav.map(function(n,i){return '<a href="#'+n[0]+'" class="'+(i?'':'on')+'">'+n[1]+'</a>';}).join('')+'</nav>');
   h+='<section class="sec" id="diem"><div class="scorecard"><span class="wm g">'+G_SVG+'</span><p class="kick">'+esc(me.name)+' ơi, độ Hảo cảm của bạn là</p><div class="score"><b>'+sc+'</b><span>/100 · '+esc(muc.ten_muc)+'</span></div><p style="margin:8px 0 0">'+esc(muc.dien_giai)+'</p><div class="bars">'+
      ['gan','cuoi','duyen','thoai'].map(function(k){return '<div class="bar"><span>'+BARN[k]+'</span><i><s style="width:'+Math.round(8+92*R.bars[k])+'%"></s></i></div>';}).join('')+'</div></div></section>';
-  h+='<section class="sec" id="kieu"><p class="kick">Hảo cảm của bạn mang màu</p><div class="type"><img loading="lazy" decoding="async" src="img/hao-cam/'+esc(K.anh_chinh)+'" alt="'+esc(K.ten)+'" width="130"><div><h3>'+esc(K.ten)+' · '+esc(K.hau_to)+'</h3><p class="stage-l">Trên sân khấu: '+esc(K.dien_giai_san_khau)+'</p><p style="margin:0">'+esc(K.cau_mo_hao_cam)+'</p></div></div>';
+  h+='<section class="sec" id="kieu"><p class="kick">Hảo cảm của bạn mang màu</p><div class="type"><img loading="lazy" decoding="async" src="/img/hao-cam/'+esc(K.anh_chinh)+'" alt="'+esc(K.ten)+'" width="130"><div><h3>'+esc(K.ten)+' · '+esc(K.hau_to)+'</h3><p class="stage-l">Trên sân khấu: '+esc(K.dien_giai_san_khau)+'</p><p style="margin:0">'+esc(K.cau_mo_hao_cam)+'</p></div></div>';
   if(quick){
     h+='<p style="margin:16px 0 0">'+esc(K.khi_phat)+' '+esc(K.khi_don)+'</p><p>'+esc(K['cau_noi_'+zone])+'</p></section>';
     h+='<section class="sec" id="khoanh-khac"><h2>Khoảnh khắc của bạn</h2>'+moments(R,1)+'</section>';
@@ -564,7 +564,7 @@ function result(R){
     h+='<div class="upsell"><b>Muốn đọc vị kỹ hơn?</b><p style="margin:0 0 12px">Bản chi tiết có 18 tình huống, ba khoảnh khắc của bạn, bài học hôm nay và lời khuyên riêng theo điểm.</p><button class="btn" id="up">Làm bản chi tiết</button></div>';
   } else {
     var im=ills(K);
-    h+='<p style="margin:16px 0 0">'+esc(K.bai_chinh)+'</p>'+(im.length?'<div class="ills">'+im.map(function(s){return '<img loading="lazy" src="img/hao-cam/'+esc(s)+'" alt="'+esc(K.ten)+'">';}).join('')+'</div>':'')+
+    h+='<p style="margin:16px 0 0">'+esc(K.bai_chinh)+'</p>'+(im.length?'<div class="ills">'+im.map(function(s){return '<img loading="lazy" src="/img/hao-cam/'+esc(s)+'" alt="'+esc(K.ten)+'">';}).join('')+'</div>':'')+
      '<p>'+esc(K.khi_phat)+' '+esc(K.khi_don)+'</p>'+
      '<p>Điểm mạnh nhất của bạn là <b>'+BARN[best].toLowerCase()+'</b>: '+esc(D.thanh[best].cau_manh)+' Chỗ có thể luyện thêm là <b>'+BARN[low].toLowerCase()+'</b>.</p>'+
      '<p>'+esc(K['cau_noi_'+zone])+'</p>'+
@@ -619,7 +619,7 @@ function spy(){
 /* ---------- ảnh chia sẻ ---------- */
 function shareCard(R,K,muc){
   var c=document.createElement('canvas'),W=1080,H=1350;c.width=W;c.height=H;var x=c.getContext('2d');
-  var img=new Image(); img.onload=paint; img.onerror=paint; img.src='img/hao-cam/'+K.anh_chinh;
+  var img=new Image(); img.onload=paint; img.onerror=paint; img.src='/img/hao-cam/'+K.anh_chinh;
   function wrap(t,X,Y,mw,lh){var w=String(t).split(' '),l='';w.forEach(function(s){var tt=l+s+' ';if(x.measureText(tt).width>mw&&l){x.fillText(l.trim(),X,Y);l=s+' ';Y+=lh;}else l=tt;});x.fillText(l.trim(),X,Y);return Y;}
   function paint(){
     (document.fonts?document.fonts.ready:Promise.resolve()).then(function(){

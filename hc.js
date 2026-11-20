@@ -224,7 +224,7 @@
 })();
 /* Cộng đồng: cửa sổ "Xem diễn" (đang chuẩn bị bán vé) và "Jam cộng đồng" — gắn bằng data-cd="show|jam" */
 (function(){
-  var C=window.HC_CONFIG||{}, FB='https://www.facebook.com/share/1FRAFYfvux/', MAIL=C.email||'daongocha23@gmail.com';
+  var C=window.HC_CONFIG||{}, FB='https://www.facebook.com/share/1FRAFYfvux/', MAIL=C.email||'contact@highcomedia.com';
   var mailto=function(s,b){return 'mailto:'+MAIL+'?subject='+encodeURIComponent(s)+'&body='+encodeURIComponent(b);};
   var P={
     show:{img:'/img/ab-audience-laugh.webp',alt:'Khán giả cười trong một đêm diễn ứng tác của High Club',k:'XEM DIỄN · ĐANG CHUẨN BỊ',h:'Sân khấu High Club sắp mở lại',

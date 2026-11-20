@@ -24,7 +24,7 @@ jobs:
           d=$(ls _hen-gio/*.zip 2>/dev/null | sed 's#.*/##; s#\.zip$##' | awk -v t="$today" '$0<=t' | sort | tail -1)
           if [ -z "$d" ]; then echo "Chưa có bài đến hạn"; exit 0; fi
           unzip -oq "_hen-gio/$d.zip" -d .
-          git add -A kien-thuc sitemap.xml
+          git add -A kien-thuc sitemap.xml llms.txt
           if git diff --cached --quiet; then echo "Web đã đúng lịch $d"; exit 0; fi
           git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "Đăng bài hẹn giờ ($d)"
           git push
